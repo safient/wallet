@@ -15,9 +15,6 @@ export const Header = () => {
 
       <StyledNav>
         <List>
-          <Text variant='small' tx='common.knowAboutSafient' />
-        </List>
-        <List>
           <Button variant='ghost' label={{ tx: 'common.knowMore', color: 'textLight' }} onClick={redirect} />
         </List>
       </StyledNav>

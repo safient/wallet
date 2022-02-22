@@ -3,6 +3,7 @@ import { BreakPoints } from 'utils';
 
 export const LogoWrapper = styled.div`
   display: flex;
+  width: 18rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     align-items: center !important;
     justify-content: space-between !important;
@@ -15,7 +16,7 @@ export const NavContainer = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: ${({ theme: { colors } }) => colors.white};
-  padding: 2.5rem 14rem;
+  padding: 2.5rem 35rem;
   height: 8rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     align-items: center;
