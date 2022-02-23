@@ -21,9 +21,6 @@ export * from './avatar-group/avatar-group.component';
 export * from './navlink/navlink.component';
 export * from './navlink/navlink.component.props';
 
-export * from './navbar/navbar.component';
-export * from './navbar/navbar.component.props';
-
 export * from './top-bar/top-bar.component';
 export * from './drop-down/drop-down.component';
 

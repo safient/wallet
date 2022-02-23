@@ -10,15 +10,15 @@ export const RegistrationContainer = styled.section`
 `;
 
 export const RegistrationFormContainer = styled.section`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 `;
 
 export const RegistrationFormBox = styled(Box)`
-  gap: 2.6rem; 
+  gap: 2.6rem;
 `;
 
 export const FormContainer = styled.div`
@@ -52,14 +52,13 @@ export const TextContainer = styled(Box)`
   gap: 2rem;
 `;
 
-
 export const StyledInput = styled(Input)`
-@media screen and (max-width: ${BreakPoints.small}) {
-  flex-direction: column;
-  margin-top: 2rem;
-  gap: 2rem;
-  width: 100% !important;
-}
+  @media screen and (max-width: ${BreakPoints.small}) {
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 2rem;
+    width: 100% !important;
+  }
 `;
 
 export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`

@@ -4,9 +4,9 @@ import { safientLogo } from 'assets';
 
 export const TopBar = () => {
   return (
-    <TopBarContainer vCenter hCenter>
+    <TopBarContainer align={'center'} justify={'center'} hCenter vCenter row>
       <LogoWrapper hCenter vCenter>
-        <Image src={safientLogo} width={12.1} />
+        <Image name='safientWalletLogo' width={12.1} />
       </LogoWrapper>
       <BoxGroup row>
         <NotificationIcon name='notification' size='small' />

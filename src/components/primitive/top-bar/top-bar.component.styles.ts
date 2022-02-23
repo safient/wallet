@@ -7,28 +7,15 @@ import { BreakPoints } from 'utils';
  */
 export const TopBarContainer = styled(Box)`
   background-color: ${({ theme: { colors } }) => colors.white};
-  flex-direction: row !important;
-  flex-grow: 0 !important;
-  height: 7rem !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding-top: 1rem !important;
-  padding-bottom: 2rem !important;
-  padding-right: 4rem !important;
-  width: 100% !important;
-  z-index: 10;
+  padding: 2.5rem 35rem !important;
+  height: 8rem;
 
-  @media screen and (min-width: ${BreakPoints.large}) {
-    background-color: transparent;
-    padding: 1rem !important;
+  @media screen and (max-width: ${BreakPoints.medium}) {
+    padding: 2.5rem 1.8rem !important;
   }
 
   @media screen and (max-width: ${BreakPoints.small}) {
-    padding-right: 2rem !important;
-    position: fixed !important;
-    top: 0px;
-    left: 0px;
-    right: 0px;
+    padding: 2.5rem 1.8rem !important;
   }
 `;
 
@@ -39,9 +26,9 @@ export const LogoWrapper = styled(Box)`
   display: inline-block !important;
   margin-left: 2.2rem !important;
 
-  @media screen and (min-width: ${BreakPoints.large}) {
+  /* @media screen and (min-width: ${BreakPoints.large}) {
     visibility: hidden !important;
-  }
+  } */
 `;
 
 /**

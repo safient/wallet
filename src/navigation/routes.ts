@@ -1,13 +1,15 @@
 import { RouteProps } from 'react-router-dom';
 import {
   AccountScreen,
-  ClaimDetailsScreen,
-  ClaimsScreen,
-  CreateSafeScreen,
+  WalletClaimScreen,
   HomeScreen,
   LoginScreen,
   NotFoundScreen,
   RegisterScreen,
+  WelcomeScreen,
+  CreateWalletScreen,
+  WalletOverviewScreen,
+  WalletSettingsScreen,
 } from '../screens';
 import { RouteName } from './route-name';
 import { RoutePath } from './route-path';
@@ -44,27 +46,6 @@ export const routes: IRoute[] = [
     component: RegisterScreen,
   },
   {
-    path: RoutePath.createSafe,
-    name: RouteName.createSafe,
-    exact: true,
-    private: true,
-    component: CreateSafeScreen,
-  },
-  {
-    path: RoutePath.claims,
-    name: RouteName.claims,
-    exact: true,
-    private: true,
-    component: ClaimsScreen,
-  },
-  {
-    path: RoutePath.claimDetails,
-    name: RouteName.claimDetails,
-    exact: true,
-    private: true,
-    component: ClaimDetailsScreen,
-  },
-  {
     path: RoutePath.account,
     name: RouteName.account,
     exact: true,
@@ -76,5 +57,42 @@ export const routes: IRoute[] = [
     name: RouteName.notFound,
     exact: true,
     component: NotFoundScreen,
+  },
+
+  {
+    path: RoutePath.welcome,
+    name: RouteName.welcome,
+    exact: true,
+    private: true,
+    component: WelcomeScreen,
+  },
+
+  {
+    path: RoutePath.createWallet,
+    name: RouteName.createWallet,
+    exact: true,
+    private: true,
+    component: CreateWalletScreen,
+  },
+  {
+    path: RoutePath.walletOverview,
+    name: RouteName.walletOverview,
+    exact: true,
+    private: true,
+    component: WalletOverviewScreen,
+  },
+  {
+    path: RoutePath.walletClaim,
+    name: RouteName.walletClaim,
+    exact: true,
+    private: true,
+    component: WalletClaimScreen,
+  },
+  {
+    path: RoutePath.walletSettings,
+    name: RouteName.walletSettings,
+    exact: true,
+    private: true,
+    component: WalletSettingsScreen,
   },
 ];
