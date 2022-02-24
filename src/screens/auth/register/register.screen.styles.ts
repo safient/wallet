@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Box, Button, Input, Text } from 'components/primitive';
 import { BreakPoints } from 'utils';
 
