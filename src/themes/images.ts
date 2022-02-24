@@ -50,6 +50,7 @@ export const images = {
   loginWithGitHub: require('../assets/icons/login-github.svg').default,
   loginWithMetaMask: require('../assets/icons/login-metamask.svg').default,
   lockLoader: require('../assets/icons/lockLoader.gif').default,
+  safientWalletLogo: require('../assets/logo/logo.svg').default,
 };
 
 export type Images = typeof images;

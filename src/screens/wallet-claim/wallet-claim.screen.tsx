@@ -1,5 +1,5 @@
 import React from 'react';
 
-export function ClaimsScreen() {
+export function WalletClaimScreen() {
   return <div>claims screen</div>;
 }
