@@ -1,12 +1,15 @@
 import { Image, Avatar } from 'components/primitive';
 import { TopBarContainer, LogoWrapper, BoxGroup, NotificationIcon } from './top-bar.component.styles';
-import { safientLogo } from 'assets';
+import { RoutePath } from 'navigation/route-path';
+import { Link } from 'react-router-dom';
 
 export const TopBar = () => {
   return (
-    <TopBarContainer vCenter hCenter>
+    <TopBarContainer align={'center'} justify={'center'} hCenter vCenter row>
       <LogoWrapper hCenter vCenter>
-        <Image src={safientLogo} width={12.1} />
+      <Link to={RoutePath.home} >
+        <Image name='safientWalletLogo' width={18} />
+      </Link>
       </LogoWrapper>
       <BoxGroup row>
         <NotificationIcon name='notification' size='small' />

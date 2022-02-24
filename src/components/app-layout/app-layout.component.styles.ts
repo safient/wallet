@@ -26,7 +26,9 @@ export const ContentWrapper = styled(Box)`
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  flex: 4;
+  flex: 0;
+  width: 80rem;
+  margin: 0 auto;
   background-color: ${({ theme: { colors } }) => colors.applicationBackground};
   justify-content: center;
   flex-wrap: wrap;

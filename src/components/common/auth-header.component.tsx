@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <NavContainer>
       <LogoWrapper>
-        <Image src={safientLogo} />
+        <Image src={safientLogo} width={18} />
       </LogoWrapper>
 
       <StyledNav>

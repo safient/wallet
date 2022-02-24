@@ -10,7 +10,7 @@ import { routes } from './routes';
 const Navigation = observer(() => {
   const { accountStore } = useStores();
   //TODO - Remove mock after auth integration
-  const isMock: boolean = false;
+  const isMock: boolean = true;
   let isSignedIn: boolean = accountStore.userSignedIn || isMock;
   let isNewUser: boolean = !accountStore.userExists || isMock;
 
@@ -28,12 +28,11 @@ const Navigation = observer(() => {
                   <AppLayout>
                     <Component {...props} {...routeProps} />
                   </AppLayout>
-                ) : (isNewUser? (
+                ) : isNewUser ? (
                   <RegisterScreen {...props} />
-                ) :
-                (
+                ) : (
                   <LoginScreen {...props} />
-                ))
+                )
               }
             />
           );

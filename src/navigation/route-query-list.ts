@@ -11,9 +11,11 @@ export interface RouteQueryList {
   [RouteName.home]: undefined;
   [RouteName.login]: undefined;
   [RouteName.register]: undefined;
-  [RouteName.createSafe]: undefined;
-  [RouteName.claims]: undefined;
-  [RouteName.claimDetails]: undefined;
   [RouteName.account]: undefined;
   [RouteName.notFound]: undefined;
+  [RouteName.welcome]: undefined;
+  [RouteName.createWallet]: undefined;
+  [RouteName.walletOverview]: undefined;
+  [RouteName.walletClaim]: undefined;
+  [RouteName.walletSettings]: undefined;
 }
