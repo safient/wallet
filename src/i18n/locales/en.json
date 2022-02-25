@@ -34,6 +34,10 @@
     "privacy": "Privacy Policy",
     "registerAlert": "We couldn't find your account. Please register here"
   },
+  "wallet": {
+    "enterDetails": "Enter Wallet Deatils"
+  },
+  
   "accountPage": {
     "profile": "Profile",
     "settings": "Settings",
