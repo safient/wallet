@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Box, Button, Input, Text } from 'components/primitive';
-import { BreakPoints } from 'utils';
+import styled from "styled-components";
+import { Box, Button, Input, Text } from "components/primitive";
+import { BreakPoints } from "utils";
 
 export const RegistrationContainer = styled.section`
   width: 100%;
@@ -12,7 +12,7 @@ export const RegistrationFormContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 10rem;
   height: 100vh;
 `;
 
@@ -60,7 +60,7 @@ export const StyledInput = styled(Input)`
   }
 `;
 
-export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
+export const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
   margin-top: 0.5rem;
 `;
 

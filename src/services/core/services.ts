@@ -2,13 +2,11 @@ import React from "react";
 
 import { AccountServiceImpl } from "../account/account.service.impl";
 import { EthereumServiceImpl } from "../ethereum/ethereum.service.impl";
+import { SafeServiceImpl } from "../safe/safe.service.impl";
 import { StorageServiceImpl } from "../storage/storage.service.impl";
 
-export const storageService = new StorageServiceImpl();
-export const accountService = new AccountServiceImpl();
-export const ethereumService = new EthereumServiceImpl();
-
 class Services {
+  safeService: SafeServiceImpl = new SafeServiceImpl();
   storageService: StorageServiceImpl = new StorageServiceImpl();
   accountService: AccountServiceImpl = new AccountServiceImpl();
   ethereumService: EthereumServiceImpl = new EthereumServiceImpl();

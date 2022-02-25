@@ -1,5 +1,7 @@
 export * from './account/account.store'
 export * from './account/account.store.impl'
+export * from './safe/safe.store'
+export * from './safe/safe.store.impl'
 export * from './app/app.store'
 export * from './app/app.store.impl'
 export * from './stores/index'
