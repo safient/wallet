@@ -18,7 +18,7 @@ import { useStores } from "store";
 import { observer } from "mobx-react-lite";
 
 export const CreateWalletScreen = observer(() => {
-  const { safeService } = useServices();
+  const { safeService, walletService } = useServices();
   const { safeStore } = useStores();
   let history = useHistory();
 
@@ -31,12 +31,20 @@ export const CreateWalletScreen = observer(() => {
   const createSafe = async () => {
     try {
       safeStore.setFetching(true);
-      const safe = await safeService.create(walletBeneficiary, "test wallet", false);
+
+      const wallet = await walletService.create()
+
+      if(wallet.hasData()) {
+
+      const safe = await safeService.create(walletBeneficiary, wallet.data!.mnemonic, false);
+
       if (safe.hasData()) {
         history.push(RoutePath.walletOverview);
       } else {
         history.push(RoutePath.createWallet);
       }
+      }
+     
       safeStore.setFetching(false);
     } catch (e) {
       console.log(e);
