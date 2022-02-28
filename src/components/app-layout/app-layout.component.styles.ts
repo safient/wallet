@@ -27,7 +27,8 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 0;
-  width: 80rem;
+  width: 100%;
+  height: auto;
   margin: 0 auto;
   background-color: ${({ theme: { colors } }) => colors.applicationBackground};
   justify-content: center;

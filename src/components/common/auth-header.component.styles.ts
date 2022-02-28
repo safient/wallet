@@ -1,39 +1,37 @@
+import { Box } from 'components/primitive';
 import styled from 'styled-components';
 import { BreakPoints } from 'utils';
 
-export const LogoWrapper = styled.div`
-  display: flex;
-  width: 18rem;
-  @media screen and (max-width: ${BreakPoints.small}) {
-    align-items: center !important;
-    justify-content: space-between !important;
-    margin-left: -3rem;
-  }
+/**
+ * Styling for Logo container.
+ */
+export const LogoWrapper = styled(Box)`
+  display: inline-block !important;
+  margin-left: 2.2rem !important;
 `;
 
-export const NavContainer = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+export const NavContainer = styled(Box)`
   background-color: ${({ theme: { colors } }) => colors.white};
-  padding: 2.5rem 35rem;
+  padding: 2.5rem 35rem !important;
   height: 8rem;
+
+  flex-flow: unset !important;
+  @media screen and (max-width: ${BreakPoints.medium}) {
+    padding: 2.5rem 1.8rem !important;
+  }
+
   @media screen and (max-width: ${BreakPoints.small}) {
-    align-items: center;
-    justify-content: space-between;
+    padding: 2.5rem 1.8rem !important;
   }
 `;
 
-export const StyledNav = styled.ul`
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  @media screen and (max-width: ${BreakPoints.small}) {
-    display: none;
+/**
+ * Styling for BoxGroup container.
+ */
+export const BoxGroup = styled(Box)`
+  gap: 0.8rem;
+  margin-right: 0.7rem !important;
+  &:nth-last-child() {
+    padding: 0.8rem !important;
   }
-`;
-
-export const List = styled.li`
-  list-style: none;
 `;
