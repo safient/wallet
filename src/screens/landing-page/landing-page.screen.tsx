@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import { RoutePath } from 'navigation/route-path';
 import { Header } from 'components/common/auth-header.component';
 import { Box, Button, Image, Text } from 'components/primitive';
 import { WelcomeContainer, Title } from './landing-page.screen.styles';
@@ -7,7 +8,7 @@ export const WelcomeScreen = () => {
   let history = useHistory();
 
   const redirectToLogin = () => {
-    history.push('/login');
+    history.push(RoutePath.login);
   };
 
   return (
