@@ -2,30 +2,49 @@ import { action, makeObservable, observable } from 'mobx';
 import { SafeStore } from './safe.store';
 import { StoreImpl } from '../store/store.impl';
 import { Types } from '@safient/core';
+import { WalletSecret, WalletInfo } from '../../utils/Wallet'
 
-const UserNotFoundCode = 10;
 
 export class SafeStoreImpl extends StoreImpl implements SafeStore {
 
 
-  _wallet?: Types.Safe;
+  _safe?: Types.Safe;
+  _walletSecret?: WalletSecret;
+  _walletInfo?: WalletInfo;
 
 
   constructor() {
     super();
 
     makeObservable<SafeStoreImpl, any>(this, {
-      _wallet: observable,
+      _safe: observable,
+      _walletInfo: observable,
+      _walletSecret: observable,
       setWallet: action,
     });
   }
 
-  get wallet(): Types.Safe|undefined {
-    return this._wallet;
+  get safe(): Types.Safe|undefined {
+    return this._safe;
   }
 
-  setWallet(wallet: Types.Safe) {
-      this._wallet = wallet;
+  get walletInfo(): WalletInfo|undefined {
+    return this._walletInfo;
+  }
+
+  get walletSecret(): WalletSecret|undefined {
+    return this._walletSecret;
+  }
+
+  setSafe(safe: Types.Safe) {
+    this._safe = safe;
+ }
+
+  setWallet(info: WalletInfo, secret?: WalletSecret) {
+
+    this._walletInfo = info;
+    this._walletSecret = secret;
+    
    }
 
    async resetStore() {

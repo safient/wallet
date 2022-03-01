@@ -33,12 +33,13 @@ export const CreateWalletScreen = observer(() => {
       safeStore.setFetching(true);
 
       const wallet = await walletService.create()
+      await walletService.info()
 
       if(wallet.hasData()) {
 
       const safe = await safeService.create(walletBeneficiary, wallet.data!.mnemonic, false);
-
       if (safe.hasData()) {
+        console.log(safe.data)
         history.push(RoutePath.walletOverview);
       } else {
         history.push(RoutePath.createWallet);

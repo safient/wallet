@@ -18,8 +18,15 @@ export type WalletSecret = {
   wallet: EthersWallet
 }
 
+export type WalletInfo = {
+  address: string
+  balance: string
+  latestTransactions: any
+}
+
 export class Wallet {
   private walletProvider!: EthersWallet
+  
 
   async create(chainId: number): Promise<ServiceResponse<WalletSecret>> {
 
@@ -87,14 +94,38 @@ export class Wallet {
       const account: Account = await this._loadAccount(mnemonic)
       const wallet: EthersWallet = await this._loadProvider(network, account.privateKey)
   
-      const address = account.address
-  
       return new ServiceResponse({ data: wallet })
   
       }
       catch(err: any) {
         throw new ServiceResponse({error: err.error})
       }
+
+  }
+
+  async info(): Promise<ServiceResponse<any>> {
+
+    try {
+
+      const apiURL = NetworkUtil.getNetworkById(await this.walletProvider.getChainId())?.api
+      const address = await this.walletProvider.getAddress()
+      const balance = await this.walletProvider.getBalance()
+      const transactionsResp = await fetch(`${apiURL}&module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=5&sort=desc`).then(res => {return res.json()})
+      const latestTransactions = transactionsResp.result
+
+      const walletInfo = {
+        balance: utils.formatEther(balance),
+        address: address,
+        latestTransactions: latestTransactions
+      }
+
+      return new ServiceResponse({data: walletInfo})
+
+    }
+    catch(err: any) {
+      throw new ServiceResponse({error: err.error})
+
+    }
 
   }
 
