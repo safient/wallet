@@ -51,6 +51,7 @@ export const images = {
   loginWithMetaMask: require('../assets/icons/login-metamask.svg').default,
   lockLoader: require('../assets/icons/lockLoader.gif').default,
   safientWalletLogo: require('../assets/logo/logo.svg').default,
+  landingPage: require('../assets/images/landing-page.svg').default,
 };
 
 export type Images = typeof images;

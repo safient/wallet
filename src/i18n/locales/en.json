@@ -45,5 +45,9 @@
     "inAppNotifications": "In app notifications",
     "emailNotifications": "Email notifications",
     "defaultSafeConfigs": "Default safe configs"
+  },
+  "welcomePage": {
+    "heading": "Non custodial claimable wallets",
+    "subHeading": "A crypto wallet solution for easy self recovery and inheritance"
   }
 }

@@ -1,6 +1,7 @@
-import { Button, Text, Image } from 'components/primitive';
-import { safientLogo } from 'assets';
-import { NavContainer, LogoWrapper, StyledNav, List } from './auth-header.component.styles';
+import { Link } from 'react-router-dom';
+import { Button, Image } from 'components/primitive';
+import { NavContainer, LogoWrapper, BoxGroup } from './auth-header.component.styles';
+import { RoutePath } from 'navigation/route-path';
 
 export const Header = () => {
   const redirect = () => {
@@ -8,16 +9,15 @@ export const Header = () => {
   };
 
   return (
-    <NavContainer>
-      <LogoWrapper>
-        <Image src={safientLogo} width={18} />
+    <NavContainer align={'center'} justify={'center'} hCenter vCenter row>
+      <LogoWrapper hCenter vCenter>
+        <Link to={RoutePath.home}>
+          <Image name='safientWalletLogo' width={18} />
+        </Link>
       </LogoWrapper>
-
-      <StyledNav>
-        <List>
-          <Button variant='ghost' label={{ tx: 'common.knowMore', color: 'textLight' }} onClick={redirect} />
-        </List>
-      </StyledNav>
+      <BoxGroup hCenter vCenter row align={'center'} justify={'center'}>
+        <Button variant='ghost' label={{ tx: 'common.knowMore', color: 'textLight' }} onClick={redirect} />
+      </BoxGroup>
     </NavContainer>
   );
 };
