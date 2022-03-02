@@ -20,11 +20,49 @@ import {
 
 export const LoginScreen = () => {
 
-  const { accountService } = useServices();
+  const { accountService, magiclinkService } = useServices();
   const { accountStore } = useStores();
   let history = useHistory();  
   const [signingIn, setSigningIn] = useState(false)
+  const [email, setEmail] = useState(null);
+  const providers = ['google', 'github']
 
+
+  const handleMagicLogin = async () => {
+    try{
+      setSigningIn(true);
+      const res = await magiclinkService.loginWithEmail('yathish78699@gmail.com')
+      if(res.data){
+        console.log('enters if')
+        history.push(RoutePath.home)
+      }else{
+        history.push(RoutePath.register)      
+      }
+      setSigningIn(false)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+  const handleMagicSocialLogin = async () => {
+    try{
+      setSigningIn(true);
+      const res = await magiclinkService.loginWithSocial("google")
+      if(res.data){
+        console.log('enters if')
+        history.push(RoutePath.home)
+      }else{
+        history.push(RoutePath.register)      
+      }
+      setSigningIn(false)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+  // const handleEmailInput = (e: Event) => {
+  //     setEmail(e.target.value)
+  // }
   const login = async () => {
     try {
     setSigningIn(true)  
@@ -57,7 +95,7 @@ export const LoginScreen = () => {
           <StyledButton
             variant='primary'
             label={{ tx: 'auth.login' }}
-            onClick={() => {}}
+            onClick={handleMagicLogin}
             color='primaryGradient'
           />
 
@@ -69,7 +107,7 @@ export const LoginScreen = () => {
 
             <SocialIconsContainer>
               <SocialIcon name='loginWithGitHub' height={5} width={7} />
-              <SocialIcon name='loginWithGoogle' height={5} width={7} />
+              <SocialIcon name='loginWithGoogle' height={5} width={7}  onClick={handleMagicSocialLogin}/>
               <SocialIcon name='loginWithMetaMask' height={5} width={7} onClick={login} />
             </SocialIconsContainer>
           </SocialLoginContainer>
