@@ -18,7 +18,7 @@ export const HomeScreenContainer = styled(Box)`
  * Styles for Title Text.
  */
 export const Title = styled(Text)`
-  margin-left: 1.5rem;
+  margin-left: 38rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-left: 0.1rem;
   }

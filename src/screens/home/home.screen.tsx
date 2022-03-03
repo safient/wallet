@@ -1,34 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, IconSvg } from 'components/primitive';
+import { Box, IconSvg, Text } from 'components/primitive';
+import { WalletCard } from './components/wallet-card/wallet-card.component';
+import { UserRole } from './components/wallet-card/wallet-card.component.props';
 import { HomeScreenContainer, Title, CardsContainer, SafeCard, SafeText } from './home.screen.styles';
 
 import { RoutePath } from 'navigation/route-path';
+import { useStores } from 'store';
 
 export const HomeScreen: React.FC = () => {
+
+  const { accountStore } = useStores();
+  
   return (
-    <HomeScreenContainer>
-      <Box hCenter>
-        <Title variant='contentHeader' tx='common.wallets' />
-        <CardsContainer row>
+    <HomeScreenContainer>   
+      <Title variant='contentHeader' tx='common.wallets' />
+
+        <Box hCenter>
+        <CardsContainer row hCenter> 
           <SafeCard hCenter vCenter>
             <Link to={RoutePath.createWallet}>
               <IconSvg name='add' size='xLarge' />
             </Link>
             <SafeText variant='content' tx='common.createWallet' />
           </SafeCard>
-
-          {/* TODO: Render the wallet cards  */}
-          {/* <SafeCard hCenter vCenter>
-            <IconSvg name='add' size='xLarge' />
-            <SafeText variant='content' tx='common.createWallet' />
-          </SafeCard>
-
-          <SafeCard hCenter vCenter>
-            <IconSvg name='add' size='xLarge' />
-            <SafeText variant='content' tx='common.createWallet' />
-          </SafeCard> */}
-        </CardsContainer>
+          { accountStore.web3User?.safes.map(safe => 
+            (<WalletCard walletName='Sample Wallet' roleName={safe.type as UserRole} status='active' />))
+            }
+        </CardsContainer>     
       </Box>
     </HomeScreenContainer>
   );
