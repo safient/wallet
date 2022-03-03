@@ -39,7 +39,6 @@ export const CreateWalletScreen = observer(() => {
 
       const safe = await safeService.create(walletBeneficiary, wallet.data!.mnemonic, false);
       if (safe.hasData()) {
-        console.log(safe.data)
         history.push(RoutePath.walletOverview);
       } else {
         history.push(RoutePath.createWallet);

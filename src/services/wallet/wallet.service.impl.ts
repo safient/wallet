@@ -1,6 +1,6 @@
 import { Wallet as EthersWallet } from 'ethers';
 import { WalletService } from "./wallet.service";
-import { Wallet, WalletSecret } from "utils/Wallet";
+import { Wallet, WalletInfo, WalletSecret } from "utils/Wallet";
 import { ServiceResponse } from "../core/service-response";
 import { AccountStoreImpl, SafeStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
@@ -55,14 +55,16 @@ export class WalletServiceImpl extends Service implements WalletService {
 
   // Service API to fetch the basic account info for a wallet
 
-  async info(): Promise<ServiceResponse<any>> {
+  async info(): Promise<ServiceResponse<WalletInfo>> {
 
     try {
 
       const info = await this.wallet.info();
-      console.log(info)
-      this.safeStore.setWallet(info.data);
-
+      
+      if(info.data) {
+        this.safeStore.setWallet(info.data);
+      }
+      
       return this.success<any>(info.data);
 
      

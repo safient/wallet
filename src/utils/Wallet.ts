@@ -103,17 +103,17 @@ export class Wallet {
 
   }
 
-  async info(): Promise<ServiceResponse<any>> {
+  async info(): Promise<ServiceResponse<WalletInfo>> {
 
     try {
 
       const apiURL = NetworkUtil.getNetworkById(await this.walletProvider.getChainId())?.api
       const address = await this.walletProvider.getAddress()
       const balance = await this.walletProvider.getBalance()
-      const transactionsResp = await fetch(`${apiURL}&module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=5&sort=desc`).then(res => {return res.json()})
+      const transactionsResp =  await fetch(`${apiURL}&module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=5&sort=desc`).then(res => {return res.json()})
       const latestTransactions = transactionsResp.result
 
-      const walletInfo = {
+      const walletInfo: WalletInfo = {
         balance: utils.formatEther(balance),
         address: address,
         latestTransactions: latestTransactions

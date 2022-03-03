@@ -50,7 +50,6 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
     });
     const injectedProvider = await web3Modal.connect();
     this.web3Provider = new Web3Provider(injectedProvider);
-    console.log(this.web3Provider.connection)
     const network = await this.web3Provider.getNetwork();
     this.chainId = await network.chainId;
     this.signer = await this.web3Provider.getSigner();
