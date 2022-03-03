@@ -6,10 +6,25 @@ export enum WalletStatus {
 
 }
 
+export enum UserRole {
+  
+  creator = 'creator',
+  beneficiary= 'beneficiary',
+  guardian = 'guardian'
+
+}
+
 export enum IconName {
   locked = 'locked',
   pending = 'warningAlert',
   active = 'successAlert',
+  avatar = 'avatar'
+}
+
+export enum Color {
+  pending = 'warningLight',
+  locked = 'errorLight',
+  active = 'successLight',
 }
 
 /**
@@ -17,7 +32,7 @@ export enum IconName {
  */
 export interface WalletCardProps {
   walletName: string;
-  roleName: string;
+  roleName: keyof typeof UserRole;
   status: keyof typeof WalletStatus;
   
 }
