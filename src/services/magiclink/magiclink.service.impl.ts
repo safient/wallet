@@ -2,6 +2,7 @@ import { ServiceResponse } from '../core/service-response.';
 import {magic} from '../../utils/magic';
 import { Service } from "../core/service";
 import { MagiclinkService } from './magiclink.service';
+import { OAuthProvider } from '@magic-ext/oauth';
 
 
 
@@ -36,12 +37,12 @@ export class MagicServiceImpl extends Service implements MagiclinkService {
         }
     }
 
-    async loginWithSocial(provider: string): Promise<ServiceResponse<boolean>> {
+    async loginWithSocial(provider: OAuthProvider): Promise<ServiceResponse<boolean>> {
       try{
-          const res = await magic.auth.loginWithRedirect({
-            provider,
-            redirectURI: new URL('/callback', window.location.origin).href
-          })
+        const res = await magic.oauth.loginWithRedirect({
+          provider: provider,
+          redirectURI: new URL('/callback', window.location.origin).href, // required redirect to finish social login
+        });
           console.log(res)
           return this.success<boolean>(true)
       }catch(e: any){

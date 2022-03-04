@@ -17,6 +17,7 @@ import {
   SocialIconsContainer,
   SocialIcon,
 } from './login.screen.styles';
+import { OAuthProvider } from '@magic-ext/oauth';
 
 export const LoginScreen = () => {
 
@@ -44,10 +45,10 @@ export const LoginScreen = () => {
     }
   }
 
-  const handleMagicSocialLogin = async () => {
+  const handleMagicSocialLogin = async (provider: OAuthProvider) => {
     try{
       setSigningIn(true);
-      const res = await magiclinkService.loginWithSocial("google")
+      const res = await magiclinkService.loginWithSocial(provider)
       if(res.data){
         console.log('enters if')
         history.push(RoutePath.home)
@@ -106,8 +107,8 @@ export const LoginScreen = () => {
             </TextContainer>
 
             <SocialIconsContainer>
-              <SocialIcon name='loginWithGitHub' height={5} width={7} />
-              <SocialIcon name='loginWithGoogle' height={5} width={7}  onClick={handleMagicSocialLogin}/>
+              <SocialIcon name='loginWithGitHub' height={5} width={7} onClick={() => {handleMagicSocialLogin('github')}}/>
+              <SocialIcon name='loginWithGoogle' height={5} width={7}  onClick={() => {handleMagicSocialLogin('google')}}/>
               <SocialIcon name='loginWithMetaMask' height={5} width={7} onClick={login} />
             </SocialIconsContainer>
           </SocialLoginContainer>
