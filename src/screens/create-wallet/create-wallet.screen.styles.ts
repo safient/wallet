@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Box, Button, Input, Text } from '../../components/primitive';
-import { BreakPoints } from '../../utils';
+import styled from "styled-components";
+import { Box, Button, Input, Text } from "../../components/primitive";
+import { BreakPoints } from "../../utils";
 
 /**
  * Main container of the home screen.
@@ -23,7 +23,6 @@ export const Title = styled(Text)`
     margin-left: 0.1rem;
   }
 `;
-
 
 export const WalletCreateFormContainer = styled.section`
   display: flex;

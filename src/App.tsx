@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Navigation } from './navigation/navigation';
 import { theme } from './themes/light';

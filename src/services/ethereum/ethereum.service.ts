@@ -1,4 +1,4 @@
-import { ServiceResponse } from '../core/service-response.';
+import { ServiceResponse } from '../core/service-response';
 import { Types } from '@safient/core';
 
 export interface EthereumService {
