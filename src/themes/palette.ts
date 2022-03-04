@@ -37,7 +37,7 @@ export const palette = {
   shadow: ' 0px 16px 32px rgba(221, 230, 237, 0.4)',
   blueIndigoGradient: 'linear-gradient(89.58deg, #44BCF0 -19.85%, #818CF8 54.07%, #A099FF 120.75%)',
   lightGray: '#eeeefe',
-  lighterGray: '#c4c4c4',
+  silverLight: '#e1e1e1',
 };
 
 export type Palette = typeof palette;

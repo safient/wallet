@@ -34,7 +34,7 @@ export const colors = {
   spinnerBorder: palette.greyLighter,
   toggleSwitchBackground: palette.royalBlueLighter,
   lightGray: palette.lightGray,
-  shimmer: palette.lighterGray, //used in shimmer effect.
+  shimmer: palette.silverLight, //used in shimmer effect.
 };
 
 export type Colors = typeof colors;

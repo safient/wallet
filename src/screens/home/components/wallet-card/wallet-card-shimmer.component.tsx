@@ -41,6 +41,7 @@ export const BaseStyle = styled.div`
  * Styles for line.
  */
 export const Line = styled(BaseStyle)`
+  border-radius: 0.4rem;
   width: 10rem;
   height: 2rem;
 `;
@@ -50,8 +51,8 @@ export const Line = styled(BaseStyle)`
  */
 export const Circle = styled(BaseStyle)`
   border-radius: 5rem;
-  width: 6.6rem;
-  height: 6.1rem;
+  width: 5.5rem;
+  height: 5.5rem;
 `;
 
 export const WalletCardShimmer = () => {
