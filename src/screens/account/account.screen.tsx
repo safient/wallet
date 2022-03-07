@@ -29,8 +29,8 @@ export const AccountScreen = () => {
             <Profile>
               <Avatar size='xLarge' flat name='placeHolderAvatar' />
               <ProfileInfo>
-                <Text variant='contentHeader' color='textLight' text={ stores.accountStore.web3User?.name } />{' '}
-                <Text variant='small' text={ stores.accountStore.web3User?.email }  />
+                <Text variant='contentHeader' color='textLight' text={ stores.accountStore.safientUser?.name } />{' '}
+                <Text variant='small' text={ stores.accountStore.safientUser?.email }  />
               </ProfileInfo>
             </Profile>
             <Button
@@ -43,11 +43,11 @@ export const AccountScreen = () => {
           <StatsCardContainer>
             <StatsCard
               heading={{ text: 'Safes you are Guarding' }}
-              count={{ text: stores.accountStore.web3User?.safes.length.toString() }}
+              count={{ text: stores.accountStore.safientUser?.safes.length.toString() }}
               iconName={{ name: 'guarding' }}
             />
-            <StatsCard heading={{ text: 'Safes Created' }} count={{ text: stores.accountStore.web3User?.safes.length.toString() }} iconName={{ name: 'safes' }} />
-            <StatsCard heading={{ text: 'Inherited Safes' }} count={{ text: stores.accountStore.web3User?.safes.length.toString() }} iconName={{ name: 'inherit' }} />
+            <StatsCard heading={{ text: 'Safes Created' }} count={{ text: stores.accountStore.safientUser?.safes.length.toString() }} iconName={{ name: 'safes' }} />
+            <StatsCard heading={{ text: 'Inherited Safes' }} count={{ text: stores.accountStore.safientUser?.safes.length.toString() }} iconName={{ name: 'inherit' }} />
           </StatsCardContainer>
         </AccountInfo>
       </AccountInfoContainer>

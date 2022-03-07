@@ -35,7 +35,8 @@
     "registerAlert": "We couldn't find your account. Please register here"
   },
   "wallet": {
-    "enterDetails": "Enter Wallet Deatils"
+    "enterDetails": "Enter Wallet Deatils",
+    "creatingLabel": "Creating Wallet ..."
   },
   
   "accountPage": {

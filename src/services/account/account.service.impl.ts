@@ -3,32 +3,79 @@ import { AccountService } from "./account.service";
 import { ServiceResponse } from "../core/service-response.";
 import { AccountStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
-import { Types } from "@safient/core";
-import { User } from "models";
+import { SafientCore, Types, Enums } from "@safient/core";
+import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
+import { formatEther } from "@ethersproject/units";
 
 export class AccountServiceImpl extends Service implements AccountService {
-  readonly web3Modal: Web3Modal;
+
   private readonly accountStore: AccountStoreImpl;
 
   constructor() {
     super();
     this.accountStore = stores?.accountStore;
-    this.web3Modal = new Web3Modal({
-      cacheProvider: true,
-      theme: "light",
-    });
   }
 
-  async login(): Promise<ServiceResponse<Types.User>> {
+
+
+  async _connectWallet(): Promise<Web3Provider> {
+
+    const web3Modal = new Web3Modal({
+      cacheProvider: true,
+      theme: 'light',
+    });
+    const injectedProvider = await web3Modal.connect();
+    const web3Provider = new Web3Provider(injectedProvider);
+    return web3Provider
+
+  }
+
+  async loadAccount(web3Provider: Web3Provider): Promise<ServiceResponse<boolean>> {
+
+  
     try {
+      const network = await web3Provider.getNetwork();
+      const chainId =  network.chainId;
+      const signer =  web3Provider.getSigner();
+      const address = await signer.getAddress();
+      const balance = await signer.getBalance();
+      const safient = new SafientCore(
+        signer,
+        Enums.NetworkType.testnet,
+        Enums.DatabaseType.threadDB,
+        'bjngsmak24m6e5p2ijtcedws2tq',
+        'bn3h6ozdpkmh7tgx3jh5el55cgfaevwxh7mcnnfi'
+      );
+      this.accountStore.setWeb3Account(web3Provider, signer, chainId, address, formatEther(balance), safient)
+
+      return this.success<boolean>(true);
+
+    } catch (e: any) {
+      console.log(e)
+      return this.error<boolean>(e);
+    }
+   
+
+    
+  }
+
+  async login(wallet?: boolean): Promise<ServiceResponse<Types.User>> {
+    try {
+
+    
+      if(wallet) {
+      const provider = await this._connectWallet()
+      await this.loadAccount(provider)
+      }
       const user = await this.accountStore.safient.loginUser();
 
       if (user.data) {
-        this.accountStore.setWeb3User(user.data);
+        this.accountStore.setSafientUser(user.data);
       }
 
-      return this.success<Types.User>(this.accountStore.web3User);
+      return this.success<Types.User>(this.accountStore.safientUser);
     } catch (e: any) {
+      console.log(e)
       return this.error<Types.User>(e);
     }
   }
@@ -39,10 +86,10 @@ export class AccountServiceImpl extends Service implements AccountService {
       const user = await this.accountStore.safient.createUser(name, email, 0, this.accountStore.address, false);
 
       if (user.data) {
-        this.accountStore.setWeb3User(user.data);
+        this.accountStore.setSafientUser(user.data);
       }
 
-      return this.success<Types.User>(this.accountStore.web3User);
+      return this.success<Types.User>(this.accountStore.safientUser);
     } catch (e: any) {
       return this.error<Types.User>(e);
     }

@@ -34,7 +34,7 @@ export class SafeServiceImpl extends Service implements SafeService {
       }
 
       const safe = await this.accountStore.safient.createSafe(
-        this.accountStore.web3User.did,
+        this.accountStore.safientUser.did,
         beneficiary,
         safeData,
         onchain,
@@ -96,7 +96,7 @@ export class SafeServiceImpl extends Service implements SafeService {
     try {
       const recoveredData = await this.accountStore.safient.recoverSafeByBeneficiary(
         safeId,
-        this.accountStore.web3User.did,
+        this.accountStore.safientUser.did,
       )
       return this.success<string>(recoveredData.data.safe.data)
     } catch (e: any) {

@@ -25,49 +25,33 @@ export const LoginScreen = () => {
   const { accountStore } = useStores();
   let history = useHistory();  
   const [signingIn, setSigningIn] = useState(false)
-  const [email, setEmail] = useState(null);
-  const providers = ['google', 'github']
+  const [email, setEmail] = useState("");
 
 
-  const handleMagicLogin = async () => {
+  const handleEmailLogin = async () => {
     try{
       setSigningIn(true);
-      const res = await magiclinkService.loginWithEmail('yathish78699@gmail.com')
-      if(res.data){
-        console.log('enters if')
-        history.push(RoutePath.home)
-      }else{
-        history.push(RoutePath.register)      
-      }
+      const res = await magiclinkService.loginWithEmail(email)
       setSigningIn(false)
     }catch(e){
       console.log(e)
     }
   }
 
-  const handleMagicSocialLogin = async (provider: OAuthProvider) => {
+  const handleSocialLogin = async (provider: OAuthProvider) => {
     try{
       setSigningIn(true);
       const res = await magiclinkService.loginWithSocial(provider)
-      if(res.data){
-        console.log('enters if')
-        history.push(RoutePath.home)
-      }else{
-        history.push(RoutePath.register)      
-      }
       setSigningIn(false)
     }catch(e){
       console.log(e)
     }
   }
 
-  // const handleEmailInput = (e: Event) => {
-  //     setEmail(e.target.value)
-  // }
-  const login = async () => {
+  const handleWalletLogin = async () => {
     try {
     setSigningIn(true)  
-    const account = await accountService.login();
+    const account = await accountService.login(true);
     if (account.hasData()) {
     history.push(RoutePath.home);
     } else {
@@ -91,12 +75,12 @@ export const LoginScreen = () => {
        { signingIn && <NoticeLoader label={{tx:'common.signingInLabel'}} helperText={{text: "Please sign the signature on MetaMask. This may take a couple of seconds ..."}}/>  }
         <FormContainer>
           <LoginText variant='contentHeader' center tx='auth.getStarted' />
-          <Input type='text' label='Enter your Email or DID' placeholder='hello@example.com' />
+          <Input type='text' label='Enter your Email' placeholder='hello@example.com' onChange={(e: any) => setEmail(e.target.value)} />
 
           <StyledButton
             variant='primary'
             label={{ tx: 'auth.login' }}
-            onClick={handleMagicLogin}
+            onClick={handleEmailLogin}
             color='primaryGradient'
           />
 
@@ -107,9 +91,9 @@ export const LoginScreen = () => {
             </TextContainer>
 
             <SocialIconsContainer>
-              <SocialIcon name='loginWithGitHub' height={5} width={7} onClick={() => {handleMagicSocialLogin('github')}}/>
-              <SocialIcon name='loginWithGoogle' height={5} width={7}  onClick={() => {handleMagicSocialLogin('google')}}/>
-              <SocialIcon name='loginWithMetaMask' height={5} width={7} onClick={login} />
+              <SocialIcon name='loginWithGitHub' height={5} width={7} onClick={() => {handleSocialLogin('github')}}/>
+              <SocialIcon name='loginWithGoogle' height={5} width={7}  onClick={() => {handleSocialLogin('google')}}/>
+              <SocialIcon name='loginWithMetaMask' height={5} width={7} onClick={handleWalletLogin} />
             </SocialIconsContainer>
           </SocialLoginContainer>
         </FormContainer>
