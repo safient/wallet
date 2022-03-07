@@ -14,10 +14,7 @@ export const AppContainer = styled.div`
  * styling for main ContentWrapper.
  */
 export const ContentWrapper = styled(Box)`
-  display: flex;
-  flex-direction: column;
   width: 100vw !important;
-  flex: 5 !important;
 `;
 
 /**
@@ -25,11 +22,11 @@ export const ContentWrapper = styled(Box)`
  */
 export const Content = styled.div`
   display: flex;
-  flex-direction: row;
-  flex: 0;
-  width: 80rem;
-  margin: 0 auto;
-  background-color: ${({ theme: { colors } }) => colors.applicationBackground};
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: row;
+  flex: 0;
+  margin: 0 auto;
+  background-color: ${({ theme: { colors } }) => colors.applicationBackground};
+  width: inherit;
 `;

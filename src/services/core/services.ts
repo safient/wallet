@@ -4,6 +4,7 @@ import { AccountServiceImpl } from "../account/account.service.impl";
 import { EthereumServiceImpl } from "../ethereum/ethereum.service.impl";
 import { SafeServiceImpl } from "../safe/safe.service.impl";
 import { StorageServiceImpl } from "../storage/storage.service.impl";
+import { WalletServiceImpl } from "../wallet/wallet.service.impl";
 
 export const storageService = new StorageServiceImpl();
 export const accountService = new AccountServiceImpl();
@@ -15,6 +16,7 @@ class Services {
   accountService: AccountServiceImpl = new AccountServiceImpl();
   ethereumService: EthereumServiceImpl = new EthereumServiceImpl();
   magiclinkService: MagicServiceImpl = new MagicServiceImpl();
+  walletService: WalletServiceImpl = new WalletServiceImpl();
 }
 
 const services = new Services();

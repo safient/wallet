@@ -29,6 +29,7 @@ export const images = {
   inherit: require('../assets/icons/inherit.svg').default,
   lock: require('../assets/icons/lock.svg').default,
   locked: require('../assets/icons/locked.svg').default,
+  pending: require('../assets/icons/pending.svg').default,
   metaMask: require('../assets/icons/metamask.svg').default,
   money: require('../assets/icons/money.svg').default,
   notification: require('../assets/icons/notification.svg').default,
@@ -38,8 +39,11 @@ export const images = {
   twitter: require('../assets/icons/twitter.svg').default,
   upload: require('../assets/icons/upload.svg').default,
   user: require('../assets/icons/user.svg').default,
+  avatar: require('../assets/icons/avatar.svg').default,
   error: require('../assets/icons/error.svg').default,
   checkSuccess: require('../assets/icons/checkSuccess.svg').default,
+  active: require('../assets/icons/active.svg').default,
+  shield: require('../assets/icons/shield.svg').default,
   checked: require('../assets/icons/checked.svg').default,
   successAlert: require('../assets/icons/success-alert.svg').default,
   warningAlert: require('../assets/icons/warning-alert.svg').default,
@@ -51,6 +55,8 @@ export const images = {
   loginWithMetaMask: require('../assets/icons/login-metamask.svg').default,
   lockLoader: require('../assets/icons/lockLoader.gif').default,
   safientWalletLogo: require('../assets/logo/logo.svg').default,
+  safientWallet: require('../assets/icons/safientWallet.svg').default,
+  landingPage: require('../assets/images/landing-page.svg').default,
 };
 
 export type Images = typeof images;

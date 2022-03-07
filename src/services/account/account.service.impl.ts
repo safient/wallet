@@ -1,6 +1,6 @@
 import Web3Modal from "web3modal";
 import { AccountService } from "./account.service";
-import { ServiceResponse } from "../core/service-response.";
+import { ServiceResponse } from "../core/service-response";
 import { AccountStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
 import { SafientCore, Types, Enums } from "@safient/core";
@@ -62,12 +62,13 @@ export class AccountServiceImpl extends Service implements AccountService {
   async login(wallet?: boolean): Promise<ServiceResponse<Types.User>> {
     try {
 
-    
+  
       if(wallet) {
       const provider = await this._connectWallet()
       await this.loadAccount(provider)
       }
       const user = await this.accountStore.safient.loginUser();
+      console.log(user)
 
       if (user.data) {
         this.accountStore.setSafientUser(user.data);

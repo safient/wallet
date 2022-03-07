@@ -1,16 +1,19 @@
 import { StoreImpl } from '../store/store.impl';
 import { IStore } from '../store';
 import { Types  } from '@safient/core';
+import { WalletSecret, WalletInfo } from '../../utils/Wallet'
 
 export interface SafeStore extends StoreImpl, IStore {
 
 
+  walletInfo?: WalletInfo;
 
+  walletSecret?: WalletSecret;
 
-  wallet: Types.Safe|undefined;
+  safe?: Types.Safe;
 
-   /**
-   * Checks if the user is signed In
-   */
-  setWallet: (wallet: Types.Safe) => void;
+  
+  setSafe: (safe: Types.Safe) => void;
+
+  setWallet: (info: WalletInfo, secret?: WalletSecret) => void;
 }

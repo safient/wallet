@@ -64,7 +64,6 @@ export const routes: IRoute[] = [
     path: RoutePath.welcome,
     name: RouteName.welcome,
     exact: true,
-    private: true,
     component: WelcomeScreen,
   },
 

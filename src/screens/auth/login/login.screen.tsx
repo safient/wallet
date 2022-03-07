@@ -42,7 +42,6 @@ export const LoginScreen = () => {
     try{
       setSigningIn(true);
       const res = await magiclinkService.loginWithSocial(provider)
-      setSigningIn(false)
     }catch(e){
       console.log(e)
     }

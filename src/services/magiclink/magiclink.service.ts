@@ -1,4 +1,4 @@
-import { ServiceResponse } from "services/core/service-response.";
+import { ServiceResponse } from "services/core/service-response";
 
 
 export interface MagiclinkService {

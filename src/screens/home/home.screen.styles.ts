@@ -18,7 +18,7 @@ export const HomeScreenContainer = styled(Box)`
  * Styles for Title Text.
  */
 export const Title = styled(Text)`
-  margin-left: 1.5rem;
+  margin-left: 38rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-left: 0.1rem;
   }
@@ -35,16 +35,16 @@ export const SafeText = styled(Text)`
  * Container that holds all Cards.
  */
 export const CardsContainer = styled(Box)`
-  display: flex;
-  flex-direction: row !important;
-  flex: 4;
   flex-wrap: wrap;
+  flex: 2;
+  width: 80rem;
+  margin: 0 auto;
   background-color: ${({ theme: { colors } }) => colors.applicationBackground};
 
-  @media screen and (max-width: ${BreakPoints.small}) {
-    flex-direction: column !important;
+  @media screen and (max-width: ${BreakPoints.medium}) {
     justify-content: flex-start;
     align-items: center;
+    width: inherit !important;
   }
 `;
 
@@ -59,7 +59,6 @@ export const SafeCard = styled(Card)`
   border-radius: 0.5rem;
   box-shadow: ${({ theme: { colors } }) => colors.shadow};
   background-color: ${({ theme: { colors } }) => colors.white};
-
   @media screen and (max-width: ${BreakPoints.small}) {
     flex: 0 0 auto !important;
     max-height: 24.3rem !important;

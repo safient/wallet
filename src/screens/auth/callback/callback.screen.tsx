@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { NoticeLoader} from 'components/primitive';
-import { Header } from 'components/common/auth-header.component';
 import { RoutePath } from '../../../navigation/route-path';
 import {useServices } from 'services';
 import { useStores } from 'store';
@@ -15,9 +14,8 @@ export const CallBackScreen = (props: any) => {
   let history = useHistory();  
 
   useEffect(() =>{
-    let provider =new URLSearchParams(props.location.search).get('provider');
-  
-    
+
+    let provider =new URLSearchParams(props.location.search).get('provider');  
     
     provider? finishSocialLogin() : finishEmailRedirection()
   }, [props.location.search])
@@ -25,9 +23,12 @@ export const CallBackScreen = (props: any) => {
   const finishSocialLogin = async () => {
     try {
     let result = await magic.oauth.getRedirectResult();
+    console.log(result)
       const res = await magiclinkService.authenticateWithServer(result.magic.idToken)
+      console.log(web3provider)
       await accountService.loadAccount(web3provider)
       const account = await accountService.login()
+      console.log(account)
       if (account.hasData()) {
         history.push(RoutePath.home);
         } else {

@@ -7,7 +7,7 @@ import { useStores } from '../store';
 import { RoutePath } from './route-path';
 import { routes } from './routes';
 
-const Navigation = observer(() => {
+export const Navigation = observer(() => {
   const { accountStore } = useStores();
   //TODO - Remove mock after auth integration
   const isMock: boolean = false;
@@ -51,5 +51,3 @@ const Navigation = observer(() => {
     </Switch>
   );
 });
-
-export default Navigation;

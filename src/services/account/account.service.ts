@@ -1,4 +1,4 @@
-import { ServiceResponse } from "../core/service-response.";
+import { ServiceResponse } from "../core/service-response";
 import { SafientCore, Types } from "@safient/core";
 import { Web3Provider } from "@ethersproject/providers";
 

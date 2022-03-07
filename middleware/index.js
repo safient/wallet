@@ -22,12 +22,10 @@ app.post('/api/login', async (req, res) => {
 });
 
 // For heroku deployment
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('build'));
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../', 'build', 'index.html'));
   });
-}
 
 const listener = app.listen(process.env.PORT || 8080, () =>
   console.log('Listening on port ' + listener.address().port)
