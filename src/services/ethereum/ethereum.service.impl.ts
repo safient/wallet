@@ -1,6 +1,6 @@
 import Web3Modal from "web3modal";
 import { EthereumService } from "./ethereum.service";
-import { ServiceResponse } from "../core/service-response.";
+import { ServiceResponse } from "../core/service-response";
 import { AccountStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
 import { Types } from "@safient/core";

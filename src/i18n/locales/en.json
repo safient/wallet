@@ -37,7 +37,7 @@
   "wallet": {
     "enterDetails": "Enter Wallet Deatils"
   },
-  
+
   "accountPage": {
     "profile": "Profile",
     "settings": "Settings",
@@ -49,5 +49,12 @@
   "welcomePage": {
     "heading": "Non custodial claimable wallets",
     "subHeading": "A crypto wallet solution for easy self recovery and inheritance"
+  },
+  "walletOverViewPage": {
+    "copiedSuccessfully": "Copied Successfully",
+    "send": "Send",
+    "recieve": "Recieve",
+    "trade": "Trade",
+    "activities": "Activities"
   }
 }

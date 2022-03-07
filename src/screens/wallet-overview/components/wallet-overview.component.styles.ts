@@ -9,25 +9,22 @@ export const BalanceContainer = styled(Box)`
 
 export const BalanceInUsd = styled(Text)`
   display: inline-flex;
-  /* line-height: 0 !important; */
 `;
 
 export const BalanceInEth = styled(Text)`
   display: inline-flex;
   marginn-top: 6px;
-  /* line-height: 0 !important; */
 `;
 
 export const WalletOverViewContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 0 0;
-  /* align-items: center; */
   justify-content: center;
+  flex: 0 0;
   height: 100%;
   width: 100%;
 `;
 
 export const WalletOverView = styled(Box)`
-  width: 564px !important;
+  display: inline-block;
 `;
