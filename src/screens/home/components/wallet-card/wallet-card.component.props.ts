@@ -1,24 +1,20 @@
 export enum WalletStatus {
-  
   active = 'active',
-  locked= 'locked',
-  pending = 'pending'
-
+  locked = 'locked',
+  pending = 'pending',
 }
 
 export enum UserRole {
-  
   creator = 'creator',
-  beneficiary= 'beneficiary',
-  guardian = 'guardian'
-
+  beneficiary = 'beneficiary',
+  guardian = 'guardian',
 }
 
 export enum IconName {
   locked = 'locked',
   pending = 'warningAlert',
   active = 'successAlert',
-  avatar = 'avatar'
+  avatar = 'avatar',
 }
 
 export enum Color {
@@ -34,5 +30,5 @@ export interface WalletCardProps {
   walletName: string;
   roleName: keyof typeof UserRole;
   status: keyof typeof WalletStatus;
-  
+  shimmer?: boolean;
 }
