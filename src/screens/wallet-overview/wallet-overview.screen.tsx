@@ -1,3 +1,9 @@
+import { WalletOverview } from './components/wallet-overview.component';
+
 export const WalletOverviewScreen = () => {
-  return <>Wallet Overview</>;
+  return (
+    <>
+      <WalletOverview />
+    </>
+  );
 };
