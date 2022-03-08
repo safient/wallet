@@ -29,7 +29,7 @@ export const Actions = [
 export const WalletOverviewShimmer = () => {
   return (
     <WalletOverViewContainer>
-      <WalletOverView padding={4} hCenter vCenter color='white' marginTop={2}>
+      <WalletOverView padding={4} hCenter vCenter color='white' marginTop={8.4}>
         <Box hCenter vCenter marginTop={1.8}>
           <Box gap={2} hCenter vCenter>
             <BalanceInUsd variant='title' color='textLight' text='Total  Value' />
@@ -51,7 +51,7 @@ export const WalletOverviewShimmer = () => {
         </Box>
 
         <Box marginTop={5} hCenter vCenter>
-          <Text variant='small' text='Activities' color='textDark' />
+          <Text variant='small' text='Activities' color='textLight' bold600 />
           <Box marginTop={2.6} width={50} marginBottom={2} hCenter vCenter gap={1.2}>
             <LongLine />
             <LongLine />

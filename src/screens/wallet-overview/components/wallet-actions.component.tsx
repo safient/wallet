@@ -10,7 +10,6 @@ export const StyledBox = styled(Box)`
 
 export const WalletActions = () => {
   return (
-    // add gep
     <Box row gap={0}>
       <StyledBox hCenter gap={1}>
         <IconSvg name='recieve' size='xLarge' />

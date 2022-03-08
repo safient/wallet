@@ -24,25 +24,21 @@ export const StyledDiv = styled.div`
   min-width: 30rem;
 `;
 
-export const ActivitiesHeadline = styled(Text)`
-  font-weight: 600;
-`;
-
 export const AllActivities = () => {
   return (
     <Box hCenter vCenter>
-      <ActivitiesHeadline variant='small' tx='walletOverViewPage.activities' color='textDark' />
+      <Text variant='small' tx='walletOverViewPage.activities' color='textLight' bold600 />
       {/* map this */}
       <Activities>
         <Box flex={0}>
           <IconSvg name='recieved' size='xLarge' />
         </Box>
         <StyledDiv>
-          <Text variant='small' text='recieved from 0x70997970C51812dc..' color='textDark' />
-          <Text variant='small' text='2 days ago' />
+          <Text variant='small' text='Recieved from 0x70997970C51812dc..' color='textLight' />
+          <Text variant='small' text='2 days ago' color='textLighter' />
         </StyledDiv>
         <Box>
-          <Text variant='small' text='0.1 ETH' />
+          <Text variant='small' text='0.1 ETH' color='textLighter' />
         </Box>
       </Activities>
 
@@ -51,16 +47,16 @@ export const AllActivities = () => {
           <IconSvg name='sent' size='xLarge' />
         </Box>
         <StyledDiv>
-          <Text variant='small' text='Sent to 0x70997970C51812dc..' color='textDark' />
-          <Text variant='small' text='2 days ago' />
+          <Text variant='small' text='Sent to 0x70997970C51812dc..' color='textLight' />
+          <Text variant='small' text='2 days ago' color='textLighter' />
         </StyledDiv>
         <Box>
-          <Text variant='small' text='0.1 ETH' />
+          <Text variant='small' text='0.1 ETH' color='textLighter' />
         </Box>
       </Activities>
 
       <Box marginTop={2.4}>
-        <ViewAllText variant='small' text='View All' color='textDark' center />
+        <ViewAllText variant='small' text='View All' color='textLight' center />
       </Box>
     </Box>
   );

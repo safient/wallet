@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 
-export const useClipBoardTimer = (copied: any, setCopied: any) => {
+export const useClipBoardTimer = (copied: boolean, setCopied: any) => {
   useEffect(() => {
     setTimeout(() => {
       setCopied(false);
-    }, 5000);
+    }, 2000);
 
-    return clearTimeout();
+    return () => {
+      clearTimeout();
+    };
   }, [copied]);
 };

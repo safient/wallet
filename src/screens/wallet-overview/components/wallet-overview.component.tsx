@@ -12,6 +12,7 @@ import {
   BalanceInUsd,
   WalletOverViewContainer,
   WalletOverView,
+  AlertContainer,
 } from './wallet-overview.component.styles';
 
 function shorternAddress(str: string) {
@@ -35,9 +36,9 @@ export const WalletOverview: React.FC<walltOverViewProps> = (props) => {
         <WalletOverviewShimmer />
       ) : (
         <WalletOverViewContainer>
-          <Box marginTop={1}>
+          <AlertContainer marginTop={1}>
             {copied && <Alert variant='success' icon label={{ tx: 'walletOverViewPage.copiedSuccessfully' }} />}
-          </Box>
+          </AlertContainer>
           <Box marginTop={2}>
             <Text variant='title' text='Wallet 1' color='textLight' />
           </Box>
@@ -56,8 +57,8 @@ export const WalletOverview: React.FC<walltOverViewProps> = (props) => {
               </Box>
 
               <BalanceContainer gap={2} marginTop={3} hCenter vCenter>
-                <BalanceInUsd variant='title' text='$1500.34' />
-                <BalanceInEth variant='small' text='0.51ETH' color='textLight' />
+                <BalanceInUsd variant='title' text='$1500.34' color='textLight' />
+                <BalanceInEth variant='small' text='0.51ETH' color='textLighter' />
               </BalanceContainer>
             </Box>
             <Box marginTop={7}>

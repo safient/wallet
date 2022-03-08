@@ -23,9 +23,14 @@ export const WalletOverViewContainer = styled.div`
   flex: 0 0;
   height: 100%;
   width: 100%;
+  transition: all 0.2s ease-in-out;
 `;
 
 export const WalletOverView = styled(Box)`
   display: inline-block;
   width: 59.6rem !important;
+`;
+
+export const AlertContainer = styled(Box)`
+  transition: all 0.2s ease-in-out !important;
 `;
