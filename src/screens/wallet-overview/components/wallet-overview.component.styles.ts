@@ -13,7 +13,7 @@ export const BalanceInUsd = styled(Text)`
 
 export const BalanceInEth = styled(Text)`
   display: inline-flex;
-  marginn-top: 6px;
+  marginn-top: 0.6rem;
 `;
 
 export const WalletOverViewContainer = styled.div`
@@ -27,4 +27,5 @@ export const WalletOverViewContainer = styled.div`
 
 export const WalletOverView = styled(Box)`
   display: inline-block;
+  width: 59.6rem !important;
 `;
