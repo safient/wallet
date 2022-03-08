@@ -2,11 +2,16 @@ import { Magic } from 'magic-sdk';
 import { OAuthExtension } from '@magic-ext/oauth';
 import { ethers } from 'ethers';
 import { ExternalProvider } from '@ethersproject/providers';
+import { NetworkUtil } from './networks';
 
 //TODO: Fetch the url and chainID from network util 
+
+
+const network = NetworkUtil.getNetworkById(42)
+
 const customNodeOptions = {
-  rpcUrl: 'http://127.0.0.1:8545', // Your own node URL
-  chainId: 31337, // Your own node's chainId
+  rpcUrl: network?.url, // Your own node URL
+  chainId: network?.chainId, // Your own node's chainId
   
 };
 
