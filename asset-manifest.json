@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.55015cd4.chunk.js",
-    "main.js.map": "/static/js/main.55015cd4.chunk.js.map",
+    "main.js": "/static/js/main.13c67279.chunk.js",
+    "main.js.map": "/static/js/main.13c67279.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.935e769e.js",
     "runtime-main.js.map": "/static/js/runtime-main.935e769e.js.map",
-    "static/js/2.c71071b2.chunk.js": "/static/js/2.c71071b2.chunk.js",
-    "static/js/2.c71071b2.chunk.js.map": "/static/js/2.c71071b2.chunk.js.map",
+    "static/js/2.2f44f8c9.chunk.js": "/static/js/2.2f44f8c9.chunk.js",
+    "static/js/2.2f44f8c9.chunk.js.map": "/static/js/2.2f44f8c9.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.c71071b2.chunk.js.LICENSE.txt": "/static/js/2.c71071b2.chunk.js.LICENSE.txt",
+    "static/js/2.2f44f8c9.chunk.js.LICENSE.txt": "/static/js/2.2f44f8c9.chunk.js.LICENSE.txt",
     "static/media/active.svg": "/static/media/active.3b2613c1.svg",
     "static/media/add.svg": "/static/media/add.fdba0b6a.svg",
     "static/media/arrow_down.svg": "/static/media/arrow_down.e717b966.svg",
@@ -22,6 +22,7 @@
     "static/media/check_active.svg": "/static/media/check_active.7de8a0dc.svg",
     "static/media/checked.svg": "/static/media/checked.e83725e2.svg",
     "static/media/claims.svg": "/static/media/claims.50ac3144.svg",
+    "static/media/clip-board.svg": "/static/media/clip-board.78707ddf.svg",
     "static/media/close.svg": "/static/media/close.75269e12.svg",
     "static/media/copy.svg": "/static/media/copy.f6ac61d8.svg",
     "static/media/darkMode.svg": "/static/media/darkMode.2dbef30d.svg",
@@ -57,11 +58,17 @@
     "static/media/notification.svg": "/static/media/notification.0ae41f4f.svg",
     "static/media/pending.svg": "/static/media/pending.274f7bfd.svg",
     "static/media/profile.svg": "/static/media/profile.3e37fb13.svg",
+    "static/media/recieve.svg": "/static/media/recieve.b4a96509.svg",
+    "static/media/recieved.svg": "/static/media/recieved.e2fc87d3.svg",
     "static/media/safes.svg": "/static/media/safes.68911995.svg",
     "static/media/safientWallet.svg": "/static/media/safientWallet.b3501982.svg",
     "static/media/safient_avatar.png": "/static/media/safient_avatar.ba75900c.png",
+    "static/media/send.svg": "/static/media/send.672e987e.svg",
+    "static/media/sent.svg": "/static/media/sent.7ae2f19b.svg",
+    "static/media/settings.svg": "/static/media/settings.45056aa3.svg",
     "static/media/shield.svg": "/static/media/shield.390c584a.svg",
     "static/media/success-alert.svg": "/static/media/success-alert.32353ff5.svg",
+    "static/media/trade.svg": "/static/media/trade.2b5610b1.svg",
     "static/media/twitter.svg": "/static/media/twitter.7052a9e4.svg",
     "static/media/upload.svg": "/static/media/upload.91a2e6ab.svg",
     "static/media/user.svg": "/static/media/user.2ca16d1d.svg",
@@ -69,7 +76,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.935e769e.js",
-    "static/js/2.c71071b2.chunk.js",
-    "static/js/main.55015cd4.chunk.js"
+    "static/js/2.2f44f8c9.chunk.js",
+    "static/js/main.13c67279.chunk.js"
   ]
 }
