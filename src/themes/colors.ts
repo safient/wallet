@@ -5,6 +5,7 @@ export const colors = {
   black: palette.black,
   primary: palette.royalBlue,
   primaryGradient: palette.blueIndigoGradient,
+  primaryDisabled: palette.blueLightest,
   textDark: palette.grey,
   textLight: palette.greyLight,
   textLighter: palette.greyLighter, //placeholder and borders,

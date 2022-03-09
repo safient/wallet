@@ -63,6 +63,10 @@ export const images = {
   sent: require('../assets/icons/sent.svg').default,
   clipBoard: require('../assets/icons/clip-board.svg').default,
   safientWallet: require('../assets/icons/safientWallet.svg').default,
+  warningIndicator: require('../assets/icons/warningIndicator.svg').default,
+  recovered: require('../assets/icons/recovered.svg').default,
+  coin: require('../assets/icons/coin.svg').default,
+  time: require('../assets/icons/time.svg').default,
   landingPage: require('../assets/images/landing-page.svg').default,
 };
 
