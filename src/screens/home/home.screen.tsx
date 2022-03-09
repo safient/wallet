@@ -24,7 +24,7 @@ export const HomeScreen: React.FC = () => {
             </Link>
             <SafeText variant='content' tx='common.createWallet' />
           </SafeCard>
-          {accountStore.web3User?.safes.map((safe) => (
+          {accountStore.safientUser?.safes.map((safe) => (
             <WalletCard walletName='Sample Wallet' roleName={safe.type as UserRole} status='active' />
           ))}
         </CardsContainer>

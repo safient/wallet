@@ -2,6 +2,7 @@ import { RouteProps } from 'react-router-dom';
 import {
   AccountScreen,
   WalletClaimScreen,
+  CallBackScreen,
   HomeScreen,
   LoginScreen,
   NotFoundScreen,
@@ -94,4 +95,10 @@ export const routes: IRoute[] = [
     private: true,
     component: WalletSettingsScreen,
   },
+  {
+    path: RoutePath.callback,
+    name: RouteName.callback,
+    exact: true,
+    component: CallBackScreen,
+  }
 ];

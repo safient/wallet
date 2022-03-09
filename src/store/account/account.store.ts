@@ -13,7 +13,7 @@ export interface AccountStore extends StoreImpl, IStore {
   /**
    * User profile details
    */
-  web3User: Types.User;
+   safientUser: Types.User;
 
   /**
    * Checks if the user exists after log In
@@ -25,5 +25,5 @@ export interface AccountStore extends StoreImpl, IStore {
    */
   userSignedIn: boolean;
 
-  loadAccount: (web3Provider: Web3Provider) => void;
+
 }

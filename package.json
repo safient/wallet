@@ -6,6 +6,8 @@
     "@ethersproject/bignumber": "^5.4.4",
     "@ethersproject/providers": "^5.4.4",
     "@ethersproject/units": "^5.4.4",
+    "@magic-ext/oauth": "^2.0.1",
+    "@magiclabs/ui": "^0.24.0",
     "@react-tiny-grid/core": "^0.1.7",
     "@safient/core": "^0.1.10-alpha",
     "@testing-library/jest-dom": "^5.11.4",
@@ -15,9 +17,11 @@
     "bip39": "^3.0.4",
     "classnames": "^2.3.1",
     "ethereumjs-wallet": "^1.0.2",
+    "ethers": "^5.5.4",
     "i18n-js": "^3.8.0",
     "init": "^0.1.2",
     "lodash": "^4.17.21",
+    "magic-sdk": "^4.0.2",
     "mobx": "^6.3.3",
     "mobx-react-lite": "^3.2.1",
     "polished": "^4.1.1",
@@ -43,7 +47,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node middleware"
   },
   "eslintConfig": {
     "extends": [
