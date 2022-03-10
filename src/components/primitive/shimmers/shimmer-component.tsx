@@ -46,3 +46,9 @@ export const Line = styled(BaseStyle)`
   width: 10rem;
   height: 2rem;
 `;
+
+export const Circle = styled(BaseStyle)`
+  border-radius: 5rem;
+  width: 5.5rem;
+  height: 5.5rem;
+`;

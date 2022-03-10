@@ -56,5 +56,8 @@
     "recieve": "Recieve",
     "trade": "Trade",
     "activities": "Activities"
+  },
+  "walletClaimPage": {
+    "totalValue": "Total Value"
   }
 }
