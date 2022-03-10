@@ -97,7 +97,7 @@ export const CreateWalletScreen = observer(() => {
 
           <StyledButton
             variant="primary"
-            label={{ text: safeStore.fetching ? "Creating.." : "Create" }}
+            label={{ text: safeStore.fetching ? "Creating.." : "Create 🙌" }}
             onClick={createSafe}
             color="primaryGradient"
           />

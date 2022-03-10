@@ -1,13 +1,35 @@
 import { Box, Text, IconSvg } from 'components/primitive';
 import { MetaInfo, StyledWalletCard, WalletText } from './wallet-card.component.styles';
 import { WalletCardProps } from './wallet-card.component.props';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { RoutePath } from 'navigation/route-path';
 import { getStatusInfo, getUserInfo } from './wallet-card.component.utils';
 import { WalletCardShimmer } from './wallet-card-shimmer.component';
+import { useServices } from 'services';
+import { useStores } from 'store';
 
 export const WalletCard: React.FC<WalletCardProps> = (props) => {
-  const { walletName, roleName, status, shimmer } = props;
+
+  let history = useHistory();
+  const { safeService, walletService } = useServices();
+  const { safeStore } =  useStores()
+  const { walletName, roleName, status, shimmer, id } = props;
+
+  async function handleShowWallet() {
+
+    safeStore.setFetching(true)
+    history.push(RoutePath.walletOverview)
+    const safe = await safeService.recover(id, roleName)
+    if (safe.hasData()) {
+      if (safe.data?.seedPhrase) {
+      await walletService.load(safe.data?.seedPhrase)
+      }
+      safeStore.setFetching(false)
+      
+    }
+  }
+
+
 
   return (
     <>
@@ -15,10 +37,8 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
         <WalletCardShimmer />
       ) : (
         <>
-          <StyledWalletCard hCenter vCenter>
-            <Link to={RoutePath.createWallet}>
+          <StyledWalletCard hCenter vCenter onClick={handleShowWallet} >
               <IconSvg name='safientWallet' size='large' />
-            </Link>
             <WalletText variant='content' text={walletName} />
             <MetaInfo row marginTop={2} color='bottomAccent' padding={2.2} align={'center'}>
               <Box align={'center'} padding={1} row>
