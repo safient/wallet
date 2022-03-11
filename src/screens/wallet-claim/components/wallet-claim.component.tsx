@@ -13,6 +13,7 @@ export const HeadingContainer = styled.div`
   align-items: center;
   justify-content: center;
   transform: translate(15%);
+  filter: blur(4px);
 `;
 export const SettingsContainer = styled.div`
   display: flex;

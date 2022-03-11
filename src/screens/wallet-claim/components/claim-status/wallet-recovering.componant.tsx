@@ -1,8 +1,8 @@
-import { Button, Text, Box, IconSvg } from 'components/primitive';
+import { Box, IconSvg, Text } from 'components/primitive';
 import { useState, useEffect } from 'react';
-import { DisabledButton, StyledDiv, StyledImage } from './wallet-status.styles';
+import { StyledDiv, StyledImage, DisabledButton } from './wallet-status.styles';
 
-export const Recover = () => {
+export const Recovering = () => {
   const [seconds, setSeconds] = useState(5);
   const [claimable, setClaimable] = useState(false);
 
@@ -21,12 +21,8 @@ export const Recover = () => {
   return (
     <>
       <StyledDiv>
-        <StyledImage name={!claimable ? 'warningIndicator' : 'recovered'} />
-        <Text
-          variant='small'
-          tx={!claimable ? 'walletClaimPage.walletRecoversIn' : 'walletClaimPage.walletRecovered'}
-          color='textLighter'
-        />
+        <StyledImage name={'warningIndicator'} />
+        <Text variant='small' tx={'walletClaimPage.walletRecoversIn'} color='textLighter' />
       </StyledDiv>
       <Box row hCenter vCenter gap={1} marginBottom={2.4}>
         {!claimable && (
@@ -44,15 +40,6 @@ export const Recover = () => {
           label={{ tx: 'walletClaimPage.view' }}
           variant='primary'
           color='primaryDisabled'
-          onClick={() => 'clicked'}
-        />
-      )}
-
-      {claimable && (
-        <Button
-          label={{ tx: 'walletClaimPage.view' }}
-          variant='primary'
-          color='primaryGradient'
           onClick={() => 'clicked'}
         />
       )}

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { Recover } from './claim-status/wallet-recover.component';
 import { NoAccess } from './claim-status/wallet-no-access.component';
+import { Recovered } from './claim-status/wallet-recovered.component';
+import { Recovering } from './claim-status/wallet-recovering.componant';
 
 export const ActionsContainer = styled.div`
   display: flex;
@@ -14,8 +15,9 @@ export const ClaimStaus = () => {
   return (
     <ActionsContainer>
       {/* conditional rendering */}
-      <Recover />
-      <NoAccess />
+      {/* <NoAccess /> */}
+      {/* <Recovering /> */}
+      <Recovered />
     </ActionsContainer>
   );
 };

@@ -54,15 +54,6 @@ export const ClaimShimmer = () => {
         <Text variant='title' text='Wallet 1' color='textLight' />
       </Box>
       <WalletClaimView padding={6} hCenter vCenter color='white'>
-        <HeadingContainer>
-          <Box row hCenter vCenter gap={1}>
-            <IconSvg name='coin' />
-            <Text variant='title' text={'Total value'} color='textLight' />
-          </Box>
-          <Box vCenter align={'end'}>
-            <IconSvg name='settings' />
-          </Box>
-        </HeadingContainer>
         <Box hCenter vCenter marginTop={4} row>
           <Box gap={2} hCenter vCenter>
             <MediumLine />
@@ -82,7 +73,7 @@ export const ClaimShimmer = () => {
         <Box marginTop={8} width={50} marginBottom={4} hCenter vCenter gap={2}>
           <ClaimCircle />
           <MediumLine />
-          <StyledButton variant='primary' label={{ text: 'Claim' }} onClick={() => ''} />
+          {/* <StyledButton variant='primary' label={{ text: 'Claim' }} onClick={() => ''} /> */}
         </Box>
       </WalletClaimView>
     </ShimmerContainer>
