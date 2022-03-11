@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Line, Square, Circle } from 'components/primitive/shimmers/shimmer-component';
-import { Box, IconSvg, Text, Button } from 'components/primitive';
-import { HeadingContainer } from '../wallet-claim.component';
+import { Box, Text, Button } from 'components/primitive';
 import { WalletClaimView } from '../wallet-claim.component.styles';
 
 export const LongLine = styled(Line)`
@@ -73,7 +72,6 @@ export const ClaimShimmer = () => {
         <Box marginTop={8} width={50} marginBottom={4} hCenter vCenter gap={2}>
           <ClaimCircle />
           <MediumLine />
-          {/* <StyledButton variant='primary' label={{ text: 'Claim' }} onClick={() => ''} /> */}
         </Box>
       </WalletClaimView>
     </ShimmerContainer>
