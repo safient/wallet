@@ -1,3 +1,4 @@
+import { t } from 'i18n-js';
 import { Box, IconSvg } from 'components/primitive';
 import {
   BackButtonContainer,
@@ -20,25 +21,25 @@ export const WalletSettingsScreen = () => {
         <BackButtonContainer>
           <IconSvg name='arrowLeft' />
         </BackButtonContainer>
-        <WalletSettingsText variant='contentHeader' center text='Settings' />
+        <WalletSettingsText variant='contentHeader' center tx='common.settings' />
 
         <WalletSettingsFormBox>
-          <StyledInput type='text' label='Wallet Name' placeholder='A test Wallet' />
+          <StyledInput type='text' label='Wallet Name' placeholder={t('walletSettingsPage.placeHolders.walletName')} />
 
           <BeneficiaryContainer>
-            <Label>Add a beneficiary</Label>
+            <Label>{t('walletSettingsPage.addBeneficiary')}</Label>
             <AddIconContainer align={'end'}>
-              <IconSvg name='add' size='large' />
+              <IconSvg name='addDark' size='large' />
             </AddIconContainer>
           </BeneficiaryContainer>
           <Box marginTop={-2} marginBottom={1.2}>
-            <StyledInput type='text' placeholder='johndoe@safeint.com' />
+            <StyledInput type='text' placeholder={t('walletSettingsPage.placeHolders.addBeneficiary')} />
           </Box>
 
-          <Label>Advanced options</Label>
+          <Label>{t('walletSettingsPage.advancedOptions')}</Label>
           <Box row hCenter marginTop={-2} justify={'between'}>
-            <Label>Signaling Period</Label>
-            <SignnalingInput type='text' placeholder='10 days' />
+            <Label>{t('walletSettingsPage.signalingPeriod')}</Label>
+            <SignnalingInput type='text' placeholder={t('walletSettingsPage.placeHolders.walletName')} />
           </Box>
         </WalletSettingsFormBox>
 

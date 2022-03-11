@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box, Button, IconSvg, Input, Text } from 'components/primitive';
+import { Box, Button, Input, Text } from 'components/primitive';
 import { BreakPoints } from 'utils';
 
 export const WalletSettingsFormContainer = styled.section`

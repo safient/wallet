@@ -23,7 +23,8 @@
     "cryptoSafe": "Crypto safe",
     "genericSafe": "Generic safe",
     "cancel": "Cancel",
-    "create": "Create"
+    "create": "Create",
+    "settings": "Settings"
   },
   "auth": {
     "getStarted": "Get Started",
@@ -56,5 +57,17 @@
     "recieve": "Recieve",
     "trade": "Trade",
     "activities": "Activities"
+  },
+  "walletSettingsPage": {
+    "settings": "Settings",
+    "walletName": "Wallet Name",
+    "addBeneficiary": "Add a beneficiary",
+    "advancedOptions": "Advanced options",
+    "signalingPeriod": "Signaling Period",
+    "placeHolders": {
+      "walletName": "A test Wallet",
+      "addBeneficiary": "johndoe@safient.io",
+      "signalingTime": "10 days"
+    }
   }
 }
