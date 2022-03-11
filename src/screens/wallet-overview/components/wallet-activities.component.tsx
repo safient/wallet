@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { Box, Text, IconSvg } from 'components/primitive';
+import { AllActivitiesProps } from './wallet-activities.component.props';
+import { getActivityInfo } from './wallet-activities.component.utils'; 
+import { AddressUtil } from 'utils/address';
 
 export const ViewAllText = styled(Text)`
   cursor: pointer;
@@ -24,36 +27,29 @@ export const StyledDiv = styled.div`
   min-width: 30rem;
 `;
 
-export const AllActivities = () => {
+export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
+
+  const { transactions } = props;
+
   return (
     <Box hCenter vCenter>
       <Text variant='small' tx='walletOverViewPage.activities' color='textLight' bold600 />
-      {/* map this */}
-      <Activities>
-        <Box flex={0}>
-          <IconSvg name='recieved' size='xLarge' />
-        </Box>
-        <StyledDiv>
-          <Text variant='small' text='Recieved from 0x70997970C51812dc..' color='textLight' />
-          <Text variant='small' text='2 days ago' color='textLighter' />
-        </StyledDiv>
-        <Box>
-          <Text variant='small' text='0.1 ETH' color='textLighter' />
-        </Box>
-      </Activities>
 
-      <Activities>
+      {
+        transactions.map((transaction) => 
+        <Activities>
         <Box flex={0}>
-          <IconSvg name='sent' size='xLarge' />
+          <IconSvg name={getActivityInfo(transaction.event).iconName} size='xLarge' />
         </Box>
         <StyledDiv>
-          <Text variant='small' text='Sent to 0x70997970C51812dc..' color='textLight' />
-          <Text variant='small' text='2 days ago' color='textLighter' />
+          <Text variant='small' text={`${getActivityInfo(transaction.event).text} ${AddressUtil.shorternAddress(transaction.address)}`} color='textLight' />
+          <Text variant='small' text={transaction.age + ' ago'} color='textLighter' />
         </StyledDiv>
         <Box>
-          <Text variant='small' text='0.1 ETH' color='textLighter' />
+          <Text variant='small' text={transaction.value + ' ETH'} color='textLighter' />
         </Box>
-      </Activities>
+      </Activities> )
+      }
 
       <Box marginTop={2.4}>
         <ViewAllText variant='small' text='View All' color='textLight' center />

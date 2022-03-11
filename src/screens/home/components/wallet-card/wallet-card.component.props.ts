@@ -27,6 +27,7 @@ export enum Color {
  * Props supported by SafeCard component.
  */
 export interface WalletCardProps {
+  id: string;
   walletName: string;
   roleName: keyof typeof UserRole;
   status: keyof typeof WalletStatus;

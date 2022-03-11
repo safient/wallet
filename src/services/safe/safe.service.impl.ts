@@ -92,15 +92,25 @@ export class SafeServiceImpl extends Service implements SafeService {
     }
   }
 
-  async recover(safeId: string): Promise<ServiceResponse<string>> {
+  async recover(safeId: string, role: string): Promise<ServiceResponse<Types.SecretSafe>> {
     try {
-      const recoveredData = await this.accountStore.safient.recoverSafeByBeneficiary(
+      let recoveredData; 
+
+      if(role == 'creator') {
+         recoveredData = await this.accountStore.safient.recoverSafeByCreator(
+          safeId
+        )
+      }
+      else {
+       recoveredData = await this.accountStore.safient.recoverSafeByBeneficiary(
         safeId,
         this.accountStore.safientUser.did,
       )
-      return this.success<string>(recoveredData.data.safe.data)
+      }
+      console.log(recoveredData)
+      return this.success<Types.SecretSafe>(recoveredData.data.data.safe.data)
     } catch (e: any) {
-      return this.error<string>(e)
+      return this.error<Types.SecretSafe>(e)
     }
   }
 
