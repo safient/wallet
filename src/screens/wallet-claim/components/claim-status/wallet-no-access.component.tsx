@@ -6,9 +6,14 @@ export const NoAccess = () => {
     <>
       <StyledDiv>
         <StyledImage name='lock' />
-        <Text variant='small' text='Wallet is not yet accessible' color='textLighter' />
+        <Text variant='small' tx='walletClaimPage.notAccessable' color='textLighter' />
       </StyledDiv>
-      <Button label={{ text: 'Claim' }} variant='primary' color='primaryGradient' onClick={() => 'clicked'} />
+      <Button
+        label={{ tx: 'walletClaimPage.claim' }}
+        variant='primary'
+        color='primaryGradient'
+        onClick={() => 'clicked'}
+      />
     </>
   );
 };

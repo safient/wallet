@@ -14,7 +14,7 @@ export const ClaimStaus = () => {
   return (
     <ActionsContainer>
       {/* conditional rendering */}
-      {/* <Recover /> */}
+      <Recover />
       <NoAccess />
     </ActionsContainer>
   );

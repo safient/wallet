@@ -22,7 +22,11 @@ export const Recover = () => {
     <>
       <StyledDiv>
         <StyledImage name={!claimable ? 'warningIndicator' : 'recovered'} />
-        <Text variant='small' text={!claimable ? 'Wallet recovers in' : 'Wallet recovered'} color='textLighter' />
+        <Text
+          variant='small'
+          tx={!claimable ? 'walletClaimPage.walletRecoversIn' : 'walletClaimPage.walletRecovered'}
+          color='textLighter'
+        />
       </StyledDiv>
       <Box row hCenter vCenter gap={1} marginBottom={2.4}>
         {!claimable && (
@@ -36,11 +40,21 @@ export const Recover = () => {
         )}
       </Box>
       {!claimable && (
-        <DisabledButton label={{ text: 'View' }} variant='primary' color='primaryDisabled' onClick={() => 'clicked'} />
+        <DisabledButton
+          label={{ tx: 'walletClaimPage.view' }}
+          variant='primary'
+          color='primaryDisabled'
+          onClick={() => 'clicked'}
+        />
       )}
 
       {claimable && (
-        <Button label={{ text: 'View' }} variant='primary' color='primaryGradient' onClick={() => 'clicked'} />
+        <Button
+          label={{ tx: 'walletClaimPage.view' }}
+          variant='primary'
+          color='primaryGradient'
+          onClick={() => 'clicked'}
+        />
       )}
     </>
   );
