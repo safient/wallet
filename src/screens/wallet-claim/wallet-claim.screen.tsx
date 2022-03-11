@@ -1,5 +1,9 @@
-import React from 'react';
+import { WalletClaim } from './components/wallet-claim.component';
 
 export function WalletClaimScreen() {
-  return <div>claims screen</div>;
+  return (
+    <>
+      <WalletClaim />
+    </>
+  );
 }

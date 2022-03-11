@@ -57,5 +57,13 @@
     "recieve": "Recieve",
     "trade": "Trade",
     "activities": "Activities"
+  },
+  "walletClaimPage": {
+    "totalValue": "Total Value",
+    "claim": "Claim",
+    "notAccessable": "Wallet is not yet accessible",
+    "walletRecoversIn": "Wallet recovers in",
+    "walletRecovered": "Wallet recovered",
+    "view": "View"
   }
 }
