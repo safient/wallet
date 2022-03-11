@@ -1,9 +1,15 @@
+import { observer } from 'mobx-react-lite';
+import { useStores } from 'store';
 import { WalletOverview } from './components/wallet-overview.component';
 
-export const WalletOverviewScreen = () => {
+export const WalletOverviewScreen =  observer(() => {
+
+  const { safeStore } = useStores();
+
+
   return (
     <>
-      <WalletOverview />
+      <WalletOverview shimmer={safeStore.fetching}/>
     </>
   );
-};
+});

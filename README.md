@@ -2,7 +2,7 @@
 
 A non custodial recoverable and inheritable wallet application built on [Safient Protocol](https://safient.io)
 
-We are building this at [ETHDenver 2022](https://www.ethdenver.com)   👨‍🏭
+We are building this at [ETHDenver 2022](https://www.ethdenver.com) 👨‍🏭
 
 ## Getting Started
 
@@ -21,6 +21,15 @@ Build the client:
 npm install | yarn install
 npm build
 ```
+
+Add an `.env` in root folder with following variables
+REACT_APP_MAGIC_PUBLISHABLE_KEY=MagicLinkKey
+REACT_APP_SERVER_URL=http://localhost:8080
+SKIP_PREFLIGHT_CHECK=true
+
+Add an `.env` in middleware folder with following variables
+MAGIC_SECRET_KEY=Secret
+CLIENT_URL=http://localhost:3000
 
 ## Contributing
 

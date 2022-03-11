@@ -14,18 +14,15 @@ import {
   WalletOverView,
   AlertContainer,
 } from './wallet-overview.component.styles';
+import { observer } from 'mobx-react-lite';
+import { useStores } from 'store';
+import { AddressUtil } from 'utils/address';
 
-function shorternAddress(str: string) {
-  let shortern = str.length > 16 ? str.substr(0, 12) : str;
-  // Todo- https://jsfiddle.net/koushith/awybjek4/15/
-  // let shortern = str.split('').splice(3, 20, '....').join('');
-  return shortern;
-}
 
-export const WalletOverview: React.FC<walltOverViewProps> = (props) => {
+export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => {
+
+  const { safeStore } = useStores();
   const { shimmer } = props;
-  // To copy the adress, setClipboard value with the adress recieved from the response.
-  const [clipboardValue, setClipboardValue] = useState('koushith97');
   const [copied, setCopied] = useState(false);
 
   useClipBoardTimer(copied, setCopied);
@@ -48,8 +45,8 @@ export const WalletOverview: React.FC<walltOverViewProps> = (props) => {
             </Box>
             <Box hCenter vCenter marginTop={1.8}>
               <Box row gap={1.2}>
-                <Text variant='small' text={shorternAddress('0x9ccCA0a968A9bc5916E0de43Ea2D68321655ae67')} />
-                <CopyToClipboard text={clipboardValue} onCopy={() => setCopied(true)}>
+                <Text variant='small' text={AddressUtil.shorternAddress(safeStore.walletInfo?.address? safeStore.walletInfo?.address : '')} />
+                <CopyToClipboard text={safeStore.walletInfo?.address? safeStore.walletInfo?.address : ''} onCopy={() => setCopied(true)}>
                   <span>
                     <IconSvg name='clipBoard' />
                   </span>
@@ -57,8 +54,8 @@ export const WalletOverview: React.FC<walltOverViewProps> = (props) => {
               </Box>
 
               <BalanceContainer gap={2} marginTop={3} hCenter vCenter>
-                <BalanceInUsd variant='title' text='$1500.34' color='textLight' />
-                <BalanceInEth variant='small' text='0.51ETH' color='textLighter' />
+                <BalanceInUsd variant='title' text={'$ ' + safeStore.walletInfo?.balance.usd.toString()} color='textLight' />
+                <BalanceInEth variant='small' text={safeStore.walletInfo?.balance.eth + ' ETH'} color='textLighter' />
               </BalanceContainer>
             </Box>
             <Box marginTop={7}>
@@ -66,11 +63,11 @@ export const WalletOverview: React.FC<walltOverViewProps> = (props) => {
             </Box>
 
             <Box marginTop={7}>
-              <AllActivities />
+              <AllActivities transactions={safeStore.walletInfo?.latestTransactions}/>
             </Box>
           </WalletOverView>
         </WalletOverViewContainer>
       )}
     </>
   );
-};
+});
