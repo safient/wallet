@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 import { Box, IconSvg, Text } from 'components/primitive';
 import { WalletActions } from './wallet-claim-actions.component';
 import { WalletClaimContainer, WalletClaimView } from './wallet-claim.component.styles';
@@ -6,6 +7,8 @@ import { walltClaimProps } from './wallet-claim.component.props';
 import { BalanceContainer, BalanceInEth, BalanceInUsd } from './wallet-claim.component.styles';
 import { ClaimStaus } from './wallet-claim-status.component';
 import { ClaimShimmer } from './shimmer/wallet-claim-shimmer';
+import { useStores } from 'store';
+
 
 export const HeadingContainer = styled.div`
   display: grid;
@@ -20,7 +23,9 @@ export const SettingsContainer = styled.div`
   align-items: flex-end;
 `;
 
-export const WalletClaim: React.FC<walltClaimProps> = (props) => {
+export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
+
+  const { safeStore } = useStores()
   const { shimmer } = props;
 
   return (
@@ -30,7 +35,7 @@ export const WalletClaim: React.FC<walltClaimProps> = (props) => {
       ) : (
         <WalletClaimContainer>
           <Box marginTop={2}>
-            <Text variant='title' text='Wallet 1' color='textLight' />
+            <Text variant='title' text={safeStore.safe?.safeName} color='textLight' />
           </Box>
           <WalletClaimView padding={6} hCenter vCenter color='white' marginTop={2}>
             <HeadingContainer>
@@ -51,10 +56,10 @@ export const WalletClaim: React.FC<walltClaimProps> = (props) => {
             <Box marginTop={7}>
               <WalletActions />
             </Box>
-            <ClaimStaus />
+            <ClaimStaus status={safeStore.safe?.stage!}/>
           </WalletClaimView>
         </WalletClaimContainer>
       )}
     </>
   );
-};
+});

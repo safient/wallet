@@ -20,12 +20,12 @@ export const HomeScreen: React.FC = () => {
         <CardsContainer row hCenter>
           <SafeCard hCenter vCenter>
             <Link to={RoutePath.createWallet}>
-              <IconSvg name='add' size='xLarge' />
+              <IconSvg name='create' size='xLarge' />
             </Link>
             <SafeText variant='content' tx='common.createWallet' />
           </SafeCard>
           {accountStore.safientUser?.safes.map((safe) => (
-            <WalletCard walletName='Sample Wallet' roleName={safe.type as UserRole} status='active' id={safe.safeId}/>
+            <WalletCard walletName={safe.safeName} roleName={safe.type as UserRole} status={safe.type == 'creator' ? 'active' : 'locked'} id={safe.safeId} />
           ))}
         </CardsContainer>
       </Box>

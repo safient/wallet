@@ -24,9 +24,7 @@ export const CreateWalletScreen = observer(() => {
 
   const [walletName, setWalletName] = useState('');
   const [walletDescription, setWalletDescription] = useState('');
-  const [walletBeneficiary, setWalletBeneficiary] = useState(
-    'did:key:z6MkvbAdUeiQoeLbcvV3tmnAjTeV3WAtXrxqu2Tbx1PFTpH9'
-  );
+  const [walletBeneficiary, setWalletBeneficiary] = useState('');
 
   const createSafe = async () => {
     try {
@@ -36,7 +34,7 @@ export const CreateWalletScreen = observer(() => {
       await walletService.info();
 
       if (wallet.hasData()) {
-        const safe = await safeService.create(walletBeneficiary, wallet.data!.mnemonic, false);
+        const safe = await safeService.create(walletName, walletDescription, walletBeneficiary , wallet.data!.mnemonic, false);
         if (safe.hasData()) {
           history.push(RoutePath.walletOverview);
         } else {

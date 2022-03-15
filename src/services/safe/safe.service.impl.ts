@@ -1,25 +1,29 @@
 import { SafeService } from "./safe.service";
 import { ServiceResponse } from "../core/service-response";
-import { AccountStoreImpl, stores } from "../../store";
+import { AccountStoreImpl, SafeStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
 import { Types } from "@safient/core";
 
 export class SafeServiceImpl extends Service implements SafeService {
 
   private readonly accountStore: AccountStoreImpl;
+  private readonly safeStore: SafeStoreImpl;
 
   constructor() {
     super();
     this.accountStore = stores?.accountStore;
+    this.safeStore = stores?.safeStore;
   }
 
   // Creating a signaling based seed phrase safe for Safient wallet
   // TODO: Update all the contants while creating the safe
   async create(
+    name: string,
+    description: string,
     beneficiary: string,
     data: string,
     onchain: boolean,
-  ): Promise<ServiceResponse<string>> {
+  ): Promise<ServiceResponse<Types.EventResponse>> {
     try {
       const secretSafe: Types.SecretSafe = {
         seedPhrase: data,
@@ -33,26 +37,27 @@ export class SafeServiceImpl extends Service implements SafeService {
         safe: cryptoSafe,
       }
 
-      const safe = await this.accountStore.safient.createSafe(
+      const safe = await this.accountStore.safient.createSafe(name, description,
         this.accountStore.safientUser.did,
-        beneficiary,
         safeData,
         onchain,
         0,
+        10,
         0,
-        0,
+      { email: beneficiary }
       )
 
-      return this.success<string>(safe.data as string)
+      return this.success<Types.EventResponse>(safe.data as Types.EventResponse)
     } catch (e: any) {
 
-      return this.error<string>(e.error)
+      return this.error<Types.EventResponse>(e.error)
     }
   }
 
   async get(safeId: string): Promise<ServiceResponse<Types.Safe>> {
     try {
-      const safe = await this.accountStore.safient.getSafe(safeId)
+      const safe = await this.accountStore.safient.getSafe(safeId);
+      this.safeStore.setSafe(safe.data as Types.Safe);
       return this.success<Types.Safe>(safe.data as Types.Safe)
     } catch (e: any) {
       return this.error<Types.Safe>(e.error)
@@ -60,7 +65,8 @@ export class SafeServiceImpl extends Service implements SafeService {
   }
 
   //Currently signal based claim
-  async claim(safeId: string): Promise<ServiceResponse<number>> {
+  async claim(safeId: string): Promise<ServiceResponse<Types.EventResponse>> {
+
     try {
       const file = {
         name: 'dummy.pdf',
@@ -71,9 +77,9 @@ export class SafeServiceImpl extends Service implements SafeService {
         'Claim evidence',
         'Lorsem Text',
       )
-      return this.success<number>(disputeId.data!)
+      return this.success<Types.EventResponse>(disputeId.data!)
     } catch (e: any) {
-      return this.error<number>(e)
+      return this.error<Types.EventResponse>(e)
     }
   }
 
@@ -107,7 +113,6 @@ export class SafeServiceImpl extends Service implements SafeService {
         this.accountStore.safientUser.did,
       )
       }
-      console.log(recoveredData)
       return this.success<Types.SecretSafe>(recoveredData.data.data.safe.data)
     } catch (e: any) {
       return this.error<Types.SecretSafe>(e)

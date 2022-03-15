@@ -23,17 +23,20 @@ export const CallBackScreen = (props: any) => {
   const finishSocialLogin = async () => {
     try {
     let result = await magic.oauth.getRedirectResult();
-    console.log(result)
+    if(result) {
+        accountStore.setUserInfo(
+        result.oauth.userInfo.name,
+        result.oauth.userInfo.email
+        ) 
+      }
       const res = await magiclinkService.authenticateWithServer(result.magic.idToken)
-      console.log(web3provider)
       await accountService.loadAccount(web3provider)
       const account = await accountService.login()
-      console.log(account)
       if (account.hasData()) {
         history.push(RoutePath.home);
         } else {
     
-        accountStore.setError(account.getErrorMessage(), account.getErrorCode())
+          accountStore.setError(account.getErrorMessage(), account.getErrorCode())
         history.push(RoutePath.register);
         }
     }catch(e) {

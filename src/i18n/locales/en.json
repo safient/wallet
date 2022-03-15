@@ -64,6 +64,7 @@
     "notAccessable": "Wallet is not yet accessible",
     "walletRecoversIn": "Wallet recovers in",
     "walletRecovered": "Wallet recovered",
+    "claiming": "Claiming Wallet",
     "view": "View"
   }
 }

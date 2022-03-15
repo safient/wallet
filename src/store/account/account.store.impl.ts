@@ -10,6 +10,8 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
 
   private web3Provider?: Web3Provider;
   private signer?: JsonRpcSigner;
+  name: string = "";
+  email: string = "";
   chainId?: number;
   address!: string;
   balance?: string;
@@ -27,10 +29,13 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
       address: observable,
       balance: observable,
       _safientUser: observable,
+      name: observable,
+      email: observable,
       userExists: computed,
       userSignedIn: computed,
       resetStore: action,
       setSafientUser: action,
+      setUserInfo: action,
     });
   }
 
@@ -56,6 +61,12 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
     this.balance = balance;
     this.safient = safient;
  }
+
+  setUserInfo(name: string, email: string): void {
+
+    this.name = name;
+    this.email = email;
+  }
 
   get userSignedIn(): boolean {
     return !!this._safientUser;

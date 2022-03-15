@@ -21,7 +21,7 @@ export const WalletActions = () => {
   return (
     <Box row gap={0}>
       <StyledBox hCenter gap={1}>
-        <SvgImage name='recieve' />
+        <SvgImage name='receive' />
         <Label variant='small' tx='walletOverViewPage.recieve' />
       </StyledBox>
       <StyledBox hCenter gap={1}>

@@ -36,7 +36,7 @@ export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
       <Text variant='small' tx='walletOverViewPage.activities' color='textLight' bold600 />
 
       {
-        transactions.map((transaction) => 
+        transactions?.map((transaction) => 
         <Activities>
         <Box flex={0}>
           <IconSvg name={getActivityInfo(transaction.event).iconName} size='xLarge' />

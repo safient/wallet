@@ -37,7 +37,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
             {copied && <Alert variant='success' icon label={{ tx: 'walletOverViewPage.copiedSuccessfully' }} />}
           </AlertContainer>
           <Box marginTop={2}>
-            <Text variant='title' text='Wallet 1' color='textLight' />
+            <Text variant='title' text={safeStore.safe?.safeName} color='textLight' />
           </Box>
           <WalletOverView padding={6} hCenter vCenter color='white' marginTop={2}>
             <Box align={'end'}>

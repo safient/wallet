@@ -147,8 +147,7 @@ export class Wallet {
     transactions: Array<any>,
     walletAddress: string
   ): Promise<any> {
-    console.log(transactions);
-    console.log(walletAddress);
+
 
     const fTransactions = transactions.map((transaction) => ({
       event:
@@ -162,7 +161,6 @@ export class Wallet {
           : transaction.from,
       age: DateUtil.timeDiff(transaction.timeStamp),
     }));
-    console.log(fTransactions);
 
     return fTransactions;
   }
