@@ -78,5 +78,10 @@
     "walletRecoversIn": "Wallet recovers in",
     "walletRecovered": "Wallet recovered",
     "view": "View"
+  },
+  "notifications": {
+    "notification": "Notifications",
+    "cancelClaim": "Cancel Claim",
+    "claimingText": "Someone is claiming your wallet"
   }
 }
