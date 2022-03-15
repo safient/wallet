@@ -68,7 +68,6 @@ export class AccountServiceImpl extends Service implements AccountService {
       await this.loadAccount(provider)
       }
       const user = await this.accountStore.safient.loginUser();
-      console.log(user)
 
       if (user.data) {
         this.accountStore.setSafientUser(user.data);
@@ -76,7 +75,6 @@ export class AccountServiceImpl extends Service implements AccountService {
 
       return this.success<Types.User>(this.accountStore.safientUser);
     } catch (e: any) {
-      console.log(e)
       return this.error<Types.User>(e);
     }
   }

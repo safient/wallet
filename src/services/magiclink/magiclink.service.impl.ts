@@ -26,7 +26,6 @@ export class MagicServiceImpl extends Service implements MagiclinkService {
               if (res.status === 200) {
                 // Set the UserContext to therich gerepuatio now logged in user
                 let userMetadata = await magic.user.getMetadata();
-                console.log(userMetadata)
                 return this.success<boolean>(true)
               }else{
                 return this.success<boolean>(false)

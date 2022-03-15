@@ -6,12 +6,14 @@ export interface SafeService {
   get(safeId: string): Promise<ServiceResponse<Types.Safe>>
 
   create(
+    name: string,
+    description: string,
     beneficiary: string,
     data: string,
     onchain: boolean,
-  ): Promise<ServiceResponse<string>>
+  ): Promise<ServiceResponse<Types.EventResponse>>
 
-  claim(safeId: string): Promise<ServiceResponse<number>>
+  claim(safeId: string): Promise<ServiceResponse<Types.EventResponse>>
 
   signal(safeId: string): Promise<ServiceResponse<boolean>>
 

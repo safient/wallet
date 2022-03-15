@@ -4,6 +4,7 @@ export const images = {
   arrowRight: require('../assets/icons/arrow_right.svg').default,
   hamburgerMenu: require('../assets/icons/hamburger_menu.svg').default,
   add: require('../assets/icons/add.svg').default,
+  create: require('../assets/icons/create.svg').default,
   arrowUp: require('../assets/icons/arrow_up.svg').default,
   bitcoin: require('../assets/icons/bitcoin.svg').default,
   calender: require('../assets/icons/calender.svg').default,

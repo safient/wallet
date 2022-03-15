@@ -49,8 +49,7 @@ export const Actions = [
 export const ClaimShimmer = () => {
   return (
     <ShimmerContainer>
-      <Box marginTop={2}>
-        <Text variant='title' text='Wallet 1' color='textLight' />
+      <Box marginTop={2}>  
       </Box>
       <WalletClaimView padding={6} hCenter vCenter color='white'>
         <Box hCenter vCenter marginTop={4} row>

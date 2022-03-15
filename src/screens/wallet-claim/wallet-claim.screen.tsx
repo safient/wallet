@@ -1,9 +1,15 @@
+import { observer } from 'mobx-react-lite';
+import { useStores } from 'store';
 import { WalletClaim } from './components/wallet-claim.component';
 
-export function WalletClaimScreen() {
+export const WalletClaimScreen = observer(() => {
+
+  const { safeStore } = useStores()
+  
+
   return (
     <>
-      <WalletClaim />
+      <WalletClaim shimmer={safeStore.fetching}/>
     </>
   );
-}
+});

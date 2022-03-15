@@ -18,15 +18,15 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
   async function handleShowWallet() {
 
     safeStore.setFetching(true)
-    history.push(RoutePath.walletOverview)
-    const safe = await safeService.recover(id, roleName)
-    if (safe.hasData()) {
-      if (safe.data?.seedPhrase) {
-      await walletService.load(safe.data?.seedPhrase)
+    history.push(roleName == 'creator' ? RoutePath.walletOverview : RoutePath.walletClaim)
+    const safe = await safeService.get(id)
+    const safeData = await safeService.recover(id, roleName)
+    if (safeData.hasData()) {
+      if (safeData.data?.seedPhrase) {
+      await walletService.load(safeData.data?.seedPhrase)
       }
-      safeStore.setFetching(false)
-      
     }
+    safeStore.setFetching(false)
   }
 
 

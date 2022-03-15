@@ -28,8 +28,8 @@ export const RegisterScreen = observer(() => {
   const { accountStore } = useStores();
   let history = useHistory();
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState(accountStore.name);
+  const [email, setEmail] = useState(accountStore.email);
 
   const register = async () => {
     try {
@@ -61,6 +61,7 @@ export const RegisterScreen = observer(() => {
               type="text"
               label="Enter your Full Name"
               placeholder="John Doe"
+              value={fullName}
               onChange={(e: any) => {
                 setFullName(e.target.value);
               }}
@@ -69,6 +70,7 @@ export const RegisterScreen = observer(() => {
               type="text"
               label="Enter your Email"
               placeholder="johndoe@example.com"
+              value={email}
               onChange={(e: any) => setEmail(e.target.value)}
             />
             
