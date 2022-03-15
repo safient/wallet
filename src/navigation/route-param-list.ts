@@ -16,4 +16,5 @@ export interface RouteParamsList {
   [RouteName.walletOverview]: undefined;
   [RouteName.walletClaim]: undefined;
   [RouteName.walletSettings]: undefined;
+  [RouteName.notifications]: undefined;
 }

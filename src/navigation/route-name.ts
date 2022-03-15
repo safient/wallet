@@ -13,4 +13,6 @@ export enum RouteName {
   walletOverview = 'walletOverview',
   walletClaim = 'walletClaim',
   walletSettings = 'walletSettings',
+  callback = 'callback',
+  notifications = 'notifications',
 }

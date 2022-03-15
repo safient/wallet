@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Box, Text } from 'components/primitive';
 import { Square, Line } from 'components/primitive/shimmers/shimmer-component';
-import { WalletOverViewContainer, WalletOverView, BalanceInUsd } from './wallet-overview.component.styles';
+import { WalletOverViewContainer, WalletOverView } from './wallet-overview.component.styles';
 
 export const LongLine = styled(Line)`
   width: 35rem;
@@ -32,7 +32,6 @@ export const WalletOverviewShimmer = () => {
       <WalletOverView padding={4} hCenter vCenter color='white' marginTop={8.4}>
         <Box hCenter vCenter marginTop={1.8}>
           <Box gap={2} hCenter vCenter>
-            <BalanceInUsd variant='title' color='textLight' text='Total  Value' />
             <Box width={50} marginBottom={2} hCenter vCenter gap={1.2}>
               <MediumLine />
               <MediumLine />

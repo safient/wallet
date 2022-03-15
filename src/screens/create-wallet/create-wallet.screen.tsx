@@ -54,7 +54,9 @@ export const CreateWalletScreen = observer(() => {
     <HomeScreenContainer>
       {safeStore.fetching && (
         <NoticeLoader
-          label={{ tx: 'common.signingInLabel' }}
+
+          label={{ tx: "wallet.creatingLabel" }}
+
           helperText={{
             text: 'Please sign the signature on MetaMask. This may take a couple of seconds ...',
           }}
@@ -90,8 +92,10 @@ export const CreateWalletScreen = observer(() => {
           </WalletCreateFormBox>
 
           <StyledButton
-            variant='primary'
-            label={{ text: safeStore.fetching ? 'Creating..' : 'Create' }}
+
+            variant="primary"
+            label={{ text: safeStore.fetching ? "Creating.." : "Create 🙌" }}
+
             onClick={createSafe}
             color='primaryGradient'
           />

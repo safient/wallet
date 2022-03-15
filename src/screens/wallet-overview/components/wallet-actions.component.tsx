@@ -12,7 +12,7 @@ export const WalletActions = () => {
   return (
     <Box row gap={0}>
       <StyledBox hCenter gap={1}>
-        <IconSvg name='recieve' size='xLarge' />
+        <IconSvg name='receive' size='xLarge' />
         <Text variant='small' tx='walletOverViewPage.recieve' />
       </StyledBox>
       <StyledBox hCenter gap={1}>

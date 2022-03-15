@@ -36,7 +36,8 @@
     "registerAlert": "We couldn't find your account. Please register here"
   },
   "wallet": {
-    "enterDetails": "Enter Wallet Deatils"
+    "enterDetails": "Enter Wallet Deatils",
+    "creatingLabel": "Creating Wallet ..."
   },
 
   "accountPage": {
@@ -69,5 +70,13 @@
       "addBeneficiary": "johndoe@safient.io",
       "signalingTime": "10 days"
     }
+  },
+  "walletClaimPage": {
+    "totalValue": "Total Value",
+    "claim": "Claim",
+    "notAccessable": "Wallet is not yet accessible",
+    "walletRecoversIn": "Wallet recovers in",
+    "walletRecovered": "Wallet recovered",
+    "view": "View"
   }
 }

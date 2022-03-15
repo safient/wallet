@@ -13,7 +13,7 @@ export const palette = {
 
   blueLight: '#46A1CB', // info alert text
   blueLighter: '#e5f6fd', // info alert bg
-
+  blueLightest: '#AFC0FD', //disabled states
   green: '#2ba745',
   greenLight: '#49B393', //green text color
   greenLighter: '#edf7ed', //alert bg

@@ -1,7 +1,9 @@
 import { RouteProps } from 'react-router-dom';
+import { NotificationsScreen } from 'screens/notifications/notifications.screen';
 import {
   AccountScreen,
   WalletClaimScreen,
+  CallBackScreen,
   HomeScreen,
   LoginScreen,
   NotFoundScreen,
@@ -93,5 +95,18 @@ export const routes: IRoute[] = [
     exact: true,
     private: true,
     component: WalletSettingsScreen,
+  },
+  {
+    path: RoutePath.callback,
+    name: RouteName.callback,
+    exact: true,
+    component: CallBackScreen,
+  },
+  {
+    path: RoutePath.notifications,
+    name: RouteName.notifications,
+    exact: true,
+    private: true,
+    component: NotificationsScreen,
   },
 ];

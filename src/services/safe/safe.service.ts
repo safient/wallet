@@ -15,6 +15,6 @@ export interface SafeService {
 
   signal(safeId: string): Promise<ServiceResponse<boolean>>
 
-  recover(safeId: string): Promise<ServiceResponse<string>>
+  recover(safeId: string, role: string): Promise<ServiceResponse<Types.SecretSafe>>
 
 }

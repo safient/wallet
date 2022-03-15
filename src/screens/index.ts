@@ -9,3 +9,4 @@ export * from './landing-page/landing-page.screen';
 export * from './wallet-claim/wallet-claim.screen';
 export * from './wallet-overview/wallet-overview.screen';
 export * from './wallet-settings/wallet-settings.screen';
+export * from './auth/callback/callback.screen'

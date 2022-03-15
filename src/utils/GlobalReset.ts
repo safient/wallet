@@ -68,6 +68,8 @@ body {
   font-family: ${primaryFont};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 `;
