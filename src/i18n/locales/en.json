@@ -66,5 +66,8 @@
     "walletRecovered": "Wallet recovered",
     "claiming": "Claiming Wallet",
     "view": "View"
+  },
+  "emptyStates": {
+    "emptyActivities": "No Activities yet"
   }
 }
