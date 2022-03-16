@@ -18,4 +18,5 @@ export interface RouteQueryList {
   [RouteName.walletOverview]: undefined;
   [RouteName.walletClaim]: undefined;
   [RouteName.walletSettings]: undefined;
+  [RouteName.notifications]: undefined;
 }
