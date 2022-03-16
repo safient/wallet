@@ -69,6 +69,8 @@ export const images = {
   coin: require('../assets/icons/coin.svg').default,
   time: require('../assets/icons/time.svg').default,
   emptyActivity: require('../assets/icons/empty-state.png').default,
+  document: require('../assets/icons/document.svg').default,
+  delete: require('../assets/icons/delete.svg').default,
   landingPage: require('../assets/images/landing-page.svg').default,
 };
 

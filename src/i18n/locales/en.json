@@ -58,6 +58,18 @@
     "trade": "Trade",
     "activities": "Activities"
   },
+  "walletSettingsPage": {
+    "settings": "Settings",
+    "walletName": "Wallet Name",
+    "addBeneficiary": "Add a beneficiary",
+    "advancedOptions": "Advanced options",
+    "signalingPeriod": "Signaling Period",
+    "placeHolders": {
+      "walletName": "A test Wallet",
+      "addBeneficiary": "johndoe@safient.io",
+      "signalingTime": "10 days"
+    }
+  },
   "walletClaimPage": {
     "totalValue": "Total Value",
     "claim": "Claim",
@@ -69,5 +81,11 @@
   },
   "emptyStates": {
     "emptyActivities": "No Activities yet"
+  },
+
+  "notifications": {
+    "notification": "Notifications",
+    "cancelClaim": "Cancel Claim",
+    "claimingText": "Someone is claiming your wallet"
   }
 }
