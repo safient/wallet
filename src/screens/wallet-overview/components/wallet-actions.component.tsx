@@ -17,11 +17,11 @@ export const WalletActions = () => {
   return (
     <>
       <Box row gap={0}>
-        <StyledBox hCenter gap={1} onClick={() => setOpenReceiveModal(!openReceiveModal)}>
+        <StyledBox hCenter gap={1} onClick={() => setOpenReceiveModal(true)}>
           <IconSvg name='receive' size='xLarge' />
           <Text variant='small' tx='walletOverViewPage.recieve' />
         </StyledBox>
-        <StyledBox hCenter gap={1} onClick={() => setOpenSendModal(!openSendModal)}>
+        <StyledBox hCenter gap={1} onClick={() => setOpenSendModal(true)}>
           <IconSvg name='send' size='xLarge' />
           <Text variant='small' tx='walletOverViewPage.send' />
         </StyledBox>
@@ -31,8 +31,8 @@ export const WalletActions = () => {
         </StyledBox>
       </Box>
 
-      {openSendModal && <Send />}
-      {openReceiveModal && <Receive />}
+      {openSendModal && <Send onClose={setOpenSendModal} />}
+      {openReceiveModal && <Receive onClose={setOpenReceiveModal}  />}
     </>
   );
 };

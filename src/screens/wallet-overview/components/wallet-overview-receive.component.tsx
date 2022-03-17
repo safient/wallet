@@ -14,15 +14,16 @@ export const StyledButton = styled(Button)`
   width: 100%;
 `;
 
-export const Receive = () => {
+export const Receive = (props: any) => {
  
+  const { onClose } = props;
   const { safeStore } = useStores();
   const [copied, setCopied] = useState(false);
 
   useClipBoardTimer(copied, setCopied);
 
   return (
-    <GenericModal show={true} hide>
+    <GenericModal show={true} hide onClose={onClose}>
       <Box padding={1.6}>
         <AlertContainer marginTop={1}>
                 {copied && <Alert variant='success' icon label={{ tx: 'walletOverViewPage.copiedSuccessfully' }} />}

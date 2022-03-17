@@ -8,7 +8,9 @@ export const StyledButton = styled(Button)`
   width: 100%;
 `;
 
-export const Send = () => {
+export const Send = (prop: any) => {
+
+  const { onClose } = prop;
 
   const { walletService } = useServices();
 
@@ -21,11 +23,12 @@ export const Send = () => {
     if(value && address) {
       const res = await walletService.send(address!, value!)
     }
+    onClose();
     setSending(false);
   }
 
   return (
-    <GenericModal show={true} hide>
+    <GenericModal show={true} hide onClose={onClose}>
       <Box padding={1.6}>
         <Box gap={1.6}>
           <Input placeholder='Enter your wallet adress' label='Enter Address' onChange={(e: any) => setAddress(e.target.value)}/>
