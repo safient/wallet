@@ -25,7 +25,12 @@ export const HomeScreen: React.FC = () => {
             <SafeText variant='content' tx='common.createWallet' />
           </SafeCard>
           {accountStore.safientUser?.safes.map((safe) => (
-            <WalletCard walletName={safe.safeName} roleName={safe.type as UserRole} status={safe.type == 'creator' ? 'active' : 'locked'} id={safe.safeId} />
+            <WalletCard
+              walletName={safe.safeName}
+              roleName={safe.type as UserRole}
+              status={safe.type == 'creator' ? 'active' : 'locked'}
+              id={safe.safeId}
+            />
           ))}
         </CardsContainer>
       </Box>

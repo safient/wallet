@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Box, Text, IconSvg } from 'components/primitive';
+import { Box, Text, IconSvg, EmptyState } from 'components/primitive';
 import { AllActivitiesProps } from './wallet-activities.component.props';
-import { getActivityInfo } from './wallet-activities.component.utils'; 
+import { getActivityInfo } from './wallet-activities.component.utils';
 import { AddressUtil } from 'utils/address';
 
 export const ViewAllText = styled(Text)`
@@ -28,31 +28,35 @@ export const StyledDiv = styled.div`
 `;
 
 export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
-
   const { transactions } = props;
 
   return (
     <Box hCenter vCenter>
       <Text variant='small' tx='walletOverViewPage.activities' color='textLight' bold600 />
 
-      {
-        transactions?.map((transaction) => 
+      {transactions?.map((transaction) => (
         <Activities>
-        <Box flex={0}>
-          <IconSvg name={getActivityInfo(transaction.event).iconName} size='xLarge' />
-        </Box>
-        <StyledDiv>
-          <Text variant='small' text={`${getActivityInfo(transaction.event).text} ${AddressUtil.shorternAddress(transaction.address)}`} color='textLight' />
-          <Text variant='small' text={transaction.age + ' ago'} color='textLighter' />
-        </StyledDiv>
-        <Box>
-          <Text variant='small' text={transaction.value + ' ETH'} color='textLighter' />
-        </Box>
-      </Activities> )
-      }
-
+          <Box flex={0}>
+            <IconSvg name={getActivityInfo(transaction.event).iconName} size='xLarge' />
+          </Box>
+          <StyledDiv>
+            <Text
+              variant='small'
+              text={`${getActivityInfo(transaction.event).text} ${AddressUtil.shorternAddress(transaction.address)}`}
+              color='textLight'
+            />
+            <Text variant='small' text={transaction.age + ' ago'} color='textLighter' />
+          </StyledDiv>
+          <Box>
+            <Text variant='small' text={transaction.value + ' ETH'} color='textLighter' />
+          </Box>
+        </Activities>
+      ))}
+      {/* conditional rendering */}
+      <EmptyState label={{ tx: 'emptyStates.emptyActivities' }} image={{ name: 'emptyActivity' }} />
       <Box marginTop={2.4}>
-        <ViewAllText variant='small' text='View All' color='textLight' center />
+        {/* hide view all text if no activities found */}
+        {/* <ViewAllText variant='small' text='View All' color='textLight' center /> */}
       </Box>
     </Box>
   );

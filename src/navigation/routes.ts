@@ -1,4 +1,5 @@
 import { RouteProps } from 'react-router-dom';
+import { NotificationsScreen } from 'screens/notifications/notifications.screen';
 import {
   AccountScreen,
   WalletClaimScreen,
@@ -100,5 +101,12 @@ export const routes: IRoute[] = [
     name: RouteName.callback,
     exact: true,
     component: CallBackScreen,
-  }
+  },
+  {
+    path: RoutePath.notifications,
+    name: RouteName.notifications,
+    exact: true,
+    private: true,
+    component: NotificationsScreen,
+  },
 ];

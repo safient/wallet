@@ -34,7 +34,7 @@ export const StyledInput = styled.input<InputComponentProps>`
   text-overflow: ellipsis;
 
   &:focus {
-    border-color: ${({ theme: { colors } }) => colors.primary};
+    border-color: ${({ theme: { colors } }) => colors.primary} !important;
     background-color: ${({ theme: { colors } }) => colors.white};
   }
 
