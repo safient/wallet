@@ -89,8 +89,7 @@
     "claimingText": "Someone is claiming your wallet"
   },
   "menuComponent": {
-    "settings": "Settings",
-    "darkMode": "Dark Mode",
+    "profile": "Profile",
     "logout": "Logout"
   }
 }

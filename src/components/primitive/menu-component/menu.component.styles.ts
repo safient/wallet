@@ -14,6 +14,7 @@ export const StyledModal = Modal.styled`
   border-radius: 0.5rem;
   top:10% ;
   right:23%;
+  transition: all 5s ease-in-out !important;
 `;
 
 export const MenuContainer = styled(Box)`

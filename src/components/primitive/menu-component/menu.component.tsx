@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from 'react';
 import { ModalProvider } from 'styled-react-modal';
 import { Text, Image, Box } from 'components/primitive';
@@ -17,10 +18,6 @@ export const Menu: React.FC<MenuComponentProps> = (props) => {
     if (onClose) onClose();
   };
 
-  const handleClose = () => {
-    if (onClose) onClose();
-  };
-
   const afterOpen = () => {
     setOpacity(1);
   };
@@ -28,6 +25,7 @@ export const Menu: React.FC<MenuComponentProps> = (props) => {
   const beforeClose = () => {
     setOpacity(0);
   };
+
   return (
     <MenuContainer>
       <ModalProvider backgroundComponent={FadingBackground}>
@@ -48,13 +46,10 @@ export const Menu: React.FC<MenuComponentProps> = (props) => {
           </NameContainer>
           <NavLabelContainer>
             <Box row gap={1} hCenter>
-              <IconSvg name='settingsDark' />
-              <Text variant='small' tx='menuComponent.settings' />
+              <IconSvg name='user' />
+              <Text variant='small' tx='menuComponent.profile' />
             </Box>
-            <Box row gap={1} hCenter>
-              <IconSvg name='darkMode' />
-              <Text variant='small' tx='menuComponent.darkMode' />
-            </Box>
+
             <Box row gap={1} hCenter>
               <IconSvg name='logout' />
               <Text variant='small' tx='menuComponent.logout' />
