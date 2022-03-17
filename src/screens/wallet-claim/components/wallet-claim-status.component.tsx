@@ -14,14 +14,13 @@ export const ActionsContainer = styled.div`
 
 export const ClaimStaus: React.FC<WalletClaimStatusProps> = (props) => {
 
-  const { status } = props;
-  console.log(status)
+  const { status, timestamp } = props;
 
   return (
     <ActionsContainer>
       { status == 0 && <NoAccess /> }
-      { (status == 1 || status == 2) && <Recovering /> }
-      { status == 3 && <Recovered /> }
+      { (status == 1 || status == 2) && <Recovering timestamp={timestamp} /> }
+      { status == 3 || status == 4 && <Recovered/> }
     </ActionsContainer>
   );
 };
