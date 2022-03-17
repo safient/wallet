@@ -36,7 +36,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
           <AlertContainer marginTop={1}>
             {copied && <Alert variant='success' icon label={{ tx: 'walletOverViewPage.copiedSuccessfully' }} />}
           </AlertContainer>
-          <Box marginTop={2}>
+          <Box marginTop={2} onClick={()=>window.location.href = safeStore.safe?.cid!}>
             <Text variant='title' text={safeStore.safe?.safeName} color='textLight' />
           </Box>
           <WalletOverView padding={6} hCenter vCenter color='white' marginTop={2}>

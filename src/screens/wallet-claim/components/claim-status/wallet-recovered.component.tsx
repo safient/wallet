@@ -16,7 +16,6 @@ export const Recovered = () => {
     safeStore.setFetching(true)
     history.push(RoutePath.walletOverview )
     const safeData = await safeService.recover(safeStore.safe?._id!, 'beneficiary')
-    console.log(safeData)
     if (safeData.hasData()) {
       if (safeData.data?.seedPhrase) {
       await walletService.load(safeData.data?.seedPhrase)

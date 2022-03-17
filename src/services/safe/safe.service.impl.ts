@@ -57,7 +57,6 @@ export class SafeServiceImpl extends Service implements SafeService {
   async get(safeId: string): Promise<ServiceResponse<Types.Safe>> {
     try {
       const safe = await this.accountStore.safient.getSafe(safeId);
-      console.log(safe)
       this.safeStore.setSafe(safe.data as Types.Safe);
       return this.success<Types.Safe>(safe.data as Types.Safe)
     } catch (e: any) {
@@ -117,8 +116,6 @@ export class SafeServiceImpl extends Service implements SafeService {
       )
       secretData = recoveredData.data.safe.data;
       }
-
-      console.log(recoveredData)
       return this.success<Types.SecretSafe>(secretData)
     } catch (e: any) {
       return this.error<Types.SecretSafe>(e)
