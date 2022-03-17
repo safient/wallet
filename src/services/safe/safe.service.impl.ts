@@ -42,7 +42,7 @@ export class SafeServiceImpl extends Service implements SafeService {
         safeData,
         onchain,
         0,
-        10,
+        300,
         0,
       { email: beneficiary }
       )
@@ -57,6 +57,7 @@ export class SafeServiceImpl extends Service implements SafeService {
   async get(safeId: string): Promise<ServiceResponse<Types.Safe>> {
     try {
       const safe = await this.accountStore.safient.getSafe(safeId);
+      console.log(safe)
       this.safeStore.setSafe(safe.data as Types.Safe);
       return this.success<Types.Safe>(safe.data as Types.Safe)
     } catch (e: any) {
@@ -79,6 +80,7 @@ export class SafeServiceImpl extends Service implements SafeService {
       )
       return this.success<Types.EventResponse>(disputeId.data!)
     } catch (e: any) {
+      console.log(e)
       return this.error<Types.EventResponse>(e)
     }
   }
@@ -100,20 +102,24 @@ export class SafeServiceImpl extends Service implements SafeService {
 
   async recover(safeId: string, role: string): Promise<ServiceResponse<Types.SecretSafe>> {
     try {
-      let recoveredData; 
+      let recoveredData, secretData; 
 
       if(role == 'creator') {
          recoveredData = await this.accountStore.safient.recoverSafeByCreator(
           safeId
         )
+        secretData = recoveredData.data.data.safe.data;
       }
       else {
        recoveredData = await this.accountStore.safient.recoverSafeByBeneficiary(
         safeId,
         this.accountStore.safientUser.did,
       )
+      secretData = recoveredData.data.safe.data;
       }
-      return this.success<Types.SecretSafe>(recoveredData.data.data.safe.data)
+
+      console.log(recoveredData)
+      return this.success<Types.SecretSafe>(secretData)
     } catch (e: any) {
       return this.error<Types.SecretSafe>(e)
     }

@@ -14,4 +14,5 @@ export interface walltClaimProps {
  */
  export interface WalletClaimStatusProps {
   status: number;
+  timestamp: number;
 }

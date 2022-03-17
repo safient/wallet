@@ -27,6 +27,13 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
 
   const { safeStore } = useStores()
   const { shimmer } = props;
+  let timestamp = 0;
+
+  if(safeStore.safe?.claims.length) {
+
+    timestamp = safeStore.safe?.claims[0].timeStamp + safeStore.safe?.signalingPeriod 
+
+  }
 
   return (
     <>
@@ -56,7 +63,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
             <Box marginTop={7}>
               <WalletActions />
             </Box>
-            <ClaimStaus status={safeStore.safe?.stage!}/>
+            <ClaimStaus status={safeStore.safe?.stage!} timestamp={timestamp}/>
           </WalletClaimView>
         </WalletClaimContainer>
       )}
