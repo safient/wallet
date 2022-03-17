@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.beb59709.chunk.js",
-    "main.js.map": "/static/js/main.beb59709.chunk.js.map",
+    "main.js": "/static/js/main.4836263c.chunk.js",
+    "main.js.map": "/static/js/main.4836263c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.11e65d5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.11e65d5c.js.map",
-    "static/js/2.ee39dbc2.chunk.js": "/static/js/2.ee39dbc2.chunk.js",
-    "static/js/2.ee39dbc2.chunk.js.map": "/static/js/2.ee39dbc2.chunk.js.map",
+    "static/js/2.e2a23094.chunk.js": "/static/js/2.e2a23094.chunk.js",
+    "static/js/2.e2a23094.chunk.js.map": "/static/js/2.e2a23094.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.ee39dbc2.chunk.js.LICENSE.txt": "/static/js/2.ee39dbc2.chunk.js.LICENSE.txt",
+    "static/js/2.e2a23094.chunk.js.LICENSE.txt": "/static/js/2.e2a23094.chunk.js.LICENSE.txt",
     "static/media/active.svg": "/static/media/active.3b2613c1.svg",
     "static/media/add.svg": "/static/media/add.56d7bb51.svg",
     "static/media/arrow_down.svg": "/static/media/arrow_down.e717b966.svg",
@@ -30,10 +30,13 @@
     "static/media/darkMode.svg": "/static/media/darkMode.2dbef30d.svg",
     "static/media/dashboard.svg": "/static/media/dashboard.4bb11642.svg",
     "static/media/dayMode.svg": "/static/media/dayMode.1c1e19f4.svg",
+    "static/media/delete.svg": "/static/media/delete.3737340f.svg",
     "static/media/demo.png": "/static/media/demo.55322404.png",
     "static/media/discord-full.svg": "/static/media/discord-full.41101eea.svg",
     "static/media/discord.svg": "/static/media/discord.0aae010a.svg",
+    "static/media/document.svg": "/static/media/document.3154d9d8.svg",
     "static/media/edit.svg": "/static/media/edit.0b6bcf51.svg",
+    "static/media/empty-state.png": "/static/media/empty-state.876957ec.png",
     "static/media/error-alert.svg": "/static/media/error-alert.2b4b4270.svg",
     "static/media/error.svg": "/static/media/error.7401f7c1.svg",
     "static/media/external_link.svg": "/static/media/external_link.1f3c7b99.svg",
@@ -81,7 +84,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.11e65d5c.js",
-    "static/js/2.ee39dbc2.chunk.js",
-    "static/js/main.beb59709.chunk.js"
+    "static/js/2.e2a23094.chunk.js",
+    "static/js/main.4836263c.chunk.js"
   ]
 }
