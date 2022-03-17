@@ -87,5 +87,10 @@
     "notification": "Notifications",
     "cancelClaim": "Cancel Claim",
     "claimingText": "Someone is claiming your wallet"
+  },
+  "menuComponent": {
+    "settings": "Settings",
+    "darkMode": "Dark Mode",
+    "logout": "Logout"
   }
 }
