@@ -5,6 +5,7 @@ import { privateToAddress } from "ethereumjs-util";
 import { ServiceResponse } from "../services/core/service-response";
 import { NetworkUtil } from "./networks";
 import { DateUtil } from "./date";
+import { TransactionResponse } from "@ethersproject/providers";
 
 export type Account = {
   address: string;
@@ -165,12 +166,22 @@ export class Wallet {
     return fTransactions;
   }
 
-  async send(to: string, value: string): Promise<void> {
-    const tx = {
-      to: to,
-      value: utils.parseEther(value),
-    };
-
-    const txResponse = await this.walletProvider?.sendTransaction(tx);
+  async send(to: string, value: string): Promise<TransactionResponse> {
+    try{
+      const balance = await this.walletProvider.getBalance();
+      if(parseFloat(value) < parseFloat(utils.formatEther(balance))){
+        const tx = {
+          to: to,
+          value: utils.parseEther(value),
+        };
+        const txResponse = await this.walletProvider?.sendTransaction(tx);
+        return txResponse
+      }else{
+        throw new Error("Not Enough balance")
+      }
+    }catch(e){
+      throw new Error(`Something went wrong while, ${e}`)
+    }
+   
   }
 }

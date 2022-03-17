@@ -42,7 +42,7 @@ export class SafeServiceImpl extends Service implements SafeService {
         safeData,
         onchain,
         0,
-        10,
+        300,
         0,
       { email: beneficiary }
       )
