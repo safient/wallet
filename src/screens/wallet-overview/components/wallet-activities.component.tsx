@@ -34,7 +34,7 @@ export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
     <Box hCenter vCenter>
       <Text variant='small' tx='walletOverViewPage.activities' color='textLight' bold600 />
 
-      {transactions?.map((transaction) => (
+      {transactions?.length ? transactions?.map((transaction) => (
         <Activities>
           <Box flex={0}>
             <IconSvg name={getActivityInfo(transaction.event).iconName} size='xLarge' />
@@ -51,9 +51,8 @@ export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
             <Text variant='small' text={transaction.value + ' ETH'} color='textLighter' />
           </Box>
         </Activities>
-      ))}
-      {/* conditional rendering */}
-      <EmptyState label={{ tx: 'emptyStates.emptyActivities' }} image={{ name: 'emptyActivity' }} />
+      )):
+      <EmptyState label={{ tx: 'emptyStates.emptyActivities' }} image={{ name: 'emptyActivity' }} />}
       <Box marginTop={2.4}>
         {/* hide view all text if no activities found */}
         {/* <ViewAllText variant='small' text='View All' color='textLight' center /> */}

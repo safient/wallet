@@ -79,6 +79,7 @@ export class SafeServiceImpl extends Service implements SafeService {
       )
       return this.success<Types.EventResponse>(disputeId.data!)
     } catch (e: any) {
+      console.log(e)
       return this.error<Types.EventResponse>(e)
     }
   }
@@ -100,20 +101,22 @@ export class SafeServiceImpl extends Service implements SafeService {
 
   async recover(safeId: string, role: string): Promise<ServiceResponse<Types.SecretSafe>> {
     try {
-      let recoveredData; 
+      let recoveredData, secretData; 
 
       if(role == 'creator') {
          recoveredData = await this.accountStore.safient.recoverSafeByCreator(
           safeId
         )
+        secretData = recoveredData.data.data.safe.data;
       }
       else {
        recoveredData = await this.accountStore.safient.recoverSafeByBeneficiary(
         safeId,
         this.accountStore.safientUser.did,
       )
+      secretData = recoveredData.data.safe.data;
       }
-      return this.success<Types.SecretSafe>(recoveredData.data.data.safe.data)
+      return this.success<Types.SecretSafe>(secretData)
     } catch (e: any) {
       return this.error<Types.SecretSafe>(e)
     }
