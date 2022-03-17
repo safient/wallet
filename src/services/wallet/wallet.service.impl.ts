@@ -4,6 +4,7 @@ import { Wallet, WalletInfo, WalletSecret } from "utils/Wallet";
 import { ServiceResponse } from "../core/service-response";
 import { AccountStoreImpl, SafeStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
+import { TransactionReceipt } from "@ethersproject/providers";
 
 export class WalletServiceImpl extends Service implements WalletService {
   private readonly accountStore: AccountStoreImpl;
@@ -16,7 +17,7 @@ export class WalletServiceImpl extends Service implements WalletService {
     this.safeStore = stores?.safeStore;
     this.wallet = new Wallet();
   }
-
+  
   // Service API to create a new wallet
 
   async create(): Promise<ServiceResponse<WalletSecret>> {
@@ -56,6 +57,16 @@ export class WalletServiceImpl extends Service implements WalletService {
       }
 
       return this.success<any>(info.data);
+    } catch (e: any) {
+      return this.error<any>(e.error);
+    }
+  }
+
+  async send(to: string, value: string): Promise<ServiceResponse<TransactionReceipt>> {
+    try {
+      const txResponse = await this.wallet.send(to, value)  
+      const txRecepit = await txResponse.wait();
+      return this.success<TransactionReceipt>(txRecepit);
     } catch (e: any) {
       return this.error<any>(e.error);
     }
