@@ -79,6 +79,10 @@
     "claiming": "Claiming Wallet",
     "view": "View"
   },
+  "emptyStates": {
+    "emptyActivities": "No Activities yet"
+  },
+
   "notifications": {
     "notification": "Notifications",
     "cancelClaim": "Cancel Claim",
