@@ -1,2 +1,0 @@
-import { Alert, Box, IconSvg, Text } from 'components/primitive';
-
