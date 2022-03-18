@@ -20,7 +20,6 @@ import { observer } from 'mobx-react-lite';
 import { useStores } from 'store';
 import { AddressUtil } from 'utils/address';
 import { useHistory } from 'react-router-dom';
-import { RouteName } from 'navigation';
 
 export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => {
   const { safeStore } = useStores();
