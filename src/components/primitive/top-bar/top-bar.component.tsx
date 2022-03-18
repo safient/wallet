@@ -18,10 +18,10 @@ export const TopBar = () => {
         </LogoWrapper>
         <BoxGroup row>
           <NotificationIcon name='notification' size='small' />
-          <Avatar name='user' size='small' onClick={() => setShowMenu(!showMenu)} style={{ cursor: 'pointer' }} />
+          <Avatar name='user' size='small' onClick={() => setShowMenu(true)} style={{ cursor: 'pointer' }} />
         </BoxGroup>
       </TopBarContainer>
-      {showMenu && <Menu show />}
+      {showMenu && <Menu show onClose={setShowMenu}/>}
     </>
   );
 };
