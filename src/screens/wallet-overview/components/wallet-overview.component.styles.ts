@@ -16,6 +16,10 @@ export const BalanceInEth = styled(Text)`
   marginn-top: 0.6rem;
 `;
 
+export const IconsContainer = styled(Box)`
+  width: 100%;
+`;
+
 export const WalletOverViewContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,4 +37,8 @@ export const WalletOverView = styled(Box)`
 
 export const AlertContainer = styled(Box)`
   transition: all 0.2s ease-in-out !important;
+`;
+
+export const WalletName = styled(Text)`
+  cursor: pointer;
 `;

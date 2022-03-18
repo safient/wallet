@@ -8,12 +8,16 @@ import {
   StyledButton,
 } from './notifications.screen.styles';
 
-export const NotificationsScreen = () => {
+export const NotificationsScreen = ({ history }: any) => {
+  const backButtonHandler = () => {
+    history.goBack();
+  };
+
   return (
     <NotificationsContainer>
       <Text variant='contentHeader' left text='Wallet 1' />
       <Notifications>
-        <BackButtonContainer>
+        <BackButtonContainer onClick={backButtonHandler}>
           <IconSvg name='arrowLeft' />
         </BackButtonContainer>
         <Text variant='contentHeader' center tx='notifications.notification' />

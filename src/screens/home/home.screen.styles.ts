@@ -40,7 +40,7 @@ export const CardsContainer = styled(Box)`
   width: 80rem;
   margin: 0 auto;
   background-color: ${({ theme: { colors } }) => colors.applicationBackground};
-
+  cursor: pointer !important;
   @media screen and (max-width: ${BreakPoints.medium}) {
     justify-content: flex-start;
     align-items: center;

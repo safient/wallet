@@ -13,11 +13,15 @@ import {
   AddIconContainer,
 } from './wallet-settings.screen.styles';
 
-export const WalletSettingsScreen = () => {
+export const WalletSettingsScreen = ({ history }: any) => {
+  const backButtonHandler = () => {
+    history.goBack();
+  };
+
   return (
     <WalletSettingsFormContainer>
       <FormContainer>
-        <BackButtonContainer>
+        <BackButtonContainer onClick={backButtonHandler}>
           <IconSvg name='arrowLeft' />
         </BackButtonContainer>
         <WalletSettingsText variant='contentHeader' center text='Settings' />
