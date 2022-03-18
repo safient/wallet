@@ -13,12 +13,12 @@ export const MediumLine = styled(Line)`
 
 export const Actions = [
   {
-    title: 'Send',
+    title: 'Recieve',
     id: 0,
   },
   {
-    title: 'Recieve',
-    id: 1,
+    title: 'Send',
+    id: 0,
   },
   {
     title: 'Trade',

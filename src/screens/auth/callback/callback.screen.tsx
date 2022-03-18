@@ -25,8 +25,8 @@ export const CallBackScreen = (props: any) => {
     let result = await magic.oauth.getRedirectResult();
     if(result) {
         accountStore.setUserInfo(
-        result.oauth.userInfo.name,
-        result.oauth.userInfo.email
+        result.oauth.userInfo.name!,
+        result.oauth.userInfo.email!
         ) 
       }
       const res = await magiclinkService.authenticateWithServer(result.magic.idToken)

@@ -1,6 +1,7 @@
 import { Wallet as EthersWallet } from 'ethers';
 import { ServiceResponse } from "../core/service-response";
 import { WalletSecret } from "utils/Wallet";
+import { TransactionReceipt } from '@ethersproject/providers';
 
 export interface WalletService {
 
@@ -9,5 +10,7 @@ export interface WalletService {
   load(mnemonic: string): Promise<ServiceResponse<EthersWallet>>
 
   info(): Promise<ServiceResponse<any>>
+
+  send(to: string,  value: string): Promise<ServiceResponse<TransactionReceipt>>
 
 }

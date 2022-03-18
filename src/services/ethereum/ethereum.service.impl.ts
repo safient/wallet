@@ -7,20 +7,24 @@ import { Types } from "@safient/core";
 import { User } from "models";
 
 export class EthereumServiceImpl extends Service implements EthereumService {
+
+  private readonly accountStore: AccountStoreImpl;
+  
   constructor() {
     super();
     this.listen();
-    // this.accountStore = stores?.accountStore;
+    this.accountStore = stores?.accountStore;
   }
 
   async listen(): Promise<void> {
     if(window.ethereum) {
-      window.ethereum.on("chainChanged", () => {
+      window.ethereum.on("chainChanged", (chainId: any) => {
+        this.accountStore.chainId = chainId;
       });
     }
 
     if(window.ethereum) {
-      window.ethereum.on("accountsChanged", () => {
+      window.ethereum.on("accountsChanged", (address: any) => {
       });
     }
   }

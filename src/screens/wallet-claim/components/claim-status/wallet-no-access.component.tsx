@@ -16,10 +16,8 @@ export const NoAccess = observer(() => {
     setClaiming(true)
     const claim = await safeService.claim(safeStore.safe?._id!)
     setClaiming(false)
-  
+    const safe = await safeService.get(safeStore.safe?._id!)
   }
-
-
 
   return (
     <>
