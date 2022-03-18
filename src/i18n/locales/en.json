@@ -87,5 +87,9 @@
     "notification": "Notifications",
     "cancelClaim": "Cancel Claim",
     "claimingText": "Someone is claiming your wallet"
+  },
+  "menuComponent": {
+    "profile": "Profile",
+    "logout": "Logout"
   }
 }
