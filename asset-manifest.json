@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/static/js/main.89abac10.chunk.js",
-    "main.js.map": "/static/js/main.89abac10.chunk.js.map",
+    "main.js": "/static/js/main.3aa0ff6c.chunk.js",
+    "main.js.map": "/static/js/main.3aa0ff6c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.11e65d5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.11e65d5c.js.map",
     "static/js/2.c37b19d0.chunk.js": "/static/js/2.c37b19d0.chunk.js",
@@ -61,8 +61,8 @@
     "static/media/logout.svg": "/static/media/logout.fe8b8b1b.svg",
     "static/media/metamask.svg": "/static/media/metamask.07e5cede.svg",
     "static/media/money.svg": "/static/media/money.656c7c4d.svg",
-    "static/media/notification-active.svg": "/static/media/notification-active.3e94eb65.svg",
-    "static/media/notification-dark.svg": "/static/media/notification-dark.37f1eb7e.svg",
+    "static/media/notification-active.svg": "/static/media/notification-active.67065bd6.svg",
+    "static/media/notification-dark.svg": "/static/media/notification-dark.d89b88cd.svg",
     "static/media/notification.svg": "/static/media/notification.0ae41f4f.svg",
     "static/media/pending.svg": "/static/media/pending.274f7bfd.svg",
     "static/media/profile.svg": "/static/media/profile.3e37fb13.svg",
@@ -89,6 +89,6 @@
   "entrypoints": [
     "static/js/runtime-main.11e65d5c.js",
     "static/js/2.c37b19d0.chunk.js",
-    "static/js/main.89abac10.chunk.js"
+    "static/js/main.3aa0ff6c.chunk.js"
   ]
 }
