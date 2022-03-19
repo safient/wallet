@@ -53,7 +53,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
           <WalletOverView padding={6} hCenter vCenter color='white' marginTop={2}>
             <IconsContainer justify={'end'} row gap={1.4}>
               <span onClick={redirectToNotifications}>
-                <IconSvg name='notificationDark' />
+                <IconSvg name='notificationActive' size='medium' />
                 {/* notificationActive - shows red indicator */}
               </span>
               <span onClick={redirectToSettings}>
