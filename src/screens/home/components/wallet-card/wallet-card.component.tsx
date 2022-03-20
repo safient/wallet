@@ -16,6 +16,7 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
 
   async function handleShowWallet() {
     safeStore.setFetching(true);
+    safeStore.setRole(roleName);
     history.push(roleName === 'creator' ? RoutePath.walletOverview : RoutePath.walletClaim);
     const safe = await safeService.get(id);
     const safeData = await safeService.recover(id, roleName);

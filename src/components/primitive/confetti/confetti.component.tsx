@@ -10,6 +10,7 @@ const canvasStyles = {
   height: '100%',
   top: 0,
   left: 0,
+  zIndex:30,
 };
 
 export const Confetti = () => {

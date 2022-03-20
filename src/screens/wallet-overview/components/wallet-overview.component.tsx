@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useClipBoardTimer } from 'hooks/useClipboardTimer';
-import { Alert, Box, IconSvg, Text } from 'components/primitive';
+import { Alert, Box, IconSvg, Text ,Confetti} from 'components/primitive';
 import { WalletOverviewShimmer } from './wallet-overview-shimmer.component';
 import { WalletActions } from './wallet-actions.component';
 import { AllActivities } from './wallet-activities.component';
@@ -47,14 +47,14 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
           <AlertContainer marginTop={1}>
             {copied && <Alert variant='success' icon label={{ tx: 'walletOverViewPage.copiedSuccessfully' }} />}
           </AlertContainer>
+          { safeStore.role == 'beneficiary' && <Confetti/> }
           <Box marginTop={2} onClick={() => (window.location.href = safeStore.safe?.cid!)}>
             <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
           </Box>
           <WalletOverView padding={6} hCenter vCenter color='white' marginTop={2}>
             <IconsContainer justify={'end'} row gap={1.4}>
               <span onClick={redirectToNotifications}>
-                <IconSvg name='notificationActive' size='medium' />
-                {/* notificationActive - shows red indicator */}
+                <IconSvg name={safeStore.safe?.claims.length ? 'notificationActive' : 'notificationDark'} size='medium' />
               </span>
               <span onClick={redirectToSettings}>
                 <IconSvg name='settings' />
