@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Box } from 'components/primitive';
+import { Box, Image, Text } from 'components/primitive';
 
 export const NotificationsContainer = styled.section`
-  margin-top: 4rem;
+min-width: 56.4rem;
 `;
 
 export const BackButtonContainer = styled.div`
@@ -33,4 +33,22 @@ export const StyledButton = styled(Box)`
   font-weight: 600;
   padding: 0 0.8rem;
   cursor: pointer;
+`;
+
+export const WalletName = styled(Text)`
+  cursor: pointer;
+`;
+
+export const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2.4rem;
+  width: 350px;
+`;
+
+export const StyledImage = styled(Image)`
+  width: 6.5rem;
 `;

@@ -1,6 +1,6 @@
 import { Box, IconSvg, Text } from 'components/primitive';
 import { useState, useEffect } from 'react';
-import { StyledDiv, StyledImage, DisabledButton } from './wallet-status.styles';
+import { StyledDiv, StyledGif, DisabledButton } from './wallet-status.styles';
 
 export const Recovering = (props: any) => {
 
@@ -25,7 +25,7 @@ export const Recovering = (props: any) => {
   return (
     <>
       <StyledDiv>
-        <StyledImage name={'warningIndicator'} />
+        <StyledGif name={'recovering'} />
 
         { recoveryInterval > 0 ?
         <>
@@ -33,7 +33,7 @@ export const Recovering = (props: any) => {
         <Text variant='small' tx={'walletClaimPage.walletRecoversIn'} color='textLighter' /> 
         </>
           :
-        <Text variant='small' text={'Wallet will be recovered in a few minutes. Sit back and have a cup of ☕️'} color='textLighter' center />   
+        <Text variant='small' text={'Guardians are recovering the wallet. It should take only a few mins. Sit back and have a cup of ☕️'} color='textLighter' center />   
         }
 
       </StyledDiv>

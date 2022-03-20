@@ -25,7 +25,7 @@ export interface GenericModalComponentProps {
   /**
    * button for submit
    */
-  onSubmit?: ButtonComponentProps;
+  onSubmit?: () => void;
 
   /**
    * button for cancel

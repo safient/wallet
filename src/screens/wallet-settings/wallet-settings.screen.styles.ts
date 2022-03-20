@@ -6,8 +6,7 @@ export const WalletSettingsFormContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10rem;
-  height: 100vh;
+  padding: 2rem;
 `;
 
 export const BackButtonContainer = styled.div`
@@ -42,10 +41,9 @@ export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
   padding: 5rem 8rem 5rem 8rem;
   align-items: center;
-  margin-top: -8rem;
+  margin-top: 2rem;
   position: relative;
   @media screen and (max-width: ${BreakPoints.small}) {
-    margin-top: -10rem;
     width: 32rem;
     padding: 3rem 1.5rem 3rem 1.5rem;
   }

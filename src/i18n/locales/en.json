@@ -6,7 +6,7 @@
     "claims": "Claims",
     "profile": "Profile",
     "dashboard": "Dashboard",
-    "wallets": "Wallets",
+    "wallets": "Your Wallets",
     "account": "Account",
     "createWallet": "Create Wallet",
     "genericNotes": "Generic Notes",
@@ -77,7 +77,8 @@
     "walletRecoversIn": "Wallet recovers in",
     "walletRecovered": "Wallet recovered",
     "claiming": "Claiming Wallet",
-    "view": "View"
+    "view": "View",
+    "claimConfirm": "This action will initiate the wallet claim by paying the claim fee. Are you sure about this?"
   },
   "emptyStates": {
     "emptyActivities": "No Activities yet"
@@ -86,7 +87,8 @@
   "notifications": {
     "notification": "Notifications",
     "cancelClaim": "Cancel Claim",
-    "claimingText": "Someone is claiming your wallet"
+    "claimingText": "Someone is claiming your wallet",
+    "cancelConfirm": "This action will cancel the claim by the beneficiary. Are you sure about this?"
   },
   "menuComponent": {
     "profile": "Profile",

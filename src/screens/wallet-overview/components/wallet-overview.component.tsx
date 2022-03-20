@@ -20,22 +20,24 @@ import { observer } from 'mobx-react-lite';
 import { useStores } from 'store';
 import { AddressUtil } from 'utils/address';
 import { useHistory } from 'react-router-dom';
+import { RoutePath } from 'navigation/route-path';
+
 
 export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => {
+
+  const history = useHistory();
   const { safeStore } = useStores();
   const { shimmer } = props;
   const [copied, setCopied] = useState(false);
 
-  const history = useHistory();
-
   useClipBoardTimer(copied, setCopied);
 
   const redirectToNotifications = () => {
-    history.push('/notifications');
+    history.push(RoutePath.notifications);
   };
 
   const redirectToSettings = () => {
-    history.push('/wallet-settings');
+    history.push(RoutePath.walletSettings);
   };
 
   return (

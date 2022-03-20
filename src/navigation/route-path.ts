@@ -8,7 +8,7 @@ export enum RoutePath {
   register = '/register',
   account = '/account',
   notFound = '/page-not-found',
-  welcome = '/welcome',
+  welcome = '/gm',
   createWallet = '/create-wallet',
   walletOverview = '/wallet-overview',
   walletClaim = '/wallet-claim',
