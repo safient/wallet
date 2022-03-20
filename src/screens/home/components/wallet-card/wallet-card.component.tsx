@@ -9,27 +9,24 @@ import { useServices } from 'services';
 import { useStores } from 'store';
 
 export const WalletCard: React.FC<WalletCardProps> = (props) => {
-
   let history = useHistory();
   const { safeService, walletService } = useServices();
-  const { safeStore } =  useStores()
+  const { safeStore } = useStores();
   const { walletName, roleName, status, shimmer, id } = props;
 
   async function handleShowWallet() {
-
-    safeStore.setFetching(true)
-    history.push(roleName == 'creator' ? RoutePath.walletOverview : RoutePath.walletClaim)
-    const safe = await safeService.get(id)
-    const safeData = await safeService.recover(id, roleName)
+    safeStore.setFetching(true);
+    safeStore.setRole(roleName);
+    history.push(roleName === 'creator' ? RoutePath.walletOverview : RoutePath.walletClaim);
+    const safe = await safeService.get(id);
+    const safeData = await safeService.recover(id, roleName);
     if (safeData.hasData()) {
       if (safeData.data?.seedPhrase) {
-      await walletService.load(safeData.data?.seedPhrase)
+        await walletService.load(safeData.data?.seedPhrase);
       }
     }
-    safeStore.setFetching(false)
+    safeStore.setFetching(false);
   }
-
-
 
   return (
     <>
@@ -37,8 +34,8 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
         <WalletCardShimmer />
       ) : (
         <>
-          <StyledWalletCard hCenter vCenter onClick={handleShowWallet} >
-              <IconSvg name='safientWallet' size='large' />
+          <StyledWalletCard hCenter vCenter onClick={handleShowWallet}>
+            <IconSvg name='safientWallet' size='large' />
             <WalletText variant='content' text={walletName} />
             <MetaInfo row marginTop={2} color='bottomAccent' padding={2.2} align={'center'}>
               <Box align={'center'} padding={1} row>

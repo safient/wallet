@@ -4,7 +4,7 @@ import { PrimaryButton, SmallButton, GhostButton, IconWrapper, ButtonText, Spinn
 import { ButtonComponentProps, Variant } from './button.component.props';
 
 export const Button: React.FunctionComponent<ButtonComponentProps> = (props: ButtonComponentProps) => {
-  const { variant, label, icon, loading, onClick, ...rest } = props;
+  const { variant, label, icon, loading, onClick, disabled, ...rest } = props;
 
   const getVariant = (variant: Variant = Variant.primary) => {
     let ButtonComponent;
@@ -36,13 +36,13 @@ export const Button: React.FunctionComponent<ButtonComponentProps> = (props: But
 
   return (
     // @ts-ignore - No overload matched this call.
-    <StyledButtonComponent row vCenter hCenter {...rest} onClick={onClick}>
+    <StyledButtonComponent row vCenter hCenter disabled {...rest} onClick={onClick}>
       {icon && (
         <IconWrapper>
           <IconSvg {...icon} />
         </IconWrapper>
       )}
-      {loading && <Spinner />} <ButtonText  {...label} /> 
+      {loading && <Spinner />} <ButtonText {...label} />
     </StyledButtonComponent>
   );
 };

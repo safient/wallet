@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from 'mobx';
 import { SafeStore } from './safe.store';
 import { StoreImpl } from '../store/store.impl';
-import { Types } from '@safient/core';
+import { Types, Enums} from '@safient/core';
 import { WalletSecret, WalletInfo } from '../../utils/Wallet'
 
 
@@ -11,6 +11,7 @@ export class SafeStoreImpl extends StoreImpl implements SafeStore {
   _safe?: Types.Safe;
   _walletSecret?: WalletSecret;
   _walletInfo?: WalletInfo;
+  _safeRole?: string;
 
 
   constructor() {
@@ -38,6 +39,14 @@ export class SafeStoreImpl extends StoreImpl implements SafeStore {
 
   setSafe(safe: Types.Safe) {
     this._safe = safe;
+ }
+
+ setRole(role: string) {
+   this._safeRole = role;
+ }
+
+ get role(): string|undefined {
+   return this._safeRole;
  }
 
   setWallet(info: WalletInfo, secret?: WalletSecret) {

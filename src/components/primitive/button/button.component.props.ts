@@ -49,4 +49,9 @@ export interface ButtonComponentProps extends BoxComponentProps {
    * function will be triggered when the Button is clicked
    */
   onClick: () => void;
+
+  /**
+   * disabled button
+   */
+  disabled?: boolean;
 }

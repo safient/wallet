@@ -10,6 +10,7 @@ export const StyledWalletCard = styled(Card)`
   border-radius: 0.5rem;
   box-shadow: ${({ theme: { colors } }) => colors.shadow};
   background-color: ${({ theme: { colors } }) => colors.white};
+  cursor: pointer !important;
   @media screen and (max-width: ${BreakPoints.small}) {
     flex: 0 0 auto !important;
     max-height: 24.3rem !important;
@@ -20,8 +21,8 @@ export const StyledWalletCard = styled(Card)`
 /**
  * Styles for text inside the cards.
  */
- export const WalletText = styled(Text)`
- margin-top: 2rem;
+export const WalletText = styled(Text)`
+  margin-top: 2rem;
 `;
 
 export const MetaInfo = styled(Box)`

@@ -72,6 +72,8 @@ export const images = {
   time: require('../assets/icons/time.svg').default,
   emptyActivity: require('../assets/icons/empty-state.png').default,
   document: require('../assets/icons/document.svg').default,
+  notificationDark: require('../assets/icons/notification-dark.svg').default,
+  notificationActive: require('../assets/icons/notification-active.svg').default,
   delete: require('../assets/icons/delete.svg').default,
   landingPage: require('../assets/images/landing-page.svg').default,
 };
