@@ -74,7 +74,7 @@ export const LoginScreen = () => {
        { signingIn && <NoticeLoader label={{tx:'common.signingInLabel'}} helperText={{text: "Please sign the signature on MetaMask. This may take a couple of seconds ..."}}/>  }
         <FormContainer>
           <LoginText variant='contentHeader' center tx='auth.getStarted' />
-          <Input type='text' label='Enter your Email' placeholder='hello@example.com' onChange={(e: any) => setEmail(e.target.value)} />
+          <Input type='text' label='Enter your Email' placeholder='hello@safient.com' onChange={(e: any) => setEmail(e.target.value)} />
 
           <StyledButton
             variant='primary'

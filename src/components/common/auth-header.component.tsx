@@ -5,7 +5,7 @@ import { RoutePath } from 'navigation/route-path';
 
 export const Header = () => {
   const redirect = () => {
-    window.location.href = 'https://docs.safient.io';
+    window.open('https://resources.safient.io/wallet', '_blank');
   };
 
   return (

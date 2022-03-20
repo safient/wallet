@@ -39,7 +39,6 @@ export class AccountServiceImpl extends Service implements AccountService {
       const signer =  web3Provider.getSigner();
       const address = await signer.getAddress();
       const balance = await signer.getBalance();
-      console.log(balance)
       const safient = new SafientCore(
         signer,
         Enums.NetworkType.devnet,

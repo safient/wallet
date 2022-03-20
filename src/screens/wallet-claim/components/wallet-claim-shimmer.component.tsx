@@ -21,7 +21,7 @@ export const Actions = [
     id: 0,
   },
   {
-    title: 'Recieve',
+    title: 'Receive',
     id: 1,
   },
   {

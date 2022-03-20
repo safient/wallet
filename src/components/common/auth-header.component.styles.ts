@@ -29,6 +29,7 @@ export const NavContainer = styled(Box)`
  * Styling for BoxGroup container.
  */
 export const BoxGroup = styled(Box)`
+  cursor: pointer;
   gap: 0.8rem;
   margin-right: 0.7rem !important;
   &:nth-last-child() {

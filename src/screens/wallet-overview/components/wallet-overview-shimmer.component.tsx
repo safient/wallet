@@ -13,7 +13,7 @@ export const MediumLine = styled(Line)`
 
 export const Actions = [
   {
-    title: 'Recieve',
+    title: 'Receive',
     id: 0,
   },
   {

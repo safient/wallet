@@ -31,7 +31,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
 
   if(safeStore.safe?.claims.length) {
 
-    timestamp = safeStore.safe?.claims[0].timeStamp + safeStore.safe?.signalingPeriod 
+    timestamp = safeStore.safe?.claims[safeStore.safe?.claims.length-1].timeStamp + safeStore.safe?.signalingPeriod 
 
   }
 
@@ -47,8 +47,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
           <WalletClaimView padding={6} hCenter vCenter color='white' marginTop={2}>
             <HeadingContainer>
               <Box row hCenter vCenter gap={1}>
-                <IconSvg name='coin' />
-                <Text variant='title' tx='walletClaimPage.totalValue' color='textLight' />
+                <Text variant='small' text='0xd5B5...7C3b81B' color='textLight' />
               </Box>
               <Box vCenter align={'end'}>
                 <IconSvg name='settings' />

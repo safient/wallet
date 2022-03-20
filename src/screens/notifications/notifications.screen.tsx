@@ -24,6 +24,14 @@ export const NotificationsScreen: React.FC = () => {
   const [ confirm, setConfirm ] = useState(false);
   const [ canceling, setCanceling ] = useState(false);
 
+  let timestamp = 0;
+
+  if(safeStore.safe?.claims.length) {
+
+    timestamp = safeStore.safe?.claims[safeStore.safe?.claims.length-1].timeStamp + safeStore.safe?.signalingPeriod 
+
+  }
+
 
   const handleCancelClaim = async() => {
     
@@ -73,7 +81,7 @@ export const NotificationsScreen: React.FC = () => {
 
             <Box>
               <Text variant='small' tx='notifications.claimingText' color='textLight' />
-              <Text variant='small' text='2 days left to respond' color='textLighter' />
+              <Text variant='small' text={`Respond by  ${new Date(timestamp*1000).toUTCString()}`} color='textLighter' />
             </Box>
 
             <StyledButton row hCenter vCenter gap={0.4} color='applicationBackground' onClick={() => {setConfirm(true)}}>
