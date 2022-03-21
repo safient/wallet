@@ -36,6 +36,7 @@ export const CreateWalletScreen = observer(() => {
       if (wallet.hasData()) {
         const safe = await safeService.create(walletName, walletDescription, walletBeneficiary , wallet.data!.mnemonic, false);
         if (safe.hasData()) {
+          await safeService.get(safe.data?.id!)
           history.push(RoutePath.walletOverview);
         } else {
           history.push(RoutePath.createWallet);
@@ -56,7 +57,7 @@ export const CreateWalletScreen = observer(() => {
           label={{ tx: "wallet.creatingLabel" }}
 
           helperText={{
-            text: 'Please sign the signature on MetaMask. This may take a couple of seconds ...',
+            text: 'Please sign the signature if prompted. This may take a few seconds ...',
           }}
         />
       )}
@@ -78,7 +79,7 @@ export const CreateWalletScreen = observer(() => {
             <StyledInput
               type='text'
               label='Wallet Description'
-              placeholder='johndoe@safeint.com'
+              placeholder='John Doe Wallet Details'
               onChange={(e: any) => setWalletDescription(e.target.value)}
             />
             <StyledInput

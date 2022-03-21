@@ -1,6 +1,7 @@
 import { Box, IconSvg, Text } from 'components/primitive';
 import { useState, useEffect } from 'react';
-import { StyledDiv, StyledImage, DisabledButton } from './wallet-status.styles';
+import { StyledImage } from 'screens/notifications/notifications.screen.styles';
+import { StyledDiv, StyledGif, DisabledButton } from './wallet-status.styles';
 
 export const Recovering = (props: any) => {
 
@@ -25,15 +26,19 @@ export const Recovering = (props: any) => {
   return (
     <>
       <StyledDiv>
-        <StyledImage name={'warningIndicator'} />
+        
 
         { recoveryInterval > 0 ?
         <>
+        <StyledImage name={'warningIndicator'} />
         <Text variant='small' text={`Wallet will begin recovery at ${new Date(timestamp*1000).toUTCString()} if the claim passes`} color='textLighter' center />
         <Text variant='small' tx={'walletClaimPage.walletRecoversIn'} color='textLighter' /> 
         </>
           :
-        <Text variant='small' text={'Wallet will be recovered in a few minutes. Sit back and have a cup of ☕️'} color='textLighter' center />   
+          <>
+        <StyledGif name={'recovering'} />
+        <Text variant='small' text={'Guardians are recovering the wallet. It should take only a few mins. Sit back and have a cup of ☕️'} color='textLighter' center /> 
+        </>  
         }
 
       </StyledDiv>

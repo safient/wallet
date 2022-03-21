@@ -55,6 +55,8 @@ export const images = {
   loginWithGitHub: require('../assets/icons/login-github.svg').default,
   loginWithMetaMask: require('../assets/icons/login-metamask.svg').default,
   lockLoader: require('../assets/icons/lockLoader.gif').default,
+  brewing: require('../assets/icons/brewing.gif').default,
+  recovering: require('../assets/icons/recovering.gif').default,
   safientWalletLogo: require('../assets/logo/logo.svg').default,
   settings: require('../assets/icons/settings.svg').default,
   settingsDark: require('../assets/icons/settings-dark.svg').default,

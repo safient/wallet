@@ -20,22 +20,24 @@ import { observer } from 'mobx-react-lite';
 import { useStores } from 'store';
 import { AddressUtil } from 'utils/address';
 import { useHistory } from 'react-router-dom';
+import { RoutePath } from 'navigation/route-path';
+
 
 export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => {
+
+  const history = useHistory();
   const { safeStore } = useStores();
   const { shimmer } = props;
   const [copied, setCopied] = useState(false);
 
-  const history = useHistory();
-
   useClipBoardTimer(copied, setCopied);
 
   const redirectToNotifications = () => {
-    history.push('/notifications');
+    history.push(RoutePath.notifications);
   };
 
   const redirectToSettings = () => {
-    history.push('/wallet-settings');
+    history.push(RoutePath.walletSettings);
   };
 
   return (
@@ -48,7 +50,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
             {copied && <Alert variant='success' icon label={{ tx: 'walletOverViewPage.copiedSuccessfully' }} />}
           </AlertContainer>
           { safeStore.role == 'beneficiary' && <Confetti/> }
-          <Box marginTop={2} onClick={() => (window.location.href = safeStore.safe?.cid!)}>
+          <Box marginTop={2} onClick={() => window.open(safeStore.safe?.cid!, '_blank')}>
             <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
           </Box>
           <WalletOverView padding={6} hCenter vCenter color='white' marginTop={2}>

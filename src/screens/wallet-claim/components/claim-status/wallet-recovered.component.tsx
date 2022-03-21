@@ -26,7 +26,7 @@ export const Recovered = () => {
     <>
       <StyledDiv>
         <StyledImage name={'recovered'} />
-        <Text variant='small' tx={'walletClaimPage.walletRecovered'} color='textLighter' />
+        <Text variant='small' tx={'walletClaimPage.walletRecovered'} color='textLighter' center />
       </StyledDiv>
       <Button
         label={{ tx: 'walletClaimPage.view' }}

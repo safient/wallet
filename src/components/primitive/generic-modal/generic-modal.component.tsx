@@ -57,7 +57,7 @@ export const GenericModal: React.FunctionComponent<GenericModalComponentProps> =
             {!onCancel && (
               <ModalButton label={{ text: 'Close', color: 'black' }} variant='ghost' onClick={handleClose} />
             )}
-            {!onSubmit && <ModalButton label={{ text: 'Continue' }} variant='small' onClick={handleClose} />}
+            { <ModalButton label={{ text: 'Continue' }} variant='small' onClick={onSubmit? onSubmit :handleClose} />}
           </Box>
         )}
       </StyledModal>

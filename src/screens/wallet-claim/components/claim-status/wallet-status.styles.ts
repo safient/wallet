@@ -8,10 +8,15 @@ export const StyledDiv = styled.div`
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2.4rem;
+  width: 350px;
 `;
 
 export const StyledImage = styled(Image)`
   width: 6.5rem;
+`;
+
+export const StyledGif = styled(Image)`
+  width: 14rem;
 `;
 
 export const DisabledButton = styled(Button)`

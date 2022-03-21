@@ -1,4 +1,6 @@
 import { Box, IconSvg } from 'components/primitive';
+import { WalletName } from 'screens/wallet-overview/components/wallet-overview.component.styles';
+import { useStores } from 'store';
 import {
   BackButtonContainer,
   BeneficiaryContainer,
@@ -18,9 +20,16 @@ export const WalletSettingsScreen = ({ history }: any) => {
     history.goBack();
   };
 
+  const { safeStore } = useStores();
+
   return (
     <WalletSettingsFormContainer>
+      <Box marginTop={2} onClick={() => (window.location.href = safeStore.safe?.cid!)}>
+            <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
+      </Box>
+      
       <FormContainer>
+        
         <BackButtonContainer onClick={backButtonHandler}>
           <IconSvg name='arrowLeft' />
         </BackButtonContainer>

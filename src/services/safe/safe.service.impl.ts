@@ -48,9 +48,14 @@ export class SafeServiceImpl extends Service implements SafeService {
         { email: beneficiary }
       );
 
-      return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
+      // Adding the new safe to the local SafeMeta store
+      this.accountStore.safientUser.safes.push({safeName: name,
+        safeId: safe.data?.id!,
+        type: 'creator',
+        decShard: null})
+
+      return this.success<Types.EventResponse>(safe.data as Types.EventResponse)
     } catch (e: any) {
-      console.log(e);
 
       return this.error<Types.EventResponse>(e.error);
     }
@@ -60,7 +65,7 @@ export class SafeServiceImpl extends Service implements SafeService {
     try {
       const safe = await this.accountStore.safient.getSafe(safeId);
       this.safeStore.setSafe(safe.data as Types.Safe);
-      return this.success<Types.Safe>(safe.data as Types.Safe);
+      return this.success<Types.Safe>(safe.data as Types.Safe)
     } catch (e: any) {
       return this.error<Types.Safe>(e.error);
     }

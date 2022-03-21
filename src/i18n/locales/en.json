@@ -6,7 +6,7 @@
     "claims": "Claims",
     "profile": "Profile",
     "dashboard": "Dashboard",
-    "wallets": "Wallets",
+    "wallets": "Your Wallets",
     "account": "Account",
     "createWallet": "Create Wallet",
     "genericNotes": "Generic Notes",
@@ -35,7 +35,7 @@
     "registerAlert": "We couldn't find your account. Please register here"
   },
   "wallet": {
-    "enterDetails": "Enter Wallet Deatils",
+    "enterDetails": "Enter Wallet Details",
     "creatingLabel": "Creating Wallet ..."
   },
 
@@ -54,7 +54,7 @@
   "walletOverViewPage": {
     "copiedSuccessfully": "Copied Successfully",
     "send": "Send",
-    "recieve": "Recieve",
+    "recieve": "Receive",
     "trade": "Trade",
     "activities": "Activities"
   },
@@ -75,9 +75,10 @@
     "claim": "Claim",
     "notAccessable": "Wallet is not yet accessible",
     "walletRecoversIn": "Wallet recovers in",
-    "walletRecovered": "Wallet recovered",
+    "walletRecovered": "Congratulations! You have access to the wallet.",
     "claiming": "Claiming Wallet",
-    "view": "View"
+    "view": "View",
+    "claimConfirm": "This action will initiate the wallet claim by paying the claim fee. Are you sure about this?"
   },
   "emptyStates": {
     "emptyActivities": "No Activities yet"
@@ -86,7 +87,8 @@
   "notifications": {
     "notification": "Notifications",
     "cancelClaim": "Cancel Claim",
-    "claimingText": "Someone is claiming your wallet"
+    "claimingText": "Someone is claiming your wallet",
+    "cancelConfirm": "This action will cancel the claim by the beneficiary. Are you sure about this?"
   },
   "menuComponent": {
     "profile": "Profile",
