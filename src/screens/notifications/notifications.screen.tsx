@@ -59,7 +59,7 @@ export const NotificationsScreen: React.FC = () => {
 
       { canceling && (
         <NoticeLoader
-          label={{ tx: "walletClaimPage.claiming" }}
+          label={{ tx: "notifications.cancelClaim" }}
           helperText={{
             text: 'Canceling the claim. Please wait for the transaction to get confirmed...',
           }}

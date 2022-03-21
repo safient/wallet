@@ -36,6 +36,7 @@ export const palette = {
   grayTransparent: 'rgba(98, 108, 116, 0.4)', //model backdrop
   shadow: ' 0px 16px 32px rgba(221, 230, 237, 0.4)',
   blueIndigoGradient: 'linear-gradient(89.58deg, #44BCF0 -19.85%, #818CF8 54.07%, #A099FF 120.75%)',
+  brightBlueIndigoGradient: 'linear-gradient(89.58deg, #AFE7FF -19.85%, #B5BBF5 54.07%, #9088FF 120.75%)',
   lightGray: '#eeeefe',
   silverLight: '#e1e1e1',
 };

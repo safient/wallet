@@ -14,6 +14,9 @@ export const BaseButton = styled(Box)<ButtonComponentProps>`
   border-radius: 0.4rem;
   border: none;
   cursor: pointer;
+  &:hover {
+    background: ${({ theme: { colors } }) => colors.primaryBrightGradient} !important;
+  }
 `;
 
 /**
@@ -26,14 +29,14 @@ export const PrimaryButton = styled(BaseButton)<ButtonComponentProps>`
 /**
  * Styles for Ghost Button.
  */
-export const GhostButton = styled(Box)<ButtonComponentProps>`
-width: fit-content;
-  min-width: 14.2rem !important;
-  height: 4.2rem;
-  border: 1px solid ${({ theme: { colors } }) => colors.borderLightest} !important;
-  background-color: transparent;
-  border-radius: 0.4rem;
-`;
+ export const GhostButton = styled(Box)<ButtonComponentProps>`
+ width: fit-content;
+   min-width: 14.2rem !important;
+   height: 4.2rem;
+   border: 1px solid ${({ theme: { colors } }) => colors.borderLightest} !important;
+   background-color: transparent;
+   border-radius: 0.4rem;
+ `;
 
 /**
  * Styles for Small Button.
