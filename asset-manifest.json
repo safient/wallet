@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.e377ed6e.chunk.js",
-    "main.js.map": "/static/js/main.e377ed6e.chunk.js.map",
+    "main.js": "/static/js/main.2deffbb5.chunk.js",
+    "main.js.map": "/static/js/main.2deffbb5.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.11e65d5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.11e65d5c.js.map",
-    "static/js/2.59d85444.chunk.js": "/static/js/2.59d85444.chunk.js",
-    "static/js/2.59d85444.chunk.js.map": "/static/js/2.59d85444.chunk.js.map",
+    "static/js/2.dd053d17.chunk.js": "/static/js/2.dd053d17.chunk.js",
+    "static/js/2.dd053d17.chunk.js.map": "/static/js/2.dd053d17.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.59d85444.chunk.js.LICENSE.txt": "/static/js/2.59d85444.chunk.js.LICENSE.txt",
+    "static/js/2.dd053d17.chunk.js.LICENSE.txt": "/static/js/2.dd053d17.chunk.js.LICENSE.txt",
     "static/media/active.svg": "/static/media/active.3b2613c1.svg",
     "static/media/add.svg": "/static/media/add.56d7bb51.svg",
     "static/media/arrow_down.svg": "/static/media/arrow_down.e717b966.svg",
@@ -16,6 +16,7 @@
     "static/media/arrow_up.svg": "/static/media/arrow_up.7bf4b2db.svg",
     "static/media/avatar.svg": "/static/media/avatar.1c5a7d88.svg",
     "static/media/bitcoin.svg": "/static/media/bitcoin.188dff40.svg",
+    "static/media/brewing.gif": "/static/media/brewing.5947e853.gif",
     "static/media/calender.svg": "/static/media/calender.16e095fb.svg",
     "static/media/check.svg": "/static/media/check.d0a933c9.svg",
     "static/media/checkSuccess.svg": "/static/media/checkSuccess.f4d180b8.svg",
@@ -69,6 +70,7 @@
     "static/media/recieve.svg": "/static/media/recieve.b4a96509.svg",
     "static/media/recieved.svg": "/static/media/recieved.e2fc87d3.svg",
     "static/media/recovered.svg": "/static/media/recovered.0ffe92fe.svg",
+    "static/media/recovering.gif": "/static/media/recovering.e76e451d.gif",
     "static/media/safes.svg": "/static/media/safes.68911995.svg",
     "static/media/safientWallet.svg": "/static/media/safientWallet.b3501982.svg",
     "static/media/safient_avatar.png": "/static/media/safient_avatar.ba75900c.png",
@@ -88,7 +90,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.11e65d5c.js",
-    "static/js/2.59d85444.chunk.js",
-    "static/js/main.e377ed6e.chunk.js"
+    "static/js/2.dd053d17.chunk.js",
+    "static/js/main.2deffbb5.chunk.js"
   ]
 }
