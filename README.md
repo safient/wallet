@@ -4,6 +4,16 @@ A non custodial recoverable and inheritable wallet application built on [Safient
 
 We are building this at [ETHDenver 2022](https://www.ethdenver.com) 👨‍🏭
 
+## ETHDenver bounty details:
+- ### Magic:
+    
+    We integrated Magic email and social logins to authenticate and craete a signer in our application. [Read more](./tech/magic.md)
+
+- ### IPFS/ Filecoin:
+    
+    We used IPFS storage to store the metadata and proofs of our Safient wallets for durability. [Read more](./tech/ipfs.md)
+
+
 ## Getting Started
 
 Install dependencies and start the client:
@@ -44,9 +54,14 @@ You are welcome to submit issues and enhancement requests and work on any of the
 
 ## Resources:
 
-- [Web App](https://wallet.safient.co)
+- [Web App](https://wallet.safient.io/gm)
+- [More reading](https://resources.safient.io/wallet)
+- [ETHDenver submission](https://dorahacks.io/buidl/2222)
+- [ETHDenver demo video](https://youtu.be/19Dph5wR0DM)   
 
 ## Technologies used:
 
 - [Ceramic IDX](https://idx.xyz/)
 - [Textile ThreadDb](https://docs.textile.io/threads/)
+- Magic - [Read more](./tech/magic.md)
+- IPFS - [Read more](./tech/ipfs.md)
