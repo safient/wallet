@@ -26,6 +26,7 @@ export const CreateWalletScreen = observer(() => {
   const [walletName, setWalletName] = useState('');
   const [walletDescription, setWalletDescription] = useState('');
   const [walletBeneficiary, setWalletBeneficiary] = useState('');
+  const [signalingPeriod, setSignalingPeriod] = useState(300);
 
   const createSafe = async () => {
     try {
@@ -40,6 +41,7 @@ export const CreateWalletScreen = observer(() => {
           walletDescription,
           walletBeneficiary,
           wallet.data!.mnemonic,
+          signalingPeriod,
           false
         );
         if (safe.hasData()) {
@@ -98,7 +100,7 @@ export const CreateWalletScreen = observer(() => {
           <Accordion label='Advanced options'>
             <Box row hCenter marginTop={1} justify={'between'}>
               <Label>Signaling Period</Label>
-              <SignnalingInput type='text' placeholder='10 days' />
+              <SignnalingInput type='text' placeholder='100' onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))} />
             </Box>
           </Accordion>
 

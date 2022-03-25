@@ -10,6 +10,7 @@ export interface SafeService {
     description: string,
     beneficiary: string,
     data: string,
+    signalingPeriod: number,
     onchain: boolean,
   ): Promise<ServiceResponse<Types.EventResponse>>
 
