@@ -77,6 +77,7 @@ export const images = {
   notificationDark: require('../assets/icons/notification-dark.svg').default,
   notificationActive: require('../assets/icons/notification-active.svg').default,
   delete: require('../assets/icons/delete.svg').default,
+  minus: require('../assets/icons/minus.svg').default,
   landingPage: require('../assets/images/landing-page.svg').default,
 };
 

@@ -53,3 +53,4 @@ export * from './side-panel/side-panel.component.props';
 export * from './empty-state/empty-state.component';
 export * from './spinner/spinner.component';
 export * from './confetti/confetti.component';
+export * from './accordion/accordion.component';

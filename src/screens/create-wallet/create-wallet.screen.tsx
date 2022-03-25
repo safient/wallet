@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { NoticeLoader } from 'components/primitive';
+import { RoutePath } from 'navigation/route-path';
+import { useServices } from 'services';
+import { useStores } from 'store';
+import { observer } from 'mobx-react-lite';
+import { Box, NoticeLoader, Accordion } from 'components/primitive';
 import {
   FormContainer,
   HomeScreenContainer,
@@ -10,12 +14,9 @@ import {
   WalletCreateFormContainer,
   WalletCreateFormBox,
   WalletCreateText,
+  Label,
+  SignnalingInput,
 } from './create-wallet.screen.styles';
-
-import { RoutePath } from 'navigation/route-path';
-import { useServices } from 'services';
-import { useStores } from 'store';
-import { observer } from 'mobx-react-lite';
 
 export const CreateWalletScreen = observer(() => {
   const { safeService, walletService } = useServices();
@@ -25,6 +26,7 @@ export const CreateWalletScreen = observer(() => {
   const [walletName, setWalletName] = useState('');
   const [walletDescription, setWalletDescription] = useState('');
   const [walletBeneficiary, setWalletBeneficiary] = useState('');
+  const [signalingPeriod, setSignalingPeriod] = useState(300);
 
   const createSafe = async () => {
     try {
@@ -34,9 +36,16 @@ export const CreateWalletScreen = observer(() => {
       await walletService.info();
 
       if (wallet.hasData()) {
-        const safe = await safeService.create(walletName, walletDescription, walletBeneficiary , wallet.data!.mnemonic, false);
+        const safe = await safeService.create(
+          walletName,
+          walletDescription,
+          walletBeneficiary,
+          wallet.data!.mnemonic,
+          signalingPeriod,
+          false
+        );
         if (safe.hasData()) {
-          await safeService.get(safe.data?.id!)
+          await safeService.get(safe.data?.id!);
           history.push(RoutePath.walletOverview);
         } else {
           history.push(RoutePath.createWallet);
@@ -53,9 +62,7 @@ export const CreateWalletScreen = observer(() => {
     <HomeScreenContainer>
       {safeStore.fetching && (
         <NoticeLoader
-
-          label={{ tx: "wallet.creatingLabel" }}
-
+          label={{ tx: 'wallet.creatingLabel' }}
           helperText={{
             text: 'Please sign the signature if prompted. This may take a few seconds ...',
           }}
@@ -67,7 +74,7 @@ export const CreateWalletScreen = observer(() => {
         <FormContainer>
           <WalletCreateText variant='contentHeader' center tx='wallet.enterDetails' />
 
-          <WalletCreateFormBox>
+          <WalletCreateFormBox marginBottom={2}>
             <StyledInput
               type='text'
               label='Wallet Name'
@@ -90,11 +97,16 @@ export const CreateWalletScreen = observer(() => {
             />
           </WalletCreateFormBox>
 
+          <Accordion label='Advanced options'>
+            <Box row hCenter marginTop={1} justify={'between'}>
+              <Label>Signaling Period</Label>
+              <SignnalingInput type='text' placeholder='100' onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))} />
+            </Box>
+          </Accordion>
+
           <StyledButton
-
-            variant="primary"
-            label={{ text: safeStore.fetching ? "Creating.." : "Create 🙌" }}
-
+            variant='primary'
+            label={{ text: safeStore.fetching ? 'Creating..' : 'Create 🙌' }}
             onClick={createSafe}
             color='primaryGradient'
           />

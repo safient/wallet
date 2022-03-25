@@ -21,6 +21,7 @@ export class SafeServiceImpl extends Service implements SafeService {
     description: string,
     beneficiary: string,
     data: string,
+    signalingPeriod: number,
     onchain: boolean
   ): Promise<ServiceResponse<Types.EventResponse>> {
     try {
@@ -43,7 +44,7 @@ export class SafeServiceImpl extends Service implements SafeService {
         safeData,
         onchain,
         0,
-        300,
+        signalingPeriod,
         0,
         { email: beneficiary }
       );

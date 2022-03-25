@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Box, Button, Input, Text } from "../../components/primitive";
-import { BreakPoints } from "../../utils";
+import styled from 'styled-components';
+import { Box, Button, Input, Text } from '../../components/primitive';
+import { BreakPoints } from '../../utils';
 
 /**
  * Main container of the home screen.
@@ -34,6 +34,7 @@ export const WalletCreateFormContainer = styled.section`
 
 export const WalletCreateFormBox = styled(Box)`
   gap: 2.6rem;
+  margin-bottom: 2rem;
 `;
 
 export const FormContainer = styled.div`
@@ -68,4 +69,14 @@ export const StyledInput = styled(Input)`
     gap: 2rem;
     width: 100% !important;
   }
+`;
+
+export const SignnalingInput = styled(Input)`
+  width: 16rem !important;
+`;
+
+export const Label = styled.label`
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: ${({ theme: { colors } }) => colors.textLight};
 `;
