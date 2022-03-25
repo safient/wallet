@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/static/js/main.2deffbb5.chunk.js",
-    "main.js.map": "/static/js/main.2deffbb5.chunk.js.map",
+    "main.js": "/static/js/main.a02ddf73.chunk.js",
+    "main.js.map": "/static/js/main.a02ddf73.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.11e65d5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.11e65d5c.js.map",
-    "static/js/2.dd053d17.chunk.js": "/static/js/2.dd053d17.chunk.js",
-    "static/js/2.dd053d17.chunk.js.map": "/static/js/2.dd053d17.chunk.js.map",
+    "static/js/2.c238b80c.chunk.js": "/static/js/2.c238b80c.chunk.js",
+    "static/js/2.c238b80c.chunk.js.map": "/static/js/2.c238b80c.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.dd053d17.chunk.js.LICENSE.txt": "/static/js/2.dd053d17.chunk.js.LICENSE.txt",
+    "static/js/2.c238b80c.chunk.js.LICENSE.txt": "/static/js/2.c238b80c.chunk.js.LICENSE.txt",
     "static/media/active.svg": "/static/media/active.3b2613c1.svg",
     "static/media/add.svg": "/static/media/add.56d7bb51.svg",
-    "static/media/arrow_down.svg": "/static/media/arrow_down.e717b966.svg",
+    "static/media/arrow_down.svg": "/static/media/arrow_down.becbf251.svg",
     "static/media/arrow_left.svg": "/static/media/arrow_left.f2f899fb.svg",
     "static/media/arrow_right.svg": "/static/media/arrow_right.0d1cd8c2.svg",
-    "static/media/arrow_up.svg": "/static/media/arrow_up.7bf4b2db.svg",
+    "static/media/arrow_up.svg": "/static/media/arrow_up.3e6eee62.svg",
     "static/media/avatar.svg": "/static/media/avatar.1c5a7d88.svg",
     "static/media/bitcoin.svg": "/static/media/bitcoin.188dff40.svg",
     "static/media/brewing.gif": "/static/media/brewing.5947e853.gif",
@@ -61,6 +61,7 @@
     "static/media/logo.svg": "/static/media/logo.8a275223.svg",
     "static/media/logout.svg": "/static/media/logout.fe8b8b1b.svg",
     "static/media/metamask.svg": "/static/media/metamask.07e5cede.svg",
+    "static/media/minus.svg": "/static/media/minus.35446277.svg",
     "static/media/money.svg": "/static/media/money.656c7c4d.svg",
     "static/media/notification-active.svg": "/static/media/notification-active.67065bd6.svg",
     "static/media/notification-dark.svg": "/static/media/notification-dark.d89b88cd.svg",
@@ -90,7 +91,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.11e65d5c.js",
-    "static/js/2.dd053d17.chunk.js",
-    "static/js/main.2deffbb5.chunk.js"
+    "static/js/2.c238b80c.chunk.js",
+    "static/js/main.a02ddf73.chunk.js"
   ]
 }
