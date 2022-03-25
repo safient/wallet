@@ -12,7 +12,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
       <LabelContainer>
         <Text>{label}</Text>
         <IconContainer align={'end'} onClick={() => setIsActive(!isActive)}>
-          <IconSvg name={isActive ? 'minus' : 'add'} size='xLarge' />
+          <IconSvg name={isActive ? 'arrowUp' : 'arrowDown'} size='xLarge' />
         </IconContainer>
       </LabelContainer>
 
