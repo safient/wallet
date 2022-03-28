@@ -1,91 +1,95 @@
-import { StatsCard, Text, Button, Avatar, ToggleSwitch } from 'components/primitive';
+import { Text, Avatar, ToggleSwitch, Box } from 'components/primitive';
 import {
-  AccountContainer,
-  AccountInfoContainer,
-  AccountInfo,
-  ProfileContainer,
-  Profile,
-  ProfileInfo,
-  StatsCardContainer,
-  AccountSettingsContainer,
   StyledDiv,
-  DefaultSettingsContainer,
-  Card,
   StyledInput,
-  InputContainer,
-  SwitchContainer,
+  InfoContainer,
+  IconContainer,
+  HeadingContainer,
+  CounterContainer,
+  NotificationContainer,
+  StyledButton,
+  AccountContainer,
+  ProfileContainer,
 } from './account.screen.styles';
-import { stores } from '../../store';
 
 export const AccountScreen = () => {
-
   return (
     <AccountContainer>
-      {/* Account */}
-      <AccountInfoContainer>
-        <Text variant='contentHeader' tx='common.profile' left />
-        <AccountInfo>
-          <ProfileContainer>
-            <Profile>
-              <Avatar size='xLarge' flat name='placeHolderAvatar' />
-              <ProfileInfo>
-                <Text variant='contentHeader' color='textLight' text={ stores.accountStore.safientUser?.name } />{' '}
-                <Text variant='small' text={ stores.accountStore.safientUser?.email }  />
-              </ProfileInfo>
-            </Profile>
-            <Button
-              variant='primary'
-              color='primaryGradient'
-              label={{ text: 'Edit Profile' }}
-              onClick={() => 'something'}
-            />
-          </ProfileContainer>
-          <StatsCardContainer>
-            <StatsCard
-              heading={{ text: 'Safes you are Guarding' }}
-              count={{ text: stores.accountStore.safientUser?.safes.length.toString() }}
-              iconName={{ name: 'guarding' }}
-            />
-            <StatsCard heading={{ text: 'Safes Created' }} count={{ text: stores.accountStore.safientUser?.safes.length.toString() }} iconName={{ name: 'safes' }} />
-            <StatsCard heading={{ text: 'Inherited Safes' }} count={{ text: stores.accountStore.safientUser?.safes.length.toString() }} iconName={{ name: 'inherit' }} />
-          </StatsCardContainer>
-        </AccountInfo>
-      </AccountInfoContainer>
+      <Box marginTop={1.4}>
+        <Text variant='title' tx='accountPage.account' color='textLight' />
+      </Box>
+      <ProfileContainer padding={6} hCenter vCenter color='white' marginTop={2}>
+        <Box hCenter vCenter marginTop={1.8}>
+          <Avatar size='xLarge' name='placeHolderAvatar' rounded />
+          <Box gap={0.4} hCenter marginTop={1}>
+            <Text variant='contentHeader' color='textLight' text='koushith' />
+            <Text variant='small' text='koushith97@gmail.com' />
+          </Box>
+        </Box>
 
-      {/* Setting */}
-      <AccountSettingsContainer>
-        <Text variant='contentHeader' tx='accountPage.settings' left />
-        <Card>
-          <Text variant='contentHeader' tx='accountPage.notifications' left />
+        <StyledDiv>
+          <InfoContainer>
+            <IconContainer>
+              <Avatar name='guarding' size='medium' flat />
+            </IconContainer>
+            <HeadingContainer>
+              <Text variant='small' tx='accountPage.safesGuarding' />
+            </HeadingContainer>
+            <CounterContainer>
+              <Text variant='content' text='2' />
+            </CounterContainer>
+          </InfoContainer>
 
-          <InputContainer>
-            <StyledDiv>
-              <Text variant='content' tx='accountPage.inAppNotifications' left />
-              <SwitchContainer>
-                <ToggleSwitch toggleID='inApp' checked={true} onChange={() => 'checked'} />
-              </SwitchContainer>
-            </StyledDiv>
+          <InfoContainer>
+            <IconContainer>
+              <Avatar name='safes' size='medium' flat />
+            </IconContainer>
+            <HeadingContainer>
+              <Text variant='small' tx='accountPage.safesCreated' />
+            </HeadingContainer>
+            <CounterContainer>
+              <Text variant='small' text='2' />
+            </CounterContainer>
+          </InfoContainer>
 
-            <StyledDiv>
+          <InfoContainer>
+            <IconContainer>
+              <Avatar flat name='inherit' size='medium' />
+            </IconContainer>
+            <HeadingContainer>
+              <Text variant='small' tx='accountPage.inherited' />
+            </HeadingContainer>
+            <CounterContainer>
+              <Text variant='small' text='2' />
+            </CounterContainer>
+          </InfoContainer>
+        </StyledDiv>
+
+        <NotificationContainer marginTop={2} borderRadius={0.5} padding={2}>
+          <Text variant='contentHeader' tx='accountPage.notifications' color='textLight' />
+          <Box marginTop={2}>
+            <Box row justify={'between'} marginBottom={2}>
               <Text variant='content' tx='accountPage.emailNotifications' left />
-              <SwitchContainer>
-                <ToggleSwitch toggleID='email' checked={true} onChange={() => 'checked'} />
-              </SwitchContainer>
-            </StyledDiv>
-          </InputContainer>
-        </Card>
-      </AccountSettingsContainer>
+              <ToggleSwitch toggleID='email' checked={true} onChange={() => 'checked'} />
+            </Box>
 
-      {/* default settings */}
-      <DefaultSettingsContainer>
-        <Card>
-          <Text variant='contentHeader' tx='accountPage.defaultSafeConfigs' left />
-          <InputContainer>
-            <StyledInput type='text' label='Beneficiary' placeholder='DID of the beneficiary' />
-          </InputContainer>
-        </Card>
-      </DefaultSettingsContainer>
+            <Box row justify={'between'}>
+              <Text variant='content' tx='accountPage.inAppNotifications' left />
+              <ToggleSwitch toggleID='in-app' checked={true} onChange={() => 'checked'} />
+            </Box>
+          </Box>
+        </NotificationContainer>
+
+        <NotificationContainer marginTop={4} padding={2} borderRadius={0.5}>
+          <Text variant='contentHeader' tx='accountPage.defaultSafeConfigs' color='textLight' />
+          <Box marginTop={2}>
+            <StyledInput type='text' label='Beneficiary' placeholder='DID of Beneficiary' />
+          </Box>
+        </NotificationContainer>
+        <Box marginTop={2}>
+          <StyledButton variant='primary' label={{ tx: 'common.save' }} color='primaryGradient' onClick={() => ''} />
+        </Box>
+      </ProfileContainer>
     </AccountContainer>
   );
 };
-

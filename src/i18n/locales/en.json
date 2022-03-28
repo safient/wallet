@@ -23,7 +23,8 @@
     "cryptoSafe": "Crypto safe",
     "genericSafe": "Generic safe",
     "cancel": "Cancel",
-    "create": "Create"
+    "create": "Create",
+    "save": "Save"
   },
   "auth": {
     "getStarted": "Get Started",
@@ -40,12 +41,15 @@
   },
 
   "accountPage": {
-    "profile": "Profile",
+    "account": "Account",
     "settings": "Settings",
     "notifications": "Notifications",
-    "inAppNotifications": "In app notifications",
-    "emailNotifications": "Email notifications",
-    "defaultSafeConfigs": "Default safe configs"
+    "inAppNotifications": "In app Notifications",
+    "emailNotifications": "Email Notifications",
+    "defaultSafeConfigs": "Default Safe configs",
+    "safesGuarding": "Safes you are Guarding",
+    "safesCreated": "Safes Created",
+    "inherited": "Inherited Safes"
   },
   "welcomePage": {
     "heading": "Non custodial claimable wallets",
