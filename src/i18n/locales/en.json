@@ -47,9 +47,9 @@
     "inAppNotifications": "In app Notifications",
     "emailNotifications": "Email Notifications",
     "defaultSafeConfigs": "Default Safe configs",
-    "safesGuarding": "Safes you are Guarding",
-    "safesCreated": "Safes Created",
-    "inherited": "Inherited Safes"
+    "walletsGuarding": "Wallets you are Guarding",
+    "walletsCreated": "Wallets Created",
+    "inherited": "Inherited Wallets"
   },
   "welcomePage": {
     "heading": "Non custodial claimable wallets",

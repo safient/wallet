@@ -30,22 +30,10 @@ export const AccountScreen = () => {
         <StyledDiv>
           <InfoContainer>
             <IconContainer>
-              <Avatar name='guarding' size='medium' flat />
-            </IconContainer>
-            <HeadingContainer>
-              <Text variant='small' tx='accountPage.safesGuarding' />
-            </HeadingContainer>
-            <CounterContainer>
-              <Text variant='content' text='2' />
-            </CounterContainer>
-          </InfoContainer>
-
-          <InfoContainer>
-            <IconContainer>
               <Avatar name='safes' size='medium' flat />
             </IconContainer>
             <HeadingContainer>
-              <Text variant='small' tx='accountPage.safesCreated' />
+              <Text variant='small' tx='accountPage.walletsCreated' />
             </HeadingContainer>
             <CounterContainer>
               <Text variant='small' text='2' />
