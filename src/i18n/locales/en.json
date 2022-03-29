@@ -46,7 +46,7 @@
     "notifications": "Notifications",
     "inAppNotifications": "In app Notifications",
     "emailNotifications": "Email Notifications",
-    "defaultSafeConfigs": "Default Safe configs",
+    "defaultWalletConfigs": "Default Wallet Configs",
     "walletsGuarding": "Wallets you are Guarding",
     "walletsCreated": "Wallets Created",
     "inherited": "Inherited Wallets"

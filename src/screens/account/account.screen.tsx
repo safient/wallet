@@ -1,4 +1,5 @@
 import { Text, Avatar, ToggleSwitch, Box } from 'components/primitive';
+import { useStores } from 'store';
 import {
   StyledDiv,
   StyledInput,
@@ -13,6 +14,9 @@ import {
 } from './account.screen.styles';
 
 export const AccountScreen = () => {
+  
+  const { accountStore } = useStores();
+
   return (
     <AccountContainer>
       <Box marginTop={1.4}>
@@ -20,10 +24,10 @@ export const AccountScreen = () => {
       </Box>
       <ProfileContainer padding={6} hCenter vCenter color='white' marginTop={2}>
         <Box hCenter vCenter marginTop={1.8}>
-          <Avatar size='xLarge' name='placeHolderAvatar' rounded />
+          <Avatar size='xLarge' name='user' rounded />
           <Box gap={0.4} hCenter marginTop={1}>
-            <Text variant='contentHeader' color='textLight' text='koushith' />
-            <Text variant='small' text='koushith97@gmail.com' />
+            <Text variant='contentHeader' color='textLight' text={accountStore.safientUser.name} />
+            <Text variant='small' text={accountStore.safientUser.email} />
           </Box>
         </Box>
 
@@ -36,7 +40,7 @@ export const AccountScreen = () => {
               <Text variant='small' tx='accountPage.walletsCreated' />
             </HeadingContainer>
             <CounterContainer>
-              <Text variant='small' text='2' />
+              <Text variant='small' text={accountStore.safientUser.safes.length.toString()} />
             </CounterContainer>
           </InfoContainer>
 
@@ -48,7 +52,7 @@ export const AccountScreen = () => {
               <Text variant='small' tx='accountPage.inherited' />
             </HeadingContainer>
             <CounterContainer>
-              <Text variant='small' text='2' />
+              <Text variant='small' text={accountStore.safientUser.safes.length.toString()} />
             </CounterContainer>
           </InfoContainer>
         </StyledDiv>
@@ -69,9 +73,9 @@ export const AccountScreen = () => {
         </NotificationContainer>
 
         <NotificationContainer marginTop={4} padding={2} borderRadius={0.5}>
-          <Text variant='contentHeader' tx='accountPage.defaultSafeConfigs' color='textLight' />
+          <Text variant='contentHeader' tx='accountPage.defaultWalletConfigs' color='textLight' />
           <Box marginTop={2}>
-            <StyledInput type='text' label='Beneficiary' placeholder='DID of Beneficiary' />
+            <StyledInput type='text' label='Beneficiary' placeholder='Email of Beneficiary' />
           </Box>
         </NotificationContainer>
         <Box marginTop={2}>

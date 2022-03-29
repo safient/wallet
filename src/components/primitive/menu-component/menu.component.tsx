@@ -51,7 +51,7 @@ export const Menu = (props: any) => {
             </Box>
           </NameContainer>
           <NavLabelContainer>
-            <Box row gap={1} hCenter>
+            <Box row gap={1} hCenter onClick={()=> history.push(RoutePath.account)}>
               <IconSvg name='user' />
               <Text variant='small' tx='menuComponent.profile' />
             </Box>
