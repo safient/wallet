@@ -1,12 +1,5 @@
 import styled from 'styled-components';
-import { Box, Button, Input } from 'components/primitive';
-import { BreakPoints } from 'utils';
-
-export const StyledInput = styled(Input)`
-  @media screen and (max-width: ${BreakPoints.medium}) {
-    width: 30rem !important;
-  }
-`;
+import { Box, Button } from 'components/primitive';
 
 export const InfoContainer = styled.section`
   display: flex;

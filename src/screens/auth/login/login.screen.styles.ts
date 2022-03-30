@@ -18,17 +18,16 @@ export const LoginFormContainer = styled.section`
 
 export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
-  width: 53.4rem;
   padding: 5rem 8rem 5rem 8rem;
+  border-radius: 0.5rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-top: -4rem;
-    width: 320px;
     padding: 3rem 1.5rem 3rem 1.5rem;
   }
 `;
 
 export const StyledButton = styled(Button)`
-  width: 40rem !important;
+  width: 100% !important;
   margin-top: 3rem !important;
   @media screen and (max-width: ${BreakPoints.small}) {
     width: 100% !important;
@@ -64,4 +63,8 @@ export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`;
+
+export const EmailContainer = styled.div`
+  min-width: 42rem;
 `;

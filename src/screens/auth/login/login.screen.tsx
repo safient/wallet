@@ -16,65 +16,73 @@ import {
   TextContainer,
   SocialIconsContainer,
   SocialIcon,
+  EmailContainer,
 } from './login.screen.styles';
 import { OAuthProvider } from '@magic-ext/oauth';
 
 export const LoginScreen = () => {
-
   const { accountService, magiclinkService } = useServices();
   const { accountStore } = useStores();
-  let history = useHistory();  
-  const [signingIn, setSigningIn] = useState(false)
-  const [email, setEmail] = useState("");
-
+  let history = useHistory();
+  const [signingIn, setSigningIn] = useState(false);
+  const [email, setEmail] = useState('');
 
   const handleEmailLogin = async () => {
-    try{
+    try {
       setSigningIn(true);
-      const res = await magiclinkService.loginWithEmail(email)
-      setSigningIn(false)
-    }catch(e){
-      console.log(e)
+      const res = await magiclinkService.loginWithEmail(email);
+      setSigningIn(false);
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
   const handleSocialLogin = async (provider: OAuthProvider) => {
-    try{
+    try {
       setSigningIn(true);
-      const res = await magiclinkService.loginWithSocial(provider)
-    }catch(e){
-      console.log(e)
+      const res = await magiclinkService.loginWithSocial(provider);
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
   const handleWalletLogin = async () => {
     try {
-    setSigningIn(true)  
-    const account = await accountService.login(true);
-    if (account.hasData()) {
-    history.push(RoutePath.home);
-    } else {
-
-    accountStore.setError(account.getErrorMessage(), account.getErrorCode())
-    history.push(RoutePath.register);
+      setSigningIn(true);
+      const account = await accountService.login(true);
+      if (account.hasData()) {
+        history.push(RoutePath.home);
+      } else {
+        accountStore.setError(account.getErrorMessage(), account.getErrorCode());
+        history.push(RoutePath.register);
+      }
+      setSigningIn(false);
+    } catch (e) {
+      console.log(e);
     }
-    setSigningIn(false)
-  }
-  
-  catch(e) {
-    console.log(e)
-  }
-}
+  };
 
   return (
     <LoginContainer>
       <Header />
 
       <LoginFormContainer>
-       { signingIn && <NoticeLoader label={{tx:'common.signingInLabel'}} helperText={{text: "Please sign the signature on MetaMask. This may take a couple of seconds ..."}}/>  }
+        {signingIn && (
+          <NoticeLoader
+            label={{ tx: 'common.signingInLabel' }}
+            helperText={{ text: 'Please sign the signature on MetaMask. This may take a couple of seconds ...' }}
+          />
+        )}
         <FormContainer>
           <LoginText variant='contentHeader' center tx='auth.getStarted' />
-          <Input type='text' label='Enter your Email' placeholder='hello@safient.com' onChange={(e: any) => setEmail(e.target.value)} />
+          <EmailContainer>
+            <Input
+              type='text'
+              label='Enter your Email'
+              placeholder='hello@safient.com'
+              onChange={(e: any) => setEmail(e.target.value)}
+            />
+          </EmailContainer>
 
           <StyledButton
             variant='primary'
@@ -90,8 +98,22 @@ export const LoginScreen = () => {
             </TextContainer>
 
             <SocialIconsContainer>
-              <SocialIcon name='loginWithGitHub' height={5} width={7} onClick={() => {handleSocialLogin('github')}}/>
-              <SocialIcon name='loginWithGoogle' height={5} width={7}  onClick={() => {handleSocialLogin('google')}}/>
+              <SocialIcon
+                name='loginWithGitHub'
+                height={5}
+                width={7}
+                onClick={() => {
+                  handleSocialLogin('github');
+                }}
+              />
+              <SocialIcon
+                name='loginWithGoogle'
+                height={5}
+                width={7}
+                onClick={() => {
+                  handleSocialLogin('google');
+                }}
+              />
               <SocialIcon name='loginWithMetaMask' height={5} width={7} onClick={handleWalletLogin} />
             </SocialIconsContainer>
           </SocialLoginContainer>

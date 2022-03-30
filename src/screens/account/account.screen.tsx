@@ -1,8 +1,7 @@
-import { Text, Avatar, ToggleSwitch, Box } from 'components/primitive';
+import { Text, Avatar, ToggleSwitch, Box, Input } from 'components/primitive';
 import { useStores } from 'store';
 import {
   StyledDiv,
-  StyledInput,
   InfoContainer,
   IconContainer,
   HeadingContainer,
@@ -14,7 +13,6 @@ import {
 } from './account.screen.styles';
 
 export const AccountScreen = () => {
-  
   const { accountStore } = useStores();
 
   return (
@@ -75,7 +73,7 @@ export const AccountScreen = () => {
         <NotificationContainer marginTop={4} padding={2} borderRadius={0.5}>
           <Text variant='contentHeader' tx='accountPage.defaultWalletConfigs' color='textLight' />
           <Box marginTop={2}>
-            <StyledInput type='text' label='Beneficiary' placeholder='Email of Beneficiary' />
+            <Input type='text' label='Beneficiary' placeholder='Email of Beneficiary' />
           </Box>
         </NotificationContainer>
         <Box marginTop={2}>

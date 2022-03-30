@@ -11,6 +11,11 @@ export const MediumLine = styled(Line)`
   width: 20rem;
 `;
 
+export const SmallLine = styled(Line)`
+  width: 6rem;
+  height: 1rem;
+`;
+
 export const ClaimCircle = styled(Circle)`
   width: 7.4rem;
   height: 7.4rem;
@@ -49,8 +54,7 @@ export const Actions = [
 export const ClaimShimmer = () => {
   return (
     <ShimmerContainer>
-      <Box marginTop={2}>  
-      </Box>
+      <Box marginTop={2}></Box>
       <WalletClaimView padding={6} hCenter vCenter color='white'>
         <Box hCenter vCenter marginTop={4} row>
           <Box gap={2} hCenter vCenter>
@@ -63,7 +67,7 @@ export const ClaimShimmer = () => {
             {Actions.map((items) => (
               <Box hCenter vCenter gap={1} key={items.id}>
                 <Square />
-                <Text variant='small' text={items.title} />
+                <SmallLine />
               </Box>
             ))}
           </Box>
