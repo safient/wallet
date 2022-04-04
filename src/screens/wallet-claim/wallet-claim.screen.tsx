@@ -3,13 +3,11 @@ import { useStores } from 'store';
 import { WalletClaim } from './components/wallet-claim.component';
 
 export const WalletClaimScreen = observer(() => {
-
-  const { safeStore } = useStores()
-  
+  const { safeStore } = useStores();
 
   return (
     <>
-      <WalletClaim shimmer={safeStore.fetching}/>
+      <WalletClaim shimmer={safeStore.fetching} />
     </>
   );
 });

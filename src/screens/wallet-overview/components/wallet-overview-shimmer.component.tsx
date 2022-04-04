@@ -11,6 +11,11 @@ export const MediumLine = styled(Line)`
   width: 20rem;
 `;
 
+export const SmallLine = styled(Line)`
+  width: 6rem;
+  height: 1rem;
+`;
+
 export const Actions = [
   {
     title: 'Receive',
@@ -43,14 +48,14 @@ export const WalletOverviewShimmer = () => {
             {Actions.map((items) => (
               <Box hCenter vCenter gap={1} key={items.id}>
                 <Square />
-                <Text variant='small' text={items.title} />
+                <SmallLine />
               </Box>
             ))}
           </Box>
         </Box>
 
         <Box marginTop={5} hCenter vCenter>
-          <Text variant='small' text='Activities' color='textLight' bold600 />
+          <MediumLine />
           <Box marginTop={2.6} width={50} marginBottom={2} hCenter vCenter gap={1.2}>
             <LongLine />
             <LongLine />

@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Box, Button, Input, Text } from "components/primitive";
-import { BreakPoints } from "utils";
+import styled from 'styled-components';
+import { Box, Button, Input, Text } from 'components/primitive';
+import { BreakPoints } from 'utils';
 
 export const RegistrationContainer = styled.section`
   width: 100%;
@@ -12,8 +12,10 @@ export const RegistrationFormContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 10rem;
   height: 100vh;
+  border-radius: 0.5rem;
 `;
 
 export const RegistrationFormBox = styled(Box)`
@@ -22,19 +24,21 @@ export const RegistrationFormBox = styled(Box)`
 
 export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
-  // width: 53.4rem;
+  width: 54rem;
   padding: 5rem 8rem 5rem 8rem;
   align-items: center;
   margin-top: -8rem;
+  box-shadow: ${({ theme: { colors } }) => colors.shadow};
+
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-top: -10rem;
-    width: 320px;
+    width: 35rem;
     padding: 3rem 1.5rem 3rem 1.5rem;
   }
 `;
 
 export const StyledButton = styled(Button)`
-  width: 40rem !important;
+  width: 100% !important;
   margin-top: 3rem !important;
   @media screen and (max-width: ${BreakPoints.small}) {
     width: 100% !important;
@@ -60,22 +64,15 @@ export const StyledInput = styled(Input)`
   }
 `;
 
-export const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
+export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   margin-top: 0.5rem;
+  display: inline-flex !important;
 `;
 
-export const TermsContainer = styled(Box)`
-  display: flex;
-  flex: flex-wrap;
+export const TermsContainer = styled.span`
+  display: inline-flex !important;
   margin-top: 3rem !important;
   gap: 1.6rem;
-
-  @media screen and (max-width: ${BreakPoints.small}) {
-    flex-direction: column;
-    margin-top: 2rem;
-    gap: 2rem;
-    width: 100% !important;
-  }
 `;
 
 export const LinkText = styled.span`

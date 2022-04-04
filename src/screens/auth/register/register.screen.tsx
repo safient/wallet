@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { t } from 'i18n-js';
-import { Text, Input, Box, Alert } from "components/primitive";
-import { observer } from "mobx-react-lite";
+import { Text, Input, Alert } from 'components/primitive';
+import { observer } from 'mobx-react-lite';
 
-import { Header } from "components/common/auth-header.component";
+import { Header } from 'components/common/auth-header.component';
 import {
   RegistrationContainer,
   RegistrationFormContainer,
@@ -15,15 +15,12 @@ import {
   StyledCheckbox,
   LinkText,
   RegistrationFormBox,
-  StyledInput,
-} from "./register.screen.styles";
-import { useServices } from "services";
-import { useStores } from "store";
-import { RoutePath } from "navigation/route-path";
+} from './register.screen.styles';
+import { useServices } from 'services';
+import { useStores } from 'store';
+import { RoutePath } from 'navigation/route-path';
 
 export const RegisterScreen = observer(() => {
-
-
   const { accountService } = useServices();
   const { accountStore } = useStores();
   let history = useHistory();
@@ -33,7 +30,7 @@ export const RegisterScreen = observer(() => {
 
   const register = async () => {
     try {
-      accountStore.setFetching(true)
+      accountStore.setFetching(true);
       const account = await accountService.register(fullName, email);
       if (account.hasData()) {
         history.push(RoutePath.home);
@@ -53,43 +50,46 @@ export const RegisterScreen = observer(() => {
 
       <RegistrationFormContainer>
         <FormContainer>
-          <Alert icon variant="warning" label={{tx: 'auth.registerAlert'}}/>
-          <RegistrationText variant="contentHeader" center tx="auth.createAccount" />
+          <Alert icon variant='warning' label={{ tx: 'auth.registerAlert' }} />
+          <RegistrationText variant='contentHeader' center tx='auth.createAccount' />
 
           <RegistrationFormBox>
-            <StyledInput
-              type="text"
-              label="Enter your Full Name"
-              placeholder="John Doe"
+            <Input
+              type='text'
+              label='Enter your Full Name'
+              placeholder='John Doe'
               value={fullName}
               onChange={(e: any) => {
                 setFullName(e.target.value);
               }}
             />
-            <StyledInput
-              type="text"
-              label="Enter your Email"
-              placeholder="johndoe@example.com"
+            <Input
+              type='text'
+              label='Enter your Email'
+              placeholder='johndoe@example.com'
               value={email}
               onChange={(e: any) => setEmail(e.target.value)}
             />
-            
           </RegistrationFormBox>
-          <TermsContainer row>
-            <StyledCheckbox type="checkbox" />
+          <TermsContainer>
+            <StyledCheckbox type='checkbox' />
             <Text>
               By clicking, you agree to the
-              <LinkText onClick={()=>window.location.href = 'https://resources.safient.io/legal/terms'}> {t("auth.terms")} </LinkText>
+              <LinkText onClick={() => (window.location.href = 'https://resources.safient.io/legal/terms')}>
+                {t('auth.terms')}
+              </LinkText>
               &
-              <LinkText onClick={()=>window.location.href = 'https://resources.safient.io/legal/privacy'}> {t("auth.privacy")} </LinkText>
+              <LinkText onClick={() => (window.location.href = 'https://resources.safient.io/legal/privacy')}>
+                {t('auth.privacy')}
+              </LinkText>
             </Text>
           </TermsContainer>
           <StyledButton
-            variant="primary"
+            variant='primary'
             loading={accountStore.fetching}
-            label={{ text: accountStore.fetching ? "Registering.." : "Create" }}
+            label={{ text: accountStore.fetching ? 'Registering..' : 'Create' }}
             onClick={register}
-            color="primaryGradient"
+            color='primaryGradient'
           />
         </FormContainer>
       </RegistrationFormContainer>
