@@ -20,9 +20,12 @@ export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
   padding: 5rem 8rem 5rem 8rem;
   border-radius: 0.5rem;
+  width: 54rem;
+  box-shadow: ${({ theme: { colors } }) => colors.shadow};
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-top: -4rem;
     padding: 3rem 1.5rem 3rem 1.5rem;
+    width: 100%;
   }
 `;
 
@@ -66,5 +69,7 @@ export const TextContainer = styled.div`
 `;
 
 export const EmailContainer = styled.div`
-  min-width: 42rem;
+  @media screen and (max-width: ${BreakPoints.small}) {
+    width: 100% !important;
+  }
 `;

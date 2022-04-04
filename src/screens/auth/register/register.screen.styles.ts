@@ -24,13 +24,15 @@ export const RegistrationFormBox = styled(Box)`
 
 export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
-  // width: 53.4rem;
+  width: 54rem;
   padding: 5rem 8rem 5rem 8rem;
   align-items: center;
   margin-top: -8rem;
+  box-shadow: ${({ theme: { colors } }) => colors.shadow};
+
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-top: -10rem;
-    width: 320px;
+    width: 35rem;
     padding: 3rem 1.5rem 3rem 1.5rem;
   }
 `;

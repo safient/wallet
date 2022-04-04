@@ -55,7 +55,7 @@ export const WalletOverviewShimmer = () => {
         </Box>
 
         <Box marginTop={5} hCenter vCenter>
-          <Text variant='small' text='Activities' color='textLight' bold600 />
+          <MediumLine />
           <Box marginTop={2.6} width={50} marginBottom={2} hCenter vCenter gap={1.2}>
             <LongLine />
             <LongLine />
