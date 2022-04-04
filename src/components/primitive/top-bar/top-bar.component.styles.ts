@@ -7,16 +7,8 @@ import { BreakPoints } from 'utils';
  */
 export const TopBarContainer = styled(Box)`
   background-color: ${({ theme: { colors } }) => colors.white};
-  padding: 2.5rem 35rem !important;
   height: 8rem;
-
-  @media screen and (max-width: ${BreakPoints.medium}) {
-    padding: 2.5rem 1.8rem !important;
-  }
-
-  @media screen and (max-width: ${BreakPoints.small}) {
-    padding: 2.5rem 1.8rem !important;
-  }
+  width: 100% !important;
 `;
 
 /**
@@ -25,10 +17,6 @@ export const TopBarContainer = styled(Box)`
 export const LogoWrapper = styled(Box)`
   display: inline-block !important;
   margin-left: 2.2rem !important;
-
-  /* @media screen and (min-width: ${BreakPoints.large}) {
-    visibility: hidden !important;
-  } */
 `;
 
 /**
@@ -46,5 +34,27 @@ export const BoxGroup = styled(Box)`
   margin-right: 0.7rem !important;
   &:nth-last-child() {
     padding: 0.8rem !important;
+  }
+  @media screen and (max-width: ${BreakPoints.small}) {
+    margin-right: -0.8rem;
+  }
+`;
+
+export const NavbarContainer = styled.nav`
+  width: 120rem !important;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  @media screen and (max-width: ${BreakPoints.medium}) {
+    min-width: 80rem !important;
+    padding: 0 8rem;
+    justify-content: space-around;
+  }
+
+  @media screen and (max-width: ${BreakPoints.small}) {
+    min-width: 36rem !important;
+    justify-content: space-between;
+    padding: 0 0.5rem;
   }
 `;

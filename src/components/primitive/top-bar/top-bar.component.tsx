@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'navigation/route-path';
 import { Image, Avatar } from 'components/primitive';
-import { TopBarContainer, LogoWrapper, BoxGroup, NotificationIcon } from './top-bar.component.styles';
+import { TopBarContainer, LogoWrapper, BoxGroup, NotificationIcon, NavbarContainer } from './top-bar.component.styles';
 import { Menu } from '../menu-component/menu.component';
 
 export const TopBar = () => {
@@ -11,17 +11,19 @@ export const TopBar = () => {
   return (
     <>
       <TopBarContainer align={'center'} justify={'center'} hCenter vCenter row>
-        <LogoWrapper hCenter vCenter>
-          <Link to={RoutePath.home}>
-            <Image name='safientWalletLogo' width={18} />
-          </Link>
-        </LogoWrapper>
-        <BoxGroup row>
-          <NotificationIcon name='notification' size='small' />
-          <Avatar name='user' size='small' onClick={() => setShowMenu(true)} style={{ cursor: 'pointer' }} />
-        </BoxGroup>
+        <NavbarContainer>
+          <LogoWrapper hCenter vCenter>
+            <Link to={RoutePath.home}>
+              <Image name='safientWalletLogo' width={18} />
+            </Link>
+          </LogoWrapper>
+          <BoxGroup row>
+            <NotificationIcon name='notification' size='small' />
+            <Avatar name='user' size='small' onClick={() => setShowMenu(true)} style={{ cursor: 'pointer' }} />
+          </BoxGroup>
+        </NavbarContainer>
       </TopBarContainer>
-      {showMenu && <Menu show onClose={setShowMenu}/>}
+      {showMenu && <Menu show onClose={setShowMenu} />}
     </>
   );
 };
