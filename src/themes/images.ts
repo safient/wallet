@@ -58,6 +58,7 @@ export const images = {
   brewing: require('../assets/icons/brewing.gif').default,
   recovering: require('../assets/icons/recovering.gif').default,
   safientWalletLogo: require('../assets/logo/logo.svg').default,
+  logoAlpha: require('../assets/logo/logo-alpha.svg').default,
   settings: require('../assets/icons/settings.svg').default,
   settingsDark: require('../assets/icons/settings-dark.svg').default,
   logout: require('../assets/icons/logout.svg').default,
@@ -78,6 +79,8 @@ export const images = {
   notificationActive: require('../assets/icons/notification-active.svg').default,
   delete: require('../assets/icons/delete.svg').default,
   minus: require('../assets/icons/minus.svg').default,
+  dotRed: require('../assets/icons/dot-red.svg').default,
+  dotGreen: require('../assets/icons/dot-green.svg').default,
   landingPage: require('../assets/images/landing-page.svg').default,
 };
 
