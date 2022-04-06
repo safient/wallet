@@ -12,7 +12,7 @@ export const Header = () => {
     <NavContainer align={'center'} justify={'center'} hCenter vCenter row>
       <LogoWrapper hCenter vCenter>
         <Link to={RoutePath.home}>
-          <Image name='safientWalletLogo' width={18} />
+          <Image name='logoAlpha' width={18} />
         </Link>
       </LogoWrapper>
       <BoxGroup hCenter vCenter row align={'center'} justify={'center'}>

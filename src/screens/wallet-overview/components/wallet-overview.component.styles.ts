@@ -1,5 +1,5 @@
-import { Box, Text } from 'components/primitive';
 import styled from 'styled-components';
+import { Badge, Box, Text } from 'components/primitive';
 
 export const BalanceContainer = styled(Box)`
   display: flex !important;
@@ -41,4 +41,8 @@ export const AlertContainer = styled(Box)`
 
 export const WalletName = styled(Text)`
   cursor: pointer;
+`;
+
+export const Network = styled(Badge)`
+  border-radius: 0.5rem;
 `;

@@ -54,3 +54,5 @@ export * from './empty-state/empty-state.component';
 export * from './spinner/spinner.component';
 export * from './confetti/confetti.component';
 export * from './accordion/accordion.component';
+export * from './menu-component/menu.component';
+export * from './drop-down-menu/dropdown-menu.component';

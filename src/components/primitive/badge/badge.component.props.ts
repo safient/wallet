@@ -1,5 +1,6 @@
 import { TextComponentProps } from 'components/primitive/text/text.component.props';
 import { BoxComponentProps } from 'components/primitive/box/box.component.props';
+import { IconProps } from '../icon-svg/icon-svg.component.props';
 
 /**
  * Different Variants of Badge Component
@@ -19,4 +20,9 @@ export interface BadgeComponentProps extends BoxComponentProps {
    * option to use diffent variants. Success is the default variant.
    */
   variant: keyof typeof Variant;
+
+  /**
+   * Icon Support
+   */
+  icon?: IconProps;
 }

@@ -1,8 +1,10 @@
+// @ts-nocheck
+import { IconSvg } from '../icon-svg/icon-svg.component';
 import { BadgeComponentProps, Variant } from './badge.component.props';
 import { BadgeText, DangerBadge, SuccessBadge } from './badge.component.styles';
 
 export const Badge: React.FC<BadgeComponentProps> = (props) => {
-  const { variant, label, ...rest } = props;
+  const { variant, label, icon, ...rest } = props;
 
   const textColor = variant === 'danger' ? 'errorLight' : 'successLight';
 
@@ -28,8 +30,8 @@ export const Badge: React.FC<BadgeComponentProps> = (props) => {
   const StyledBadgeComponent = getVariant(Variant[variant]);
 
   return (
-    // @ts-ignore - No overload matched this call.
-    <StyledBadgeComponent row vCenter hCenter {...rest}>
+    <StyledBadgeComponent row vCenter hCenter gap={0.8} {...rest}>
+      {icon && <IconSvg size='small' {...icon} />}
       <BadgeText color={textColor} {...label} />
     </StyledBadgeComponent>
   );

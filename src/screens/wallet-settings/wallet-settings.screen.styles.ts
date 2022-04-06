@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box, Button, IconSvg, Input, Text } from 'components/primitive';
+import { Box, Button, Input, Text } from 'components/primitive';
 import { BreakPoints } from 'utils';
 
 export const WalletSettingsFormContainer = styled.section`
@@ -24,6 +24,11 @@ export const Label = styled.label`
   font-size: 1.6rem;
   font-weight: 500;
   color: ${({ theme: { colors } }) => colors.textLight};
+`;
+
+export const LabelBold = styled(Label)`
+  font-size: 1.8rem;
+  font-weight: 600;
 `;
 
 export const SignnalingInput = styled(Input)`
