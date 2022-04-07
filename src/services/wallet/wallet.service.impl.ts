@@ -22,7 +22,7 @@ export class WalletServiceImpl extends Service implements WalletService {
 
   async create(): Promise<ServiceResponse<WalletSecret>> {
     try {
-      const wallet = await this.wallet.create(this.accountStore.chainId!);
+      const wallet = await this.wallet.create(this.safeStore.walletNetwork);
 
       return this.success<WalletSecret>(wallet.data as WalletSecret);
     } catch (e: any) {
@@ -35,7 +35,7 @@ export class WalletServiceImpl extends Service implements WalletService {
   async load(mnemonic: string): Promise<ServiceResponse<EthersWallet>> {
     try {
       const wallet = await this.wallet.load(
-        this.accountStore.chainId!,
+        this.safeStore.walletNetwork,
         mnemonic
       );
       const walletInfo = await this.info();

@@ -27,6 +27,10 @@ export const StyledDiv = styled.div`
   min-width: 30rem;
 `;
 
+export const TransactionText = styled(Text)`
+cursor: pointer;
+`;
+
 export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
   const { transactions } = props;
 
@@ -40,7 +44,9 @@ export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
             <IconSvg name={getActivityInfo(transaction.event).iconName} size='xLarge' />
           </Box>
           <StyledDiv>
-            <Text
+            <TransactionText
+              
+              onClick={ ()=> window.open(transaction.tx, '_blank')}
               variant='small'
               text={`${getActivityInfo(transaction.event).text} ${AddressUtil.shorternAddress(transaction.address)}`}
               color='textLight'

@@ -3,6 +3,7 @@ import { SafeStore } from './safe.store';
 import { StoreImpl } from '../store/store.impl';
 import { Types, Enums} from '@safient/core';
 import { WalletSecret, WalletInfo } from '../../utils/Wallet'
+import { Network } from '../../utils/networks'
 
 
 export class SafeStoreImpl extends StoreImpl implements SafeStore {
@@ -12,6 +13,7 @@ export class SafeStoreImpl extends StoreImpl implements SafeStore {
   _walletSecret?: WalletSecret;
   _walletInfo?: WalletInfo;
   _safeRole?: string;
+  walletNetwork: keyof typeof Network = 'kovan';
 
 
   constructor() {
@@ -21,6 +23,7 @@ export class SafeStoreImpl extends StoreImpl implements SafeStore {
       _safe: observable,
       _walletInfo: observable,
       _walletSecret: observable,
+      walletNetwork: observable,
       setWallet: action,
     });
   }
@@ -53,6 +56,12 @@ export class SafeStoreImpl extends StoreImpl implements SafeStore {
 
     this._walletInfo = info;
     this._walletSecret = secret;
+    
+   }
+
+   setWalletNetwork(network: keyof typeof Network) {
+
+    this.walletNetwork = network;
     
    }
 
