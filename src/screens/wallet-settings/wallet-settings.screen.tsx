@@ -16,7 +16,8 @@ import {
 } from './wallet-settings.screen.styles';
 
 export const WalletSettingsScreen = ({ history }: any) => {
-  const [selectNetwork, setSelectNetwork] = useState(null);
+  const [selectNetwork, setSelectNetwork] = useState('kovan');
+  console.log(selectNetwork)
   const backButtonHandler = () => {
     history.goBack();
   };
@@ -25,20 +26,25 @@ export const WalletSettingsScreen = ({ history }: any) => {
 
   const networkOptions = [
     {
+      value: 'mainnet',
       label: 'Ethereum Mainnet',
-      value: 'Ethereum Mainnet',
+      
     },
     {
-      value: 'Kovan Test Network',
+      value: 'kovan',
       label: 'Kovan Test Network',
     },
     {
-      value: 'Rinkeby Test Network',
+      value: 'rinkeby',
       label: 'Rinkeby Test Network',
     },
     {
-      value: 'Ropsten Test Network',
+      value: 'ropsten',
       label: 'Ropsten Test Network',
+    },
+    {
+      value: 'goerli',
+      label: 'Goerli Test Network',
     },
   ];
 
@@ -74,7 +80,7 @@ export const WalletSettingsScreen = ({ history }: any) => {
                 placeholder='select network'
                 label='Select Network'
                 options={networkOptions}
-                onChange={(e: any) => setSelectNetwork(e)}
+                onChange={(e: any) => safeStore.setWalletNetwork(e.value)}
               />
             </Box>
           </Accordion>

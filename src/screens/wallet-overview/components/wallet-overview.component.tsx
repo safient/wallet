@@ -57,7 +57,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
               <Box />
               {/* conditional rendering- success or danger and icon- dotGreen, dotRed */}
               <Box marginLeft={-2.3}>
-                <Network variant='success' label={{ text: 'Mainnet' }} icon={{ name: 'dotGreen' }} />
+                <Network variant= {safeStore.walletNetwork == 'mainnet' ? 'success' :'danger'} label={{ text: safeStore.walletNetwork }} icon={{ name: safeStore.walletNetwork == 'mainnet' ? 'dotGreen' :'dotRed' }} />
               </Box>
 
               <span onClick={redirectToNotifications}>

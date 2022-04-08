@@ -78,7 +78,7 @@ export const CreateWalletScreen = observer(() => {
             <StyledInput
               type='text'
               label='Wallet Name'
-              placeholder='John Doe Wallet'
+              placeholder='Satoshi Wallet'
               onChange={(e: any) => {
                 setWalletName(e.target.value);
               }}
@@ -86,13 +86,13 @@ export const CreateWalletScreen = observer(() => {
             <StyledInput
               type='text'
               label='Wallet Description'
-              placeholder='John Doe Wallet Details'
+              placeholder='Satoshi Wallet Details'
               onChange={(e: any) => setWalletDescription(e.target.value)}
             />
             <StyledInput
               type='text'
               label='Beneficiary'
-              placeholder='johndoe@safient.com'
+              placeholder='satoshi@safient.com'
               onChange={(e: any) => setWalletBeneficiary(e.target.value)}
             />
           </WalletCreateFormBox>
@@ -100,7 +100,7 @@ export const CreateWalletScreen = observer(() => {
           <Accordion label='Advanced options'>
             <Box row hCenter marginTop={1} justify={'between'}>
               <Label>Signaling Period</Label>
-              <SignnalingInput type='text' placeholder='100' onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))} />
+              <SignnalingInput type='text' placeholder={signalingPeriod.toString()} onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))} />
             </Box>
           </Accordion>
 

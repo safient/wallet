@@ -1,6 +1,15 @@
+// @ts-nocheck - no overload matched this call
 import styled from 'styled-components';
 import { IconSvg } from 'components/primitive';
-import { PrimaryButton, SmallButton, GhostButton, IconWrapper, ButtonText, Spinner } from './button.component.styles';
+import {
+  PrimaryButton,
+  SmallButton,
+  GhostButton,
+  IconWrapper,
+  ButtonText,
+  Spinner,
+  ButtonContainer,
+} from './button.component.styles';
 import { ButtonComponentProps, Variant } from './button.component.props';
 
 export const Button: React.FunctionComponent<ButtonComponentProps> = (props: ButtonComponentProps) => {
@@ -31,18 +40,22 @@ export const Button: React.FunctionComponent<ButtonComponentProps> = (props: But
    * custom styling goes here.
    */
   const StyledButtonComponent = styled(StyledButton)<ButtonComponentProps>`
-    background: ${({ color, theme: { colors } }) => color && colors[color]} !important;
+    background: ${({ color, disabled, theme: { colors } }) =>
+      disabled ? colors.primaryDisabled : color && colors[color]} !important;
+
+    pointer-events: ${({ disabled }) => disabled && 'none'}!important;
   `;
 
   return (
-    // @ts-ignore - No overload matched this call.
-    <StyledButtonComponent row vCenter hCenter disabled {...rest} onClick={onClick}>
-      {icon && (
-        <IconWrapper>
-          <IconSvg {...icon} />
-        </IconWrapper>
-      )}
-      {loading && <Spinner />} <ButtonText {...label} />
-    </StyledButtonComponent>
+    <ButtonContainer>
+      <StyledButtonComponent row vCenter hCenter disabled={disabled} onClick={onClick} {...rest}>
+        {icon && (
+          <IconWrapper>
+            <IconSvg {...icon} />
+          </IconWrapper>
+        )}
+        {loading && <Spinner />} <ButtonText {...label} />
+      </StyledButtonComponent>
+    </ButtonContainer>
   );
 };
