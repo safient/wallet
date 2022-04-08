@@ -3,7 +3,7 @@ import { providers, utils, Wallet as EthersWallet } from "ethers";
 import { hdkey } from "ethereumjs-wallet";
 import { privateToAddress } from "ethereumjs-util";
 import { ServiceResponse } from "../services/core/service-response";
-import { NetworkUtil } from "./networks";
+import { NetworkUtil, Network } from "./networks";
 import { DateUtil } from "./date";
 import { TransactionResponse } from "@ethersproject/providers";
 
@@ -27,15 +27,15 @@ export type WalletInfo = {
 export class Wallet {
   private walletProvider!: EthersWallet;
 
-  async create(chainId: number): Promise<ServiceResponse<WalletSecret>> {
+  async create(network: keyof typeof Network): Promise<ServiceResponse<WalletSecret>> {
     try {
-      const network = NetworkUtil.getNetworkById(chainId)!.url;
+      const networkURL = NetworkUtil.getNetworkByName(network)!.url;
 
       const mnemonic = generateMnemonic();
       const account: Account = await this._loadAccount(mnemonic);
 
       const wallet: EthersWallet = await this._loadProvider(
-        network,
+        networkURL,
         account.privateKey
       );
       const walletSecret: WalletSecret = {
@@ -87,14 +87,14 @@ export class Wallet {
   }
 
   async load(
-    chainId: number,
+    network: keyof typeof Network,
     mnemonic: string
   ): Promise<ServiceResponse<EthersWallet>> {
     try {
-      const network = NetworkUtil.getNetworkById(chainId)!.url;
+      const networkURL = NetworkUtil.getNetworkByName(network)!.url;
       const account: Account = await this._loadAccount(mnemonic);
       const wallet: EthersWallet = await this._loadProvider(
-        network,
+        networkURL,
         account.privateKey
       );
 
@@ -106,9 +106,11 @@ export class Wallet {
 
   async info(): Promise<ServiceResponse<WalletInfo>> {
     try {
-      const apiURL = NetworkUtil.getNetworkById(
+      const network = NetworkUtil.getNetworkById(
         await this.walletProvider.getChainId()
-      )?.api;
+      )
+      const apiURL = network?.api;
+      const explorerURL = network?.blockExplorer
       const address = await this.walletProvider.getAddress();
       const balance = await this.walletProvider.getBalance();
       const ethPrice = await fetch(
@@ -134,7 +136,8 @@ export class Wallet {
         address: address,
         latestTransactions: await this._formetTransactions(
           latestTransactions,
-          address
+          address,
+          explorerURL!
         ),
       };
 
@@ -146,11 +149,13 @@ export class Wallet {
 
   async _formetTransactions(
     transactions: Array<any>,
-    walletAddress: string
+    walletAddress: string,
+    explorer: string,
   ): Promise<any> {
 
 
     const fTransactions = transactions.map((transaction) => ({
+      tx: explorer + '/tx/' + transaction.hash,
       event:
         utils.getAddress(transaction.from) == walletAddress
           ? "send"

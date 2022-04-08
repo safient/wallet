@@ -2,16 +2,19 @@
  const INFURA_API_KEY = 'c0201f3cd3894e30b62af4bb542b5779'
  const ETHERSCAN_API_KEY = 'H8IGZCCS8XCJYSXIA3GUUKW6CDECYYMNPG'
 
- enum Network  {
+export enum Network  {
      localhost = 'localhost',
      mainnet = 'mainnet',
      kovan = 'kovan',
+     rinkeby = 'rinkeby',
+     ropsten = 'ropsten',
+     goerli = 'goerli',
      polygontestnet = 'polygontestnet',
      polygon = 'polygon'
 
  }
 
- const networks = {
+ export const networks = {
     localhost: {
       chainId: 31337,
       url: 'http://localhost:8545',
@@ -29,6 +32,27 @@
       url: `https://kovan.infura.io/v3/${INFURA_API_KEY}`,
       blockExplorer: 'https://kovan.etherscan.io',
       api: `https://api-kovan.etherscan.io/api?apikey=${ETHERSCAN_API_KEY}`,
+
+    },
+    rinkeby: {
+      chainId: 4,  
+      url: `https://rinkeby.infura.io/v3/${INFURA_API_KEY}`,
+      blockExplorer: 'https://rinkeby.etherscan.io',
+      api: `https://api-rinkeby.etherscan.io/api?apikey=${ETHERSCAN_API_KEY}`,
+
+    },
+    ropsten: {
+      chainId: 3,  
+      url: `https://ropsten.infura.io/v3/${INFURA_API_KEY}`,
+      blockExplorer: 'https://ropsten.etherscan.io',
+      api: `https://api-ropsten.etherscan.io/api?apikey=${ETHERSCAN_API_KEY}`,
+
+    },
+    goerli: {
+      chainId: 3,  
+      url: `https://goerli.infura.io/v3/${INFURA_API_KEY}`,
+      blockExplorer: 'https://goerli.etherscan.io',
+      api: `https://api-goerli.etherscan.io/api?apikey=${ETHERSCAN_API_KEY}`,
 
     },
     polygontestnet: {
@@ -54,6 +78,14 @@
 
     }
 
+    static getNetworkByName(chain: keyof typeof Network) {
+
+      return networks[chain];
+
+  }
+
  }
+
+//  export type Network = keyof typeof Network;
 
 

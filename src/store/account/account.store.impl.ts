@@ -10,6 +10,7 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
 
   private web3Provider?: Web3Provider;
   private signer?: JsonRpcSigner;
+  network: Enums.NetworkType = Enums.NetworkType.testnet;
   name: string = "";
   email: string = "";
   chainId?: number;
@@ -29,6 +30,7 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
       address: observable,
       balance: observable,
       _safientUser: observable,
+      network: observable,
       name: observable,
       email: observable,
       userExists: computed,
