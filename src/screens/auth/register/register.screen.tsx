@@ -27,6 +27,7 @@ export const RegisterScreen = observer(() => {
 
   const [fullName, setFullName] = useState(accountStore.name);
   const [email, setEmail] = useState(accountStore.email);
+  const [isChecked, setIsChecked] = useState(false);
 
   const register = async () => {
     try {
@@ -72,7 +73,7 @@ export const RegisterScreen = observer(() => {
             />
           </RegistrationFormBox>
           <TermsContainer>
-            <StyledCheckbox type='checkbox' />
+            <StyledCheckbox type='checkbox' onClick={() => setIsChecked(!isChecked)} />
             <Text>
               By clicking, you agree to the
               <LinkText onClick={() => (window.location.href = 'https://resources.safient.io/legal/terms')}>
@@ -90,6 +91,7 @@ export const RegisterScreen = observer(() => {
             label={{ text: accountStore.fetching ? 'Registering..' : 'Create' }}
             onClick={register}
             color='primaryGradient'
+            disabled={!isChecked}
           />
         </FormContainer>
       </RegistrationFormContainer>
