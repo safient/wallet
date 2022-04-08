@@ -1,29 +1,28 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'navigation/route-path';
-import { Image, Avatar } from 'components/primitive';
+import { Image } from 'components/primitive';
+import { DropDownMenu } from '../drop-down-menu/dropdown-menu.component';
 import { TopBarContainer, LogoWrapper, BoxGroup, NotificationIcon, NavbarContainer } from './top-bar.component.styles';
-import { Menu } from '../menu-component/menu.component';
+import { Menu } from 'components/primitive';
 
 export const TopBar = () => {
-  const [showMenu, setShowMenu] = useState(false);
-
   return (
     <>
       <TopBarContainer align={'center'} justify={'center'} hCenter vCenter row>
         <NavbarContainer>
           <LogoWrapper hCenter vCenter>
             <Link to={RoutePath.home}>
-              <Image name='safientWalletLogo' width={18} />
+              <Image name='logoAlpha' width={20} />
             </Link>
           </LogoWrapper>
           <BoxGroup row>
             <NotificationIcon name='notification' size='small' />
-            <Avatar name='user' size='small' onClick={() => setShowMenu(true)} style={{ cursor: 'pointer' }} />
+            <DropDownMenu icon={{ name: 'user' }}>
+              <Menu />
+            </DropDownMenu>
           </BoxGroup>
         </NavbarContainer>
       </TopBarContainer>
-      {showMenu && <Menu show onClose={setShowMenu} />}
     </>
   );
 };
