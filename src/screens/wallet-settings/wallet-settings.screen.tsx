@@ -1,4 +1,5 @@
-import { Box, IconSvg } from 'components/primitive';
+import { Accordion, Box, DropDown, IconSvg } from 'components/primitive';
+import { useState } from 'react';
 import { WalletName } from 'screens/wallet-overview/components/wallet-overview.component.styles';
 import { useStores } from 'store';
 import {
@@ -12,24 +13,42 @@ import {
   WalletSettingsFormContainer,
   WalletSettingsText,
   SignnalingInput,
-  AddIconContainer,
 } from './wallet-settings.screen.styles';
 
 export const WalletSettingsScreen = ({ history }: any) => {
+  const [selectNetwork, setSelectNetwork] = useState(null);
   const backButtonHandler = () => {
     history.goBack();
   };
 
   const { safeStore } = useStores();
 
+  const networkOptions = [
+    {
+      label: 'Ethereum Mainnet',
+      value: 'Ethereum Mainnet',
+    },
+    {
+      value: 'Kovan Test Network',
+      label: 'Kovan Test Network',
+    },
+    {
+      value: 'Rinkeby Test Network',
+      label: 'Rinkeby Test Network',
+    },
+    {
+      value: 'Ropsten Test Network',
+      label: 'Ropsten Test Network',
+    },
+  ];
+
   return (
     <WalletSettingsFormContainer>
       <Box marginTop={2} onClick={() => (window.location.href = safeStore.safe?.cid!)}>
-            <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
+        <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
       </Box>
-      
+
       <FormContainer>
-        
         <BackButtonContainer onClick={backButtonHandler}>
           <IconSvg name='arrowLeft' />
         </BackButtonContainer>
@@ -39,20 +58,26 @@ export const WalletSettingsScreen = ({ history }: any) => {
           <StyledInput type='text' label='Wallet Name' placeholder='A test Wallet' />
 
           <BeneficiaryContainer>
-            <Label>Add a beneficiary</Label>
-            <AddIconContainer align={'end'}>
-              <IconSvg name='add' size='large' />
-            </AddIconContainer>
+            <Label> Wallet Beneficiary</Label>
           </BeneficiaryContainer>
           <Box marginTop={-2} marginBottom={1.2}>
             <StyledInput type='text' placeholder='johndoe@safeint.com' />
           </Box>
 
-          <Label>Advanced options</Label>
-          <Box row hCenter marginTop={-2} justify={'between'}>
-            <Label>Signaling Period</Label>
-            <SignnalingInput type='text' placeholder='10 days' />
-          </Box>
+          <Accordion label='Advanced Options'>
+            <Box row hCenter marginTop={2} justify={'between'}>
+              <Label>Signaling Period</Label>
+              <SignnalingInput type='text' placeholder='10 days' />
+            </Box>
+            <Box marginTop={2}>
+              <DropDown
+                placeholder='select network'
+                label='Select Network'
+                options={networkOptions}
+                onChange={(e: any) => setSelectNetwork(e)}
+              />
+            </Box>
+          </Accordion>
         </WalletSettingsFormBox>
 
         <StyledButton variant='primary' label={{ text: 'Save' }} onClick={() => ''} color='primaryGradient' />
