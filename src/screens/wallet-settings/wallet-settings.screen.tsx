@@ -1,4 +1,4 @@
-import { Accordion, Box, DropDown, IconSvg } from 'components/primitive';
+import { Accordion, Box, DateTimePicker, DropDown, IconSvg } from 'components/primitive';
 import { useState } from 'react';
 import { WalletName } from 'screens/wallet-overview/components/wallet-overview.component.styles';
 import { useStores } from 'store';
@@ -16,8 +16,9 @@ import {
 } from './wallet-settings.screen.styles';
 
 export const WalletSettingsScreen = ({ history }: any) => {
+  const [date1, setDate1] = useState(null);
   const [selectNetwork, setSelectNetwork] = useState('kovan');
-  console.log(selectNetwork)
+
   const backButtonHandler = () => {
     history.goBack();
   };
@@ -28,7 +29,6 @@ export const WalletSettingsScreen = ({ history }: any) => {
     {
       value: 'mainnet',
       label: 'Ethereum Mainnet',
-      
     },
     {
       value: 'kovan',
@@ -81,6 +81,12 @@ export const WalletSettingsScreen = ({ history }: any) => {
                 label='Select Network'
                 options={networkOptions}
                 onChange={(e: any) => safeStore.setWalletNetwork(e.value)}
+              />
+              <DateTimePicker
+                label='Select DDay Date'
+                placeholder='DDay Date'
+                value={date1}
+                onChange={(date1: any) => setDate1(date1)}
               />
             </Box>
           </Accordion>

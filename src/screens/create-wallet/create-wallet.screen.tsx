@@ -109,8 +109,6 @@ export const CreateWalletScreen = observer(() => {
             </Box>
           </Accordion>
 
-          <DateTimePicker />
-
           <StyledButton
             variant='primary'
             label={{ text: safeStore.fetching ? 'Creating..' : 'Create 🙌' }}
