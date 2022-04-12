@@ -4,7 +4,8 @@ import { RoutePath } from 'navigation/route-path';
 import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
-import { Box, NoticeLoader, Accordion } from 'components/primitive';
+
+import { Box, NoticeLoader, Accordion, DateTimePicker } from 'components/primitive';
 import {
   FormContainer,
   HomeScreenContainer,
@@ -100,9 +101,15 @@ export const CreateWalletScreen = observer(() => {
           <Accordion label='Advanced options'>
             <Box row hCenter marginTop={1} justify={'between'}>
               <Label>Signaling Period</Label>
-              <SignnalingInput type='text' placeholder={signalingPeriod.toString()} onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))} />
+              <SignnalingInput
+                type='text'
+                placeholder={signalingPeriod.toString()}
+                onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))}
+              />
             </Box>
           </Accordion>
+
+          <DateTimePicker />
 
           <StyledButton
             variant='primary'
