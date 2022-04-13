@@ -20,6 +20,8 @@ import {
 } from './create-wallet.screen.styles';
 
 export const CreateWalletScreen = observer(() => {
+  const [date, setDate] = useState(null);
+
   const { safeService, walletService } = useServices();
   const { safeStore } = useStores();
   let history = useHistory();
@@ -107,6 +109,13 @@ export const CreateWalletScreen = observer(() => {
                 onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))}
               />
             </Box>
+
+            <DateTimePicker
+              label='Select DDay Date'
+              placeholder='DDay Date'
+              value={date}
+              onChange={(date1: any) => setDate(date)}
+            />
           </Accordion>
 
           <StyledButton
