@@ -54,10 +54,14 @@ export const WalletSettingsScreen = ({ history }: any) => {
       </Box>
 
       <FormContainer>
-        <BackButtonContainer onClick={backButtonHandler}>
-          <IconSvg name='arrowLeft' />
-        </BackButtonContainer>
-        <WalletSettingsText variant='contentHeader' center text='Settings' />
+        <Box row vCenter>
+          <Box onClick={backButtonHandler} flex={1} marginTop={0.3}>
+            <IconSvg name='arrowLeft' />
+          </Box>
+          <Box flex={5} vCenter>
+            <WalletSettingsText variant='contentHeader' center text='Settings' />
+          </Box>
+        </Box>
 
         <WalletSettingsFormBox>
           <StyledInput type='text' label='Wallet Name' placeholder='A test Wallet' />

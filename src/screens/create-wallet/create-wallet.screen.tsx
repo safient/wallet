@@ -5,13 +5,12 @@ import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
 
-import { Box, NoticeLoader, Accordion, DateTimePicker } from 'components/primitive';
+import { Box, NoticeLoader, Accordion, DateTimePicker, IconSvg } from 'components/primitive';
 import {
   FormContainer,
   HomeScreenContainer,
   StyledButton,
   StyledInput,
-  Title,
   WalletCreateFormContainer,
   WalletCreateFormBox,
   WalletCreateText,
@@ -30,6 +29,10 @@ export const CreateWalletScreen = observer(() => {
   const [walletDescription, setWalletDescription] = useState('');
   const [walletBeneficiary, setWalletBeneficiary] = useState('');
   const [signalingPeriod, setSignalingPeriod] = useState(300);
+
+  const backButtonHandler = () => {
+    history.goBack();
+  };
 
   const createSafe = async () => {
     try {
@@ -71,12 +74,17 @@ export const CreateWalletScreen = observer(() => {
           }}
         />
       )}
-      <Title variant='contentHeader' tx='common.createWallet' />
 
       <WalletCreateFormContainer>
         <FormContainer>
-          <WalletCreateText variant='contentHeader' center tx='wallet.enterDetails' />
-
+          <Box row vCenter>
+            <Box onClick={backButtonHandler} flex={1} marginTop={0.3}>
+              <IconSvg name='arrowLeft' />
+            </Box>
+            <Box flex={5} vCenter>
+              <WalletCreateText variant='contentHeader' center tx='common.createWallet' />
+            </Box>
+          </Box>
           <WalletCreateFormBox marginBottom={2}>
             <StyledInput
               type='text'
