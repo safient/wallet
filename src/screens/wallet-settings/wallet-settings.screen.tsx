@@ -1,7 +1,9 @@
 import { Accordion, Box, DropDown, IconSvg } from 'components/primitive';
+import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { WalletName } from 'screens/wallet-overview/components/wallet-overview.component.styles';
 import { useStores } from 'store';
+import { useServices } from 'services';
 import {
   BackButtonContainer,
   BeneficiaryContainer,
@@ -15,14 +17,25 @@ import {
   SignnalingInput,
 } from './wallet-settings.screen.styles';
 
-export const WalletSettingsScreen = ({ history }: any) => {
-  const [selectNetwork, setSelectNetwork] = useState('kovan');
-  console.log(selectNetwork)
+export const WalletSettingsScreen = observer(({ history }: any) => {
+
+  const { safeStore } = useStores();
+  const { walletService } = useServices();
+  
   const backButtonHandler = () => {
     history.goBack();
   };
 
-  const { safeStore } = useStores();
+  const submitSettings = async  () => { 
+
+    backButtonHandler();
+    safeStore.setFetching(true);
+    await walletService.load();
+    safeStore.setFetching(false);
+  
+  }
+
+  
 
   const networkOptions = [
     {
@@ -61,13 +74,13 @@ export const WalletSettingsScreen = ({ history }: any) => {
         <WalletSettingsText variant='contentHeader' center text='Settings' />
 
         <WalletSettingsFormBox>
-          <StyledInput type='text' label='Wallet Name' placeholder='A test Wallet' />
+          <StyledInput type='text' label='Wallet Name' value={safeStore.safe?.safeName} />
 
           <BeneficiaryContainer>
             <Label> Wallet Beneficiary</Label>
           </BeneficiaryContainer>
           <Box marginTop={-2} marginBottom={1.2}>
-            <StyledInput type='text' placeholder='johndoe@safeint.com' />
+            <StyledInput type='text' placeholder='johndoe@safeint.com' value={safeStore.safe?.beneficiary} />
           </Box>
 
           <Accordion label='Advanced Options'>
@@ -86,8 +99,8 @@ export const WalletSettingsScreen = ({ history }: any) => {
           </Accordion>
         </WalletSettingsFormBox>
 
-        <StyledButton variant='primary' label={{ text: 'Save' }} onClick={() => ''} color='primaryGradient' />
+        <StyledButton variant='primary' label={{ text: 'Save' }} onClick={submitSettings} color='primaryGradient' />
       </FormContainer>
     </WalletSettingsFormContainer>
   );
-};
+});
