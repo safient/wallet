@@ -17,7 +17,7 @@ import {
 
 export const WalletSettingsScreen = ({ history }: any) => {
   const [selectNetwork, setSelectNetwork] = useState('kovan');
-  console.log(selectNetwork)
+
   const backButtonHandler = () => {
     history.goBack();
   };
@@ -28,7 +28,6 @@ export const WalletSettingsScreen = ({ history }: any) => {
     {
       value: 'mainnet',
       label: 'Ethereum Mainnet',
-      
     },
     {
       value: 'kovan',

@@ -4,8 +4,8 @@ import { RoutePath } from 'navigation/route-path';
 import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
-import { Box, NoticeLoader, Accordion } from 'components/primitive';
 
+import { Box, NoticeLoader, Accordion, DateTimePicker } from 'components/primitive';
 import {
   FormContainer,
   HomeScreenContainer,
@@ -22,6 +22,8 @@ import {
 
 
 export const CreateWalletScreen = observer(() => {
+  const [date, setDate] = useState(null);
+
   const { safeService, walletService } = useServices();
   const { safeStore } = useStores();
   let history = useHistory();
@@ -98,8 +100,19 @@ export const CreateWalletScreen = observer(() => {
           <Accordion label='Advanced options'>
             <Box row hCenter marginTop={1} justify={'between'}>
               <Label>Signaling Period</Label>
-              <SignnalingInput type='text' placeholder={signalingPeriod.toString()} onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))} />
+              <SignnalingInput
+                type='text'
+                placeholder={signalingPeriod.toString()}
+                onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))}
+              />
             </Box>
+
+            <DateTimePicker
+              label='Select DDay Date'
+              placeholder='DDay Date'
+              value={date}
+              onChange={(date1: any) => setDate(date)}
+            />
           </Accordion>
 
           <StyledButton
