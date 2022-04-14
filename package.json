@@ -9,7 +9,7 @@
     "@magic-ext/oauth": "^2.0.1",
     "@magiclabs/ui": "^0.24.0",
     "@react-tiny-grid/core": "^0.1.7",
-    "@safient/core": "^0.1.15-alpha",
+    "@safient/core": "file:../core-js/safient-core-js",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

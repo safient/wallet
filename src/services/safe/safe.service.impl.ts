@@ -21,8 +21,8 @@ export class SafeServiceImpl extends Service implements SafeService {
     description: string,
     beneficiary: string,
     data: string,
-    signalingPeriod: number,
-    onchain: boolean
+    claimType: number,
+    DdayBasedTime: number
   ): Promise<ServiceResponse<Types.EventResponse>> {
     try {
       const secretSafe: Types.SecretSafe = {
@@ -37,25 +37,37 @@ export class SafeServiceImpl extends Service implements SafeService {
         safe: cryptoSafe,
       };
 
-      const safe = await this.accountStore.safient.createSafe(
-        name,
-        description,
-        this.accountStore.safientUser.did,
-        safeData,
-        onchain,
-        0,
-        signalingPeriod,
-        0,
-        { email: beneficiary }
-      );
 
-      // Adding the new safe to the local SafeMeta store
-      this.accountStore.safientUser.safes.push({safeName: name,
-        safeId: safe.data?.id!,
-        type: 'creator',
-        decShard: null})
 
-      return this.success<Types.EventResponse>(safe.data as Types.EventResponse)
+      if(claimType === 2){
+
+        const safe = await this.accountStore.safient.createSafe(
+          name,
+          description,
+          this.accountStore.safientUser.did,
+          safeData,
+          true,
+          claimType,
+          0,
+          DdayBasedTime,
+          { email: beneficiary }
+        );
+        return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
+      } else{
+        const safe = await this.accountStore.safient.createSafe(
+          name,
+          description,
+          this.accountStore.safientUser.did,
+          safeData,
+          false,
+          claimType,
+          300,
+          0,
+          { email: beneficiary }
+        );
+        return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
+      }  
+
     } catch (e: any) {
 
       return this.error<Types.EventResponse>(e.error);
@@ -75,10 +87,7 @@ export class SafeServiceImpl extends Service implements SafeService {
   //Currently signal based claim
   async claim(safeId: string): Promise<ServiceResponse<Types.EventResponse>> {
     try {
-      const file = {
-        name: 'dummy.pdf',
-      };
-      const disputeId = await this.accountStore.safient.createClaim(safeId, file, 'Claim evidence', 'Lorsem Text');
+      const disputeId = await this.accountStore.safient.createClaim(safeId, {}, '', '');
       return this.success<Types.EventResponse>(disputeId.data!);
     } catch (e: any) {
       console.log(e);
@@ -113,6 +122,7 @@ export class SafeServiceImpl extends Service implements SafeService {
           safeId,
           this.accountStore.safientUser.did
         );
+        console.log(recoveredData)
         secretData = recoveredData.data.safe.data;
       }
       return this.success<Types.SecretSafe>(secretData);

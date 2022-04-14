@@ -5,6 +5,7 @@ import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
 import { Box, NoticeLoader, Accordion } from 'components/primitive';
+
 import {
   FormContainer,
   HomeScreenContainer,
@@ -18,6 +19,8 @@ import {
   SignnalingInput,
 } from './create-wallet.screen.styles';
 
+
+
 export const CreateWalletScreen = observer(() => {
   const { safeService, walletService } = useServices();
   const { safeStore } = useStores();
@@ -27,6 +30,8 @@ export const CreateWalletScreen = observer(() => {
   const [walletDescription, setWalletDescription] = useState('');
   const [walletBeneficiary, setWalletBeneficiary] = useState('');
   const [signalingPeriod, setSignalingPeriod] = useState(300);
+  const [claimType, setClaimType] = useState(2)
+  const [DdayTime, setDdayTime] = useState(100);
 
   const createSafe = async () => {
     try {
@@ -36,14 +41,7 @@ export const CreateWalletScreen = observer(() => {
       await walletService.info();
 
       if (wallet.hasData()) {
-        const safe = await safeService.create(
-          walletName,
-          walletDescription,
-          walletBeneficiary,
-          wallet.data!.mnemonic,
-          signalingPeriod,
-          false
-        );
+        const safe = await safeService.create(walletName, walletDescription, walletBeneficiary , wallet.data!.mnemonic, claimType, DdayTime );
         if (safe.hasData()) {
           await safeService.get(safe.data?.id!);
           history.push(RoutePath.walletOverview);
