@@ -52,12 +52,17 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
           <Box marginTop={2} onClick={() => window.open(safeStore.safe?.cid!, '_blank')}>
             <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
           </Box>
+
           <WalletOverView padding={6} hCenter vCenter color='white' marginTop={2}>
             <IconsContainer justify={'center'} hCenter row gap={1.4}>
               <Box />
               {/* conditional rendering- success or danger and icon- dotGreen, dotRed */}
               <Box marginLeft={-2.3}>
-                <Network variant= {safeStore.walletNetwork == 'mainnet' ? 'success' :'danger'} label={{ text: safeStore.walletNetwork }} icon={{ name: safeStore.walletNetwork == 'mainnet' ? 'dotGreen' :'dotRed' }} />
+                <Network
+                  variant={safeStore.walletNetwork === 'mainnet' ? 'success' : 'danger'}
+                  label={{ text: safeStore.walletNetwork }}
+                  icon={{ name: safeStore.walletNetwork === 'mainnet' ? 'dotGreen' : 'dotRed' }}
+                />
               </Box>
 
               <span onClick={redirectToNotifications}>
