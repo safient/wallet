@@ -5,7 +5,7 @@ import { NoticeLoader} from 'components/primitive';
 import { RoutePath } from '../../../navigation/route-path';
 import {useServices } from 'services';
 import { useStores } from 'store';
-import { magic, web3provider } from 'utils/magic';
+// import { magic, web3provider } from 'utils/magic';
 
 export const CallBackScreen = (props: any) => {
 
@@ -22,7 +22,7 @@ export const CallBackScreen = (props: any) => {
 
   const finishSocialLogin = async () => {
     try {
-    let result = await magic.oauth.getRedirectResult();
+    let result = await magiclinkService.magic.oauth.getRedirectResult();
     if(result) {
         accountStore.setUserInfo(
         result.oauth.userInfo.name!,
@@ -30,7 +30,7 @@ export const CallBackScreen = (props: any) => {
         ) 
       }
       const res = await magiclinkService.authenticateWithServer(result.magic.idToken)
-      await accountService.loadAccount(web3provider)
+      await accountService.loadAccount(magiclinkService.web3Provider)
       const account = await accountService.login()
       if (account.hasData()) {
         history.push(RoutePath.home);
@@ -48,9 +48,9 @@ export const CallBackScreen = (props: any) => {
     try {
     let magicCredential = new URLSearchParams(props.location.search).get('magic_credential');
     if(magicCredential){
-      const didToken = await magic.auth.loginWithCredential();
+      const didToken = await magiclinkService.magic.auth.loginWithCredential();
       const res = await magiclinkService.authenticateWithServer(didToken!)
-      await accountService.loadAccount(web3provider)
+      await accountService.loadAccount(magiclinkService.web3Provider)
       const account = await accountService.login()
       if (account.hasData()) {
         history.push(RoutePath.home);
