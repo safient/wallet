@@ -1,11 +1,11 @@
-import { generateMnemonic, mnemonicToSeed } from "bip39";
-import { providers, utils, Wallet as EthersWallet } from "ethers";
-import { hdkey } from "ethereumjs-wallet";
-import { privateToAddress } from "ethereumjs-util";
-import { ServiceResponse } from "../services/core/service-response";
-import { NetworkUtil, Network } from "./networks";
-import { DateUtil } from "./date";
-import { TransactionResponse } from "@ethersproject/providers";
+import { generateMnemonic, mnemonicToSeed } from 'bip39';
+import { providers, utils, Wallet as EthersWallet } from 'ethers';
+import { hdkey } from 'ethereumjs-wallet';
+import { privateToAddress } from 'ethereumjs-util';
+import { ServiceResponse } from '../services/core/service-response';
+import { NetworkUtil, Network } from './networks';
+import { DateUtil } from './date';
+import { TransactionResponse } from '@ethersproject/providers';
 
 export type Account = {
   address: string;
@@ -34,10 +34,7 @@ export class Wallet {
       const mnemonic = generateMnemonic();
       const account: Account = await this._loadAccount(mnemonic);
 
-      const wallet: EthersWallet = await this._loadProvider(
-        networkURL,
-        account.privateKey
-      );
+      const wallet: EthersWallet = await this._loadProvider(networkURL, account.privateKey);
       const walletSecret: WalletSecret = {
         address: account.address,
         mnemonic: mnemonic,
@@ -58,21 +55,17 @@ export class Wallet {
       const account_index = 0;
       const fullPath = wallet_hdpath + account_index;
       const wallet = hdwallet.derivePath(fullPath).getWallet();
-      const privateKey = "0x" + wallet.getPrivateKey().toString("hex");
+      const privateKey = '0x' + wallet.getPrivateKey().toString('hex');
 
-      const address =
-        "0x" + privateToAddress(wallet.getPrivateKey()).toString("hex");
+      const address = '0x' + privateToAddress(wallet.getPrivateKey()).toString('hex');
 
       return { address, privateKey };
     } catch (err: any) {
-      throw Error("Account load failed");
+      throw Error('Account load failed');
     }
   }
 
-  async _loadProvider(
-    network: string,
-    privateKey: string
-  ): Promise<EthersWallet> {
+  async _loadProvider(network: string, privateKey: string): Promise<EthersWallet> {
     try {
       const signableAccount = new EthersWallet(privateKey);
 
@@ -82,21 +75,15 @@ export class Wallet {
 
       return this.walletProvider;
     } catch (err: any) {
-      throw Error("Provider load failed");
+      throw Error('Provider load failed');
     }
   }
 
-  async load(
-    network: keyof typeof Network,
-    mnemonic: string
-  ): Promise<ServiceResponse<EthersWallet>> {
+  async load(network: keyof typeof Network, mnemonic: string): Promise<ServiceResponse<EthersWallet>> {
     try {
       const networkURL = NetworkUtil.getNetworkByName(network)!.url;
       const account: Account = await this._loadAccount(mnemonic);
-      const wallet: EthersWallet = await this._loadProvider(
-        networkURL,
-        account.privateKey
-      );
+      const wallet: EthersWallet = await this._loadProvider(networkURL, account.privateKey);
 
       return new ServiceResponse({ data: wallet });
     } catch (err: any) {
@@ -106,16 +93,12 @@ export class Wallet {
 
   async info(): Promise<ServiceResponse<WalletInfo>> {
     try {
-      const network = NetworkUtil.getNetworkById(
-        await this.walletProvider.getChainId()
-      )
+      const network = NetworkUtil.getNetworkById(await this.walletProvider.getChainId());
       const apiURL = network?.api;
-      const explorerURL = network?.blockExplorer
+      const explorerURL = network?.blockExplorer;
       const address = await this.walletProvider.getAddress();
       const balance = await this.walletProvider.getBalance();
-      const ethPrice = await fetch(
-        `${apiURL}&module=stats&action=ethprice`
-      ).then((res) => {
+      const ethPrice = await fetch(`${apiURL}&module=stats&action=ethprice`).then((res) => {
         return res.json();
       });
       const transactionsResp = await fetch(
@@ -129,16 +112,10 @@ export class Wallet {
       const walletInfo: WalletInfo = {
         balance: {
           eth: utils.formatEther(balance.sub(balanceRemainder)),
-          usd: (
-            ethPrice.result.ethusd * parseFloat(utils.formatEther(balance))
-          ).toFixed(2),
+          usd: (ethPrice.result.ethusd * parseFloat(utils.formatEther(balance))).toFixed(2),
         },
         address: address,
-        latestTransactions: await this._formetTransactions(
-          latestTransactions,
-          address,
-          explorerURL!
-        ),
+        latestTransactions: await this._formetTransactions(latestTransactions, address, explorerURL!),
       };
 
       return new ServiceResponse({ data: walletInfo });
@@ -147,24 +124,12 @@ export class Wallet {
     }
   }
 
-  async _formetTransactions(
-    transactions: Array<any>,
-    walletAddress: string,
-    explorer: string,
-  ): Promise<any> {
-
-
+  async _formetTransactions(transactions: Array<any>, walletAddress: string, explorer: string): Promise<any> {
     const fTransactions = transactions.map((transaction) => ({
       tx: explorer + '/tx/' + transaction.hash,
-      event:
-        utils.getAddress(transaction.from) == walletAddress
-          ? "send"
-          : "receive",
+      event: utils.getAddress(transaction.from) === walletAddress ? 'send' : 'receive',
       value: utils.formatEther(transaction.value),
-      address:
-        utils.getAddress(transaction.from) == walletAddress
-          ? transaction.to
-          : transaction.from,
+      address: utils.getAddress(transaction.from) === walletAddress ? transaction.to : transaction.from,
       age: DateUtil.timeDiff(transaction.timeStamp),
     }));
 
@@ -172,21 +137,20 @@ export class Wallet {
   }
 
   async send(to: string, value: string): Promise<TransactionResponse> {
-    try{
+    try {
       const balance = await this.walletProvider.getBalance();
-      if(parseFloat(value) < parseFloat(utils.formatEther(balance))){
+      if (parseFloat(value) < parseFloat(utils.formatEther(balance))) {
         const tx = {
           to: to,
           value: utils.parseEther(value),
         };
         const txResponse = await this.walletProvider?.sendTransaction(tx);
-        return txResponse
-      }else{
-        throw new Error("Not Enough balance")
+        return txResponse;
+      } else {
+        throw new Error('Not Enough balance');
       }
-    }catch(e){
-      throw new Error(`Something went wrong while, ${e}`)
+    } catch (e) {
+      throw new Error(`Something went wrong while, ${e}`);
     }
-   
   }
 }

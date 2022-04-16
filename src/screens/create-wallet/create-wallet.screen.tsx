@@ -4,13 +4,13 @@ import { RoutePath } from 'navigation/route-path';
 import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
-import { Box, NoticeLoader, Accordion } from 'components/primitive';
+
+import { Box, NoticeLoader, Accordion, DateTimePicker, IconSvg } from 'components/primitive';
 import {
   FormContainer,
   HomeScreenContainer,
   StyledButton,
   StyledInput,
-  Title,
   WalletCreateFormContainer,
   WalletCreateFormBox,
   WalletCreateText,
@@ -19,6 +19,8 @@ import {
 } from './create-wallet.screen.styles';
 
 export const CreateWalletScreen = observer(() => {
+  const [date, setDate] = useState(null);
+
   const { safeService, walletService } = useServices();
   const { safeStore } = useStores();
   let history = useHistory();
@@ -27,6 +29,10 @@ export const CreateWalletScreen = observer(() => {
   const [walletDescription, setWalletDescription] = useState('');
   const [walletBeneficiary, setWalletBeneficiary] = useState('');
   const [signalingPeriod, setSignalingPeriod] = useState(300);
+
+  const backButtonHandler = () => {
+    history.goBack();
+  };
 
   const createSafe = async () => {
     try {
@@ -68,12 +74,17 @@ export const CreateWalletScreen = observer(() => {
           }}
         />
       )}
-      <Title variant='contentHeader' tx='common.createWallet' />
 
       <WalletCreateFormContainer>
         <FormContainer>
-          <WalletCreateText variant='contentHeader' center tx='wallet.enterDetails' />
-
+          <Box row vCenter>
+            <Box onClick={backButtonHandler} flex={1} marginTop={0.3}>
+              <IconSvg name='arrowLeft' />
+            </Box>
+            <Box flex={5} vCenter>
+              <WalletCreateText variant='contentHeader' center tx='common.createWallet' />
+            </Box>
+          </Box>
           <WalletCreateFormBox marginBottom={2}>
             <StyledInput
               type='text'
@@ -100,8 +111,19 @@ export const CreateWalletScreen = observer(() => {
           <Accordion label='Advanced options'>
             <Box row hCenter marginTop={1} justify={'between'}>
               <Label>Signaling Period</Label>
-              <SignnalingInput type='text' placeholder={signalingPeriod.toString()} onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))} />
+              <SignnalingInput
+                type='text'
+                placeholder={signalingPeriod.toString()}
+                onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))}
+              />
             </Box>
+
+            <DateTimePicker
+              label='Select DDay Date'
+              placeholder='DDay Date'
+              value={date}
+              onChange={(date1: any) => setDate(date)}
+            />
           </Accordion>
 
           <StyledButton

@@ -18,7 +18,6 @@ export const HomeScreenContainer = styled(Box)`
  * Styles for Title Text.
  */
 export const Title = styled(Text)`
-  margin-left: 38rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-left: 0.1rem;
   }
@@ -65,4 +64,15 @@ export const SafeCard = styled(Card)`
     max-width: 33rem !important;
     margin: 1.5rem 0 1.5rem !important;
   }
+`;
+
+/**
+ * Styles for Heading Container
+ */
+export const HeadingContainer = styled(Box)`
+  display: inline-flex;
+  flex-direction: column !important;
+  max-width: 768px !important;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;

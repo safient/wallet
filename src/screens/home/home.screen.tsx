@@ -4,7 +4,7 @@ import { Enums } from '@safient/core';
 import { Box, IconSvg, Alert } from 'components/primitive';
 import { WalletCard } from './components/wallet-card/wallet-card.component';
 import { UserRole } from './components/wallet-card/wallet-card.component.props';
-import { HomeScreenContainer, Title, CardsContainer, SafeCard, SafeText } from './home.screen.styles';
+import { HomeScreenContainer, Title, CardsContainer, SafeCard, SafeText, HeadingContainer } from './home.screen.styles';
 import { RoutePath } from 'navigation/route-path';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
@@ -13,22 +13,24 @@ export const HomeScreen: React.FC = observer(() => {
   const { accountStore } = useStores();
 
   const isValidNetwork = () => {
-    if (accountStore.network == Enums.NetworkType.testnet) {
-    return accountStore.chainId == 42
+    if (accountStore.network === Enums.NetworkType.testnet) {
+      return accountStore.chainId === 42;
+    } else if (accountStore.network === Enums.NetworkType.devnet) {
+      return accountStore.chainId === 31337;
     }
-    else if (accountStore.network == Enums.NetworkType.devnet) {
-      return accountStore.chainId == 31337
-    } 
-    return false
-  }
+    return false;
+  };
 
   return (
     <HomeScreenContainer>
-       
-      <Title variant='contentHeader' tx='common.wallets' />
-
       <Box hCenter>
-      { !isValidNetwork() && <Alert variant='error' icon label={{ text: 'Please switch the wallet network to Kovan testnet' }} />}
+        {!isValidNetwork() && (
+          <Alert variant='error' icon label={{ text: 'Please switch the wallet network to Kovan testnet' }} />
+        )}
+
+        <HeadingContainer>
+          <Title variant='contentHeader' tx='common.wallets' left />
+        </HeadingContainer>
         <CardsContainer row hCenter>
           <SafeCard hCenter vCenter>
             <Link to={RoutePath.createWallet}>
@@ -36,6 +38,7 @@ export const HomeScreen: React.FC = observer(() => {
             </Link>
             <SafeText variant='content' tx='common.createWallet' />
           </SafeCard>
+
           {accountStore.safientUser?.safes.map((safe) => (
             <WalletCard
               walletName={safe.safeName}

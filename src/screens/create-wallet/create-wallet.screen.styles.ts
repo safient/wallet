@@ -43,6 +43,7 @@ export const FormContainer = styled.div`
   padding: 5rem 8rem 5rem 8rem;
   align-items: center;
   margin-top: -8rem;
+
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-top: -10rem;
     width: 320px;
@@ -60,6 +61,7 @@ export const StyledButton = styled(Button)`
 
 export const WalletCreateText = styled(Text)`
   margin-bottom: 6rem;
+  transform: translate(-10%);
 `;
 
 export const StyledInput = styled(Input)`

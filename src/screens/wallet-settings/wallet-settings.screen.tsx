@@ -17,11 +17,12 @@ import {
   SignnalingInput,
 } from './wallet-settings.screen.styles';
 
+
 export const WalletSettingsScreen = observer(({ history }: any) => {
 
   const { safeStore } = useStores();
   const { walletService } = useServices();
-  
+
   const backButtonHandler = () => {
     history.goBack();
   };
@@ -41,7 +42,6 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
     {
       value: 'mainnet',
       label: 'Ethereum Mainnet',
-      
     },
     {
       value: 'kovan',
@@ -76,10 +76,14 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
       </Box>
 
       <FormContainer>
-        <BackButtonContainer onClick={backButtonHandler}>
-          <IconSvg name='arrowLeft' />
-        </BackButtonContainer>
-        <WalletSettingsText variant='contentHeader' center text='Settings' />
+        <Box row vCenter>
+          <Box onClick={backButtonHandler} flex={1} marginTop={0.3}>
+            <IconSvg name='arrowLeft' />
+          </Box>
+          <Box flex={5} vCenter>
+            <WalletSettingsText variant='contentHeader' center text='Settings' />
+          </Box>
+        </Box>
 
         <WalletSettingsFormBox>
           <StyledInput type='text' label='Wallet Name' value={safeStore.safe?.safeName} />
