@@ -12,6 +12,7 @@ import {
   CreateWalletScreen,
   WalletOverviewScreen,
   WalletSettingsScreen,
+  GlobalNotification,
 } from '../screens';
 import { RouteName } from './route-name';
 import { RoutePath } from './route-path';
@@ -108,5 +109,12 @@ export const routes: IRoute[] = [
     exact: true,
     private: true,
     component: NotificationsScreen,
+  },
+  {
+    path: RoutePath.globalNotifivations,
+    name: RouteName.globalNotifivations,
+    exact: true,
+    private: true,
+    component: GlobalNotification,
   },
 ];
