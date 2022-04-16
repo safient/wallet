@@ -61,6 +61,14 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
     },
   ];
 
+  const getNetworkName = (network: string) => {
+
+    return networkOptions.find(networkInfo => networkInfo.value == network)
+
+
+
+  }
+
   return (
     <WalletSettingsFormContainer>
       <Box marginTop={2} onClick={() => (window.location.href = safeStore.safe?.cid!)}>
@@ -89,9 +97,10 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
               <SignnalingInput type='text' placeholder='10 days' />
             </Box>
             <Box marginTop={2}>
+            <Label>Select Network</Label>
               <DropDown
                 placeholder='select network'
-                label='Select Network'
+                value={getNetworkName(safeStore.walletNetwork)?.label}
                 options={networkOptions}
                 onChange={(e: any) => safeStore.setWalletNetwork(e.value)}
               />

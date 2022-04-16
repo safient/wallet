@@ -49,7 +49,7 @@ export enum Network  {
 
     },
     goerli: {
-      chainId: 3,  
+      chainId: 5,  
       url: `https://goerli.infura.io/v3/${INFURA_API_KEY}`,
       blockExplorer: 'https://goerli.etherscan.io',
       api: `https://api-goerli.etherscan.io/api?apikey=${ETHERSCAN_API_KEY}`,
