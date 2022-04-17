@@ -35,13 +35,15 @@ export class AccountServiceImpl extends Service implements AccountService {
   
     try {
       const network = await web3Provider.getNetwork();
+      console.log(network)
       const chainId =  network.chainId;
       const signer =  web3Provider.getSigner();
       const address = await signer.getAddress();
       const balance = await signer.getBalance();
       const safient = new SafientCore(
         signer,
-        this.accountStore.network,
+        //changed the network type. 
+        Enums.NetworkType.devnet,
         Enums.DatabaseType.threadDB,
         'bjngsmak24m6e5p2ijtcedws2tq',
         'bn3h6ozdpkmh7tgx3jh5el55cgfaevwxh7mcnnfi'

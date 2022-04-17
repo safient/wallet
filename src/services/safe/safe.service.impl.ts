@@ -69,7 +69,7 @@ export class SafeServiceImpl extends Service implements SafeService {
       }  
 
     } catch (e: any) {
-
+      console.log(e)
       return this.error<Types.EventResponse>(e.error);
     }
   }

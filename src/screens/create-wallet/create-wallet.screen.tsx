@@ -4,7 +4,7 @@ import { RoutePath } from 'navigation/route-path';
 import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
-
+import dayjs from "dayjs"
 import { Box, NoticeLoader, Accordion, DateTimePicker } from 'components/primitive';
 import {
   FormContainer,
@@ -22,7 +22,6 @@ import {
 
 
 export const CreateWalletScreen = observer(() => {
-  const [date, setDate] = useState(null);
 
   const { safeService, walletService } = useServices();
   const { safeStore } = useStores();
@@ -32,8 +31,11 @@ export const CreateWalletScreen = observer(() => {
   const [walletDescription, setWalletDescription] = useState('');
   const [walletBeneficiary, setWalletBeneficiary] = useState('');
   const [signalingPeriod, setSignalingPeriod] = useState(300);
+
+  //Note new create a toggle button or something to change the type of safe. 
   const [claimType, setClaimType] = useState(2)
-  const [DdayTime, setDdayTime] = useState(100);
+  const [DdayTime, setDdayTime] = useState(0);
+  const [date, setDate] = useState(null)
 
   const createSafe = async () => {
     try {
@@ -57,6 +59,14 @@ export const CreateWalletScreen = observer(() => {
       console.log(e);
     }
   };
+
+  const dateConverter = (date: any) => {
+      setDate(date)
+      const presentTime = Date.now() / 1000;
+      const futureTime = dayjs(date).valueOf() / 1000
+      const timeDifference = futureTime - presentTime
+      setDdayTime(Math.floor(timeDifference))
+  }
 
   return (
     <HomeScreenContainer>
@@ -111,7 +121,7 @@ export const CreateWalletScreen = observer(() => {
               label='Select DDay Date'
               placeholder='DDay Date'
               value={date}
-              onChange={(date1: any) => setDate(date)}
+              onChange={(date: any) => dateConverter(date)}
             />
           </Accordion>
 
