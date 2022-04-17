@@ -4,13 +4,9 @@ import { RoutePath } from 'navigation/route-path';
 import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
-<<<<<<< HEAD
 import dayjs from "dayjs"
-import { Box, NoticeLoader, Accordion, DateTimePicker } from 'components/primitive';
-=======
 
 import { Box, NoticeLoader, Accordion, DateTimePicker, IconSvg } from 'components/primitive';
->>>>>>> main
 import {
   FormContainer,
   HomeScreenContainer,
@@ -36,16 +32,13 @@ export const CreateWalletScreen = observer(() => {
   const [walletBeneficiary, setWalletBeneficiary] = useState('');
   const [signalingPeriod, setSignalingPeriod] = useState(300);
 
-<<<<<<< HEAD
   //Note new create a toggle button or something to change the type of safe. 
   const [claimType, setClaimType] = useState(2)
   const [DdayTime, setDdayTime] = useState(0);
   const [date, setDate] = useState(null)
-=======
   const backButtonHandler = () => {
     history.goBack();
   };
->>>>>>> main
 
   const createSafe = async () => {
     try {
