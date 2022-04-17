@@ -37,6 +37,7 @@ export const GhostButton = styled(Box)<ButtonComponentProps>`
   border: 1px solid ${({ theme: { colors } }) => colors.borderLightest} !important;
   background-color: transparent;
   border-radius: 0.4rem;
+  cursor: ${(disabled) => (disabled ? 'pointer' : 'not-allowed')} !important;
 `;
 
 /**
@@ -48,6 +49,7 @@ export const SmallButton = styled(Box)<ButtonComponentProps>`
   height: 4.2rem;
   background: ${({ theme: { colors } }) => colors.primaryGradient} !important;
   border-radius: 0.4rem;
+  cursor: ${(disabled) => (!disabled ? 'pointer' : 'not-allowed')} !important;
 `;
 
 /**

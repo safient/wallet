@@ -48,6 +48,8 @@ export const FormContainer = styled.div`
   align-items: center;
   margin-top: 2rem;
   position: relative;
+  min-width: 59.6rem;
+  min-height: 60rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     width: 32rem;
     padding: 3rem 1.5rem 3rem 1.5rem;
@@ -55,7 +57,7 @@ export const FormContainer = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-  width: 40rem !important;
+  width: 100% !important;
   margin-top: 3rem !important;
   @media screen and (max-width: ${BreakPoints.small}) {
     width: 100% !important;
@@ -63,7 +65,8 @@ export const StyledButton = styled(Button)`
 `;
 
 export const WalletSettingsText = styled(Text)`
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
+  transform: translate(-10%);
 `;
 
 export const StyledInput = styled(Input)`

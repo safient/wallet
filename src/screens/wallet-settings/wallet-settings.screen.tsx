@@ -1,7 +1,9 @@
 import { Accordion, Box, DropDown, IconSvg } from 'components/primitive';
+import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { WalletName } from 'screens/wallet-overview/components/wallet-overview.component.styles';
 import { useStores } from 'store';
+import { useServices } from 'services';
 import {
   BackButtonContainer,
   BeneficiaryContainer,
@@ -15,14 +17,26 @@ import {
   SignnalingInput,
 } from './wallet-settings.screen.styles';
 
-export const WalletSettingsScreen = ({ history }: any) => {
-  const [selectNetwork, setSelectNetwork] = useState('kovan');
+
+export const WalletSettingsScreen = observer(({ history }: any) => {
+
+  const { safeStore } = useStores();
+  const { walletService } = useServices();
 
   const backButtonHandler = () => {
     history.goBack();
   };
 
-  const { safeStore } = useStores();
+  const submitSettings = async  () => { 
+
+    backButtonHandler();
+    safeStore.setFetching(true);
+    await walletService.load();
+    safeStore.setFetching(false);
+  
+  }
+
+  
 
   const networkOptions = [
     {
@@ -47,6 +61,14 @@ export const WalletSettingsScreen = ({ history }: any) => {
     },
   ];
 
+  const getNetworkName = (network: string) => {
+
+    return networkOptions.find(networkInfo => networkInfo.value == network)
+
+
+
+  }
+
   return (
     <WalletSettingsFormContainer>
       <Box marginTop={2} onClick={() => (window.location.href = safeStore.safe?.cid!)}>
@@ -54,19 +76,23 @@ export const WalletSettingsScreen = ({ history }: any) => {
       </Box>
 
       <FormContainer>
-        <BackButtonContainer onClick={backButtonHandler}>
-          <IconSvg name='arrowLeft' />
-        </BackButtonContainer>
-        <WalletSettingsText variant='contentHeader' center text='Settings' />
+        <Box row vCenter>
+          <Box onClick={backButtonHandler} flex={1} marginTop={0.3}>
+            <IconSvg name='arrowLeft' />
+          </Box>
+          <Box flex={5} vCenter>
+            <WalletSettingsText variant='contentHeader' center text='Settings' />
+          </Box>
+        </Box>
 
         <WalletSettingsFormBox>
-          <StyledInput type='text' label='Wallet Name' placeholder='A test Wallet' />
+          <StyledInput type='text' label='Wallet Name' value={safeStore.safe?.safeName} />
 
           <BeneficiaryContainer>
             <Label> Wallet Beneficiary</Label>
           </BeneficiaryContainer>
           <Box marginTop={-2} marginBottom={1.2}>
-            <StyledInput type='text' placeholder='johndoe@safeint.com' />
+            <StyledInput type='text' placeholder='johndoe@safeint.com' value={safeStore.safe?.beneficiary} />
           </Box>
 
           <Accordion label='Advanced Options'>
@@ -75,9 +101,10 @@ export const WalletSettingsScreen = ({ history }: any) => {
               <SignnalingInput type='text' placeholder='10 days' />
             </Box>
             <Box marginTop={2}>
+            <Label>Select Network</Label>
               <DropDown
                 placeholder='select network'
-                label='Select Network'
+                value={getNetworkName(safeStore.walletNetwork)?.label}
                 options={networkOptions}
                 onChange={(e: any) => safeStore.setWalletNetwork(e.value)}
               />
@@ -85,8 +112,8 @@ export const WalletSettingsScreen = ({ history }: any) => {
           </Accordion>
         </WalletSettingsFormBox>
 
-        <StyledButton variant='primary' label={{ text: 'Save' }} onClick={() => ''} color='primaryGradient' />
+        <StyledButton variant='primary' label={{ text: 'Save' }} onClick={submitSettings} color='primaryGradient' />
       </FormContainer>
     </WalletSettingsFormContainer>
   );
-};
+});
