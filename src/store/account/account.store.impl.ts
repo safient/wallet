@@ -13,7 +13,7 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
   network: Enums.NetworkType = Enums.NetworkType.testnet;
   name: string = "";
   email: string = "";
-  chainId?: number;
+  chainId!: number;
   address!: string;
   balance?: string;
   safient!: SafientCore;

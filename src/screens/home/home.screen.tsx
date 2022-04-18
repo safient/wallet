@@ -14,7 +14,8 @@ export const HomeScreen: React.FC = observer(() => {
 
   const isValidNetwork = () => {
     if (accountStore.network === Enums.NetworkType.testnet) {
-      return accountStore.chainId === 42;
+      console.log(accountStore.chainId)
+      return parseInt(accountStore.chainId.toString()) === 42;
     } else if (accountStore.network === Enums.NetworkType.devnet) {
       return accountStore.chainId === 31337;
     }
