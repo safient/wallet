@@ -11,8 +11,8 @@ export const IconContainer = styled.div`
   flex: 1;
 `;
 export const HeadingContainer = styled.div`
-  flex: 2;
-  flex: 0 0 18rem;
+  flex: 1;
+  flex: 0 0 auto;
   align-self: center;
 `;
 export const CounterContainer = styled.div`

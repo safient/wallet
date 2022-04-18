@@ -12,8 +12,8 @@ export const Menu = () => {
       <NameContainer>
         <Image name='user' rounded width={4.4} />
         <Box>
-          {/* <Text variant='small' text={accountStore.safientUser.name} color='textLight' />
-          <Text variant='small' text={accountStore.safientUser.email} color='textLighter' /> */}
+          <Text variant='small' text={accountStore.safientUser?.name} color='textLight' />
+          <Text variant='small' text={accountStore.safientUser?.email} color='textLighter' />
         </Box>
       </NameContainer>
       <NavLabelContainer>
