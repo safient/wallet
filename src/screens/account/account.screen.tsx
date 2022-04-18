@@ -26,9 +26,6 @@ export const AccountScreen = () => {
   const [beneficiary, setBeneficiary] = useState(safeService.getDefaultConfig()?.beneficiary);
 
   const [saved, setSaved] = useState(false);
-  console.log(safeService.getDefaultConfig());
-
-  console.log(safeService.getDefaultConfig());
 
   useAlertTimer(saved, setSaved);
 
