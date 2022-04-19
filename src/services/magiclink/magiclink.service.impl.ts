@@ -17,14 +17,12 @@ export class MagicServiceImpl extends Service implements MagiclinkService {
   constructor() {
     super();
     this.accountStore = stores?.accountStore;
-    console.log(this.accountStore)
     const magicUtil = new MagicUtil(this.getChainId());
     this.magic = magicUtil.magic;
     this.web3Provider = magicUtil.web3provider;
   }
 
   getChainId = () => {
-    console.log(this.accountStore)
     if (this.accountStore.network == Enums.NetworkType.testnet) {
       return 42;
     } else if (this.accountStore.network == Enums.NetworkType.devnet) {

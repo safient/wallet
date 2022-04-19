@@ -64,9 +64,6 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
   const getNetworkName = (network: string) => {
 
     return networkOptions.find(networkInfo => networkInfo.value == network)
-
-
-
   }
 
   return (

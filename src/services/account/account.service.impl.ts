@@ -35,7 +35,6 @@ export class AccountServiceImpl extends Service implements AccountService {
   
     try {
       const network = await web3Provider.getNetwork();
-      console.log(network)
       const chainId =  network.chainId;
       const signer =  web3Provider.getSigner();
       const address = await signer.getAddress();
@@ -70,6 +69,8 @@ export class AccountServiceImpl extends Service implements AccountService {
       await this.loadAccount(provider)
       }
       const user = await this.accountStore.safient.loginUser();
+
+      console.log(user)
 
       if (user.data) {
         this.accountStore.setSafientUser(user.data);

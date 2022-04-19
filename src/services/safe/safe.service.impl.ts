@@ -2,7 +2,7 @@ import { SafeService } from './safe.service';
 import { ServiceResponse } from '../core/service-response';
 import { AccountStoreImpl, SafeStoreImpl, stores } from '../../store';
 import { Service } from '../core/service';
-import { Types } from '@safient/core';
+import { Types, Enums } from '@safient/core';
 
 export class SafeServiceImpl extends Service implements SafeService {
   private readonly accountStore: AccountStoreImpl;
@@ -21,8 +21,10 @@ export class SafeServiceImpl extends Service implements SafeService {
     description: string,
     beneficiary: string,
     data: string,
-    claimType: number,
-    DdayBasedTime: number
+    claimType: Enums.ClaimType,
+    signalingPeriod: number,
+    DdayBasedTime: number,
+    onchain: boolean
   ): Promise<ServiceResponse<Types.EventResponse>> {
     try {
       const secretSafe: Types.SecretSafe = {
@@ -36,39 +38,29 @@ export class SafeServiceImpl extends Service implements SafeService {
       const safeData: Types.SafeStore = {
         safe: cryptoSafe,
       };
+      
 
-
-
-      if(claimType === 2){
+      if(claimType === Enums.ClaimType.DDayBased){
+        signalingPeriod = 0;
+      }
+      else if(claimType === Enums.ClaimType.SignalBased) {
+        DdayBasedTime = 0;
+      }
 
         const safe = await this.accountStore.safient.createSafe(
           name,
           description,
           this.accountStore.safientUser.did,
           safeData,
-          true,
+          onchain,
           claimType,
-          0,
+          signalingPeriod,
           DdayBasedTime,
           { email: beneficiary }
         );
         return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
-      } else{
-        const safe = await this.accountStore.safient.createSafe(
-          name,
-          description,
-          this.accountStore.safientUser.did,
-          safeData,
-          false,
-          claimType,
-          300,
-          0,
-          { email: beneficiary }
-        );
-        return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
-      }  
-
-    } catch (e: any) {
+      }
+      catch (e: any) {
       console.log(e)
       return this.error<Types.EventResponse>(e.error);
     }
@@ -122,7 +114,6 @@ export class SafeServiceImpl extends Service implements SafeService {
           safeId,
           this.accountStore.safientUser.did
         );
-        console.log(recoveredData)
         secretData = recoveredData.data.safe.data;
       }
       return this.success<Types.SecretSafe>(secretData);
