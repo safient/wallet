@@ -10,8 +10,10 @@ export interface SafeService {
     description: string,
     beneficiary: string,
     data: string,
+    claimType: number,
     signalingPeriod: number,
-    onchain: boolean,
+    DdayBasedTime: number,
+    onchain: boolean
   ): Promise<ServiceResponse<Types.EventResponse>>
 
   claim(safeId: string): Promise<ServiceResponse<Types.EventResponse>>

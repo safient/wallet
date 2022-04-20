@@ -69,6 +69,8 @@ export class AccountServiceImpl extends Service implements AccountService {
       }
       const user = await this.accountStore.safient.loginUser();
 
+      console.log(user)
+
       if (user.data) {
         this.accountStore.setSafientUser(user.data);
       }

@@ -10,21 +10,6 @@ export const Menu = () => {
   console.log(accountStore);
 
   return (
-
-    <>
-      <NameContainer>
-        <Image name='user' rounded width={4.4} />
-        <Box>
-          <Text variant='small' text={accountStore.safientUser?.name} color='textLight' />
-          <Text variant='small' text={accountStore.safientUser?.email} color='textLighter' />
-        </Box>
-      </NameContainer>
-      <NavLabelContainer>
-        <Box row gap={1} hCenter onClick={() => history.push(RoutePath.account)}>
-          <IconSvg name='user' />
-          <Text variant='small' tx='menuComponent.profile' />
-        </Box>
-
     <AnimateSharedLayout>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
         <NameContainer>

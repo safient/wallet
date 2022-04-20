@@ -20,7 +20,7 @@ export const ClaimStaus: React.FC<WalletClaimStatusProps> = (props) => {
     <ActionsContainer>
       { status == 0 && <NoAccess /> }
       { (status == 1 || status == 2) && <Recovering timestamp={timestamp} /> }
-      { status == 3 || status == 4 && <Recovered/> }
+      { (status == 3 || status == 4) && <Recovered/> }
     </ActionsContainer>
   );
 };
