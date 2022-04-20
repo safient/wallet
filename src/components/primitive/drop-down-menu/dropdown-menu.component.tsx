@@ -29,17 +29,13 @@ export const DropDownMenu = (props: any) => {
 
   return (
     <Box>
-      <Box ref={ref}>
+      <Box>
         <IconContainer onClick={() => setIsActive((oldState) => !oldState)}>
           <Avatar size='small' {...icon} />
         </IconContainer>
       </Box>
 
-      {isActive && (
-        <DropDownContainer style={{ transition: 'all 0.5s ease-in-out' }} ref={ref}>
-          {children}
-        </DropDownContainer>
-      )}
+      {isActive && <DropDownContainer ref={ref}>{children}</DropDownContainer>}
     </Box>
   );
 };

@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { RoutePath } from 'navigation/route-path';
 import { Image } from 'components/primitive';
 import { DropDownMenu } from '../drop-down-menu/dropdown-menu.component';
-import { TopBarContainer, LogoWrapper, BoxGroup, NotificationIcon, NavbarContainer } from './top-bar.component.styles';
-import { Menu } from 'components/primitive';
+import { TopBarContainer, LogoWrapper, BoxGroup, NavbarContainer } from './top-bar.component.styles';
+import { Menu, Notifications } from 'components/primitive';
 
 export const TopBar = () => {
   return (
@@ -16,7 +16,9 @@ export const TopBar = () => {
             </Link>
           </LogoWrapper>
           <BoxGroup row>
-            <NotificationIcon name='notification' size='small' />
+            <DropDownMenu icon={{ name: 'notification' }}>
+              <Notifications />
+            </DropDownMenu>
             <DropDownMenu icon={{ name: 'user' }}>
               <Menu />
             </DropDownMenu>
