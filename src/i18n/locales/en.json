@@ -48,8 +48,8 @@
     "emailNotifications": "Email Notifications",
     "defaultWalletConfigs": "Default Wallet Configs",
     "walletsGuarding": "Wallets you are Guarding",
-    "walletsCreated": "Wallets Created",
-    "inherited": "Inherited Wallets"
+    "walletsTotal": "Total Wallets",
+    "detailsSaved": "Account details updated"
   },
   "welcomePage": {
     "heading": "Non custodial claimable wallets",

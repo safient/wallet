@@ -1,17 +1,21 @@
 import { SafeService } from './safe.service';
 import { ServiceResponse } from '../core/service-response';
 import { AccountStoreImpl, SafeStoreImpl, stores } from '../../store';
+import { StorageServiceImpl } from 'services/storage/storage.service.impl';
 import { Service } from '../core/service';
 import { Types, Enums } from '@safient/core';
 
 export class SafeServiceImpl extends Service implements SafeService {
   private readonly accountStore: AccountStoreImpl;
   private readonly safeStore: SafeStoreImpl;
+  storage = new StorageServiceImpl();
+  
 
   constructor() {
     super();
     this.accountStore = stores?.accountStore;
     this.safeStore = stores?.safeStore;
+    
   }
 
   // Creating a signaling based seed phrase safe for Safient wallet
@@ -120,5 +124,17 @@ export class SafeServiceImpl extends Service implements SafeService {
     } catch (e: any) {
       return this.error<Types.SecretSafe>(e);
     }
+  }
+
+  setDefaultConfig(beneficiary: string) {
+    
+    this.storage.set("defaultConfig",{beneficiary: beneficiary})
+    
+  }
+
+    getDefaultConfig(): any {
+    
+    return  this.storage.get("defaultConfig")
+    
   }
 }

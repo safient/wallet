@@ -14,7 +14,8 @@ export const HomeScreen: React.FC = observer(() => {
 
   const isValidNetwork = () => {
     if (accountStore.network === Enums.NetworkType.testnet) {
-      return accountStore.chainId === 42;
+      console.log(accountStore.chainId)
+      return parseInt(accountStore.chainId.toString()) === 42;
     } else if (accountStore.network === Enums.NetworkType.devnet) {
       return accountStore.chainId === 31337;
     }
@@ -31,7 +32,7 @@ export const HomeScreen: React.FC = observer(() => {
         <HeadingContainer>
           <Title variant='contentHeader' tx='common.wallets' left />
         </HeadingContainer>
-        <CardsContainer row hCenter>
+        <CardsContainer row hCenter marginTop={1}>
           <SafeCard hCenter vCenter>
             <Link to={RoutePath.createWallet}>
               <IconSvg name='create' size='xLarge' />

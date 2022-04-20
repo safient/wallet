@@ -57,3 +57,4 @@ export * from './accordion/accordion.component';
 export * from './menu-component/menu.component';
 export * from './drop-down-menu/dropdown-menu.component';
 export * from './date-time-picker/date-time.component';
+export * from './notification-dropdown/notification-dropdown.component';

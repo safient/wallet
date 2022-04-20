@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Box, Image, Text } from 'components/primitive';
 
 export const NotificationsContainer = styled.section`
-min-width: 56.4rem;
+  min-width: 56.4rem;
 `;
 
 export const BackButtonContainer = styled.div`
@@ -51,4 +51,9 @@ export const StyledDiv = styled.div`
 
 export const StyledImage = styled(Image)`
   width: 6.5rem;
+`;
+
+export const NotificationText = styled(Text)`
+  margin-bottom: 4rem;
+  transform: translate(-10%);
 `;
