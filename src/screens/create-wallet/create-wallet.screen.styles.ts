@@ -39,7 +39,7 @@ export const WalletCreateFormBox = styled(Box)`
 
 export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
-  // width: 53.4rem;
+  width: 60rem;
   padding: 5rem 8rem 5rem 8rem;
   align-items: center;
   margin-top: -8rem;
@@ -52,7 +52,7 @@ export const FormContainer = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-  width: 40rem !important;
+  width: 100% !important;
   margin-top: 3rem !important;
   @media screen and (max-width: ${BreakPoints.small}) {
     width: 100% !important;

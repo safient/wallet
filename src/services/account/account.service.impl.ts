@@ -41,8 +41,7 @@ export class AccountServiceImpl extends Service implements AccountService {
       const balance = await signer.getBalance();
       const safient = new SafientCore(
         signer,
-        //changed the network type. 
-        Enums.NetworkType.devnet,
+        this.accountStore.network,
         Enums.DatabaseType.threadDB,
         'bjngsmak24m6e5p2ijtcedws2tq',
         'bn3h6ozdpkmh7tgx3jh5el55cgfaevwxh7mcnnfi'

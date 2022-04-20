@@ -6,7 +6,7 @@ import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
 import dayjs from "dayjs"
 
-import { Box, NoticeLoader, Accordion, DateTimePicker, IconSvg, DropDown } from 'components/primitive';
+import { Box, NoticeLoader, Accordion, DateTimePicker, IconSvg, DropDown, Alert } from 'components/primitive';
 import {
   FormContainer,
   HomeScreenContainer,
@@ -134,6 +134,7 @@ export const CreateWalletScreen = observer(() => {
             />
           </WalletCreateFormBox>
 
+
           <Accordion label='Advanced options'>
           <Box marginTop={2}>
             <Label>Select Network</Label>
@@ -164,6 +165,11 @@ export const CreateWalletScreen = observer(() => {
             />
             }
           </Accordion>
+
+          <Box marginTop={2}>
+            <Alert variant='info' icon label={{ text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update' }}/>
+          </Box>
+          
 
           <StyledButton
             variant='primary'
