@@ -15,4 +15,5 @@ export enum RouteName {
   walletSettings = 'walletSettings',
   callback = 'callback',
   notifications = 'notifications',
+  globalNotifivations = 'allNotifications',
 }

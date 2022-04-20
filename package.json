@@ -18,6 +18,7 @@
     "classnames": "^2.3.1",
     "ethereumjs-wallet": "^1.0.2",
     "ethers": "^5.5.4",
+    "framer-motion": "^4.1.17",
     "i18n-js": "^3.8.0",
     "init": "^0.1.2",
     "lodash": "^4.17.21",

@@ -72,7 +72,8 @@ export const SafeCard = styled(Card)`
 export const HeadingContainer = styled(Box)`
   display: inline-flex;
   flex-direction: column !important;
-  max-width: 768px !important;
+  max-width: 76.8rem !important;
   align-items: flex-start;
   justify-content: flex-start;
+  flex: 0 !important;
 `;

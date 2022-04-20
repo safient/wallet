@@ -32,7 +32,7 @@ export const HomeScreen: React.FC = observer(() => {
         <HeadingContainer>
           <Title variant='contentHeader' tx='common.wallets' left />
         </HeadingContainer>
-        <CardsContainer row hCenter>
+        <CardsContainer row hCenter marginTop={1}>
           <SafeCard hCenter vCenter>
             <Link to={RoutePath.createWallet}>
               <IconSvg name='create' size='xLarge' />
