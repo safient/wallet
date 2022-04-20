@@ -59,7 +59,7 @@ export class SafeStoreImpl extends StoreImpl implements SafeStore {
     this.walletNetwork = network;
     
    }
-
+   
    async resetStore() {
 
   }

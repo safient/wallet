@@ -1,17 +1,17 @@
 import { StorageKey, StorageService } from './storage.service';
 
 export class StorageServiceImpl implements StorageService {
-  async get(key: StorageKey): Promise<any> {
-    const data = await localStorage.getItem(key);
+   get(key: keyof typeof StorageKey): any {
+    const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : undefined;
   }
 
-  async set(key: StorageKey, value: any) {
+   set(key: keyof typeof StorageKey, value: any) {
     const data = JSON.stringify(value);
-    await localStorage.setItem(key, data);
+    localStorage.setItem(key, data);
   }
 
-  async remove(key: StorageKey) {
-    await localStorage.removeItem(key);
+   remove(key: keyof typeof StorageKey) {
+    localStorage.removeItem(key);
   }
 }

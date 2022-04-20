@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useClipBoardTimer } from 'hooks/useClipboardTimer';
+import { useAlertTimer } from 'hooks/useTimer';
 import styled from 'styled-components';
 import QRCode from 'react-qr-code';
 
@@ -18,7 +18,7 @@ export const Receive = (props: any) => {
   const { safeStore } = useStores();
   const [copied, setCopied] = useState(false);
 
-  useClipBoardTimer(copied, setCopied);
+  useAlertTimer(copied, setCopied);
 
   return (
     <GenericModal show={true} hide onClose={onClose}>

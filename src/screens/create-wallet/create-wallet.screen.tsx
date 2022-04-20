@@ -27,7 +27,7 @@ export const CreateWalletScreen = observer(() => {
 
   const [walletName, setWalletName] = useState('');
   const [walletDescription, setWalletDescription] = useState('');
-  const [walletBeneficiary, setWalletBeneficiary] = useState('');
+  const [walletBeneficiary, setWalletBeneficiary] = useState(safeService.getDefaultConfig().beneficiary);
   const [signalingPeriod, setSignalingPeriod] = useState(300);
 
   const backButtonHandler = () => {
@@ -103,7 +103,8 @@ export const CreateWalletScreen = observer(() => {
             <StyledInput
               type='text'
               label='Beneficiary'
-              placeholder='satoshi@safient.com'
+              placeholder={'satoshi@safient.com'}
+              value={walletBeneficiary}
               onChange={(e: any) => setWalletBeneficiary(e.target.value)}
             />
           </WalletCreateFormBox>

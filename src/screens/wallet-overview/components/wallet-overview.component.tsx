@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useClipBoardTimer } from 'hooks/useClipboardTimer';
+import { useAlertTimer } from 'hooks/useTimer';
 import { Alert, Box, IconSvg, Text, Confetti } from 'components/primitive';
 import { WalletOverviewShimmer } from './wallet-overview-shimmer.component';
 import { WalletActions } from './wallet-actions.component';
@@ -29,7 +29,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
   const { shimmer } = props;
   const [copied, setCopied] = useState(false);
 
-  useClipBoardTimer(copied, setCopied);
+  useAlertTimer(copied, setCopied);
 
   const redirectToNotifications = () => {
     history.push(RoutePath.notifications);
