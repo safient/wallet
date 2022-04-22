@@ -97,7 +97,7 @@ export const AccountScreen = () => {
 
         <NotificationContainer marginTop={4} padding={2} borderRadius={0.5}>
           <Text variant='contentHeader' tx='accountPage.defaultWalletConfigs' color='textLight' />
-          <Box marginTop={2} paddingRight={1.2}>
+          <Box marginTop={2} paddingRight={0.2}>
             <Input
               type='text'
               label='Beneficiary'
