@@ -4,7 +4,7 @@ import { RoutePath } from 'navigation/route-path';
 import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
-import dayjs from "dayjs"
+import dayjs from 'dayjs';
 
 import { Box, NoticeLoader, Accordion, DateTimePicker, IconSvg, DropDown, Alert } from 'components/primitive';
 import {
@@ -19,21 +19,18 @@ import {
   SignnalingInput,
 } from './create-wallet.screen.styles';
 
-
-
 export const CreateWalletScreen = observer(() => {
-
   const { safeService, walletService } = useServices();
   const { safeStore } = useStores();
   let history = useHistory();
 
   const [walletName, setWalletName] = useState('');
   const [walletDescription, setWalletDescription] = useState('');
-  const [walletBeneficiary, setWalletBeneficiary] = useState(safeService.getDefaultConfig().beneficiary);
+  const [walletBeneficiary, setWalletBeneficiary] = useState(safeService.getDefaultConfig()?.beneficiary);
   const [signalingPeriod, setSignalingPeriod] = useState(300);
-  const [claimType, setClaimType] = useState(0)
+  const [claimType, setClaimType] = useState(0);
   const [DdayTime, setDdayTime] = useState(0);
-  const [date, setDate] = useState(null)
+  const [date, setDate] = useState(null);
   const backButtonHandler = () => {
     history.goBack();
   };
@@ -46,7 +43,16 @@ export const CreateWalletScreen = observer(() => {
       await walletService.info();
 
       if (wallet.hasData()) {
-        const safe = await safeService.create(walletName, walletDescription, walletBeneficiary , wallet.data!.mnemonic, claimType, signalingPeriod, DdayTime, true );
+        const safe = await safeService.create(
+          walletName,
+          walletDescription,
+          walletBeneficiary,
+          wallet.data!.mnemonic,
+          claimType,
+          signalingPeriod,
+          DdayTime,
+          true
+        );
         if (safe.hasData()) {
           await safeService.get(safe.data?.id!);
           history.push(RoutePath.walletOverview);
@@ -73,21 +79,20 @@ export const CreateWalletScreen = observer(() => {
     {
       value: 2,
       label: 'DDay (Claim on the exact date)',
-    }
+    },
   ];
 
   const getClaimName = (type: number) => {
-
-    return claimTypes.find(claimType => claimType.value == type)
-  }
+    return claimTypes.find((claimType) => claimType.value === type);
+  };
 
   const dateConverter = (date: any) => {
-      setDate(date)
-      const presentTime = Date.now() / 1000;
-      const futureTime = dayjs(date).valueOf() / 1000
-      const timeDifference = futureTime - presentTime
-      setDdayTime(Math.floor(timeDifference))
-  }
+    setDate(date);
+    const presentTime = Date.now() / 1000;
+    const futureTime = dayjs(date).valueOf() / 1000;
+    const timeDifference = futureTime - presentTime;
+    setDdayTime(Math.floor(timeDifference));
+  };
 
   return (
     <HomeScreenContainer>
@@ -134,10 +139,9 @@ export const CreateWalletScreen = observer(() => {
             />
           </WalletCreateFormBox>
 
-
           <Accordion label='Advanced options'>
-          <Box marginTop={2}>
-            <Label>Select Network</Label>
+            <Box marginTop={2}>
+              <Label>Select Network</Label>
               <DropDown
                 placeholder='select network'
                 value={getClaimName(claimType)?.label}
@@ -146,30 +150,35 @@ export const CreateWalletScreen = observer(() => {
               />
             </Box>
 
-            { claimType == 0 &&
-            <Box row hCenter marginTop={1} justify={'between'}>
-              <Label>Signaling Period</Label>
-              <SignnalingInput
-                type='text'
-                placeholder={signalingPeriod.toString()}
-                onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))}
+            {claimType === 0 && (
+              <Box row hCenter marginTop={1} justify={'between'}>
+                <Label>Signaling Period</Label>
+                <SignnalingInput
+                  type='text'
+                  placeholder={signalingPeriod.toString()}
+                  onChange={(e: any) => setSignalingPeriod(parseInt(e.target.value))}
+                />
+              </Box>
+            )}
+            {claimType === 2 && (
+              <DateTimePicker
+                label='Select DDay Date (Seconds)'
+                placeholder='DDay Date'
+                value={date}
+                onChange={(date: any) => dateConverter(date)}
               />
-            </Box>
-            }
-            { claimType == 2 &&
-            <DateTimePicker
-              label='Select DDay Date (Seconds)'
-              placeholder='DDay Date'
-              value={date}
-              onChange={(date: any) => dateConverter(date)}
-            />
-            }
+            )}
           </Accordion>
 
           <Box marginTop={2}>
-            <Alert variant='info' icon label={{ text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update' }}/>
+            <Alert
+              variant='info'
+              icon
+              label={{
+                text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
+              }}
+            />
           </Box>
-          
 
           <StyledButton
             variant='primary'
