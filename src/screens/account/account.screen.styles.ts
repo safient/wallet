@@ -43,14 +43,14 @@ export const AccountContainer = styled.div`
   width: 100%;
   transition: all 0.2s ease-in-out;
   @media screen and (max-width: ${BreakPoints.small}) {
-    padding: 1.4rem;
+    padding: 1.4rem !important;
   }
 `;
 export const ProfileContainer = styled(Box)`
   display: inline-block;
   width: 59.6rem !important;
-  padding: 6rem;
+  padding: 6rem !important;
   @media screen and (max-width: ${BreakPoints.small}) {
-    padding: 3rem;
+    padding: 2rem !important;
   }
 `;
