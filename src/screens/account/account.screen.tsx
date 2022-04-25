@@ -39,7 +39,7 @@ export const AccountScreen = () => {
       <Box marginTop={1.4}>
         <Text variant='title' tx='accountPage.account' color='textLight' />
       </Box>
-      <ProfileContainer padding={6} hCenter vCenter color='white' marginTop={2}>
+      <ProfileContainer hCenter vCenter color='white' marginTop={2}>
         {saved && <Alert variant='success' icon label={{ tx: 'accountPage.detailsSaved' }} />}
         <Box hCenter vCenter marginTop={1.8}>
           <Avatar size='xLarge' name='user' rounded />
@@ -74,7 +74,7 @@ export const AccountScreen = () => {
 
         <NotificationContainer marginTop={2} borderRadius={0.5} padding={2}>
           <Text variant='contentHeader' tx='accountPage.notifications' color='textLight' />
-          <Box marginTop={2}>
+          <Box marginTop={2} paddingRight={1.2}>
             <Box row justify={'between'} marginBottom={2}>
               <Text variant='content' tx='accountPage.emailNotifications' left />
               <ToggleSwitch
@@ -97,7 +97,7 @@ export const AccountScreen = () => {
 
         <NotificationContainer marginTop={4} padding={2} borderRadius={0.5}>
           <Text variant='contentHeader' tx='accountPage.defaultWalletConfigs' color='textLight' />
-          <Box marginTop={2}>
+          <Box marginTop={2} paddingRight={0.2}>
             <Input
               type='text'
               label='Beneficiary'

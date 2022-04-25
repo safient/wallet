@@ -1,3 +1,4 @@
+import { BreakPoints } from 'utils';
 import styled from 'styled-components';
 import { Box, Button } from 'components/primitive';
 
@@ -41,8 +42,15 @@ export const AccountContainer = styled.div`
   height: 100%;
   width: 100%;
   transition: all 0.2s ease-in-out;
+  @media screen and (max-width: ${BreakPoints.small}) {
+    padding: 1.4rem !important;
+  }
 `;
 export const ProfileContainer = styled(Box)`
   display: inline-block;
   width: 59.6rem !important;
+  padding: 6rem !important;
+  @media screen and (max-width: ${BreakPoints.small}) {
+    padding: 2rem !important;
+  }
 `;
