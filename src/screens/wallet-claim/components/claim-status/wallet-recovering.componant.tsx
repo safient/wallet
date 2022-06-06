@@ -5,7 +5,7 @@ import { StyledDiv, StyledGif, DisabledButton } from './wallet-status.styles';
 
 export const Recovering = (props: any) => {
 
-  const { timestamp } = props;
+  const { timestamp, claimType } = props;
   const recoveryInterval =  Math.ceil(timestamp - new Date().getTime()/1000)
 
   const [seconds, setSeconds] = useState(recoveryInterval > 0 ? recoveryInterval : 0);
@@ -43,7 +43,7 @@ export const Recovering = (props: any) => {
 
       </StyledDiv>
       <Box row hCenter vCenter gap={1} marginBottom={2.4}>
-        {!claimable && (
+        {(!claimable && claimType == 0) && (
           <>
             <IconSvg name='time' />
             <Box hCenter vCenter row gap={0.4}>
@@ -53,7 +53,7 @@ export const Recovering = (props: any) => {
           </>
         )}
       </Box>
-      {!claimable && (
+      {(!claimable && claimType == 0) && (
         <DisabledButton
           label={{ tx: 'walletClaimPage.view' }}
           variant='primary'

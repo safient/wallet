@@ -25,7 +25,7 @@ export const SettingsContainer = styled.div`
 
 export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
 
-  const { safeStore } = useStores()
+  const { safeStore } = useStores();
   const { shimmer } = props;
   let timestamp = 0;
 
@@ -62,7 +62,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
             <Box marginTop={7}>
               <WalletActions />
             </Box>
-            <ClaimStaus status={safeStore.safe?.stage!} timestamp={timestamp}/>
+            <ClaimStaus status={safeStore.safe?.stage!} timestamp={timestamp} claimType={safeStore.safe!.claimType}/>
           </WalletClaimView>
         </WalletClaimContainer>
       )}

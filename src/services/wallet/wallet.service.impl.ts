@@ -55,7 +55,6 @@ export class WalletServiceImpl extends Service implements WalletService {
     }
   }
 
-
   // Service API to fetch the basic account info for a wallet
 
   async info(): Promise<ServiceResponse<WalletInfo>> {

@@ -1,6 +1,7 @@
 import Web3Modal from "web3modal";
 import { EthereumService } from "./ethereum.service";
 import { ServiceResponse } from "../core/service-response";
+import { accountService } from "../../services";
 import { AccountStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
 import { Types } from "@safient/core";
@@ -14,12 +15,14 @@ export class EthereumServiceImpl extends Service implements EthereumService {
     super();
     this.listen();
     this.accountStore = stores?.accountStore;
+
   }
 
   async listen(): Promise<void> {
     if(window.ethereum) {
       window.ethereum.on("chainChanged", (chainId: any) => {
         this.accountStore.chainId = chainId;
+        accountService.login(true)
       });
     }
 

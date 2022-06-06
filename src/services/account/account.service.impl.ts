@@ -43,8 +43,8 @@ export class AccountServiceImpl extends Service implements AccountService {
         signer,
         this.accountStore.network,
         Enums.DatabaseType.threadDB,
-        'bjngsmak24m6e5p2ijtcedws2tq',
-        'bn3h6ozdpkmh7tgx3jh5el55cgfaevwxh7mcnnfi'
+        '',
+        ''
       );
       this.accountStore.setWeb3Account(web3Provider, signer, chainId, address, formatEther(balance), safient)
 

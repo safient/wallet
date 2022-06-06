@@ -14,19 +14,28 @@ export const HomeScreen: React.FC = observer(() => {
 
   const isValidNetwork = () => {
     if (accountStore.network === Enums.NetworkType.testnet) {
-      console.log(accountStore.chainId)
       return parseInt(accountStore.chainId.toString()) === 42;
     } else if (accountStore.network === Enums.NetworkType.devnet) {
-      return accountStore.chainId === 31337;
+      return parseInt(accountStore.chainId.toString())  === 31337;
     }
     return false;
   };
+
+  const getTargetNetwork = () => {
+    if(accountStore.network === Enums.NetworkType.testnet) {
+      return 'Kovan Network';
+    }
+    if(accountStore.network === Enums.NetworkType.devnet) {
+      return 'Local Network';
+    }
+    return 'Mainnet Network';
+  }
 
   return (
     <HomeScreenContainer>
       <Box hCenter>
         {!isValidNetwork() && (
-          <Alert variant='error' icon label={{ text: 'Please switch the wallet network to Kovan testnet' }} />
+          <Alert variant='error' icon label={{ text: 'Please switch the wallet network to ' + getTargetNetwork() }} />
         )}
 
         <HeadingContainer>

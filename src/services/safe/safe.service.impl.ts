@@ -62,6 +62,11 @@ export class SafeServiceImpl extends Service implements SafeService {
           DdayBasedTime,
           { email: beneficiary }
         );
+        // Adding the new safe to the local SafeMeta store
+        this.accountStore.safientUser.safes.push({safeName: name,
+        safeId: safe.data?.id!,
+        type: 'creator',
+        decShard: null})
         return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
       }
       catch (e: any) {
