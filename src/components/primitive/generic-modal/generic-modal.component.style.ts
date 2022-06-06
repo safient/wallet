@@ -10,7 +10,7 @@ export const ModalButton = styled(Button)`
   height: 4rem !important;
   width: 2rem !important;
   margin: 0.5rem !important;
-  cursor: pointer;
+  cursor: pointer !important;
 `;
 
 export const StyledModal = Modal.styled`

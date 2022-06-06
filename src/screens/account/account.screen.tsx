@@ -15,6 +15,7 @@ import {
   StyledButton,
   AccountContainer,
   ProfileContainer,
+  InputContainer,
 } from './account.screen.styles';
 
 export const AccountScreen = () => {
@@ -45,7 +46,9 @@ export const AccountScreen = () => {
           <Avatar size='xLarge' name='user' rounded />
           <Box gap={0.4} hCenter marginTop={1}>
             <Text variant='contentHeader' color='textLight' text={accountStore.safientUser.name} />
+
             <Text variant='small' text={accountStore.safientUser.email} />
+
             <Box row gap={1.2}>
               <Text variant='small' text={AddressUtil.shorternAddress(accountStore.safientUser.userAddress)} />
 
@@ -97,15 +100,16 @@ export const AccountScreen = () => {
 
         <NotificationContainer marginTop={4} padding={2} borderRadius={0.5}>
           <Text variant='contentHeader' tx='accountPage.defaultWalletConfigs' color='textLight' />
-          <Box marginTop={2} paddingRight={0.2}>
+          <InputContainer>
             <Input
+              className='input'
               type='text'
               label='Beneficiary'
               placeholder='Email of Beneficiary'
               value={beneficiary}
               onChange={(e) => setBeneficiary(e.target.value)}
             />
-          </Box>
+          </InputContainer>
         </NotificationContainer>
         <Box marginTop={2}>
           <StyledButton variant='primary' label={{ tx: 'common.save' }} color='primaryGradient' onClick={saveDetails} />

@@ -16,20 +16,20 @@ export const HomeScreen: React.FC = observer(() => {
     if (accountStore.network === Enums.NetworkType.testnet) {
       return parseInt(accountStore.chainId.toString()) === 42;
     } else if (accountStore.network === Enums.NetworkType.devnet) {
-      return parseInt(accountStore.chainId.toString())  === 31337;
+      return parseInt(accountStore.chainId.toString()) === 31337;
     }
     return false;
   };
 
   const getTargetNetwork = () => {
-    if(accountStore.network === Enums.NetworkType.testnet) {
+    if (accountStore.network === Enums.NetworkType.testnet) {
       return 'Kovan Network';
     }
-    if(accountStore.network === Enums.NetworkType.devnet) {
+    if (accountStore.network === Enums.NetworkType.devnet) {
       return 'Local Network';
     }
     return 'Mainnet Network';
-  }
+  };
 
   return (
     <HomeScreenContainer>

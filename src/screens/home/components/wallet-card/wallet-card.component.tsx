@@ -38,11 +38,11 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
             <IconSvg name='safientWallet' size='large' />
             <WalletText variant='content' text={walletName} />
             <MetaInfo row marginTop={2} color='bottomAccent' padding={2.2} align={'center'}>
-              <Box align={'center'} padding={1} row>
+              <Box align={'center'} row className='meta-info' paddingLeft={1}>
                 <IconSvg name={getUserInfo(roleName).iconName} size='small' />
                 <Text paddingLeft={1} variant='small' text={getUserInfo(roleName).text} />
               </Box>
-              <Box align={'center'} paddingLeft={6} row>
+              <Box align={'center'} row className='meta-info' paddingRight={1}>
                 <IconSvg name={getStatusInfo(status).iconName} size='medium' />
                 <Text
                   paddingLeft={1}

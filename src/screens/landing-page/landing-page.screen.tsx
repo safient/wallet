@@ -20,8 +20,8 @@ export const WelcomeScreen = () => {
         </Box>
         <Box hCenter vCenter marginTop={2}>
           <Box gap={0.8} hCenter vCenter marginBottom={1.8}>
-            <Title variant='title' tx='welcomePage.heading' />
-            <Text variant='small' tx='welcomePage.subHeading' />
+            <Title variant='title' tx='welcomePage.heading' center />
+            <Text variant='small' tx='welcomePage.subHeading' center />
           </Box>
           <Button
             variant='primary'

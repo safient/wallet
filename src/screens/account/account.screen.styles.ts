@@ -34,6 +34,17 @@ export const StyledButton = styled(Button)`
   width: 100% !important;
 `;
 
+export const InputContainer = styled.div`
+  margin-top: 2rem;
+  width: 100%;
+  padding-right: 0.2rem;
+  @media screen and (max-width: ${BreakPoints.small}) {
+    .input {
+      width: 100%;
+    }
+  }
+`;
+
 export const AccountContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,13 +55,14 @@ export const AccountContainer = styled.div`
   transition: all 0.2s ease-in-out;
   @media screen and (max-width: ${BreakPoints.small}) {
     padding: 1.4rem !important;
+    align-items: center;
   }
 `;
 export const ProfileContainer = styled(Box)`
-  display: inline-block;
+  display: block;
   width: 59.6rem !important;
   padding: 6rem !important;
   @media screen and (max-width: ${BreakPoints.small}) {
-    padding: 2rem !important;
+    padding: 2.4rem !important;
   }
 `;

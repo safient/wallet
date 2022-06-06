@@ -7,6 +7,11 @@ export const WalletSettingsFormContainer = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+
+  @media screen and (max-width: ${BreakPoints.small}) {
+    padding: 1rem;
+    margin-top: -2rem;
+  }
 `;
 
 export const BackButtonContainer = styled.div`
@@ -48,11 +53,11 @@ export const FormContainer = styled.div`
   align-items: center;
   margin-top: 2rem;
   position: relative;
-  min-width: 59.6rem;
-  min-height: 60rem;
+  width: 59.6rem;
+  height: 60rem;
   @media screen and (max-width: ${BreakPoints.small}) {
-    width: 32rem;
-    padding: 3rem 1.5rem 3rem 1.5rem;
+    width: 34rem;
+    padding: 2rem !important;
   }
 `;
 

@@ -17,9 +17,7 @@ import {
   SignnalingInput,
 } from './wallet-settings.screen.styles';
 
-
 export const WalletSettingsScreen = observer(({ history }: any) => {
-
   const { safeStore } = useStores();
   const { walletService } = useServices();
 
@@ -27,16 +25,12 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
     history.goBack();
   };
 
-  const submitSettings = async  () => { 
-
+  const submitSettings = async () => {
     backButtonHandler();
     safeStore.setFetching(true);
     await walletService.load();
     safeStore.setFetching(false);
-  
-  }
-
-  
+  };
 
   const networkOptions = [
     {
@@ -62,9 +56,8 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
   ];
 
   const getNetworkName = (network: string) => {
-
-    return networkOptions.find(networkInfo => networkInfo.value == network)
-  }
+    return networkOptions.find((networkInfo) => networkInfo.value == network);
+  };
 
   return (
     <WalletSettingsFormContainer>
@@ -73,7 +66,7 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
       </Box>
 
       <FormContainer>
-        <Box row vCenter>
+        <Box row vCenter flex={0}>
           <Box onClick={backButtonHandler} flex={1} marginTop={0.3}>
             <IconSvg name='arrowLeft' />
           </Box>
@@ -98,7 +91,7 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
               <SignnalingInput type='text' placeholder='10 days' />
             </Box>
             <Box marginTop={2}>
-            <Label>Select Network</Label>
+              <Label>Select Network</Label>
               <DropDown
                 placeholder='select network'
                 value={getNetworkName(safeStore.walletNetwork)?.label}
