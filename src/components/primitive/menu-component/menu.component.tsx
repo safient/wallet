@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { Image, IconSvg, Text, Box } from 'components/primitive';
 import { NameContainer, NavLabelContainer } from './menu.component.styles';
 import { useStores } from 'store';
+import { useServices } from 'services';
 import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 export const Menu = () => {
   const history = useHistory();
   const { accountStore } = useStores();
-  console.log(accountStore);
+  const { accountService } = useServices();
 
   return (
     <AnimateSharedLayout>
@@ -26,7 +27,7 @@ export const Menu = () => {
           </Box>
 
 
-          <Box row gap={1} hCenter onClick={() => history.push(RoutePath.login)}>
+          <Box row gap={1} hCenter onClick={() => { accountService.logout(); history.push(RoutePath.login) }}>
             <IconSvg name='logout' />
             <Text variant='small' tx='menuComponent.logout' />
           </Box>
