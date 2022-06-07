@@ -5,7 +5,6 @@ import { NoticeLoader} from 'components/primitive';
 import { RoutePath } from '../../../navigation/route-path';
 import {useServices } from 'services';
 import { useStores } from 'store';
-// import { magic, web3provider } from 'utils/magic';
 
 export const CallBackScreen = (props: any) => {
 

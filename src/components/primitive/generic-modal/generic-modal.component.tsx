@@ -55,9 +55,9 @@ export const GenericModal: React.FunctionComponent<GenericModalComponentProps> =
         {!hide && (
           <Box row rightAlign paddingTop={2}>
             {!onCancel && (
-              <ModalButton label={{ text: 'Close', color: 'black' }} variant='ghost' onClick={handleClose} />
+              <ModalButton label={{ text: 'Close', color: 'textLight' }} variant='ghost' onClick={handleClose} />
             )}
-            { <ModalButton label={{ text: 'Continue' }} variant='small' onClick={onSubmit? onSubmit :handleClose} />}
+            {<ModalButton label={{ text: 'Continue' }} variant='small' onClick={onSubmit ? onSubmit : handleClose} />}
           </Box>
         )}
       </StyledModal>

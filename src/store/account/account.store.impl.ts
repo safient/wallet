@@ -17,7 +17,7 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
   address!: string;
   balance?: string;
   safient!: SafientCore;
-  _safientUser!: Types.User;
+  _safientUser?: Types.User;
 
 
   constructor() {
@@ -42,10 +42,11 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
   }
 
   async resetStore() {
+    this._safientUser = undefined;
   }
 
   get safientUser(): Types.User {
-    return this._safientUser;
+    return this._safientUser!;
   }
 
   setSafientUser(user: Types.User) {

@@ -11,6 +11,7 @@ export const StyledWalletCard = styled(Card)`
   box-shadow: ${({ theme: { colors } }) => colors.shadow};
   background-color: ${({ theme: { colors } }) => colors.white};
   cursor: pointer !important;
+
   @media screen and (max-width: ${BreakPoints.small}) {
     flex: 0 0 auto !important;
     max-height: 24.3rem !important;
@@ -28,8 +29,12 @@ export const WalletText = styled(Text)`
 export const MetaInfo = styled(Box)`
   position: absolute;
   bottom: 0;
-  align-content: space-around;
-  flex: 0 0 !important;
+  align-items: center;
+  justify-content: space-between !important;
+  flex: 0 0 auto !important;
   width: 100%;
   height: 7.2rem;
+  .meta-info {
+    align-content: center !important;
+  }
 `;

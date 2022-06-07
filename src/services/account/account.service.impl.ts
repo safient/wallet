@@ -4,7 +4,7 @@ import { ServiceResponse } from "../core/service-response";
 import { AccountStoreImpl, stores } from "../../store";
 import { Service } from "../core/service";
 import { SafientCore, Types, Enums } from "@safient/core";
-import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
+import { Web3Provider } from "@ethersproject/providers";
 import { formatEther } from "@ethersproject/units";
 
 export class AccountServiceImpl extends Service implements AccountService {
@@ -43,8 +43,8 @@ export class AccountServiceImpl extends Service implements AccountService {
         signer,
         this.accountStore.network,
         Enums.DatabaseType.threadDB,
-        'bjngsmak24m6e5p2ijtcedws2tq',
-        'bn3h6ozdpkmh7tgx3jh5el55cgfaevwxh7mcnnfi'
+        '',
+        ''
       );
       this.accountStore.setWeb3Account(web3Provider, signer, chainId, address, formatEther(balance), safient)
 
@@ -69,8 +69,6 @@ export class AccountServiceImpl extends Service implements AccountService {
       }
       const user = await this.accountStore.safient.loginUser();
 
-      console.log(user)
-
       if (user.data) {
         this.accountStore.setSafientUser(user.data);
       }
@@ -78,6 +76,20 @@ export class AccountServiceImpl extends Service implements AccountService {
       return this.success<Types.User>(this.accountStore.safientUser);
     } catch (e: any) {
       return this.error<Types.User>(e);
+    }
+  }
+
+   logout(wallet?: boolean): ServiceResponse<boolean> {
+    try {
+  
+      if(this.accountStore.userSignedIn) {
+        this.accountStore.resetStore();
+        
+      }
+
+      return this.success<boolean>(true);
+    } catch (e: any) {
+      return this.error<boolean>(e);
     }
   }
 

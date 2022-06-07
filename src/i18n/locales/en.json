@@ -79,7 +79,7 @@
     "claim": "Claim",
     "notAccessable": "Wallet is not yet accessible",
     "walletRecoversIn": "Wallet recovers in",
-    "walletRecovered": "Congratulations! You have access to the wallet.",
+    "walletRecovered": "Congratulations! You have access to the wallet now 🎊",
     "claiming": "Claiming Wallet",
     "view": "View",
     "claimConfirm": "This action will initiate the wallet claim by paying the claim fee. Are you sure about this?"
