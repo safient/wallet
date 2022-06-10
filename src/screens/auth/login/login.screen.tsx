@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Text, Input, NoticeLoader } from 'components/primitive';
+import { Text, Input, NoticeLoader, Box, Alert } from 'components/primitive';
 import { Header } from 'components/common/auth-header.component';
 import { RoutePath } from '../../../navigation/route-path';
 import { useServices } from 'services';
@@ -19,13 +19,18 @@ import {
   EmailContainer,
 } from './login.screen.styles';
 import { OAuthProvider } from '@magic-ext/oauth';
+import { observer } from 'mobx-react-lite';
 
-export const LoginScreen = () => {
+export const LoginScreen = observer(() => {
   const { accountService, magiclinkService } = useServices();
   const { accountStore } = useStores();
-  let history = useHistory();
   const [signingIn, setSigningIn] = useState(false);
   const [email, setEmail] = useState('');
+  const [error, setError] = useState({
+    hasError: false,
+    errorMessage: '',
+  });
+  let history = useHistory();
 
   const handleEmailLogin = async () => {
     try {
@@ -56,6 +61,15 @@ export const LoginScreen = () => {
         accountStore.setError(account.getErrorMessage(), account.getErrorCode());
         history.push(RoutePath.register);
       }
+      if (account.hasError()) {
+        const errorMessage = account.getErrorMessage();
+
+        setError({
+          hasError: true,
+          errorMessage: 'Something went wrong while Signing In. Please try again',
+        });
+      }
+
       setSigningIn(false);
     } catch (e) {
       console.log(e);
@@ -73,7 +87,14 @@ export const LoginScreen = () => {
             helperText={{ text: 'Please sign the signature on MetaMask. This may take a couple of seconds ...' }}
           />
         )}
+
         <FormContainer>
+          {error.hasError && (
+            <Box hCenter vCenter marginTop={-2} marginBottom={2}>
+              {' '}
+              <Alert label={{ text: error.errorMessage }} variant={'error'} icon />{' '}
+            </Box>
+          )}
           <LoginText variant='contentHeader' center tx='auth.getStarted' />
           <EmailContainer>
             <Input
@@ -121,4 +142,4 @@ export const LoginScreen = () => {
       </LoginFormContainer>
     </LoginContainer>
   );
-};
+});
