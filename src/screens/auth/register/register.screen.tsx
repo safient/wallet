@@ -27,10 +27,7 @@ export const RegisterScreen = observer(() => {
   const [fullName, setFullName] = useState(accountStore.name);
   const [email, setEmail] = useState(accountStore.email);
   const [isChecked, setIsChecked] = useState(false);
-  const [error, setError] = useState({
-    hasError: false,
-    errorMessage: '',
-  });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const register = async () => {
     try {
@@ -39,16 +36,11 @@ export const RegisterScreen = observer(() => {
       if (account.hasData()) {
         history.push(RoutePath.home);
       } else {
-        console.log(account.getErrorMessage());
         history.push(RoutePath.register);
       }
       if (account.hasError()) {
-        const errorMessage = account.getErrorMessage();
-        console.log('error message', errorMessage);
-        setError({
-          hasError: true,
-          errorMessage,
-        });
+        const message = account.getErrorMessage();
+        setErrorMessage(message);
       }
       accountStore.setFetching(false);
     } catch (e) {
@@ -62,10 +54,10 @@ export const RegisterScreen = observer(() => {
 
       <RegistrationFormContainer>
         <FormContainer>
-          {error.hasError ? (
+          {errorMessage.length > 0 ? (
             <Box hCenter vCenter marginTop={-2} marginBottom={2}>
               {' '}
-              <Alert label={{ text: error.errorMessage }} variant={'error'} icon /> :
+              <Alert label={{ text: errorMessage }} variant={'error'} icon /> :
             </Box>
           ) : (
             <Box marginBottom={2}>

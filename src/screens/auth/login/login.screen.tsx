@@ -26,10 +26,7 @@ export const LoginScreen = observer(() => {
   const { accountStore } = useStores();
   const [signingIn, setSigningIn] = useState(false);
   const [email, setEmail] = useState('');
-  const [error, setError] = useState({
-    hasError: false,
-    errorMessage: '',
-  });
+  const [errorMessage, setErrorMessage] = useState('');
   let history = useHistory();
 
   const handleEmailLogin = async () => {
@@ -62,12 +59,7 @@ export const LoginScreen = observer(() => {
         history.push(RoutePath.register);
       }
       if (account.hasError()) {
-        const errorMessage = account.getErrorMessage();
-
-        setError({
-          hasError: true,
-          errorMessage: 'Something went wrong while Signing In. Please try again',
-        });
+        setErrorMessage('Something went wrong while Signing In. Please try again.');
       }
 
       setSigningIn(false);
@@ -89,10 +81,10 @@ export const LoginScreen = observer(() => {
         )}
 
         <FormContainer>
-          {error.hasError && (
+          {errorMessage.length > 0 && (
             <Box hCenter vCenter marginTop={-2} marginBottom={2}>
               {' '}
-              <Alert label={{ text: error.errorMessage }} variant={'error'} icon />{' '}
+              <Alert label={{ text: errorMessage }} variant={'error'} icon />{' '}
             </Box>
           )}
           <LoginText variant='contentHeader' center tx='auth.getStarted' />

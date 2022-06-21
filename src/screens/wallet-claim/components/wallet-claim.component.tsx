@@ -31,11 +31,7 @@ export const SettingsContainer = styled.div`
 export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
   const [claiming, setClaiming] = useState(false);
   const [confirm, setConfirm] = useState(false);
-
-  const [error, setError] = useState({
-    hasError: false,
-    errorMessage: '',
-  });
+  const [errorMessage, setErrorMessasge] = useState('');
   let history = useHistory();
 
   const { safeService, walletService } = useServices();
@@ -72,11 +68,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
       }
     }
     if (safeData.hasError()) {
-      const errorMessage = claim.getErrorMessage();
-      setError({
-        hasError: true,
-        errorMessage,
-      });
+      setErrorMessasge(`Something went wrong while creating the claim. ${claim.getErrorMessage()}`);
     }
     safeStore.setFetching(false);
   }
@@ -89,9 +81,9 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
         <WalletClaimContainer>
           <Box marginTop={2}>
             <Box hCenter vCenter marginBottom={1}>
-              {error.hasError && <Alert label={{ text: error.errorMessage }} variant={'error'} icon />}
+              {errorMessage.length > 0 && <Alert label={{ text: errorMessage }} variant={'error'} icon />}
             </Box>
-            <Text variant='title' text={safeStore.safe?.safeName} color='textLight' />
+            <Text variant='title' text={safeStore.safe?.safeName} color='textLight' className='title' />
           </Box>
           <WalletClaimView padding={6} hCenter vCenter color='white' marginTop={2}>
             <HeadingContainer>

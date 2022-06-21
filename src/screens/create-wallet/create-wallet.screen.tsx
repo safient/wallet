@@ -31,10 +31,7 @@ export const CreateWalletScreen = observer(() => {
   const [claimType, setClaimType] = useState(0);
   const [DdayTime, setDdayTime] = useState(0);
   const [date, setDate] = useState(null);
-  const [error, setError] = useState({
-    hasError: false,
-    errorMessage: '',
-  });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const backButtonHandler = () => {
     history.goBack();
@@ -68,11 +65,7 @@ export const CreateWalletScreen = observer(() => {
         }
 
         if (safe.hasError()) {
-          const errorMessage = safe.getErrorMessage();
-          setError({
-            hasError: true,
-            errorMessage,
-          });
+          setErrorMessage(`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`);
         }
       }
 
@@ -120,7 +113,7 @@ export const CreateWalletScreen = observer(() => {
         />
       )}
       <Box hCenter vCenter>
-        {error.hasError && <Alert label={{ text: error.errorMessage }} variant={'error'} icon />}
+        {errorMessage.length > 0 && <Alert label={{ text: errorMessage }} variant={'error'} icon />}
       </Box>
 
       <WalletCreateFormContainer>
