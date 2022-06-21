@@ -50,11 +50,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
     setClaiming(false);
     const safe = await safeService.get(safeStore.safe?._id!);
     if (claim.hasError()) {
-      const errorMessage = claim.getErrorMessage();
-      setError({
-        hasError: true,
-        errorMessage,
-      });
+      setErrorMessasge(`Something went wrong while creating the claim. ${claim.getErrorMessage()}`);
     }
   };
 

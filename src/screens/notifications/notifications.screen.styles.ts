@@ -4,8 +4,9 @@ import { BreakPoints } from 'utils';
 
 export const NotificationsContainer = styled.section`
   padding: 1rem;
+  min-width: 62.6rem;
   @media screen and (max-width: ${BreakPoints.small}) {
-    width: 100%;
+    min-width: 34.4rem;
     .title {
       font-size: 2.2rem;
     }
@@ -23,6 +24,7 @@ export const Notifications = styled.div`
   @media screen and (max-width: ${BreakPoints.small}) {
     padding: 2rem;
     margin-top: 1rem;
+    width: 100%;
   }
 `;
 

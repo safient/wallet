@@ -15,14 +15,15 @@ export const ViewAllText = styled(Text)`
 export const Activities = styled.section`
   display: flex;
   gap: 2rem;
+  margin: 0 auto;
   justify-content: center;
   margin-top: 2.6rem;
   align-self: flex-start;
   overflow: hidden;
-
+  align-items: center;
   @media screen and (max-width: ${BreakPoints.small}) {
     flex-direction: column;
-    align-items: center;
+    align-self: center;
     justify-content: center;
     overflow: hidden;
     .icon {
@@ -42,11 +43,20 @@ export const StyledDiv = styled.div`
   display: inline-flex;
   flex-direction: column;
   gap: 0.4rem;
-  width: 30rem;
+  min: 30rem;
   overflow: hidden;
 
   @media screen and (max-width: ${BreakPoints.small}) {
     max-width: 30rem;
+    .icon {
+      align-items: center;
+    }
+    .text {
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 `;
 
@@ -64,7 +74,7 @@ export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
       {transactions?.length ? (
         transactions?.map((transaction) => (
           <Activities>
-            <Box flex={0}>
+            <Box flex={0} className='icon'>
               <IconSvg name={getActivityInfo(transaction.event).iconName} size='xLarge' />
             </Box>
             <StyledDiv>
@@ -75,7 +85,7 @@ export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
                 color='textLight'
                 className='text'
               />
-              <Text variant='small' text={transaction.age + ' ago'} color='textLighter' />
+              <Text variant='small' text={transaction.age + ' ago'} color='textLighter' className='text' />
             </StyledDiv>
             <Box>
               <Text variant='small' text={transaction.value + ' ETH'} color='textLighter' className='text' />
@@ -85,7 +95,6 @@ export const AllActivities: React.FC<AllActivitiesProps> = (props) => {
       ) : (
         <EmptyState label={{ tx: 'emptyStates.emptyActivities' }} image={{ name: 'emptyActivity' }} />
       )}
-
       <Box marginTop={2.4}></Box>
     </Box>
   );
