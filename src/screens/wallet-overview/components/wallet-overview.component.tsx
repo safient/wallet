@@ -50,7 +50,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer((props) => 
           </AlertContainer>
           {safeStore.role === 'beneficiary' && <Confetti />}
           <Box marginTop={2} onClick={() => window.open(safeStore.safe?.cid!, '_blank')}>
-            <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
+            <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' className='title' />
           </Box>
 
           <WalletOverView padding={6} hCenter vCenter color='white' marginTop={2}>

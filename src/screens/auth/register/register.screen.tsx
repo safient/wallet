@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { t } from 'i18n-js';
-import { Text, Input, Alert } from 'components/primitive';
+import { Text, Input, Alert, Box } from 'components/primitive';
 import { observer } from 'mobx-react-lite';
-
 import { Header } from 'components/common/auth-header.component';
 import {
   RegistrationContainer,
@@ -28,6 +27,7 @@ export const RegisterScreen = observer(() => {
   const [fullName, setFullName] = useState(accountStore.name);
   const [email, setEmail] = useState(accountStore.email);
   const [isChecked, setIsChecked] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const register = async () => {
     try {
@@ -36,8 +36,11 @@ export const RegisterScreen = observer(() => {
       if (account.hasData()) {
         history.push(RoutePath.home);
       } else {
-        console.log(account.getErrorMessage());
         history.push(RoutePath.register);
+      }
+      if (account.hasError()) {
+        const message = account.getErrorMessage();
+        setErrorMessage(message);
       }
       accountStore.setFetching(false);
     } catch (e) {
@@ -51,7 +54,17 @@ export const RegisterScreen = observer(() => {
 
       <RegistrationFormContainer>
         <FormContainer>
-          <Alert icon variant='warning' label={{ tx: 'auth.registerAlert' }} />
+          {errorMessage.length > 0 ? (
+            <Box hCenter vCenter marginTop={-2} marginBottom={2}>
+              {' '}
+              <Alert label={{ text: errorMessage }} variant={'error'} icon /> :
+            </Box>
+          ) : (
+            <Box marginBottom={2}>
+              <Alert icon variant='warning' label={{ tx: 'auth.registerAlert' }} />
+            </Box>
+          )}
+
           <RegistrationText variant='contentHeader' center tx='auth.createAccount' />
 
           <RegistrationFormBox>

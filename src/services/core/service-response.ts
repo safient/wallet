@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 export class ServiceResponse<T> {
   readonly data?: T;
@@ -22,15 +22,11 @@ export class ServiceResponse<T> {
     return _.get(
       this.error,
       'message',
-      _.get(this.error, 'error.message', 'Something went wrong'),
-    )
+      _.get(this.error, 'error.message', 'Something went wrong. please try again after sometime')
+    );
   }
 
-  getErrorCode(): number { 
-    return _.get(
-      this.error,
-      'error.code',
-      0)
+  getErrorCode(): number {
+    return _.get(this.error, 'error.code', 0);
   }
-
 }

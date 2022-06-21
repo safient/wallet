@@ -8,12 +8,12 @@ export interface walltClaimProps {
   shimmer?: boolean;
 }
 
-
 /**
  * Props supported by claim status component.
  */
- export interface WalletClaimStatusProps {
+export interface WalletClaimStatusProps {
   status: number;
   timestamp: number;
   claimType: number;
+  claiming?: any;
 }

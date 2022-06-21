@@ -9,13 +9,11 @@ export class SafeServiceImpl extends Service implements SafeService {
   private readonly accountStore: AccountStoreImpl;
   private readonly safeStore: SafeStoreImpl;
   storage = new StorageServiceImpl();
-  
 
   constructor() {
     super();
     this.accountStore = stores?.accountStore;
     this.safeStore = stores?.safeStore;
-    
   }
 
   // Creating a signaling based seed phrase safe for Safient wallet
@@ -42,35 +40,34 @@ export class SafeServiceImpl extends Service implements SafeService {
       const safeData: Types.SafeStore = {
         safe: cryptoSafe,
       };
-      
 
-      if(claimType === Enums.ClaimType.DDayBased){
+      if (claimType === Enums.ClaimType.DDayBased) {
         signalingPeriod = 0;
-      }
-      else if(claimType === Enums.ClaimType.SignalBased) {
+      } else if (claimType === Enums.ClaimType.SignalBased) {
         DdayBasedTime = 0;
       }
 
-        const safe = await this.accountStore.safient.createSafe(
-          name,
-          description,
-          this.accountStore.safientUser.did,
-          safeData,
-          onchain,
-          claimType,
-          signalingPeriod,
-          DdayBasedTime,
-          { email: beneficiary }
-        );
-        // Adding the new safe to the local SafeMeta store
-        this.accountStore.safientUser.safes.push({safeName: name,
+      const safe = await this.accountStore.safient.createSafe(
+        name,
+        description,
+        this.accountStore.safientUser.did,
+        safeData,
+        onchain,
+        claimType,
+        signalingPeriod,
+        DdayBasedTime,
+        { email: beneficiary }
+      );
+      // Adding the new safe to the local SafeMeta store
+      this.accountStore.safientUser.safes.push({
+        safeName: name,
         safeId: safe.data?.id!,
         type: 'creator',
-        decShard: null})
-        return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
-      }
-      catch (e: any) {
-      console.log(e)
+        decShard: null,
+      });
+      return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
+    } catch (e: any) {
+      console.log(e);
       return this.error<Types.EventResponse>(e.error);
     }
   }
@@ -79,7 +76,7 @@ export class SafeServiceImpl extends Service implements SafeService {
     try {
       const safe = await this.accountStore.safient.getSafe(safeId);
       this.safeStore.setSafe(safe.data as Types.Safe);
-      return this.success<Types.Safe>(safe.data as Types.Safe)
+      return this.success<Types.Safe>(safe.data as Types.Safe);
     } catch (e: any) {
       return this.error<Types.Safe>(e.error);
     }
@@ -92,7 +89,7 @@ export class SafeServiceImpl extends Service implements SafeService {
       return this.success<Types.EventResponse>(disputeId.data!);
     } catch (e: any) {
       console.log(e);
-      return this.error<Types.EventResponse>(e);
+      return this.error<Types.EventResponse>(e.error);
     }
   }
 
@@ -115,7 +112,7 @@ export class SafeServiceImpl extends Service implements SafeService {
     try {
       let recoveredData, secretData;
 
-      if (role == 'creator') {
+      if (role === 'creator') {
         recoveredData = await this.accountStore.safient.recoverSafeByCreator(safeId);
         secretData = recoveredData.data.data.safe.data;
       } else {
@@ -132,14 +129,10 @@ export class SafeServiceImpl extends Service implements SafeService {
   }
 
   setDefaultConfig(beneficiary: string) {
-    
-    this.storage.set("defaultConfig",{beneficiary: beneficiary})
-    
+    this.storage.set('defaultConfig', { beneficiary: beneficiary });
   }
 
-    getDefaultConfig(): any {
-    
-    return  this.storage.get("defaultConfig")
-    
+  getDefaultConfig(): any {
+    return this.storage.get('defaultConfig');
   }
 }

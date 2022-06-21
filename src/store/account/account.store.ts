@@ -1,8 +1,6 @@
 import { StoreImpl } from '../store/store.impl';
 import { IStore } from '../store';
-import { User } from '../../models';
-import { Web3Provider } from '@ethersproject/providers';
-import { SafientCore, Types  } from '@safient/core';
+import { SafientCore, Types } from '@safient/core';
 
 export interface AccountStore extends StoreImpl, IStore {
   /**
@@ -13,17 +11,15 @@ export interface AccountStore extends StoreImpl, IStore {
   /**
    * User profile details
    */
-   safientUser: Types.User;
+  safientUser: Types.User;
 
   /**
    * Checks if the user exists after log In
    */
   userExists: boolean;
 
-   /**
+  /**
    * Checks if the user is signed In
    */
   userSignedIn: boolean;
-
-
 }

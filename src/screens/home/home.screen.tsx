@@ -49,12 +49,13 @@ export const HomeScreen: React.FC = observer(() => {
             <SafeText variant='content' tx='common.createWallet' />
           </SafeCard>
 
-          {accountStore.safientUser?.safes.map((safe) => (
+          {accountStore.safientUser?.safes.map((safe, index) => (
             <WalletCard
               walletName={safe.safeName}
               roleName={safe.type as UserRole}
               status={safe.type === 'creator' ? 'active' : 'locked'}
               id={safe.safeId}
+              key={index}
             />
           ))}
         </CardsContainer>

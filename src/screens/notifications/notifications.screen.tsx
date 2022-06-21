@@ -3,7 +3,6 @@ import { t } from 'i18n-js';
 import { IconSvg, Text, Box, EmptyState, GenericModal, NoticeLoader } from 'components/primitive';
 import {
   NotificationsContainer,
-  BackButtonContainer,
   Notifications,
   Activities,
   StyledButton,
@@ -11,6 +10,7 @@ import {
   StyledImage,
   WalletName,
   NotificationText,
+  InfoContainer,
 } from './notifications.screen.styles';
 import { useStores } from 'store';
 import { useServices } from 'services';
@@ -52,7 +52,7 @@ export const NotificationsScreen: React.FC = () => {
         >
           <StyledDiv>
             <StyledImage name='warningIndicator' />
-            <Text variant='small' tx='notifications.cancelConfirm' color='textLighter' center />
+            <Text variant='small' tx='notifications.cancelConfirm' color='textLighter' center className='heading' />
           </StyledDiv>
         </GenericModal>
       )}
@@ -66,7 +66,7 @@ export const NotificationsScreen: React.FC = () => {
         />
       )}
       <Box marginTop={2} onClick={() => (window.location.href = safeStore.safe?.cid!)}>
-        <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' />
+        <WalletName variant='title' text={safeStore.safe?.safeName} color='textLight' className='title' />
       </Box>
 
       <Notifications>
@@ -84,14 +84,15 @@ export const NotificationsScreen: React.FC = () => {
               <Activities>
                 <IconSvg name='document' size='xLarge' />
 
-                <Box>
-                  <Text variant='small' tx='notifications.claimingText' color='textLight' />
+                <InfoContainer>
+                  <Text variant='small' tx='notifications.claimingText' color='textLight' className='text' />
                   <Text
                     variant='small'
                     text={`Respond by  ${new Date(timestamp * 1000).toUTCString()}`}
                     color='textLighter'
+                    className='text'
                   />
-                </Box>
+                </InfoContainer>
 
                 <StyledButton
                   row

@@ -7,18 +7,16 @@ import { SafientCore, Types, Enums } from '@safient/core';
 const UserNotFoundCode = 10;
 
 export class AccountStoreImpl extends StoreImpl implements AccountStore {
-
   private web3Provider?: Web3Provider;
   private signer?: JsonRpcSigner;
   network: Enums.NetworkType = Enums.NetworkType.testnet;
-  name: string = "";
-  email: string = "";
+  name: string = '';
+  email: string = '';
   chainId!: number;
   address!: string;
   balance?: string;
   safient!: SafientCore;
   _safientUser?: Types.User;
-
 
   constructor() {
     super();
@@ -50,23 +48,26 @@ export class AccountStoreImpl extends StoreImpl implements AccountStore {
   }
 
   setSafientUser(user: Types.User) {
-      this._safientUser = user;
-   }
+    this._safientUser = user;
+  }
 
-   setWeb3Account(provider: Web3Provider,
-     signer: JsonRpcSigner, chainId: number,
-      address: string, balance: string,
-       safient: SafientCore ) {
-    this.web3Provider =  provider;
-    this.signer =  signer;
+  setWeb3Account(
+    provider: Web3Provider,
+    signer: JsonRpcSigner,
+    chainId: number,
+    address: string,
+    balance: string,
+    safient: SafientCore
+  ) {
+    this.web3Provider = provider;
+    this.signer = signer;
     this.chainId = chainId;
     this.address = address;
     this.balance = balance;
     this.safient = safient;
- }
+  }
 
   setUserInfo(name: string, email: string): void {
-
     this.name = name;
     this.email = email;
   }

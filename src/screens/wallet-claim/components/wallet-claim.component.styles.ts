@@ -1,5 +1,6 @@
-import { Box, Text } from 'components/primitive';
 import styled from 'styled-components';
+import { Box, Text } from 'components/primitive';
+import { BreakPoints } from 'utils';
 
 export const BalanceContainer = styled(Box)`
   display: flex !important;
@@ -26,11 +27,19 @@ export const WalletClaimContainer = styled.div`
   height: 100%;
   width: 100%;
   transition: all 0.2s ease-in-out;
+  @media screen and (max-width: ${BreakPoints.small}) {
+    .title {
+      font-size: 2.2rem;
+    }
+  }
 `;
 
 export const WalletClaimView = styled(Box)`
   display: inline-block;
   width: 59.6rem !important;
+  @media screen and (max-width: ${BreakPoints.small}) {
+    padding: 2rem;
+  }
 `;
 
 export const AlertContainer = styled(Box)`
