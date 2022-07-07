@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck - no overload matched this call error.
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { RoutePath } from 'navigation/route-path';
@@ -30,6 +30,7 @@ import {
   SignnalingInput,
 } from './create-wallet.screen.styles';
 import { claimTypes, getClaimName } from 'utils';
+import { FormValidator } from 'utils/FormValidator';
 
 export const CreateWalletScreen = observer(() => {
   const { safeService, walletService } = useServices();
@@ -56,9 +57,8 @@ export const CreateWalletScreen = observer(() => {
   const [seedPhrase, setSeedPhrase] = useState<any>('');
   const [balanceLoader, setBalanceLoadder] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [validator, setValidator] = useState(false);
 
-  // todo - move this to utils. code cleanup
+  const [validator, setValidator] = useState(false);
 
   const getAllWalletsAndFetchBalance = async () => {
     const wallets = await accountStore.safientUser?.safes.map((safes) => ({
@@ -80,54 +80,62 @@ export const CreateWalletScreen = observer(() => {
   };
 
   useEffect(() => {
+    if (walletName || walletDescription || walletBeneficiary) {
+      setValidator(false);
+    }
     getAllWalletsAndFetchBalance();
-  }, [options]);
+  }, [options, walletBeneficiary, walletDescription, walletName]);
 
   const backButtonHandler = () => {
     history.goBack();
   };
 
   const createSafe = async () => {
-    try {
-      safeStore.setFetching(true);
+    if (!walletName || !walletDescription || !walletBeneficiary) {
+      setValidator(true);
+    } else {
+      setValidator(false);
+      try {
+        safeStore.setFetching(true);
 
-      const wallet = await walletService.create();
+        const wallet = await walletService.create();
 
-      let topupAddress = wallet.data?.address;
+        let topupAddress = wallet.data?.address;
 
-      await walletService.info();
-      await walletService.load(seedPhrase);
-      await walletService.send(topupAddress, topupValue);
+        await walletService.info();
+        await walletService.load(seedPhrase);
+        await walletService.send(topupAddress, topupValue);
 
-      if (wallet.hasData()) {
-        const safe = await safeService.create(
-          walletName,
-          walletDescription,
-          walletBeneficiary,
-          wallet.data!.mnemonic,
-          claimType,
-          signalingPeriod,
-          DdayTime,
-          true
-        );
+        if (wallet.hasData()) {
+          const safe = await safeService.create(
+            walletName,
+            walletDescription,
+            walletBeneficiary,
+            wallet.data!.mnemonic,
+            claimType,
+            signalingPeriod,
+            DdayTime,
+            true
+          );
 
-        await walletService.load(wallet.data!.mnemonic);
+          await walletService.load(wallet.data!.mnemonic);
 
-        if (safe.hasData()) {
-          await safeService.get(safe.data?.id!);
-          history.push(RoutePath.walletOverview);
-        } else {
-          history.push(RoutePath.createWallet);
+          if (safe.hasData()) {
+            await safeService.get(safe.data?.id!);
+            history.push(RoutePath.walletOverview);
+          } else {
+            history.push(RoutePath.createWallet);
+          }
+
+          if (safe.hasError()) {
+            setErrorMessage(`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`);
+          }
         }
 
-        if (safe.hasError()) {
-          setErrorMessage(`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`);
-        }
+        safeStore.setFetching(false);
+      } catch (e: any) {
+        console.log(e);
       }
-
-      safeStore.setFetching(false);
-    } catch (e: any) {
-      console.log(e);
     }
   };
 
@@ -171,12 +179,16 @@ export const CreateWalletScreen = observer(() => {
               onChange={(e: any) => {
                 setWalletName(e.target.value);
               }}
+              error={validator}
+              errorMsg='Please Enter a Valid Wallet Name'
             />
             <StyledInput
               type='text'
               label='Wallet Description'
               placeholder='Satoshi Wallet Details'
               onChange={(e: any) => setWalletDescription(e.target.value)}
+              error={validator}
+              errorMsg='Please Enter the Description'
             />
             <StyledInput
               type='text'
@@ -184,6 +196,8 @@ export const CreateWalletScreen = observer(() => {
               placeholder={'satoshi@safient.com'}
               value={walletBeneficiary}
               onChange={(e: any) => setWalletBeneficiary(e.target.value)}
+              errorMsg={'Enter a Valid Email ID'}
+              error={validator}
             />
           </WalletCreateFormBox>
 
@@ -277,6 +291,7 @@ export const CreateWalletScreen = observer(() => {
             label={{ text: safeStore.fetching ? 'Creating..' : 'Create 🙌' }}
             onClick={createSafe}
             color='primaryGradient'
+            disabled={validator}
           />
         </FormContainer>
       </WalletCreateFormContainer>
