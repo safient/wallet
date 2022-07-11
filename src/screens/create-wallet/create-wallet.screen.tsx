@@ -70,7 +70,7 @@ export const CreateWalletScreen = observer(() => {
   };
 
   const loadBalance = async () => {
-    setBalanceLoadder(true);
+    setBalanceLoader(true);
     safeStore.setRole('creator');
     const safeData = await safeService.recover(options, 'creator');
 
