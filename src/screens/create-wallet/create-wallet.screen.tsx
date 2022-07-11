@@ -55,18 +55,21 @@ export const CreateWalletScreen = observer(() => {
   const [options, setOptions] = useState(selectWallet);
 
   const [seedPhrase, setSeedPhrase] = useState<any>('');
-  const [balanceLoader, setBalanceLoadder] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [balanceLoader, setBalanceLoader] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState('');
   const [validator, setValidator] = useState(false);
 
-  const getAllWalletsAndFetchBalance = async () => {
+  const getAllWallets = async () => {
     const wallets = await accountStore.safientUser?.safes.map((safes) => ({
       label: safes.safeName,
       value: safes.safeId,
     }));
 
     setSelectWallet(wallets);
+  };
+
+  const loadBalance = async () => {
     setBalanceLoadder(true);
     safeStore.setRole('creator');
     const safeData = await safeService.recover(options, 'creator');
@@ -76,15 +79,14 @@ export const CreateWalletScreen = observer(() => {
       if (safeData.data?.seedPhrase) await walletService.load(safeData.data?.seedPhrase);
     }
 
-    setBalanceLoadder(false);
+    setBalanceLoader(false);
   };
 
   useEffect(() => {
     if (walletName || walletDescription || walletBeneficiary) {
       setValidator(false);
     }
-    getAllWalletsAndFetchBalance();
-  }, [options, walletBeneficiary, walletDescription, walletName]);
+  }, [walletBeneficiary, walletDescription, walletName]);
 
   const backButtonHandler = () => {
     history.goBack();
@@ -96,6 +98,9 @@ export const CreateWalletScreen = observer(() => {
     } else {
       setValidator(false);
       try {
+        if (safeStore.walletInfo?.balance.eth > topupValue) {
+          alert('topup value should be less than value');
+        }
         safeStore.setFetching(true);
 
         const wallet = await walletService.create();
@@ -237,7 +242,10 @@ export const CreateWalletScreen = observer(() => {
               <ToggleSwitch
                 toggleID={'topup'}
                 checked={isTopupToggleChecked}
-                onChange={(e: any) => setIsTopupToggleChecked(!isTopupToggleChecked)}
+                onChange={(e: any) => {
+                  setIsTopupToggleChecked(!isTopupToggleChecked);
+                  getAllWallets();
+                }}
               />
             </Box>
 
@@ -249,7 +257,10 @@ export const CreateWalletScreen = observer(() => {
                     placeholder='Select the wallet'
                     value={options}
                     options={selectWallet}
-                    onChange={(e: any) => setOptions(e.value)}
+                    onChange={(e: any) => {
+                      setOptions(e.value);
+                      loadBalance();
+                    }}
                   />
                 </Box>
 
