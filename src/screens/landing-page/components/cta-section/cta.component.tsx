@@ -5,7 +5,7 @@ import Blob from '../../../../assets/images/blob-2.svg';
 
 export const CtaContainer = styled.section`
   position: relative;
-  background: #5f6179;
+  background: linear-gradient(89.58deg, #1f1d31 -33.5%, #25225c 37.2%, #402c2c 117.54%);
   color: #fff;
   display: flex;
   align-items: center;
@@ -34,7 +34,12 @@ export const CtaSection = () => {
     <CtaContainer>
       <div className='cta'>
         <p>What are you waiting for?</p>
-        <Button onClick={() => history.push('/')} variant='primary' label={{ text: 'Try Now' }} />
+        <Button
+          onClick={() => history.push('/')}
+          variant='primary'
+          color='primaryGradient'
+          label={{ text: 'Try Now' }}
+        />
       </div>
     </CtaContainer>
   );

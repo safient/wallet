@@ -6,10 +6,9 @@ import styled from 'styled-components';
 export const StyledNav = styled.div`
   background: #fff;
   nav {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
-    margin: 0 auto;
     align-items: center;
     justify-content: space-between;
     padding: 2rem !important;
@@ -24,7 +23,7 @@ export const NavBar = () => {
     <StyledNav>
       <nav>
         <Link to={RoutePath.home}>
-          <Image name='logoAlpha' width={18} />
+          <Image name='logoAlpha' width={22.5} height={7} />
         </Link>
         <Button variant='ghost' label={{ tx: 'common.knowMore', color: 'textLight' }} onClick={redirect} />
       </nav>

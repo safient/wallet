@@ -1,6 +1,6 @@
 import { Image, Box, Text } from 'components/primitive';
 import { useHistory } from 'react-router-dom';
-import { HeroSectionContainer, StyledButton, Title } from './hero.component.styles';
+import { HeroSectionContainer, StyledButton, Title, StyledSpan } from './hero.component.styles';
 
 export const HeroSection = () => {
   const history = useHistory();
@@ -9,14 +9,14 @@ export const HeroSection = () => {
     <>
       <HeroSectionContainer>
         <div className='description'>
-          <Title
-            variant='title'
-            text='A Non Custodial recoverable and Inheritable wallet application built on Safient Protocol.'
-            className='title'
-          />
+          <Title>
+            {' '}
+            A Non-custodial <StyledSpan>Recoverable</StyledSpan> and <StyledSpan>Inheritable</StyledSpan> wallet
+            Application
+          </Title>
           <Text
             variant='small'
-            text='A crypto wallet solution for easy self recovery and inheritance'
+            text='A crypto wallet solution for easy self recovery and inheritance. Safe keeping of your crypto as convenient as it gets.'
             color='white'
             className='sub-heading'
           />
@@ -25,7 +25,7 @@ export const HeroSection = () => {
           </Box>
         </div>
         <div className='hero-image'>
-          <Image width={41.7} name='landingPage' />
+          <Image name='landingPage' className='image' />
         </div>
       </HeroSectionContainer>
     </>

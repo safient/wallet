@@ -16,7 +16,11 @@ export const StepsContainer = styled.section<StepsComponentProps>`
       font-weight: 600;
       font-size: 26px;
       line-height: 38px;
-      color: #0f172a;
+      background: linear-gradient(89.58deg, #44bcf0 -19.85%, #818cf8 54.07%, #a099ff 120.75%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
     }
 
     p {
@@ -30,6 +34,10 @@ export const StepsContainer = styled.section<StepsComponentProps>`
 
   .preview {
     flex: 1;
+  }
+
+  .preview-image {
+    width: 439px;
   }
 `;
 
@@ -50,7 +58,7 @@ export const Steps: React.FC<StepsComponentProps> = ({ inverted, preview, title,
       </div>
 
       <div className='preview'>
-        <Image name='landingPage' />
+        <Image {...preview} className='preview-image' />
       </div>
     </StepsContainer>
   );

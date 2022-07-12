@@ -9,17 +9,20 @@ export const HowItWorks = () => {
       <Box marginTop={8}>
         <Title variant='title' text='How It works?' center />
         <Steps
-          title='Step 1 - Create wallet and Add Benificery'
-          description='Rught after loggin you can create a new wallet by clicking create option and fillout the details. add the benificery and additionally you can topup the wallet from one of your pre existing wallets.'
+          title='1. Create a claimable wallet'
+          description='Create a new crypto wallet with one click. You can add a beneficiary and select a recovery/ claim method while creating the wallet so that you do not need to worry about backing up your seed phrases or any recovery strategy.'
+          preview={{ name: 'createWallet' }}
         />
         <Steps
           inverted
-          title='Step 2 - Wallet OverView'
-          description='If you are a benificery you can click on claim. it may take upto 2-3 minutes depending on the network connectivity.'
+          title='2. Claim your wallet'
+          description='Whenever you lose access to your device or incase your beneficiary needs to access the wallet, claim can be created with just one click.'
+          preview={{ name: 'claimWallet' }}
         />
         <Steps
-          title='Step 3 - Send, Recieve'
-          description='This is pretty standard stuff. you can send or recieve the funds. you can also share the QR code to recieve the funds'
+          title='3. Access your wallet after the quick recovery'
+          description='Once the claim conditions are met, the wallet will be recovered in no time so that you can get quick access to it without any worry.'
+          preview={{ name: 'accessWallet' }}
         />
       </Box>
     </>

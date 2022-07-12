@@ -4,7 +4,7 @@ import { Text } from 'components/primitive';
  * Styles for Gradient Text.
  */
 
-export const Title = styled(Text)`
+export const Title = styled.h1`
   font-weight: 700;
   font-size: 30px;
   line-height: 36px;
@@ -27,6 +27,7 @@ export const HeroSectionContainer = styled.section`
   .description {
     align-self: center;
     flex: 1;
+    flex-basis: 300px;
   }
   .sub-heading {
     font-weight: 600;
@@ -38,21 +39,25 @@ export const HeroSectionContainer = styled.section`
 
   .hero-image {
     align-self: center;
-    flex: 1;
+  }
+
+  .image {
+    height: 507px;
   }
   img {
     width: 589px;
+    margin-left: 50px;
   }
 `;
 
 export const Container = styled.div`
-  max-width: 1015px;
+  max-width: 1200px;
   margin: 0 auto;
 `;
 
 export const StyledButton = styled.button`
-  background: linear-gradient(90deg, transparent, transparent),
-    linear-gradient(209.87deg, rgb(20, 172, 182) 31.2%, rgb(113, 65, 215) 71.49%);
+  background: linear-gradient(89.58deg, #44bcf0 -19.85%, #818cf8 54.07%, #a099ff 120.75%);
+  border-radius: 5px;
   color: rgb(255, 255, 255);
   font-style: inherit;
   font-variant: inherit;
@@ -66,4 +71,12 @@ export const StyledButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   width: fit-content;
+`;
+
+export const StyledSpan = styled.span`
+  background: linear-gradient(89.58deg, #44bcf0 -19.85%, #818cf8 54.07%, #a099ff 120.75%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 `;
