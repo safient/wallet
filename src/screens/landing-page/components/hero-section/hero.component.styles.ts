@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 import { Text } from 'components/primitive';
+import { BreakPoints } from 'utils';
 /**
  * Styles for Gradient Text.
  */
 
 export const Title = styled.h1`
   font-weight: 700;
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 3rem;
+  line-height: 3.6rem;
 
   color: #0f172a;
+
+  @media screen and (max-width: ${BreakPoints.small}) {
+    font-size: 2.4rem;
+  }
 `;
 
 export const HeroSectionContainer = styled.section`
@@ -17,13 +22,7 @@ export const HeroSectionContainer = styled.section`
   justify-content: space-evenly;
   flex-wrap: wrap;
   height: 70vh;
-  .title {
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
 
-    color: #0f172a;
-  }
   .description {
     align-self: center;
     flex: 1;
@@ -48,6 +47,31 @@ export const HeroSectionContainer = styled.section`
     width: 589px;
     margin-left: 50px;
   }
+
+  @media screen and (max-width: ${BreakPoints.small}) {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    img {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+    .hero-image {
+      display: flex;
+      align-items: center;
+    }
+  }
 `;
 
 export const Container = styled.div`
@@ -71,6 +95,10 @@ export const StyledButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   width: fit-content;
+  @media screen and (max-width: ${BreakPoints.small}) {
+    display: inline-block;
+    margin: 0 auto;
+  }
 `;
 
 export const StyledSpan = styled.span`

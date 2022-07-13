@@ -1,6 +1,7 @@
 import { ImageComponentProps } from 'components/primitive/image/image.component.props';
 import { Image } from 'components/primitive';
 import styled from 'styled-components';
+import { BreakPoints } from 'utils';
 
 export const StepsContainer = styled.section<StepsComponentProps>`
   display: flex;
@@ -14,8 +15,8 @@ export const StepsContainer = styled.section<StepsComponentProps>`
     order: ${({ inverted }) => (inverted ? '2' : '0')};
     h3 {
       font-weight: 600;
-      font-size: 26px;
-      line-height: 38px;
+      font-size: 2.6rem;
+      line-height: 3.8rem;
       background: linear-gradient(89.58deg, #44bcf0 -19.85%, #818cf8 54.07%, #a099ff 120.75%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -38,6 +39,18 @@ export const StepsContainer = styled.section<StepsComponentProps>`
 
   .preview-image {
     width: 439px;
+    box-shadow: 0px 16px 32px rgb(221 230 237 / 40%);
+  }
+
+  @media screen and (max-width: ${BreakPoints.small}) {
+    display: flex;
+    align-items: center;
+
+    padding: 1rem;
+
+    .preview {
+      padding: 1rem;
+    }
   }
 `;
 

@@ -1,7 +1,7 @@
-import { Box, Button, Image } from 'components/primitive';
-import { RoutePath } from 'navigation';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Button, Image } from 'components/primitive';
+import { RoutePath } from 'navigation';
 
 export const StyledNav = styled.div`
   background: #fff;
