@@ -1,19 +1,12 @@
 import styled from 'styled-components';
-import { Box, Text } from 'components/primitive';
+import { Box, Button, Text } from 'components/primitive';
+import { Header } from 'components/common/auth-header.component';
 
-/**
- * Styles for WelcomeScreen Container
- */
-export const WelcomeContainer = styled(Box)`
+export const LandingPageContainer = styled.main`
+  background-color: #f6f7fb;
   height: 100%;
 `;
 
 /**
- * Styles for Gradient Text.
+ * Styles for WelcomeScreen Container
  */
-
-export const Title = styled(Text)`
-  background: ${({ theme: { colors } }) => colors.primaryGradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;

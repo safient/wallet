@@ -15,4 +15,15 @@ export class FormValidator {
     const stringRegEx = /^[a-z ]+$/i;
     return stringRegEx.test(str);
   }
+
+  /**
+   * checks if the input is filled
+   */
+
+  static isEmpty(str: string): boolean {
+    if (!str || str === '') {
+      return true;
+    }
+    return false;
+  }
 }

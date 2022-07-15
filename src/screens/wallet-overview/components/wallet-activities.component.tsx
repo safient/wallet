@@ -45,7 +45,7 @@ export const StyledDiv = styled.div`
   gap: 0.4rem;
   min: 30rem;
   overflow: hidden;
-
+  min-width: 26rem;
   @media screen and (max-width: ${BreakPoints.small}) {
     max-width: 30rem;
     .icon {

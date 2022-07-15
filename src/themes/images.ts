@@ -82,6 +82,9 @@ export const images = {
   dotRed: require('../assets/icons/dot-red.svg').default,
   dotGreen: require('../assets/icons/dot-green.svg').default,
   landingPage: require('../assets/images/landing-page.svg').default,
+  createWallet: require('../assets/images/create-wallet.png').default,
+  claimWallet: require('../assets/images/claim-wallet.png').default,
+  accessWallet: require('../assets/images/access-wallet.png').default,
 };
 
 export type Images = typeof images;

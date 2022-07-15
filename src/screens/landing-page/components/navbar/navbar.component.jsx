@@ -1,23 +1,32 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { Button, Image } from 'components/primitive';
-import { NavContainer, LogoWrapper, BoxGroup } from './auth-header.component.styles';
-import { RoutePath } from 'navigation/route-path';
+import { RoutePath } from 'navigation';
 
-export const Header = () => {
+export const StyledNav = styled.div`
+  background: #fff;
+  nav {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem !important;
+  }
+`;
+
+export const NavBar = () => {
   const redirect = () => {
     window.open('https://resources.safient.io/wallet', '_blank');
   };
-
   return (
-    <NavContainer align={'center'} justify={'center'} hCenter vCenter row>
-      <LogoWrapper hCenter vCenter>
+    <StyledNav>
+      <nav>
         <Link to={RoutePath.home}>
           <Image name='logoAlpha' width={22.5} height={7} />
         </Link>
-      </LogoWrapper>
-      <BoxGroup hCenter vCenter row align={'center'} justify={'center'}>
         <Button variant='ghost' label={{ tx: 'common.knowMore', color: 'textLight' }} onClick={redirect} />
-      </BoxGroup>
-    </NavContainer>
+      </nav>
+    </StyledNav>
   );
 };

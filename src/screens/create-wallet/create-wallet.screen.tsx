@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// @ts-nocheck - no overload matched this call error.
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { RoutePath } from 'navigation/route-path';
 import { useServices } from 'services';
@@ -6,7 +7,17 @@ import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
 import dayjs from 'dayjs';
 
-import { Box, NoticeLoader, Accordion, DateTimePicker, IconSvg, DropDown, Alert } from 'components/primitive';
+import {
+  Box,
+  NoticeLoader,
+  Accordion,
+  DateTimePicker,
+  IconSvg,
+  DropDown,
+  Alert,
+  ToggleSwitch,
+  Text,
+} from 'components/primitive';
 import {
   FormContainer,
   HomeScreenContainer,
@@ -18,80 +29,119 @@ import {
   Label,
   SignnalingInput,
 } from './create-wallet.screen.styles';
+import { claimTypes, getClaimName } from 'utils';
+import { FormValidator } from 'utils/FormValidator';
 
 export const CreateWalletScreen = observer(() => {
   const { safeService, walletService } = useServices();
-  const { safeStore } = useStores();
+  const { safeStore, accountStore } = useStores();
   let history = useHistory();
 
   const [walletName, setWalletName] = useState('');
   const [walletDescription, setWalletDescription] = useState('');
+
   const [walletBeneficiary, setWalletBeneficiary] = useState(safeService.getDefaultConfig()?.beneficiary);
   const [signalingPeriod, setSignalingPeriod] = useState(300);
+
   const [claimType, setClaimType] = useState(0);
   const [DdayTime, setDdayTime] = useState(0);
+
   const [date, setDate] = useState(null);
+  const [isTopupToggleChecked, setIsTopupToggleChecked] = useState(false);
+
+  const [topupValue, setTopupValue] = useState<any>('');
+
+  const [selectWallet, setSelectWallet] = useState([]);
+  const [options, setOptions] = useState(selectWallet);
+
+  const [seedPhrase, setSeedPhrase] = useState<any>('');
+  const [balanceLoader, setBalanceLoader] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState('');
+  const [validator, setValidator] = useState(false);
+
+  const getAllWallets = async () => {
+    const wallets = await accountStore.safientUser?.safes.map((safes) => ({
+      label: safes.safeName,
+      value: safes.safeId,
+    }));
+
+    setSelectWallet(wallets);
+  };
+
+  const loadBalance = async () => {
+    setBalanceLoader(true);
+    safeStore.setRole('creator');
+    const safeData = await safeService.recover(options, 'creator');
+
+    setSeedPhrase(safeData.data?.seedPhrase);
+    if (safeData.hasData()) {
+      if (safeData.data?.seedPhrase) await walletService.load(safeData.data?.seedPhrase);
+    }
+
+    setBalanceLoader(false);
+  };
+
+  useEffect(() => {
+    if (walletName || walletDescription || walletBeneficiary) {
+      setValidator(false);
+    }
+  }, [walletBeneficiary, walletDescription, walletName]);
 
   const backButtonHandler = () => {
     history.goBack();
   };
 
   const createSafe = async () => {
-    try {
-      safeStore.setFetching(true);
+    if (!walletName || !walletDescription || !walletBeneficiary) {
+      setValidator(true);
+    } else {
+      setValidator(false);
+      try {
+        if (safeStore.walletInfo?.balance.eth > topupValue) {
+          alert('topup value should be less than value');
+        }
+        safeStore.setFetching(true);
 
-      const wallet = await walletService.create();
+        const wallet = await walletService.create();
 
-      await walletService.info();
+        let topupAddress = wallet.data?.address;
 
-      if (wallet.hasData()) {
-        const safe = await safeService.create(
-          walletName,
-          walletDescription,
-          walletBeneficiary,
-          wallet.data!.mnemonic,
-          claimType,
-          signalingPeriod,
-          DdayTime,
-          true
-        );
+        await walletService.info();
+        await walletService.load(seedPhrase);
+        await walletService.send(topupAddress, topupValue);
 
-        if (safe.hasData()) {
-          await safeService.get(safe.data?.id!);
-          history.push(RoutePath.walletOverview);
-        } else {
-          history.push(RoutePath.createWallet);
+        if (wallet.hasData()) {
+          const safe = await safeService.create(
+            walletName,
+            walletDescription,
+            walletBeneficiary,
+            wallet.data!.mnemonic,
+            claimType,
+            signalingPeriod,
+            DdayTime,
+            true
+          );
+
+          await walletService.load(wallet.data!.mnemonic);
+
+          if (safe.hasData()) {
+            await safeService.get(safe.data?.id!);
+            history.push(RoutePath.walletOverview);
+          } else {
+            history.push(RoutePath.createWallet);
+          }
+
+          if (safe.hasError()) {
+            setErrorMessage(`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`);
+          }
         }
 
-        if (safe.hasError()) {
-          setErrorMessage(`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`);
-        }
+        safeStore.setFetching(false);
+      } catch (e: any) {
+        console.log(e);
       }
-
-      safeStore.setFetching(false);
-    } catch (e: any) {
-      console.log(e);
     }
-  };
-
-  const claimTypes = [
-    {
-      value: 0,
-      label: 'Signaling (You can send a signal when claimed)',
-    },
-    {
-      value: 1,
-      label: 'Arbitration (Arbitrators decide the claim)',
-    },
-    {
-      value: 2,
-      label: 'DDay (Claim on the exact date)',
-    },
-  ];
-
-  const getClaimName = (type: number) => {
-    return claimTypes.find((claimType) => claimType.value === type);
   };
 
   const dateConverter = (date: any) => {
@@ -134,12 +184,16 @@ export const CreateWalletScreen = observer(() => {
               onChange={(e: any) => {
                 setWalletName(e.target.value);
               }}
+              error={validator}
+              errorMsg='Please Enter a Valid Wallet Name'
             />
             <StyledInput
               type='text'
               label='Wallet Description'
               placeholder='Satoshi Wallet Details'
               onChange={(e: any) => setWalletDescription(e.target.value)}
+              error={validator}
+              errorMsg='Please Enter the Description'
             />
             <StyledInput
               type='text'
@@ -147,12 +201,14 @@ export const CreateWalletScreen = observer(() => {
               placeholder={'satoshi@safient.com'}
               value={walletBeneficiary}
               onChange={(e: any) => setWalletBeneficiary(e.target.value)}
+              errorMsg={'Enter a Valid Email ID'}
+              error={validator}
             />
           </WalletCreateFormBox>
 
           <Accordion label='Advanced options'>
             <Box marginTop={2}>
-              <Label>Select Network</Label>
+              <Label>Select Claim Type</Label>
               <DropDown
                 placeholder='select network'
                 value={getClaimName(claimType)?.label}
@@ -162,7 +218,7 @@ export const CreateWalletScreen = observer(() => {
             </Box>
 
             {claimType === 0 && (
-              <Box row hCenter marginTop={1} justify={'between'}>
+              <Box row hCenter marginTop={2} justify={'between'}>
                 <Label>Signaling Period</Label>
                 <SignnalingInput
                   type='text'
@@ -178,6 +234,56 @@ export const CreateWalletScreen = observer(() => {
                 value={date}
                 onChange={(date: any) => dateConverter(date)}
               />
+            )}
+
+            {/* topup */}
+            <Box row hCenter marginTop={3} justify={'between'}>
+              <Text variant='small' text={'Top up the wallet '} bold600 />
+              <ToggleSwitch
+                toggleID={'topup'}
+                checked={isTopupToggleChecked}
+                onChange={(e: any) => {
+                  setIsTopupToggleChecked(!isTopupToggleChecked);
+                  getAllWallets();
+                }}
+              />
+            </Box>
+
+            {isTopupToggleChecked && (
+              <>
+                <Box marginTop={2}>
+                  <Label>Select the wallet</Label>
+                  <DropDown
+                    placeholder='Select the wallet'
+                    value={options}
+                    options={selectWallet}
+                    onChange={(e: any) => {
+                      setOptions(e.value);
+                      loadBalance();
+                    }}
+                  />
+                </Box>
+
+                {balanceLoader ? (
+                  <Box marginTop={1}>
+                    <Label>Loading Wallet Balance...</Label>
+                  </Box>
+                ) : (
+                  <Box marginTop={1}>
+                    <Label>Wallet's Balance is {`${safeStore.walletInfo?.balance.eth} ETH`}</Label>
+                  </Box>
+                )}
+
+                <Box row hCenter marginTop={2} justify={'between'}>
+                  <Label>Enter Value</Label>
+                  <StyledInput
+                    type='text'
+                    placeholder={'Enter the value'}
+                    value={topupValue}
+                    onChange={(e: any) => setTopupValue(e.target.value)}
+                  />
+                </Box>
+              </>
             )}
           </Accordion>
 
@@ -196,6 +302,7 @@ export const CreateWalletScreen = observer(() => {
             label={{ text: safeStore.fetching ? 'Creating..' : 'Create 🙌' }}
             onClick={createSafe}
             color='primaryGradient'
+            disabled={validator}
           />
         </FormContainer>
       </WalletCreateFormContainer>
