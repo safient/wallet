@@ -38,7 +38,7 @@ export const StepsContainer = styled.section<StepsComponentProps>`
   }
 
   .preview-image {
-    width: 439px;
+    width: 35rem;
     box-shadow: 0px 16px 32px rgb(221 230 237 / 40%);
   }
 
