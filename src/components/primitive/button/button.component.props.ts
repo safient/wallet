@@ -3,55 +3,60 @@ import { IconProps } from '../icon-svg/icon-svg.component.props';
 import { TextComponentProps } from '../text/text.component.props';
 
 export enum Variant {
-  /**
-   * Medium sized Button
-   */
-  primary = 'primary',
+	/**
+	 * Medium sized Button
+	 */
+	primary = 'primary',
 
-  /**
-   * Small sized Button.
-   */
-  small = 'small',
+	/**
+	 * Small sized Button.
+	 */
+	small = 'small',
 
-  /**
-   * Outlined transparant Button.
-   */
-  ghost = 'ghost',
+	/**
+	 * Outlined transparant Button.
+	 */
+	ghost = 'ghost',
 }
 
 export interface ButtonComponentProps extends BoxComponentProps {
-  /**
-   * label for Text Component
-   */
-  label: TextComponentProps;
+	/**
+	 * label for Text Component
+	 */
+	label: TextComponentProps;
 
-  /**
-   * option to use diffent variants. Primary is the default variant.
-   */
-  variant: keyof typeof Variant;
+	/**
+	 * option to use diffent variants. Primary is the default variant.
+	 */
+	variant: keyof typeof Variant;
 
-  /**
-   * sets the outlined Button.
-   */
-  outlined?: boolean;
+	/**
+	 * sets the outlined Button.
+	 */
+	outlined?: boolean;
 
-  /**
-   * Allows to use Icons with Button.
-   */
-  icon?: IconProps;
+	/**
+	 * Allows to use Icons with Button.
+	 */
+	icon?: IconProps;
 
-  /**
-   * To Support loading indicator on Buttons.
-   */
-  loading?: boolean;
+	/**
+	 * To Support loading indicator on Buttons.
+	 */
+	loading?: boolean;
 
-  /**
-   * function will be triggered when the Button is clicked
-   */
-  onClick: () => void;
+	/**
+	 * function will be triggered when the Button is clicked
+	 */
+	onClick: () => void;
 
-  /**
-   * disabled button
-   */
-  disabled?: boolean;
+	/**
+	 * disabled button
+	 */
+	disabled?: boolean;
+
+	/**
+	 * class property to target specific elements
+	 */
+	className?: string;
 }

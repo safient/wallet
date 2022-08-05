@@ -5,23 +5,26 @@ import { IconProps, Size } from './icon-svg.component.props';
 import { SvgWrapper } from './icon-svg.component.style';
 import { IStyledTheme } from '../../../themes/styled-components';
 
-export const IconSvg: React.FunctionComponent<IconProps> = withTheme((props: IconProps & IStyledTheme) => {
-  const {
-    size = 'medium',
-    color,
-    name,
-    theme: { images },
-  } = props;
+export const IconSvg: React.FunctionComponent<IconProps> = withTheme(
+	(props: IconProps & IStyledTheme) => {
+		const {
+			size = 'medium',
+			color,
+			name,
+			theme: { images },
+			...rest
+		} = props;
 
-  return (
-    <SvgWrapper color={color}>
-      <ReactSVG
-        src={images[name]}
-        beforeInjection={(svg) => {
-          svg.setAttribute('width', `${Size[size]}px`);
-          svg.setAttribute('height', `${Size[size]}px`);
-        }}
-      />
-    </SvgWrapper>
-  );
-});
+		return (
+			<SvgWrapper color={color} {...rest}>
+				<ReactSVG
+					src={images[name]}
+					beforeInjection={(svg) => {
+						svg.setAttribute('width', `${Size[size]}px`);
+						svg.setAttribute('height', `${Size[size]}px`);
+					}}
+				/>
+			</SvgWrapper>
+		);
+	}
+);
