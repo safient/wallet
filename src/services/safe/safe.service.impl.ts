@@ -41,22 +41,12 @@ export class SafeServiceImpl extends Service implements SafeService {
         safe: cryptoSafe,
       };
 
-      if (claimType === Enums.ClaimType.DDayBased) {
-        signalingPeriod = 0;
-      } else if (claimType === Enums.ClaimType.SignalBased) {
-        DdayBasedTime = 0;
-      }
 
       const safe = await this.accountStore.safient.createSafe(
-        name,
-        description,
-        this.accountStore.safientUser.did,
         safeData,
-        onchain,
-        claimType,
-        signalingPeriod,
-        DdayBasedTime,
-        { email: beneficiary }
+        { email: beneficiary },
+        { type: claimType, period: (claimType == Enums.ClaimType.SignalBased ? signalingPeriod : DdayBasedTime) },
+        { name: name, description: description }
       );
       // Adding the new safe to the local SafeMeta store
       this.accountStore.safientUser.safes.push({
@@ -85,7 +75,7 @@ export class SafeServiceImpl extends Service implements SafeService {
   //Currently signal based claim
   async claim(safeId: string): Promise<ServiceResponse<Types.EventResponse>> {
     try {
-      const disputeId = await this.accountStore.safient.createClaim(safeId, {}, '', '');
+      const disputeId = await this.accountStore.safient.createClaim(safeId);
       return this.success<Types.EventResponse>(disputeId.data!);
     } catch (e: any) {
       console.log(e);
@@ -114,7 +104,7 @@ export class SafeServiceImpl extends Service implements SafeService {
 
       if (role === 'creator') {
         recoveredData = await this.accountStore.safient.recoverSafeByCreator(safeId);
-        secretData = recoveredData.data.data.safe.data;
+        secretData = recoveredData.data.safe.data;
       } else {
         recoveredData = await this.accountStore.safient.recoverSafeByBeneficiary(
           safeId,

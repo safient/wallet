@@ -28,7 +28,7 @@ export enum Color {
  */
 export interface WalletCardProps {
   id: string;
-  walletName: string;
+  walletName?: string;
   roleName: keyof typeof UserRole;
   status: keyof typeof WalletStatus;
   shimmer?: boolean;

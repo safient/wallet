@@ -82,7 +82,7 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
             <Label> Wallet Beneficiary</Label>
           </BeneficiaryContainer>
           <Box marginTop={-2} marginBottom={1.2}>
-            <StyledInput type='text' placeholder='johndoe@safeint.com' value={safeStore.safe?.beneficiary} />
+            <StyledInput type='text' placeholder='johndoe@safeint.com' value={safeStore.safe?.beneficiary? safeStore.safe?.beneficiary : ''} />
           </Box>
 
           <Accordion label='Advanced Options'>

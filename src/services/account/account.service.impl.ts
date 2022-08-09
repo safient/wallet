@@ -32,12 +32,11 @@ export class AccountServiceImpl extends Service implements AccountService {
       const signer = web3Provider.getSigner();
       const address = await signer.getAddress();
       const balance = await signer.getBalance();
-      const safient = new SafientCore(signer, this.accountStore.network, Enums.DatabaseType.threadDB, '', '');
+      const safient = new SafientCore(this.accountStore.network);
       this.accountStore.setWeb3Account(web3Provider, signer, chainId, address, formatEther(balance), safient);
 
       return this.success<boolean>(true);
     } catch (e: any) {
-      console.log(e);
 
       return this.error<boolean>(e);
     }
@@ -49,7 +48,7 @@ export class AccountServiceImpl extends Service implements AccountService {
         const provider = await this._connectWallet();
         await this.loadAccount(provider);
       }
-      const user = await this.accountStore.safient.loginUser();
+      const user = await this.accountStore.safient.loginUser(this.accountStore.signer!);
 
       if (user.data) {
         this.accountStore.setSafientUser(user.data);
@@ -75,7 +74,7 @@ export class AccountServiceImpl extends Service implements AccountService {
 
   async register(name: string, email: string): Promise<ServiceResponse<Types.User>> {
     try {
-      const user = await this.accountStore.safient.createUser(name, email, 0, this.accountStore.address, false);
+      const user = await this.accountStore.safient.createUser(this.accountStore.signer!, {name: name, email: email}, false);
 
       if (user.data) {
         this.accountStore.setSafientUser(user.data);

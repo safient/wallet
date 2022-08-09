@@ -4,11 +4,11 @@ import { StoreImpl } from '../store/store.impl';
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
 import { SafientCore, Types, Enums } from '@safient/core';
 
-const UserNotFoundCode = 10;
+const UserNotFoundCode = 100;
 
 export class AccountStoreImpl extends StoreImpl implements AccountStore {
   private web3Provider?: Web3Provider;
-  private signer?: JsonRpcSigner;
+  signer?: JsonRpcSigner;
   network: Enums.NetworkType = Enums.NetworkType.testnet;
   name: string = '';
   email: string = '';
