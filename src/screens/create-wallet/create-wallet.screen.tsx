@@ -62,6 +62,9 @@ export const CreateWalletScreen = observer(() => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [validator, setValidator] = useState(false);
 
+	const [isBeneficiaryChecked, setIsBeneficiaryChecked] = useState(false);
+	const [claimToggle, setClaimToggle] = useState(false);
+
 	const getAllWallets = async () => {
 		const wallets = await accountStore.safientUser?.safes.map((safes) => ({
 			label: safes.safeName,
@@ -208,7 +211,21 @@ export const CreateWalletScreen = observer(() => {
 						/>
 					</WalletCreateFormBox>
 
-					<Accordion label='Advanced options'>
+					{/* bebeficiary */}
+
+					<Box row hCenter marginTop={3} justify={'between'}>
+						<Text variant='small' text={'Add a Beneficaiary '} bold600 />
+						<ToggleSwitch
+							toggleID={'beneficiary'}
+							checked={isBeneficiaryChecked}
+							onChange={(e: any) => {
+								setIsBeneficiaryChecked(!isBeneficiaryChecked);
+								getAllWallets();
+							}}
+						/>
+					</Box>
+
+					{isBeneficiaryChecked && (
 						<Box marginTop={2}>
 							<StyledInput
 								type='text'
@@ -220,90 +237,108 @@ export const CreateWalletScreen = observer(() => {
 								error={validator}
 							/>
 						</Box>
-						<Box marginTop={2}>
-							<Label>Select Claim Type</Label>
-							<DropDown
-								placeholder='select network'
-								value={getClaimName(claimType)?.label}
-								options={claimTypes}
-								onChange={(e: any) => setClaimType(e.value)}
-							/>
-						</Box>
+					)}
 
-						{claimType === 0 && (
-							<Box row hCenter marginTop={2} justify={'between'}>
-								<Label>Signaling Period</Label>
-								<SignnalingInput
-									type='text'
-									placeholder={signalingPeriod.toString()}
-									onChange={(e: any) =>
-										setSignalingPeriod(parseInt(e.target.value))
-									}
+					{/* claim type */}
+
+					<Box row hCenter marginTop={3} justify={'between'}>
+						<Text variant='small' text={'Add a Claim Type '} bold600 />
+						<ToggleSwitch
+							toggleID={'selectClaimType'}
+							checked={claimToggle}
+							onChange={(e: any) => {
+								setClaimToggle(!claimToggle);
+							}}
+						/>
+					</Box>
+
+					{claimToggle && (
+						<>
+							<Box marginTop={2}>
+								<Label>Select Claim Type</Label>
+								<DropDown
+									placeholder='select network'
+									value={getClaimName(claimType)?.label}
+									options={claimTypes}
+									onChange={(e: any) => setClaimType(e.value)}
 								/>
 							</Box>
-						)}
-						{claimType === 2 && (
-							<DateTimePicker
-								label='Select DDay Date (Seconds)'
-								placeholder='DDay Date'
-								value={date}
-								onChange={(date: any) => dateConverter(date)}
-							/>
-						)}
 
-						{/* topup */}
-						<Box row hCenter marginTop={3} justify={'between'}>
-							<Text variant='small' text={'Top up the wallet '} bold600 />
-							<ToggleSwitch
-								toggleID={'topup'}
-								checked={isTopupToggleChecked}
-								onChange={(e: any) => {
-									setIsTopupToggleChecked(!isTopupToggleChecked);
-									getAllWallets();
-								}}
-							/>
-						</Box>
-
-						{isTopupToggleChecked && (
-							<>
-								<Box marginTop={2}>
-									<Label>Select the wallet</Label>
-									<DropDown
-										placeholder='Select the wallet'
-										value={options}
-										options={selectWallet}
-										onChange={(e: any) => {
-											setOptions(e.value);
-											loadBalance();
-										}}
-									/>
-								</Box>
-
-								{balanceLoader ? (
-									<Box marginTop={1}>
-										<Label>Loading Wallet Balance...</Label>
-									</Box>
-								) : (
-									<Box marginTop={1}>
-										<Label>
-											Wallet's Balance is{' '}
-											{`${safeStore.walletInfo?.balance.eth} ETH`}
-										</Label>
-									</Box>
-								)}
-
+							{claimType === 0 && (
 								<Box row hCenter marginTop={2} justify={'between'}>
-									<Label>Enter Value</Label>
-									<StyledInput
+									<Label>Signaling Period</Label>
+									<SignnalingInput
 										type='text'
-										placeholder={'Enter the value'}
-										value={topupValue}
-										onChange={(e: any) => setTopupValue(e.target.value)}
+										placeholder={signalingPeriod.toString()}
+										onChange={(e: any) =>
+											setSignalingPeriod(parseInt(e.target.value))
+										}
 									/>
 								</Box>
-							</>
-						)}
-					</Accordion>
+							)}
+							{claimType === 2 && (
+								<DateTimePicker
+									label='Select DDay Date (Seconds)'
+									placeholder='DDay Date'
+									value={date}
+									onChange={(date: any) => dateConverter(date)}
+								/>
+							)}
+						</>
+					)}
+
+					{/* topup */}
+					<Box row hCenter marginTop={3} justify={'between'}>
+						<Text variant='small' text={'Top up the wallet '} bold600 />
+						<ToggleSwitch
+							toggleID={'topup'}
+							checked={isTopupToggleChecked}
+							onChange={(e: any) => {
+								setIsTopupToggleChecked(!isTopupToggleChecked);
+								getAllWallets();
+							}}
+						/>
+					</Box>
+
+					{isTopupToggleChecked && (
+						<>
+							<Box marginTop={2}>
+								<Label>Select the wallet</Label>
+								<DropDown
+									placeholder='Select the wallet'
+									value={options}
+									options={selectWallet}
+									onChange={(e: any) => {
+										setOptions(e.value);
+										loadBalance();
+									}}
+								/>
+							</Box>
+
+							{balanceLoader ? (
+								<Box marginTop={1}>
+									<Label>Loading Wallet Balance...</Label>
+								</Box>
+							) : (
+								<Box marginTop={1}>
+									<Label>
+										Wallet's Balance is{' '}
+										{`${safeStore.walletInfo?.balance.eth} ETH`}
+									</Label>
+								</Box>
+							)}
+
+							<Box row hCenter marginTop={2} justify={'between'}>
+								<Label>Enter Value</Label>
+								<StyledInput
+									type='text'
+									placeholder={'Enter the value'}
+									value={topupValue}
+									onChange={(e: any) => setTopupValue(e.target.value)}
+								/>
+							</Box>
+						</>
+					)}
 
 					<Box marginTop={2}>
 						<Alert
