@@ -23,7 +23,7 @@ export class SafeServiceImpl extends Service implements SafeService {
     description: string,
     beneficiary: string,
     data: string,
-    claimType: Enums.ClaimType,
+    claimType: Enums.ClaimType | null, 
     signalingPeriod: number,
     DdayBasedTime: number,
     onchain: boolean
@@ -45,7 +45,7 @@ export class SafeServiceImpl extends Service implements SafeService {
       const safe = await this.accountStore.safient.createSafe(
         safeData,
         { email: beneficiary },
-        { type: claimType, period: (claimType == Enums.ClaimType.SignalBased ? signalingPeriod : DdayBasedTime) },
+        claimType != null ? { type: claimType, period: (claimType == Enums.ClaimType.SignalBased ? signalingPeriod : DdayBasedTime) } : undefined,
         { name: name, description: description }
       );
       // Adding the new safe to the local SafeMeta store

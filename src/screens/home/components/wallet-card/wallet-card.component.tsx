@@ -19,6 +19,7 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
     safeStore.setRole(roleName);
     history.push(roleName === 'creator' ? RoutePath.walletOverview : RoutePath.walletClaim);
     const safe = await safeService.get(id);
+    history.push(!safe.data?.claimType ? RoutePath.walletOverview : RoutePath.walletClaim);
     const safeData = await safeService.recover(id, roleName);
     if (safeData.hasData()) {
       if (safeData.data?.seedPhrase) {

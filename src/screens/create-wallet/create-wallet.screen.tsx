@@ -45,7 +45,7 @@ export const CreateWalletScreen = observer(() => {
 	);
 	const [signalingPeriod, setSignalingPeriod] = useState(300);
 
-	const [claimType, setClaimType] = useState(0);
+	const [claimType, setClaimType] = useState();
 	const [DdayTime, setDdayTime] = useState(0);
 
 	const [date, setDate] = useState(null);
@@ -229,7 +229,7 @@ export const CreateWalletScreen = observer(() => {
 						<Box marginTop={2}>
 							<StyledInput
 								type='text'
-								label='Add Beneficiary (Optional)'
+								label='Beneficiary Email or DID'
 								placeholder={'satoshi@safient.com'}
 								value={walletBeneficiary}
 								onChange={(e: any) => setWalletBeneficiary(e.target.value)}
@@ -254,6 +254,15 @@ export const CreateWalletScreen = observer(() => {
 
 					{claimToggle && (
 						<>
+							<Box marginTop={2}>
+								<Alert
+							variant='info'
+							icon
+							label={{
+								text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
+							}}
+						/>
+							</Box>
 							<Box marginTop={2}>
 								<Label>Select Claim Type</Label>
 								<DropDown
@@ -339,16 +348,6 @@ export const CreateWalletScreen = observer(() => {
 							</Box>
 						</>
 					)}
-
-					<Box marginTop={2}>
-						<Alert
-							variant='info'
-							icon
-							label={{
-								text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
-							}}
-						/>
-					</Box>
 
 					<StyledButton
 						variant='primary'
