@@ -14,7 +14,7 @@ export const BalanceInUsd = styled(Text)`
 
 export const BalanceInEth = styled(Text)`
   display: inline-flex;
-  marginn-top: 0.6rem;
+  margin-top: 0.6rem;
 `;
 
 export const IconsContainer = styled(Box)`
@@ -42,7 +42,9 @@ export const WalletOverViewContainer = styled.div`
 export const WalletOverView = styled(Box)`
   display: inline-block;
   width: 59.6rem !important;
+
   @media screen and (max-width: ${BreakPoints.small}) {
+  
     padding: 2rem !important;
   }
 `;

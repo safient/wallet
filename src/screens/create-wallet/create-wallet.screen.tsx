@@ -6,11 +6,9 @@ import { useServices } from 'services';
 import { useStores } from 'store';
 import { observer } from 'mobx-react-lite';
 import dayjs from 'dayjs';
-
 import {
 	Box,
 	NoticeLoader,
-	Accordion,
 	DateTimePicker,
 	IconSvg,
 	DropDown,
@@ -30,7 +28,7 @@ import {
 	SignnalingInput,
 } from './create-wallet.screen.styles';
 import { claimTypes, getClaimName } from 'utils';
-import { FormValidator } from 'utils/FormValidator';
+import { useNavigate } from 'hooks';
 
 export const CreateWalletScreen = observer(() => {
 	const { safeService, walletService } = useServices();
@@ -40,9 +38,7 @@ export const CreateWalletScreen = observer(() => {
 	const [walletName, setWalletName] = useState('');
 	const [walletDescription, setWalletDescription] = useState('');
 
-	const [walletBeneficiary, setWalletBeneficiary] = useState(
-		safeService.getDefaultConfig()?.beneficiary
-	);
+	const [walletBeneficiary, setWalletBeneficiary] = useState();
 	const [signalingPeriod, setSignalingPeriod] = useState(300);
 
 	const [claimType, setClaimType] = useState();
@@ -62,11 +58,22 @@ export const CreateWalletScreen = observer(() => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [validator, setValidator] = useState(false);
 
+	const [disableBtn, setDisableBtn] = useState(true);
+	const [topupError, setTopupError] = useState(false);
+
 	const [isBeneficiaryChecked, setIsBeneficiaryChecked] = useState(false);
 	const [claimToggle, setClaimToggle] = useState(false);
 
-	const getAllWallets = async () => {
-		const wallets = await accountStore.safientUser?.safes.map((safes) => ({
+	useEffect(() => {
+		if (walletName) {
+			setValidator(false);
+			setDisableBtn(false);
+		}
+	}, [walletName]);
+
+	const getAllWallets =  () => {
+		console.log('loading wallets.....................');
+		const wallets =  accountStore.safientUser?.safes.map((safes) => ({
 			label: safes.safeName,
 			value: safes.safeId,
 		}));
@@ -75,6 +82,7 @@ export const CreateWalletScreen = observer(() => {
 	};
 
 	const loadBalance = async () => {
+		console.log('loading balanceeee.....................');
 		setBalanceLoader(true);
 		safeStore.setRole('creator');
 		const safeData = await safeService.recover(options, 'creator');
@@ -88,64 +96,58 @@ export const CreateWalletScreen = observer(() => {
 		setBalanceLoader(false);
 	};
 
-	useEffect(() => {
-		if (walletName || walletDescription || walletBeneficiary) {
-			setValidator(false);
-		}
-	}, [walletBeneficiary, walletDescription, walletName]);
-
-	const backButtonHandler = () => {
-		history.goBack();
-	};
-
 	const createSafe = async () => {
-		if (!walletName || !walletDescription) {
+		if (!walletName) {
+			setDisableBtn(true);
 			setValidator(true);
 		} else {
 			setValidator(false);
 			try {
-				if (safeStore.walletInfo?.balance.eth > topupValue) {
-					alert('topup value should be less than value');
-				}
-				safeStore.setFetching(true);
+				if (
+					topupValue.length > 0 &&
+					topupValue >= safeStore.walletInfo?.balance.eth
+				) {
+					setTopupError(true);
+				} else {
+					safeStore.setFetching(true);
 
-				const wallet = await walletService.create();
+					const wallet = await walletService.create();
 
-				let topupAddress = wallet.data?.address;
+					let topupAddress = wallet.data?.address;
 
-				await walletService.info();
-				await walletService.load(seedPhrase);
-				await walletService.send(topupAddress, topupValue);
+					await walletService.info();
+					await walletService.load(seedPhrase);
+					await walletService.send(topupAddress, topupValue);
 
-				if (wallet.hasData()) {
-					const safe = await safeService.create(
-						walletName,
-						walletDescription,
-						walletBeneficiary,
-						wallet.data!.mnemonic,
-						claimType,
-						signalingPeriod,
-						DdayTime,
-						true
-					);
-
-					await walletService.load(wallet.data!.mnemonic);
-
-					if (safe.hasData()) {
-						await safeService.get(safe.data?.id!);
-						history.push(RoutePath.walletOverview);
-					} else {
-						history.push(RoutePath.createWallet);
-					}
-
-					if (safe.hasError()) {
-						setErrorMessage(
-							`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`
+					if (wallet.hasData()) {
+						const safe = await safeService.create(
+							walletName,
+							walletDescription,
+							walletBeneficiary,
+							wallet.data!.mnemonic,
+							claimType,
+							signalingPeriod,
+							DdayTime,
+							true
 						);
-					}
-				}
 
-				safeStore.setFetching(false);
+						await walletService.load(wallet.data!.mnemonic);
+
+						if (safe.hasData()) {
+							await safeService.get(safe.data?.id!);
+							history.push(RoutePath.walletOverview);
+						} else {
+							history.push(RoutePath.createWallet);
+						}
+
+						if (safe.hasError()) {
+							setErrorMessage(
+								`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`
+							);
+						}
+					}
+					safeStore.setFetching(false);
+				}
 			} catch (e: any) {
 				console.log(e);
 			}
@@ -158,7 +160,11 @@ export const CreateWalletScreen = observer(() => {
 		const futureTime = dayjs(date).valueOf() / 1000;
 		const timeDifference = futureTime - presentTime;
 		setDdayTime(Math.floor(timeDifference));
+	
+		
 	};
+	
+
 
 	return (
 		<HomeScreenContainer>
@@ -166,7 +172,7 @@ export const CreateWalletScreen = observer(() => {
 				<NoticeLoader
 					label={{ tx: 'wallet.creatingLabel' }}
 					helperText={{
-						text: 'Please sign the signature if prompted. This may take a few seconds ...',
+						texttttt: 'Please sign the signature if prompted. This may take a few seconds ...',
 					}}
 				/>
 			)}
@@ -179,7 +185,7 @@ export const CreateWalletScreen = observer(() => {
 			<WalletCreateFormContainer>
 				<FormContainer>
 					<Box row vCenter>
-						<Box onClick={backButtonHandler} flex={1} marginTop={0.3}>
+						<Box onClick={() => useNavigate(history)} flex={1} marginTop={0.3}>
 							<IconSvg name='arrowLeft' />
 						</Box>
 						<Box flex={5} vCenter>
@@ -206,8 +212,6 @@ export const CreateWalletScreen = observer(() => {
 							label='Wallet Description'
 							placeholder='Satoshi Wallet Details'
 							onChange={(e: any) => setWalletDescription(e.target.value)}
-							error={validator}
-							errorMsg='Please Enter the Description'
 						/>
 					</WalletCreateFormBox>
 
@@ -222,6 +226,8 @@ export const CreateWalletScreen = observer(() => {
 								setIsBeneficiaryChecked(!isBeneficiaryChecked);
 								getAllWallets();
 							}}
+
+						
 						/>
 					</Box>
 
@@ -256,17 +262,17 @@ export const CreateWalletScreen = observer(() => {
 						<>
 							<Box marginTop={2}>
 								<Alert
-							variant='info'
-							icon
-							label={{
-								text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
-							}}
-						/>
+									variant='info'
+									icon
+									label={{
+										text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
+									}}
+								/>
 							</Box>
 							<Box marginTop={2}>
 								<Label>Select Claim Type</Label>
 								<DropDown
-									placeholder='select network'
+									placeholder='Select Claim Type'
 									value={getClaimName(claimType)?.label}
 									options={claimTypes}
 									onChange={(e: any) => setClaimType(e.value)}
@@ -338,12 +344,14 @@ export const CreateWalletScreen = observer(() => {
 							)}
 
 							<Box row hCenter marginTop={2} justify={'between'}>
-								<Label>Enter Value</Label>
+								<Label>Enter Topup Value</Label>
 								<StyledInput
 									type='text'
-									placeholder={'Enter the value'}
+									placeholder={'Enter the Topup value'}
 									value={topupValue}
 									onChange={(e: any) => setTopupValue(e.target.value)}
+									error={topupError}
+									errorMsg={`topup value should be less than ${safeStore.walletInfo?.balance.eth} ETH.`}
 								/>
 							</Box>
 						</>
@@ -354,7 +362,7 @@ export const CreateWalletScreen = observer(() => {
 						label={{ text: safeStore.fetching ? 'Creating..' : 'Create 🙌' }}
 						onClick={createSafe}
 						color='primaryGradient'
-						disabled={validator}
+						disabled={disableBtn}
 					/>
 				</FormContainer>
 			</WalletCreateFormContainer>

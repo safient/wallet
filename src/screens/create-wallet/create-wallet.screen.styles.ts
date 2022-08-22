@@ -9,8 +9,7 @@ export const HomeScreenContainer = styled(Box)`
   height: 95%;
   margin: 3rem !important;
   @media screen and (max-width: ${BreakPoints.small}) {
-    height: 80vh;
-    width: 100vw;
+    width:100%;
   }
 `;
 
@@ -28,8 +27,8 @@ export const WalletCreateFormContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10rem;
-  height: 100vh;
+  margin-top:10rem;
+
 `;
 
 export const WalletCreateFormBox = styled(Box)`
@@ -39,15 +38,16 @@ export const WalletCreateFormBox = styled(Box)`
 
 export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
-  width: 60rem;
+  min-width: 60rem;
   padding: 5rem 8rem 5rem 8rem;
   align-items: center;
   margin-top: -8rem;
 
   @media screen and (max-width: ${BreakPoints.small}) {
-    margin-top: -10rem;
-    width: 320px;
+    margin-top: -12rem;
+    min-width:36rem;
     padding: 3rem 1.5rem 3rem 1.5rem;
+   
   }
 `;
 
