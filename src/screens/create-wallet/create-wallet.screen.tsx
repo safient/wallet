@@ -262,15 +262,6 @@ export const CreateWalletScreen = observer(() => {
           {claimToggle && (
             <>
               <Box marginTop={2}>
-                <Alert
-                  variant="info"
-                  icon
-                  label={{
-                    text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
-                  }}
-                />
-              </Box>
-              <Box marginTop={2}>
                 <Label>Select Claim Type</Label>
                 <DropDown
                   placeholder="Select Claim Type"
@@ -359,7 +350,15 @@ export const CreateWalletScreen = observer(() => {
               </Box>
             </>
           )}
-
+          <Box marginTop={2}>
+            <Alert
+              variant="info"
+              icon
+              label={{
+                text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Add a Claim Type" to update',
+              }}
+            />
+          </Box>
           <StyledButton
             variant="primary"
             label={{ text: safeStore.fetching ? "Creating.." : "Create 🙌" }}
