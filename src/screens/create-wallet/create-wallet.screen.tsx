@@ -38,7 +38,8 @@ export const CreateWalletScreen = observer(() => {
   const [walletName, setWalletName] = useState("");
   const [walletDescription, setWalletDescription] = useState("");
 
-  const [walletBeneficiary, setWalletBeneficiary] = useState();
+  const [walletBeneficiary, setWalletBeneficiary] = useState(
+    safeService.getDefaultConfig()?.beneficiary);
   const [signalingPeriod, setSignalingPeriod] = useState(300);
 
   const [claimType, setClaimType] = useState();
@@ -72,7 +73,6 @@ export const CreateWalletScreen = observer(() => {
   }, [walletName]);
 
   const getAllWallets = () => {
-    console.log("loading wallets.....................");
     const wallets = accountStore.safientUser?.safes.map((safes) => ({
       label: safes.safeName,
       value: safes.safeId,
@@ -82,7 +82,7 @@ export const CreateWalletScreen = observer(() => {
   };
 
   const loadBalance = async () => {
-    console.log("loading balanceeee.....................");
+
     setBalanceLoader(true);
     safeStore.setRole("creator");
     const safeData = await safeService.recover(options, "creator");
@@ -118,27 +118,28 @@ export const CreateWalletScreen = observer(() => {
           await walletService.info();
           await walletService.load(seedPhrase);
           await walletService.send(topupAddress, topupValue);
-          safeStore.setStatusMessage("Almost there..");
+          safeStore.setStatusMessage("Initiating your wallet... 👷 ");
 
           if (wallet.hasData()) {
             const safe = await safeService.create(
               walletName,
               walletDescription,
-              walletBeneficiary,
+              isBeneficiaryChecked ? walletBeneficiary : null,
               wallet.data!.mnemonic,
               claimType,
               signalingPeriod,
               DdayTime,
               true
             );
-            safeStore.setStatusMessage("Creating Wallet..");
+            safeStore.setStatusMessage("Creating Wallet... 🚀");
 
             await walletService.load(wallet.data!.mnemonic);
 
             if (safe.hasData()) {
               await safeService.get(safe.data?.id!);
-              safeStore.setStatusMessage("Wallet Created SuccessFully");
+              safeStore.setStatusMessage("Wallet Created Successfully ✅");
               history.push(RoutePath.walletOverview);
+              safeStore.setStatusMessage("");
             } else {
               history.push(RoutePath.createWallet);
             }
@@ -174,7 +175,7 @@ export const CreateWalletScreen = observer(() => {
           helperText={{
             text: `${
               safeStore.getStatusMessage() ||
-              "Please sign the signature if prompted. This may take a few seconds ..."
+              "Creating Wallet... 🚀 Please sign the message if prompted"
             }`,
           }}
         />
