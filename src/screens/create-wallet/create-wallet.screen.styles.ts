@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Box, Button, Input, Text } from '../../components/primitive';
-import { BreakPoints } from '../../utils';
+import styled from "styled-components";
+import { Box, Button, Input, Text } from "../../components/primitive";
+import { BreakPoints } from "../../utils";
 
 /**
  * Main container of the home screen.
@@ -8,8 +8,9 @@ import { BreakPoints } from '../../utils';
 export const HomeScreenContainer = styled(Box)`
   height: 95%;
   margin: 3rem !important;
+
   @media screen and (max-width: ${BreakPoints.small}) {
-    width:100%;
+    width: 100%;
   }
 `;
 
@@ -27,8 +28,7 @@ export const WalletCreateFormContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top:10rem;
-
+  margin-top: 10rem;
 `;
 
 export const WalletCreateFormBox = styled(Box)`
@@ -38,16 +38,15 @@ export const WalletCreateFormBox = styled(Box)`
 
 export const FormContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white};
-  min-width: 60rem;
+  width: 60rem;
   padding: 5rem 8rem 5rem 8rem;
   align-items: center;
   margin-top: -8rem;
 
   @media screen and (max-width: ${BreakPoints.small}) {
     margin-top: -12rem;
-    min-width:36rem;
     padding: 3rem 1.5rem 3rem 1.5rem;
-   
+    width: 38rem;
   }
 `;
 

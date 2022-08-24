@@ -1,371 +1,374 @@
 // @ts-nocheck - no overload matched this call error.
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { RoutePath } from 'navigation/route-path';
-import { useServices } from 'services';
-import { useStores } from 'store';
-import { observer } from 'mobx-react-lite';
-import dayjs from 'dayjs';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { RoutePath } from "navigation/route-path";
+import { useServices } from "services";
+import { useStores } from "store";
+import { observer } from "mobx-react-lite";
+import dayjs from "dayjs";
 import {
-	Box,
-	NoticeLoader,
-	DateTimePicker,
-	IconSvg,
-	DropDown,
-	Alert,
-	ToggleSwitch,
-	Text,
-} from 'components/primitive';
+  Box,
+  NoticeLoader,
+  DateTimePicker,
+  IconSvg,
+  DropDown,
+  Alert,
+  ToggleSwitch,
+  Text,
+} from "components/primitive";
 import {
-	FormContainer,
-	HomeScreenContainer,
-	StyledButton,
-	StyledInput,
-	WalletCreateFormContainer,
-	WalletCreateFormBox,
-	WalletCreateText,
-	Label,
-	SignnalingInput,
-} from './create-wallet.screen.styles';
-import { claimTypes, getClaimName } from 'utils';
-import { useNavigate } from 'hooks';
+  FormContainer,
+  HomeScreenContainer,
+  StyledButton,
+  StyledInput,
+  WalletCreateFormContainer,
+  WalletCreateFormBox,
+  WalletCreateText,
+  Label,
+  SignnalingInput,
+} from "./create-wallet.screen.styles";
+import { claimTypes, getClaimName } from "utils";
+import { useNavigate } from "hooks";
 
 export const CreateWalletScreen = observer(() => {
-	const { safeService, walletService } = useServices();
-	const { safeStore, accountStore } = useStores();
-	let history = useHistory();
+  const { safeService, walletService } = useServices();
+  const { safeStore, accountStore } = useStores();
+  let history = useHistory();
 
-	const [walletName, setWalletName] = useState('');
-	const [walletDescription, setWalletDescription] = useState('');
+  const [walletName, setWalletName] = useState("");
+  const [walletDescription, setWalletDescription] = useState("");
 
-	const [walletBeneficiary, setWalletBeneficiary] = useState();
-	const [signalingPeriod, setSignalingPeriod] = useState(300);
+  const [walletBeneficiary, setWalletBeneficiary] = useState();
+  const [signalingPeriod, setSignalingPeriod] = useState(300);
 
-	const [claimType, setClaimType] = useState();
-	const [DdayTime, setDdayTime] = useState(0);
+  const [claimType, setClaimType] = useState();
+  const [DdayTime, setDdayTime] = useState(0);
 
-	const [date, setDate] = useState(null);
-	const [isTopupToggleChecked, setIsTopupToggleChecked] = useState(false);
+  const [date, setDate] = useState(null);
+  const [isTopupToggleChecked, setIsTopupToggleChecked] = useState(false);
 
-	const [topupValue, setTopupValue] = useState<any>('');
+  const [topupValue, setTopupValue] = useState<any>("");
 
-	const [selectWallet, setSelectWallet] = useState([]);
-	const [options, setOptions] = useState(selectWallet);
+  const [selectWallet, setSelectWallet] = useState([]);
+  const [options, setOptions] = useState(selectWallet);
 
-	const [seedPhrase, setSeedPhrase] = useState<any>('');
-	const [balanceLoader, setBalanceLoader] = useState(false);
+  const [seedPhrase, setSeedPhrase] = useState<any>("");
+  const [balanceLoader, setBalanceLoader] = useState(false);
 
-	const [errorMessage, setErrorMessage] = useState('');
-	const [validator, setValidator] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [validator, setValidator] = useState(false);
 
-	const [disableBtn, setDisableBtn] = useState(true);
-	const [topupError, setTopupError] = useState(false);
+  const [disableBtn, setDisableBtn] = useState(true);
+  const [topupError, setTopupError] = useState(false);
 
-	const [isBeneficiaryChecked, setIsBeneficiaryChecked] = useState(false);
-	const [claimToggle, setClaimToggle] = useState(false);
+  const [isBeneficiaryChecked, setIsBeneficiaryChecked] = useState(false);
+  const [claimToggle, setClaimToggle] = useState(false);
 
-	useEffect(() => {
-		if (walletName) {
-			setValidator(false);
-			setDisableBtn(false);
-		}
-	}, [walletName]);
+  useEffect(() => {
+    if (walletName) {
+      setValidator(false);
+      setDisableBtn(false);
+    }
+  }, [walletName]);
 
-	const getAllWallets =  () => {
-		console.log('loading wallets.....................');
-		const wallets =  accountStore.safientUser?.safes.map((safes) => ({
-			label: safes.safeName,
-			value: safes.safeId,
-		}));
+  const getAllWallets = () => {
+    console.log("loading wallets.....................");
+    const wallets = accountStore.safientUser?.safes.map((safes) => ({
+      label: safes.safeName,
+      value: safes.safeId,
+    }));
 
-		setSelectWallet(wallets);
-	};
+    setSelectWallet(wallets);
+  };
 
-	const loadBalance = async () => {
-		console.log('loading balanceeee.....................');
-		setBalanceLoader(true);
-		safeStore.setRole('creator');
-		const safeData = await safeService.recover(options, 'creator');
+  const loadBalance = async () => {
+    console.log("loading balanceeee.....................");
+    setBalanceLoader(true);
+    safeStore.setRole("creator");
+    const safeData = await safeService.recover(options, "creator");
 
-		setSeedPhrase(safeData.data?.seedPhrase);
-		if (safeData.hasData()) {
-			if (safeData.data?.seedPhrase)
-				await walletService.load(safeData.data?.seedPhrase);
-		}
+    setSeedPhrase(safeData.data?.seedPhrase);
+    if (safeData.hasData()) {
+      if (safeData.data?.seedPhrase)
+        await walletService.load(safeData.data?.seedPhrase);
+    }
 
-		setBalanceLoader(false);
-	};
+    setBalanceLoader(false);
+  };
 
-	const createSafe = async () => {
-		if (!walletName) {
-			setDisableBtn(true);
-			setValidator(true);
-		} else {
-			setValidator(false);
-			try {
-				if (
-					topupValue.length > 0 &&
-					topupValue >= safeStore.walletInfo?.balance.eth
-				) {
-					setTopupError(true);
-				} else {
-					safeStore.setFetching(true);
+  const createWallet = async () => {
+    if (!walletName) {
+      setDisableBtn(true);
+      setValidator(true);
+    } else {
+      setValidator(false);
+      try {
+        if (
+          topupValue.length > 0 &&
+          topupValue >= safeStore.walletInfo?.balance.eth
+        ) {
+          setTopupError(true);
+        } else {
+          safeStore.setFetching(true);
 
-					const wallet = await walletService.create();
+          const wallet = await walletService.create();
 
-					let topupAddress = wallet.data?.address;
+          let topupAddress = wallet.data?.address;
 
-					await walletService.info();
-					await walletService.load(seedPhrase);
-					await walletService.send(topupAddress, topupValue);
+          await walletService.info();
+          await walletService.load(seedPhrase);
+          await walletService.send(topupAddress, topupValue);
+          safeStore.setStatusMessage("Almost there..");
 
-					if (wallet.hasData()) {
-						const safe = await safeService.create(
-							walletName,
-							walletDescription,
-							walletBeneficiary,
-							wallet.data!.mnemonic,
-							claimType,
-							signalingPeriod,
-							DdayTime,
-							true
-						);
+          if (wallet.hasData()) {
+            const safe = await safeService.create(
+              walletName,
+              walletDescription,
+              walletBeneficiary,
+              wallet.data!.mnemonic,
+              claimType,
+              signalingPeriod,
+              DdayTime,
+              true
+            );
+            safeStore.setStatusMessage("Creating Wallet..");
 
-						await walletService.load(wallet.data!.mnemonic);
+            await walletService.load(wallet.data!.mnemonic);
 
-						if (safe.hasData()) {
-							await safeService.get(safe.data?.id!);
-							history.push(RoutePath.walletOverview);
-						} else {
-							history.push(RoutePath.createWallet);
-						}
+            if (safe.hasData()) {
+              await safeService.get(safe.data?.id!);
+              safeStore.setStatusMessage("Wallet Created SuccessFully");
+              history.push(RoutePath.walletOverview);
+            } else {
+              history.push(RoutePath.createWallet);
+            }
 
-						if (safe.hasError()) {
-							setErrorMessage(
-								`Something went wrong while creating the wallet. ${safe.getErrorMessage()}`
-							);
-						}
-					}
-					safeStore.setFetching(false);
-				}
-			} catch (e: any) {
-				console.log(e);
-			}
-		}
-	};
+            if (safe.hasError()) {
+              setErrorMessage(
+                `Something went wrong while creating the wallet. ${safe.getErrorMessage()}`
+              );
+            }
+          }
 
-	const dateConverter = (date: any) => {
-		setDate(date);
-		const presentTime = Date.now() / 1000;
-		const futureTime = dayjs(date).valueOf() / 1000;
-		const timeDifference = futureTime - presentTime;
-		setDdayTime(Math.floor(timeDifference));
-	
-		
-	};
-	
+          safeStore.setFetching(false);
+        }
+      } catch (e: any) {
+        console.log(e);
+      }
+    }
+  };
 
+  const dateConverter = (date: any) => {
+    setDate(date);
+    const presentTime = Date.now() / 1000;
+    const futureTime = dayjs(date).valueOf() / 1000;
+    const timeDifference = futureTime - presentTime;
+    setDdayTime(Math.floor(timeDifference));
+  };
 
-	return (
-		<HomeScreenContainer>
-			{safeStore.fetching && (
-				<NoticeLoader
-					label={{ tx: 'wallet.creatingLabel' }}
-					helperText={{
-						texttttt: 'Please sign the signature if prompted. This may take a few seconds ...',
-					}}
-				/>
-			)}
-			<Box hCenter vCenter>
-				{errorMessage.length > 0 && (
-					<Alert label={{ text: errorMessage }} variant={'error'} icon />
-				)}
-			</Box>
+  return (
+    <HomeScreenContainer>
+      {safeStore.fetching && (
+        <NoticeLoader
+          label={{ tx: "wallet.creatingLabel" }}
+          helperText={{
+            text: `${
+              safeStore.getStatusMessage() ||
+              "Please sign the signature if prompted. This may take a few seconds ..."
+            }`,
+          }}
+        />
+      )}
+      <Box hCenter vCenter>
+        {errorMessage.length > 0 && (
+          <Alert label={{ text: errorMessage }} variant={"error"} icon />
+        )}
+      </Box>
 
-			<WalletCreateFormContainer>
-				<FormContainer>
-					<Box row vCenter>
-						<Box onClick={() => useNavigate(history)} flex={1} marginTop={0.3}>
-							<IconSvg name='arrowLeft' />
-						</Box>
-						<Box flex={5} vCenter>
-							<WalletCreateText
-								variant='contentHeader'
-								center
-								tx='common.createWallet'
-							/>
-						</Box>
-					</Box>
-					<WalletCreateFormBox marginBottom={2}>
-						<StyledInput
-							type='text'
-							label='Wallet Name'
-							placeholder='Satoshi Wallet'
-							onChange={(e: any) => {
-								setWalletName(e.target.value);
-							}}
-							error={validator}
-							errorMsg='Please Enter a Valid Wallet Name'
-						/>
-						<StyledInput
-							type='text'
-							label='Wallet Description'
-							placeholder='Satoshi Wallet Details'
-							onChange={(e: any) => setWalletDescription(e.target.value)}
-						/>
-					</WalletCreateFormBox>
+      <WalletCreateFormContainer>
+        <FormContainer>
+          <Box row vCenter>
+            <Box onClick={() => useNavigate(history)} flex={1} marginTop={0.3}>
+              <IconSvg name="arrowLeft" />
+            </Box>
+            <Box flex={5} vCenter>
+              <WalletCreateText
+                variant="contentHeader"
+                center
+                tx="common.createWallet"
+              />
+            </Box>
+          </Box>
+          <WalletCreateFormBox marginBottom={2}>
+            <StyledInput
+              type="text"
+              label="Wallet Name"
+              placeholder="Satoshi Wallet"
+              onChange={(e: any) => {
+                setWalletName(e.target.value);
+              }}
+              error={validator}
+              errorMsg="Please Enter a Valid Wallet Name"
+            />
+            <StyledInput
+              type="text"
+              label="Wallet Description"
+              placeholder="Satoshi Wallet Details"
+              onChange={(e: any) => setWalletDescription(e.target.value)}
+            />
+          </WalletCreateFormBox>
 
-					{/* bebeficiary */}
+          {/* bebeficiary */}
 
-					<Box row hCenter marginTop={3} justify={'between'}>
-						<Text variant='small' text={'Add a Beneficaiary '} bold600 />
-						<ToggleSwitch
-							toggleID={'beneficiary'}
-							checked={isBeneficiaryChecked}
-							onChange={(e: any) => {
-								setIsBeneficiaryChecked(!isBeneficiaryChecked);
-								getAllWallets();
-							}}
+          <Box row hCenter marginTop={3} justify={"between"}>
+            <Text variant="small" text={"Add a Beneficaiary "} bold600 />
+            <ToggleSwitch
+              toggleID={"beneficiary"}
+              checked={isBeneficiaryChecked}
+              onChange={(e: any) => {
+                setIsBeneficiaryChecked(!isBeneficiaryChecked);
+                getAllWallets();
+              }}
+            />
+          </Box>
 
-						
-						/>
-					</Box>
+          {isBeneficiaryChecked && (
+            <Box marginTop={2}>
+              <StyledInput
+                type="text"
+                label="Beneficiary Email or DID"
+                placeholder={"satoshi@safient.com"}
+                value={walletBeneficiary}
+                onChange={(e: any) => setWalletBeneficiary(e.target.value)}
+                errorMsg={"Enter a Valid Email ID"}
+                error={validator}
+              />
+            </Box>
+          )}
 
-					{isBeneficiaryChecked && (
-						<Box marginTop={2}>
-							<StyledInput
-								type='text'
-								label='Beneficiary Email or DID'
-								placeholder={'satoshi@safient.com'}
-								value={walletBeneficiary}
-								onChange={(e: any) => setWalletBeneficiary(e.target.value)}
-								errorMsg={'Enter a Valid Email ID'}
-								error={validator}
-							/>
-						</Box>
-					)}
+          {/* claim type */}
 
-					{/* claim type */}
+          <Box row hCenter marginTop={3} justify={"between"}>
+            <Text variant="small" text={"Add a Claim Type "} bold600 />
+            <ToggleSwitch
+              toggleID={"selectClaimType"}
+              checked={claimToggle}
+              onChange={(e: any) => {
+                setClaimToggle(!claimToggle);
+              }}
+            />
+          </Box>
 
-					<Box row hCenter marginTop={3} justify={'between'}>
-						<Text variant='small' text={'Add a Claim Type '} bold600 />
-						<ToggleSwitch
-							toggleID={'selectClaimType'}
-							checked={claimToggle}
-							onChange={(e: any) => {
-								setClaimToggle(!claimToggle);
-							}}
-						/>
-					</Box>
+          {claimToggle && (
+            <>
+              <Box marginTop={2}>
+                <Alert
+                  variant="info"
+                  icon
+                  label={{
+                    text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
+                  }}
+                />
+              </Box>
+              <Box marginTop={2}>
+                <Label>Select Claim Type</Label>
+                <DropDown
+                  placeholder="Select Claim Type"
+                  value={getClaimName(claimType)?.label}
+                  options={claimTypes}
+                  onChange={(e: any) => setClaimType(e.value)}
+                />
+              </Box>
 
-					{claimToggle && (
-						<>
-							<Box marginTop={2}>
-								<Alert
-									variant='info'
-									icon
-									label={{
-										text: 'This will create a wallet using signaling method with 300 sec signaling period. Click on "Advanced options" to update',
-									}}
-								/>
-							</Box>
-							<Box marginTop={2}>
-								<Label>Select Claim Type</Label>
-								<DropDown
-									placeholder='Select Claim Type'
-									value={getClaimName(claimType)?.label}
-									options={claimTypes}
-									onChange={(e: any) => setClaimType(e.value)}
-								/>
-							</Box>
+              {claimType === 0 && (
+                <Box row hCenter marginTop={2} justify={"between"}>
+                  <Label>Signaling Period</Label>
+                  <SignnalingInput
+                    type="text"
+                    placeholder={signalingPeriod.toString()}
+                    onChange={(e: any) =>
+                      setSignalingPeriod(parseInt(e.target.value))
+                    }
+                  />
+                </Box>
+              )}
+              {claimType === 2 && (
+                <Box row hCenter marginTop={2} justify={"between"}>
+                  <DateTimePicker
+                    label="Select DDay Date (Seconds)"
+                    placeholder="DDay Date"
+                    value={date}
+                    onChange={(date: any) => dateConverter(date)}
+                  />
+                </Box>
+              )}
+            </>
+          )}
 
-							{claimType === 0 && (
-								<Box row hCenter marginTop={2} justify={'between'}>
-									<Label>Signaling Period</Label>
-									<SignnalingInput
-										type='text'
-										placeholder={signalingPeriod.toString()}
-										onChange={(e: any) =>
-											setSignalingPeriod(parseInt(e.target.value))
-										}
-									/>
-								</Box>
-							)}
-							{claimType === 2 && (
-								<DateTimePicker
-									label='Select DDay Date (Seconds)'
-									placeholder='DDay Date'
-									value={date}
-									onChange={(date: any) => dateConverter(date)}
-								/>
-							)}
-						</>
-					)}
+          {/* topup */}
+          <Box row hCenter marginTop={3} justify={"between"}>
+            <Text variant="small" text={"Top up the wallet "} bold600 />
+            <ToggleSwitch
+              toggleID={"topup"}
+              checked={isTopupToggleChecked}
+              onChange={(e: any) => {
+                setIsTopupToggleChecked(!isTopupToggleChecked);
+                getAllWallets();
+              }}
+            />
+          </Box>
 
-					{/* topup */}
-					<Box row hCenter marginTop={3} justify={'between'}>
-						<Text variant='small' text={'Top up the wallet '} bold600 />
-						<ToggleSwitch
-							toggleID={'topup'}
-							checked={isTopupToggleChecked}
-							onChange={(e: any) => {
-								setIsTopupToggleChecked(!isTopupToggleChecked);
-								getAllWallets();
-							}}
-						/>
-					</Box>
+          {isTopupToggleChecked && (
+            <>
+              <Box marginTop={2}>
+                <Label>Select the wallet</Label>
+                <DropDown
+                  placeholder="Select the wallet"
+                  value={options}
+                  options={selectWallet}
+                  onChange={(e: any) => {
+                    setOptions(e.value);
+                    loadBalance();
+                  }}
+                />
+              </Box>
 
-					{isTopupToggleChecked && (
-						<>
-							<Box marginTop={2}>
-								<Label>Select the wallet</Label>
-								<DropDown
-									placeholder='Select the wallet'
-									value={options}
-									options={selectWallet}
-									onChange={(e: any) => {
-										setOptions(e.value);
-										loadBalance();
-									}}
-								/>
-							</Box>
+              {balanceLoader ? (
+                <Box marginTop={1}>
+                  <Label>Loading Wallet Balance...</Label>
+                </Box>
+              ) : (
+                <Box marginTop={1}>
+                  <Label>
+                    Wallet's Balance is{" "}
+                    {`${safeStore.walletInfo?.balance.eth} ETH`}
+                  </Label>
+                </Box>
+              )}
 
-							{balanceLoader ? (
-								<Box marginTop={1}>
-									<Label>Loading Wallet Balance...</Label>
-								</Box>
-							) : (
-								<Box marginTop={1}>
-									<Label>
-										Wallet's Balance is{' '}
-										{`${safeStore.walletInfo?.balance.eth} ETH`}
-									</Label>
-								</Box>
-							)}
+              <Box row hCenter marginTop={2} justify={"between"}>
+                <Label>Enter Topup Value</Label>
+                <StyledInput
+                  type="text"
+                  placeholder={"Enter the Topup value"}
+                  value={topupValue}
+                  onChange={(e: any) => setTopupValue(e.target.value)}
+                  error={topupError}
+                  errorMsg={`topup value should be less than ${safeStore.walletInfo?.balance.eth} ETH.`}
+                />
+              </Box>
+            </>
+          )}
 
-							<Box row hCenter marginTop={2} justify={'between'}>
-								<Label>Enter Topup Value</Label>
-								<StyledInput
-									type='text'
-									placeholder={'Enter the Topup value'}
-									value={topupValue}
-									onChange={(e: any) => setTopupValue(e.target.value)}
-									error={topupError}
-									errorMsg={`topup value should be less than ${safeStore.walletInfo?.balance.eth} ETH.`}
-								/>
-							</Box>
-						</>
-					)}
-
-					<StyledButton
-						variant='primary'
-						label={{ text: safeStore.fetching ? 'Creating..' : 'Create 🙌' }}
-						onClick={createSafe}
-						color='primaryGradient'
-						disabled={disableBtn}
-					/>
-				</FormContainer>
-			</WalletCreateFormContainer>
-		</HomeScreenContainer>
-	);
+          <StyledButton
+            variant="primary"
+            label={{ text: safeStore.fetching ? "Creating.." : "Create 🙌" }}
+            onClick={createWallet}
+            color="primaryGradient"
+            disabled={disableBtn}
+          />
+        </FormContainer>
+      </WalletCreateFormContainer>
+    </HomeScreenContainer>
+  );
 });
