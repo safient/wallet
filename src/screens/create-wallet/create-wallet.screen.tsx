@@ -275,7 +275,7 @@ export const CreateWalletScreen = observer(() => {
 
               {claimType === 0 && (
                 <Box row hCenter marginTop={2} justify={"between"}>
-                  <Label>Signaling Period</Label>
+                  <Label>Signaling Period (Sec)</Label>
                   <SignnalingInput
                     type="text"
                     placeholder={signalingPeriod.toString()}

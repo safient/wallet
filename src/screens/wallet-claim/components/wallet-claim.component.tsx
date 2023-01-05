@@ -40,7 +40,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
   let timestamp = 0;
 
   if (safeStore.safe?.claims.length) {
-    timestamp = safeStore.safe?.claims[safeStore.safe?.claims.length - 1].timeStamp + safeStore.safe?.signalingPeriod;
+    timestamp = safeStore.safe?.claims[safeStore.safe?.claims.length - 1].timeStamp + safeStore.safe?.claim.period;
   }
 
   const createClaim = async () => {
@@ -102,7 +102,7 @@ export const WalletClaim: React.FC<walltClaimProps> = observer((props) => {
             <ClaimStaus
               status={safeStore.safe?.stage!}
               timestamp={timestamp}
-              claimType={safeStore.safe!.claimType}
+              claimType={safeStore.safe!.claim.type}
               claiming={claiming}
               confirm={confirm}
               setConfirm={setConfirm}
