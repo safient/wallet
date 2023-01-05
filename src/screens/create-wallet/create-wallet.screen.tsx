@@ -39,7 +39,8 @@ export const CreateWalletScreen = observer(() => {
   const [walletDescription, setWalletDescription] = useState("");
 
   const [walletBeneficiary, setWalletBeneficiary] = useState(
-    safeService.getDefaultConfig()?.beneficiary);
+    safeService.getDefaultConfig()?.beneficiary
+  );
   const [signalingPeriod, setSignalingPeriod] = useState(300);
 
   const [claimType, setClaimType] = useState();
@@ -82,7 +83,6 @@ export const CreateWalletScreen = observer(() => {
   };
 
   const loadBalance = async () => {
-
     setBalanceLoader(true);
     safeStore.setRole("creator");
     const safeData = await safeService.recover(options, "creator");
@@ -148,6 +148,7 @@ export const CreateWalletScreen = observer(() => {
               setErrorMessage(
                 `Something went wrong while creating the wallet. ${safe.getErrorMessage()}`
               );
+              safeStore.setCustomError(0);
             }
           }
 

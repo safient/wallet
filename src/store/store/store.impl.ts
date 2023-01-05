@@ -6,6 +6,7 @@ export class StoreImpl implements Store {
   protected _error: string;
   protected _code: number;
   protected _statusMessage: string;
+  protected _customError: string;
 
   constructor() {
     this._fetching = false;
@@ -13,6 +14,7 @@ export class StoreImpl implements Store {
     this._code = 0;
     // todo- exp-remove if it didn't work
     this._statusMessage = "";
+    this._customError = "";
 
     makeObservable<StoreImpl, any>(this, {
       _fetching: observable,
@@ -25,6 +27,8 @@ export class StoreImpl implements Store {
       setError: action,
       _statusMessage: observable,
       setStatusMessage: action,
+      _customError: observable,
+      setCustomError: action,
     });
   }
 
@@ -44,6 +48,10 @@ export class StoreImpl implements Store {
     return this._statusMessage;
   }
 
+  get customErrorMessage() {
+    return this._customError;
+  }
+
   public setFetching(flag: boolean) {
     this._fetching = flag;
 
@@ -60,5 +68,11 @@ export class StoreImpl implements Store {
 
   public setStatusMessage(status?: string) {
     this._statusMessage = status || "";
+  }
+
+  public setCustomError(errorCode?: number) {
+    if (errorCode === 0) {
+      this._customError = "You need to Sign in order to create the wallet";
+    }
   }
 }
