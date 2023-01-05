@@ -20,7 +20,7 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
     history.push(roleName === 'creator' ? RoutePath.walletOverview : RoutePath.walletClaim);
     const safe = await safeService.get(id);
     if (roleName == 'beneficiary') {
-      history.push(safe.data?.claimType == null ? RoutePath.walletOverview : RoutePath.walletClaim);
+      history.push(safe.data?.claim.type == null ? RoutePath.walletOverview : RoutePath.walletClaim);
     }
     const safeData = await safeService.recover(id, roleName);
     if (safeData.hasData()) {

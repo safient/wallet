@@ -22,6 +22,7 @@ import { useStores } from 'store';
 import { AddressUtil } from 'utils/address';
 import { useHistory } from 'react-router-dom';
 import { RoutePath } from 'navigation/route-path';
+import { NetworkUtil } from 'utils/networks';
 
 export const WalletOverview: React.FC<walltOverViewProps> = observer(
 	(props) => {
@@ -78,17 +79,17 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer(
 							<IconsContainer justify={'center'} hCenter row gap={1.4}>
 								<Box />
 								{/* conditional rendering- success or danger and icon- dotGreen, dotRed */}
-								<Box marginLeft={-2.3}>
+								<Box marginLeft={-9.3}>
 									<Network
 										variant={
-											safeStore.walletNetwork === 'mainnet'
+											safeStore.walletNetwork === 'mainnet' || 'polygon' || 'bsc'
 												? 'success'
 												: 'danger'
 										}
-										label={{ text: safeStore.walletNetwork }}
+										label={{ text: NetworkUtil.getNetworkByName(safeStore.walletNetwork).name }}
 										icon={{
 											name:
-												safeStore.walletNetwork === 'mainnet'
+												safeStore.walletNetwork === 'mainnet' || 'polygon' || 'bsc'
 													? 'dotGreen'
 													: 'dotRed',
 										}}
@@ -142,7 +143,7 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer(
 									/>
 									<BalanceInEth
 										variant='small'
-										text={safeStore.walletInfo?.balance.eth + ' ETH'}
+										text={`${safeStore.walletInfo?.balance.eth}  ${NetworkUtil.getNetworkByName(safeStore.walletNetwork).symbol}`}
 										color='textLighter'
 									/>
 								</BalanceContainer>
@@ -163,3 +164,4 @@ export const WalletOverview: React.FC<walltOverViewProps> = observer(
 		);
 	}
 );
+

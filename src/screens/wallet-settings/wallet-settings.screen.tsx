@@ -38,21 +38,22 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
       label: 'Ethereum Mainnet',
     },
     {
-      value: 'kovan',
-      label: 'Kovan Test Network',
+      value: 'polygon',
+      label: 'Polygon Mainnet',
     },
     {
-      value: 'rinkeby',
-      label: 'Rinkeby Test Network',
+      value: 'bsc',
+      label: 'BSC Mainnet',
     },
     {
-      value: 'ropsten',
-      label: 'Ropsten Test Network',
+      value: 'mumbai',
+      label: 'Polygon Test Network',
     },
     {
       value: 'goerli',
       label: 'Goerli Test Network',
     },
+
   ];
 
   const getNetworkName = (network: string) => {

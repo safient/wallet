@@ -14,7 +14,7 @@ export const HomeScreen: React.FC = observer(() => {
 
   const isValidNetwork = () => {
     if (accountStore.network === Enums.NetworkType.testnet) {
-      return parseInt(accountStore.chainId.toString()) === 42;
+      return parseInt(accountStore.chainId.toString()) === 80001;
     } else if (accountStore.network === Enums.NetworkType.devnet) {
       return parseInt(accountStore.chainId.toString()) === 31337;
     }
@@ -23,7 +23,7 @@ export const HomeScreen: React.FC = observer(() => {
 
   const getTargetNetwork = () => {
     if (accountStore.network === Enums.NetworkType.testnet) {
-      return 'Kovan Network';
+      return 'Polygon Testnet';
     }
     if (accountStore.network === Enums.NetworkType.devnet) {
       return 'Local Network';

@@ -59,4 +59,5 @@ export const WalletName = styled(Text)`
 
 export const Network = styled(Badge)`
   border-radius: 0.5rem;
+  padding: 1rem !important;
 `;
