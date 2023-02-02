@@ -6,16 +6,17 @@ import { RouteName } from './route-name';
  * To use the param use useParam hook
  */
 export interface RouteParamsList {
-  [RouteName.home]: undefined;
-  [RouteName.login]: undefined;
-  [RouteName.register]: undefined;
-  [RouteName.account]: undefined;
-  [RouteName.notFound]: undefined;
-  [RouteName.welcome]: undefined;
-  [RouteName.createWallet]: undefined;
-  [RouteName.walletOverview]: undefined;
-  [RouteName.walletClaim]: undefined;
-  [RouteName.walletSettings]: undefined;
-  [RouteName.notifications]: undefined;
-  [RouteName.globalNotifivations]: undefined;
+	[RouteName.home]: undefined;
+	[RouteName.login]: undefined;
+	[RouteName.register]: undefined;
+	[RouteName.account]: undefined;
+	[RouteName.notFound]: undefined;
+	[RouteName.welcome]: undefined;
+	[RouteName.createWallet]: undefined;
+	[RouteName.walletOverview]: undefined;
+	[RouteName.walletClaim]: undefined;
+	[RouteName.walletSettings]: undefined;
+	[RouteName.notifications]: undefined;
+	[RouteName.globalNotifications]: undefined;
+	[RouteName.createVoucher]: undefined;
 }

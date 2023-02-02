@@ -15,7 +15,6 @@ export const ViewAllText = styled(Text)`
 export const Activities = styled.section`
   display: flex;
   gap: 2rem;
-  margin: 0 auto;
   justify-content: center;
   margin-top: 2.6rem;
   align-self: flex-start;
@@ -26,6 +25,7 @@ export const Activities = styled.section`
     align-self: center;
     justify-content: center;
     overflow: hidden;
+    gap:1rem;
     .icon {
       align-items: center;
     }

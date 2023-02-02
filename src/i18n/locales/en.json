@@ -30,14 +30,14 @@
     "getStarted": "Get Started",
     "login": "Log In",
     "create": "Create",
-    "createAccount": "Create an Account",
+    "createAccount": "Welcome to Safient Wallet 👋",
     "terms": "Terms of Use",
     "privacy": "Privacy Policy",
-    "registerAlert": "We couldn't find your account. Please register here"
+    "registerAlert": "Looks like you are new here . Please provide these optional info so that you get the best experience 🤝"
   },
   "wallet": {
     "enterDetails": "Enter Wallet Details",
-    "creatingLabel": "Creating Wallet ..."
+    "creatingLabel": "Setting up your wallet"
   },
 
   "accountPage": {

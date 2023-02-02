@@ -54,6 +54,10 @@ export const RegisterScreen = observer(() => {
 
       <RegistrationFormContainer>
         <FormContainer>
+          
+          <RegistrationText variant='contentHeader' center tx='auth.createAccount' />
+
+          <RegistrationFormBox>
           {errorMessage.length > 0 ? (
             <Box hCenter vCenter marginTop={-2} marginBottom={2}>
               {' '}
@@ -61,13 +65,10 @@ export const RegisterScreen = observer(() => {
             </Box>
           ) : (
             <Box marginBottom={2}>
-              <Alert icon variant='warning' label={{ tx: 'auth.registerAlert' }} />
+              <Alert icon variant='success' label={{ tx: 'auth.registerAlert' }} />
             </Box>
           )}
 
-          <RegistrationText variant='contentHeader' center tx='auth.createAccount' />
-
-          <RegistrationFormBox>
             <Input
               type='text'
               label='Enter your Full Name'
@@ -101,7 +102,7 @@ export const RegisterScreen = observer(() => {
           <StyledButton
             variant='primary'
             loading={accountStore.fetching}
-            label={{ text: accountStore.fetching ? 'Registering..' : 'Create' }}
+            label={{ text: accountStore.fetching ? 'Registering..' : "Let's Go 🚀" }}
             onClick={register}
             color='primaryGradient'
             disabled={!isChecked}

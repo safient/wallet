@@ -11,3 +11,4 @@ export * from './wallet-overview/wallet-overview.screen';
 export * from './wallet-settings/wallet-settings.screen';
 export * from './auth/callback/callback.screen';
 export * from './notifications/global-notifications.screen';
+export * from './create-voucher/create-voucher.screen';

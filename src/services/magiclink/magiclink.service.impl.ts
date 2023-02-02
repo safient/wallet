@@ -24,7 +24,7 @@ export class MagicServiceImpl extends Service implements MagiclinkService {
 
   getChainId = () => {
     if (this.accountStore.network == Enums.NetworkType.testnet) {
-      return 42;
+      return 80001;
     } else if (this.accountStore.network == Enums.NetworkType.devnet) {
       return 31337;
     }

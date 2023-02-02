@@ -38,21 +38,22 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
       label: 'Ethereum Mainnet',
     },
     {
-      value: 'kovan',
-      label: 'Kovan Test Network',
+      value: 'polygon',
+      label: 'Polygon Mainnet',
     },
     {
-      value: 'rinkeby',
-      label: 'Rinkeby Test Network',
+      value: 'bsc',
+      label: 'BSC Mainnet',
     },
     {
-      value: 'ropsten',
-      label: 'Ropsten Test Network',
+      value: 'mumbai',
+      label: 'Polygon Test Network',
     },
     {
       value: 'goerli',
       label: 'Goerli Test Network',
     },
+
   ];
 
   const getNetworkName = (network: string) => {
@@ -82,7 +83,7 @@ export const WalletSettingsScreen = observer(({ history }: any) => {
             <Label> Wallet Beneficiary</Label>
           </BeneficiaryContainer>
           <Box marginTop={-2} marginBottom={1.2}>
-            <StyledInput type='text' placeholder='johndoe@safeint.com' value={safeStore.safe?.beneficiary} />
+            <StyledInput type='text' placeholder='johndoe@safeint.com' value={safeStore.safe?.beneficiary? safeStore.safe?.beneficiary : ''} />
           </Box>
 
           <Accordion label='Advanced Options'>

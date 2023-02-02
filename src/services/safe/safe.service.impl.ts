@@ -1,9 +1,9 @@
-import { SafeService } from './safe.service';
-import { ServiceResponse } from '../core/service-response';
-import { AccountStoreImpl, SafeStoreImpl, stores } from '../../store';
-import { StorageServiceImpl } from 'services/storage/storage.service.impl';
-import { Service } from '../core/service';
-import { Types, Enums } from '@safient/core';
+import { SafeService } from "./safe.service";
+import { ServiceResponse } from "../core/service-response";
+import { AccountStoreImpl, SafeStoreImpl, stores } from "../../store";
+import { StorageServiceImpl } from "services/storage/storage.service.impl";
+import { Service } from "../core/service";
+import { Types, Enums } from "@safient/core";
 
 export class SafeServiceImpl extends Service implements SafeService {
   private readonly accountStore: AccountStoreImpl;
@@ -23,7 +23,7 @@ export class SafeServiceImpl extends Service implements SafeService {
     description: string,
     beneficiary: string,
     data: string,
-    claimType: Enums.ClaimType,
+    claimType: Enums.ClaimType | null,
     signalingPeriod: number,
     DdayBasedTime: number,
     onchain: boolean
@@ -41,31 +41,30 @@ export class SafeServiceImpl extends Service implements SafeService {
         safe: cryptoSafe,
       };
 
-      if (claimType === Enums.ClaimType.DDayBased) {
-        signalingPeriod = 0;
-      } else if (claimType === Enums.ClaimType.SignalBased) {
-        DdayBasedTime = 0;
-      }
-
       const safe = await this.accountStore.safient.createSafe(
-        name,
-        description,
-        this.accountStore.safientUser.did,
         safeData,
-        onchain,
-        claimType,
-        signalingPeriod,
-        DdayBasedTime,
-        { email: beneficiary }
+        beneficiary != null ? { email: beneficiary } : undefined,
+        claimType != null
+          ? {
+              type: claimType,
+              period:
+                claimType == Enums.ClaimType.SignalBased
+                  ? signalingPeriod
+                  : DdayBasedTime,
+            }
+          : undefined,
+        { name: name, description: description }
       );
       // Adding the new safe to the local SafeMeta store
       this.accountStore.safientUser.safes.push({
         safeName: name,
         safeId: safe.data?.id!,
-        type: 'creator',
+        type: "creator",
         decShard: null,
       });
-      return this.success<Types.EventResponse>(safe.data as Types.EventResponse);
+      return this.success<Types.EventResponse>(
+        safe.data as Types.EventResponse
+      );
     } catch (e: any) {
       console.log(e);
       return this.error<Types.EventResponse>(e.error);
@@ -85,7 +84,7 @@ export class SafeServiceImpl extends Service implements SafeService {
   //Currently signal based claim
   async claim(safeId: string): Promise<ServiceResponse<Types.EventResponse>> {
     try {
-      const disputeId = await this.accountStore.safient.createClaim(safeId, {}, '', '');
+      const disputeId = await this.accountStore.safient.createClaim(safeId);
       return this.success<Types.EventResponse>(disputeId.data!);
     } catch (e: any) {
       console.log(e);
@@ -108,18 +107,24 @@ export class SafeServiceImpl extends Service implements SafeService {
     }
   }
 
-  async recover(safeId: string, role: string): Promise<ServiceResponse<Types.SecretSafe>> {
+  async recover(
+    safeId: string,
+    role: string
+  ): Promise<ServiceResponse<Types.SecretSafe>> {
     try {
       let recoveredData, secretData;
 
-      if (role === 'creator') {
-        recoveredData = await this.accountStore.safient.recoverSafeByCreator(safeId);
-        secretData = recoveredData.data.data.safe.data;
-      } else {
-        recoveredData = await this.accountStore.safient.recoverSafeByBeneficiary(
-          safeId,
-          this.accountStore.safientUser.did
+      if (role === "creator") {
+        recoveredData = await this.accountStore.safient.recoverSafeByCreator(
+          safeId
         );
+        secretData = recoveredData.data.safe.data;
+      } else {
+        recoveredData =
+          await this.accountStore.safient.recoverSafeByBeneficiary(
+            safeId,
+            this.accountStore.safientUser.did
+          );
         secretData = recoveredData.data.safe.data;
       }
       return this.success<Types.SecretSafe>(secretData);
@@ -129,10 +134,10 @@ export class SafeServiceImpl extends Service implements SafeService {
   }
 
   setDefaultConfig(beneficiary: string) {
-    this.storage.set('defaultConfig', { beneficiary: beneficiary });
+    this.storage.set("defaultConfig", { beneficiary: beneficiary });
   }
 
   getDefaultConfig(): any {
-    return this.storage.get('defaultConfig');
+    return this.storage.get("defaultConfig");
   }
 }

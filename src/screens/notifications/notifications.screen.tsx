@@ -26,7 +26,7 @@ export const NotificationsScreen: React.FC = () => {
   let timestamp = 0;
 
   if (safeStore.safe?.claims.length) {
-    timestamp = safeStore.safe?.claims[safeStore.safe?.claims.length - 1].timeStamp + safeStore.safe?.signalingPeriod;
+    timestamp = safeStore.safe?.claims[safeStore.safe?.claims.length - 1].timeStamp + safeStore.safe?.claim.period;
   }
 
   const handleCancelClaim = async () => {

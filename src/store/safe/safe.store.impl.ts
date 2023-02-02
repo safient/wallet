@@ -10,7 +10,7 @@ export class SafeStoreImpl extends StoreImpl implements SafeStore {
   _walletSecret?: WalletSecret;
   _walletInfo?: WalletInfo;
   _safeRole?: string;
-  walletNetwork: keyof typeof Network = 'kovan';
+  walletNetwork: keyof typeof Network = 'polygon';
 
   constructor() {
     super();

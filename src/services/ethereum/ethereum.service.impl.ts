@@ -22,7 +22,7 @@ export class EthereumServiceImpl extends Service implements EthereumService {
     if(window.ethereum) {
       window.ethereum.on("chainChanged", (chainId: any) => {
         this.accountStore.chainId = chainId;
-        accountService.login(true)
+        // accountService.login(true)
       });
     }
 

@@ -6,9 +6,12 @@ export const NotificationsContainer = styled.section`
   padding: 1rem;
   min-width: 62.6rem;
   @media screen and (max-width: ${BreakPoints.small}) {
-    min-width: 34.4rem;
+    padding:0;
+    min-width: 38.4rem;
+   
     .title {
       font-size: 2.2rem;
+    
     }
   }
 `;
@@ -22,9 +25,7 @@ export const Notifications = styled.div`
   background: white;
   margin-top: 3rem;
   @media screen and (max-width: ${BreakPoints.small}) {
-    padding: 2rem;
-    margin-top: 1rem;
-    width: 100%;
+    margin-top: 0.5rem; 
   }
 `;
 
