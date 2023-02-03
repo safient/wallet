@@ -34,18 +34,22 @@ export class WalletServiceImpl extends Service implements WalletService {
 
   // Service API to load a wallet from mnemonic
 
-  async load(mnemonic?: string): Promise<ServiceResponse<EthersWallet>> {
+  async load(secret?: { mnemonic?: string; privateKey?: string }): Promise<ServiceResponse<EthersWallet>> {
     try {
-      if (!mnemonic) {
-        mnemonic = this.safeStore.walletSecret?.mnemonic;
-      }
+
+
+      console.log(secret)
+      const mnemonic = secret?.mnemonic?  secret?.mnemonic : !secret?.privateKey ? this.safeStore.walletSecret?.secret.mnemonic : undefined; 
+      const privateKey = secret?.privateKey?  secret?.privateKey :  !secret?.mnemonic ? this.safeStore.walletSecret?.secret.privateKey : undefined; 
       const wallet = await this.wallet.load(
         this.safeStore.walletNetwork,
-        mnemonic!
+        {mnemonic: mnemonic, privateKey: privateKey }
       );
 
+      console.log(wallet)
+
       const walletInfo = await this.info();
-      const walletSecret: WalletSecret = {address:  walletInfo.data?.address!, mnemonic: mnemonic!, wallet: wallet.data!}
+      const walletSecret: WalletSecret = {address:  walletInfo.data?.address!, secret: {mnemonic: mnemonic, privateKey: privateKey}, wallet: wallet.data!}
   
       this.safeStore.setWallet(walletInfo.data!, walletSecret)
 

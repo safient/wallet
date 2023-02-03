@@ -24,9 +24,12 @@ export const WalletCard: React.FC<WalletCardProps> = (props) => {
     }
     const safeData = await safeService.recover(id, roleName);
     if (safeData.hasData()) {
-      if (safeData.data?.seedPhrase) {
-        await walletService.load(safeData.data?.seedPhrase);
-      }
+
+      console.log(safeData.data)
+
+
+      await walletService.load({mnemonic: safeData.data?.seedPhrase! ,  privateKey: safeData.data?.privateKey!});
+      
     }
     safeStore.setFetching(false);
   }

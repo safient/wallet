@@ -6,6 +6,7 @@ import { ServiceResponse } from '../services/core/service-response';
 import { NetworkUtil, Network } from './networks';
 import { DateUtil } from './date';
 import { TransactionResponse } from '@ethersproject/providers';
+const randomBytes = require("randombytes");
 
 export type Account = {
   address: string;
@@ -14,7 +15,7 @@ export type Account = {
 
 export type WalletSecret = {
   address: string;
-  mnemonic: string;
+  secret: { mnemonic?: string, privateKey?: string } ;
   wallet: EthersWallet;
 };
 
@@ -37,7 +38,7 @@ export class Wallet {
       const wallet: EthersWallet = await this._loadProvider(networkURL, account.privateKey);
       const walletSecret: WalletSecret = {
         address: account.address,
-        mnemonic: mnemonic,
+        secret: { mnemonic: mnemonic },
         wallet: wallet,
       };
 
@@ -45,6 +46,11 @@ export class Wallet {
     } catch (err: any) {
       throw new ServiceResponse({ error: err.error });
     }
+  }
+
+  generatePrivate(): string {
+    const privateKey = randomBytes(32).toString("hex");
+    return privateKey;
   }
 
   async _loadAccount(mnemonic: string): Promise<Account> {
@@ -79,11 +85,24 @@ export class Wallet {
     }
   }
 
-  async load(network: keyof typeof Network, mnemonic: string): Promise<ServiceResponse<EthersWallet>> {
+  async load(
+    network: keyof typeof Network,
+    secret: { mnemonic?: string; privateKey?: string }
+  ): Promise<ServiceResponse<EthersWallet>> {
     try {
       const networkURL = NetworkUtil.getNetworkByName(network)!.url;
-      const account: Account = await this._loadAccount(mnemonic);
-      const wallet: EthersWallet = await this._loadProvider(networkURL, account.privateKey);
+      console.log(secret)
+
+      const wallet: EthersWallet = await this._loadProvider(
+        networkURL,
+        secret.mnemonic
+          ? (
+              await this._loadAccount(secret.mnemonic)
+            ).privateKey
+          : secret.privateKey
+          ? secret.privateKey
+          : this.generatePrivate()
+      );
 
       return new ServiceResponse({ data: wallet });
     } catch (err: any) {

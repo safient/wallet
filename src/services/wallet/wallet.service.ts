@@ -7,7 +7,7 @@ export interface WalletService {
 
   create(): Promise<ServiceResponse<WalletSecret>>
 
-  load(mnemonic: string): Promise<ServiceResponse<EthersWallet>>
+  load(secret: { mnemonic?: string; privateKey?: string }): Promise<ServiceResponse<EthersWallet>>
 
   info(): Promise<ServiceResponse<any>>
 
